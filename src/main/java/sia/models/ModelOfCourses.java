@@ -16,7 +16,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="courses")
-
 public class ModelOfCourses {
     @Id
     @Column(name="courses_code")
