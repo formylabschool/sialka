@@ -5,7 +5,7 @@
  */
 package sia.ui;
 
-import sia.configuration.ConfigOfCourses;
+import sia.configuration.Config;
 import sia.controllers.ControllersOfCourses;
 import sia.models.ModelOfCourses;
 import sia.services.ServiceOfCourses;
@@ -148,7 +148,7 @@ public class CoursesFormAdd extends javax.swing.JDialog {
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
         try {
-            ServiceOfCourses service = new ServiceOfCourses(ConfigOfCourses.config());
+            ServiceOfCourses service = new ServiceOfCourses(Config.config());
             ModelOfCourses model = new ModelOfCourses();
             model.setCoursesCode(txtKodeMateri.getText());
             model.setCoursesName(txtNamaMateri.getText());

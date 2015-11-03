@@ -12,7 +12,7 @@ import sia.models.ModelOfCourses;
 /**
  * @author muhamadhanifmuhsin
  */
-public class ConfigOfCourses {
+public class Config {
 
     /*klo mau tambahin entity tambahin disini pke metode addAnnotadedClass(NamaEntity.class)*/
     public static SessionFactory config() {
