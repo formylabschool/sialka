@@ -6,20 +6,26 @@
 package sia.ui;
 
 import java.awt.Dimension;
+import javax.swing.table.DefaultTableModel;
+import sia.controllers.ControllersOfCourses;
 
 /**
  *
  * @author muhamadhanifmuhsin
  */
 public class CoursesForm extends javax.swing.JInternalFrame {
-
+private ControllersOfCourses controll;
     /**
      * Creates new form MateriForm
      */
     public CoursesForm() {
         initComponents();
+        this.controll = new ControllersOfCourses();
+        this.controll.inijectTable((DefaultTableModel)tableDataMateri.getModel());
+        this.controll.loadDataTable();
     }
 
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

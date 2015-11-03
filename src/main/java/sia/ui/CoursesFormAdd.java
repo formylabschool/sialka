@@ -15,6 +15,8 @@ import sia.services.ServiceOfCourses;
  */
 public class CoursesFormAdd extends javax.swing.JDialog {
     private ControllersOfCourses controllers;
+   
+    
 
     /**
      * Creates new form CoursesFormDialog
@@ -22,8 +24,9 @@ public class CoursesFormAdd extends javax.swing.JDialog {
     public CoursesFormAdd(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+       
         this.controllers = new ControllersOfCourses();
-        //controllers.inijectTable((DefaultTableModel)) ta;
+       
     }
 
 
