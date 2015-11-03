@@ -22,13 +22,12 @@ public class ServiceOfCourses {
         this.aSessionFactory = aSessionFactory;
     }
     
-    public void doSave(ModelOfCourses aCourses){
+    public void doSave(ModelOfCourses aCourses)throws Exception{
         Session aSession = aSessionFactory.openSession();
         aSession.beginTransaction();
         aSession.save(aCourses);
         aSession.getTransaction().commit();
         aSession.close();
-        
     }
     
     public void doUpdate(ModelOfCourses aCourses){
