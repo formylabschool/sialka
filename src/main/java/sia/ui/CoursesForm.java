@@ -6,26 +6,41 @@
 package sia.ui;
 
 import java.awt.Dimension;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import sia.configuration.Config;
 import sia.controllers.ControllersOfCourses;
+import sia.models.ModelOfCourses;
+import sia.services.ServiceOfCourses;
 
 /**
  *
  * @author muhamadhanifmuhsin
  */
 public class CoursesForm extends javax.swing.JInternalFrame {
-private ControllersOfCourses controll;
+
+    private ControllersOfCourses controll;
+    private ServiceOfCourses service;
+    private List<ModelOfCourses> list;
+
     /**
      * Creates new form MateriForm
      */
     public CoursesForm() {
         initComponents();
         this.controll = new ControllersOfCourses();
-        this.controll.inijectTable((DefaultTableModel)tableDataMateri.getModel());
-        this.controll.loadDataTable();
+        this.controll.inijectTable((DefaultTableModel) tableDataMateri.getModel());
+        refreshTable();
     }
 
-   
+    public void refreshTable() {
+        service = new ServiceOfCourses(Config.config());
+        list = service.findAll();
+        this.controll.loadDataTable(list);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,7 +56,7 @@ private ControllersOfCourses controll;
         btnClose = new javax.swing.JButton();
         btnTambah = new javax.swing.JButton();
         btnUbah = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnHapus = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
@@ -60,6 +75,11 @@ private ControllersOfCourses controll;
                 "Kode Materi", "Nama Materi", "Jumlah Jam"
             }
         ));
+        tableDataMateri.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableDataMateriMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableDataMateri);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -103,8 +123,13 @@ private ControllersOfCourses controll;
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jButton4.setText("Hapus");
+        btnHapus.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        btnHapus.setText("Hapus");
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel1.setText("Materi");
@@ -146,7 +171,7 @@ private ControllersOfCourses controll;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnUbah)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)))
+                        .addComponent(btnHapus)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -156,7 +181,7 @@ private ControllersOfCourses controll;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTambah)
                     .addComponent(btnUbah)
-                    .addComponent(jButton4)
+                    .addComponent(btnHapus)
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5))
@@ -172,9 +197,9 @@ private ControllersOfCourses controll;
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // TODO add your handling code here:
-       CoursesFormAdd add = new CoursesFormAdd(null,true);
-       add.setVisible(true);
-       
+        CoursesFormAdd add = new CoursesFormAdd(null, false, this);
+        add.setVisible(true);
+
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -192,16 +217,46 @@ private ControllersOfCourses controll;
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
         // TODO add your handling code here:
-        CoursesFormEdit edit = new CoursesFormEdit(null, true);
-        edit.setVisible(true);
+
+        Integer selectedRow = tableDataMateri.getSelectedRow();
+        System.out.println(selectedRow + " selected row ");
+        if (selectedRow >= 0) {
+            ModelOfCourses model = list.get(selectedRow);
+            CoursesFormAdd add = new CoursesFormAdd(null, true, this, model);
+            add.setVisible(true);
+        } else {
+
+        }
+
     }//GEN-LAST:event_btnUbahActionPerformed
+
+    private void tableDataMateriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableDataMateriMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_tableDataMateriMouseClicked
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        // TODO add your handling code here:
+        Integer rowSelected = tableDataMateri.getSelectedRow();
+        System.out.println("hapus data baris ke "+rowSelected);
+        if (rowSelected >= 0) {
+            service = new ServiceOfCourses(Config.config());
+            ModelOfCourses model = list.get(tableDataMateri.getSelectedRow());
+            service.doDelete(model);
+            refreshTable();
+        }else{
+            System.out.println("Tabel Belum diklick");
+        }
+
+
+    }//GEN-LAST:event_btnHapusActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

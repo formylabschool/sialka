@@ -5,6 +5,7 @@
  */
 package sia.controllers;
 
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import sia.configuration.Config;
 import sia.interfaces.JavaControllers;
@@ -23,10 +24,10 @@ public class ControllersOfCourses implements JavaControllers{
         this.defaultTableModel.fireTableDataChanged();
     }
 
-    public void loadDataTable(){
+    public void loadDataTable(List<ModelOfCourses> list){
         initTable();
         ServiceOfCourses service = new ServiceOfCourses(Config.config());
-        for (ModelOfCourses aModelOfCourses : service.findAll()){
+        for (ModelOfCourses aModelOfCourses : list){
              Object[] anObjects = {aModelOfCourses.getCoursesCode(),aModelOfCourses.getCoursesName(),aModelOfCourses.getTheNumberOfHoursOfCourses()};
              this.defaultTableModel.addRow(anObjects);
             
@@ -36,7 +37,6 @@ public class ControllersOfCourses implements JavaControllers{
     @Override
     public void inijectTable(DefaultTableModel defaultTableModel) {
         this.defaultTableModel = defaultTableModel;
-        loadDataTable();
     }
     
     

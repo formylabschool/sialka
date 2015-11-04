@@ -5,6 +5,7 @@
  */
 package sia.ui;
 
+import javax.swing.JOptionPane;
 import sia.configuration.Config;
 import sia.controllers.ControllersOfCourses;
 import sia.models.ModelOfCourses;
@@ -14,21 +15,37 @@ import sia.services.ServiceOfCourses;
  * @author muhamadhanifmuhsin
  */
 public class CoursesFormAdd extends javax.swing.JDialog {
-    private ControllersOfCourses controllers;
-   
-    
 
-    /**
-     * Creates new form CoursesFormDialog
-     */
-    public CoursesFormAdd(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-       
-        this.controllers = new ControllersOfCourses();
-       
+    private ControllersOfCourses controllers;
+    private final CoursesForm menu;
+    private Boolean update;
+    private ModelOfCourses model;
+
+    private void setUpdate(Boolean update) {
+        this.update = update;
     }
 
+    public CoursesFormAdd(java.awt.Frame parent, boolean modal, CoursesForm aThis) {
+        super(parent, modal);
+        this.model = new ModelOfCourses();
+        initComponents();
+        setUpdate(false);
+        this.menu = aThis;
+        this.controllers = new ControllersOfCourses();
+
+    }
+
+    public CoursesFormAdd(java.awt.Frame object, boolean b, CoursesForm aThis, ModelOfCourses model) {
+        super(object, b);
+        setUpdate(true);
+        initComponents();
+        this.menu = aThis;
+        this.controllers = new ControllersOfCourses();
+        this.model = model;
+        txtKodeMateri.setText(model.getCoursesCode());
+        txtNamaMateri.setText(model.getCoursesName());
+        txtJumlahJam.setText(String.valueOf(model.getTheNumberOfHoursOfCourses()));
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -150,16 +167,35 @@ public class CoursesFormAdd extends javax.swing.JDialog {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        try {
-            ServiceOfCourses service = new ServiceOfCourses(Config.config());
-            ModelOfCourses model = new ModelOfCourses();
-            model.setCoursesCode(txtKodeMateri.getText());
-            model.setCoursesName(txtNamaMateri.getText());
-            model.setTheNumberOfHoursOfCourses(Integer.valueOf(txtJumlahJam.getText()));
-            service.doSave(model);
-            dispose();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (update) {
+            try {
+                ServiceOfCourses service = new ServiceOfCourses(Config.config());
+                model.setCoursesCode(txtKodeMateri.getText());
+                model.setCoursesName(txtNamaMateri.getText());
+                model.setTheNumberOfHoursOfCourses(Integer.valueOf(txtJumlahJam.getText()));
+                
+                service.doUpdate(model);
+                
+                this.menu.refreshTable();
+                
+                dispose();
+            } catch (Exception e) {
+                e.printStackTrace();
+                
+            }
+        } else {
+            try {
+                ServiceOfCourses service = new ServiceOfCourses(Config.config());
+                model.setCoursesCode(txtKodeMateri.getText());
+                model.setCoursesName(txtNamaMateri.getText());
+                model.setTheNumberOfHoursOfCourses(Integer.valueOf(txtJumlahJam.getText()));
+                service.doSave(model);
+                this.menu.refreshTable();
+                dispose();
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
         }
 
     }//GEN-LAST:event_btnSimpanActionPerformed
@@ -167,45 +203,6 @@ public class CoursesFormAdd extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CoursesFormAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CoursesFormAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CoursesFormAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CoursesFormAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                CoursesFormAdd dialog = new CoursesFormAdd(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSimpan;
