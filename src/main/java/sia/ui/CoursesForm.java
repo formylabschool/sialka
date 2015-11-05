@@ -11,7 +11,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import sia.configuration.Config;
+import sia.configuration.ConfigOfSIA;
 import sia.controllers.ControllersOfCourses;
 import sia.models.ModelOfCourses;
 import sia.services.ServiceOfCourses;
@@ -37,7 +37,7 @@ public class CoursesForm extends javax.swing.JInternalFrame {
     }
 
     public void refreshTable() {
-        service = new ServiceOfCourses(Config.config());
+        service = new ServiceOfCourses(ConfigOfSIA.config());
         list = service.findAll();
         this.controll.loadDataTable(list);
     }
@@ -241,7 +241,7 @@ public class CoursesForm extends javax.swing.JInternalFrame {
         Integer rowSelected = tableDataMateri.getSelectedRow();
         System.out.println("hapus data baris ke "+rowSelected);
         if (rowSelected >= 0) {
-            service = new ServiceOfCourses(Config.config());
+            service = new ServiceOfCourses(ConfigOfSIA.config());
             ModelOfCourses model = list.get(tableDataMateri.getSelectedRow());
             service.doDelete(model);
             refreshTable();

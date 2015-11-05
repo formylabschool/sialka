@@ -7,7 +7,7 @@ package sia.controllers;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import sia.configuration.Config;
+import sia.configuration.ConfigOfSIA;
 import sia.interfaces.JavaControllers;
 import sia.models.ModelOfCourses;
 import sia.services.ServiceOfCourses;
@@ -26,7 +26,7 @@ public class ControllersOfCourses implements JavaControllers{
 
     public void loadDataTable(List<ModelOfCourses> list){
         initTable();
-        ServiceOfCourses service = new ServiceOfCourses(Config.config());
+        ServiceOfCourses service = new ServiceOfCourses(ConfigOfSIA.config());
         for (ModelOfCourses aModelOfCourses : list){
              Object[] anObjects = {aModelOfCourses.getCoursesCode(),aModelOfCourses.getCoursesName(),aModelOfCourses.getCoursesTheory(),aModelOfCourses.getCoursesPractice()};
              this.defaultTableModel.addRow(anObjects);

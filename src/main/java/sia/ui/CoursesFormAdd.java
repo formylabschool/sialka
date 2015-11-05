@@ -6,7 +6,7 @@
 package sia.ui;
 
 import javax.swing.JOptionPane;
-import sia.configuration.Config;
+import sia.configuration.ConfigOfSIA;
 import sia.controllers.ControllersOfCourses;
 import sia.models.ModelOfCourses;
 import sia.services.ServiceOfCourses;
@@ -186,7 +186,7 @@ public class CoursesFormAdd extends javax.swing.JDialog {
         // TODO add your handling code here:
         if (update) {
             try {
-                ServiceOfCourses service = new ServiceOfCourses(Config.config());
+                ServiceOfCourses service = new ServiceOfCourses(ConfigOfSIA.config());
                 model.setCoursesCode(txtKodeMateri.getText());
                 model.setCoursesName(txtNamaMateri.getText());
                 model.setCoursesTheory(Integer.valueOf(txtTeori.getText()));
@@ -203,7 +203,7 @@ public class CoursesFormAdd extends javax.swing.JDialog {
             }
         } else {
             try {
-                ServiceOfCourses service = new ServiceOfCourses(Config.config());
+                ServiceOfCourses service = new ServiceOfCourses(ConfigOfSIA.config());
                 model.setCoursesCode(txtKodeMateri.getText());
                 model.setCoursesName(txtNamaMateri.getText());
                 model.setCoursesTheory(Integer.valueOf(txtTeori.getText()));
