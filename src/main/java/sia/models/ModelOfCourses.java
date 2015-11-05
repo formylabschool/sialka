@@ -22,8 +22,27 @@ public class ModelOfCourses {
     private String coursesCode;
     @Column(name="courses_name")
     private String coursesName;
-    @Column(name="tnhc")
-    private int theNumberOfHoursOfCourses;
+    @Column(name="courses_theory")
+    private int coursesTheory;
+    @Column(name="courses_practice")
+     private int coursesPractice;
+
+    public int getCoursesTheory() {
+        return coursesTheory;
+    }
+
+    public void setCoursesTheory(int coursesTheory) {
+        this.coursesTheory = coursesTheory;
+    }
+
+    public int getCoursesPractice() {
+        return coursesPractice;
+    }
+
+    public void setCoursesPractice(int coursesPractice) {
+        this.coursesPractice = coursesPractice;
+    }
+   
 
     public String getCoursesCode() {
         return coursesCode;
@@ -41,13 +60,7 @@ public class ModelOfCourses {
         this.coursesName = coursesName;
     }
 
-    public int getTheNumberOfHoursOfCourses() {
-        return theNumberOfHoursOfCourses;
-    }
-
-    public void setTheNumberOfHoursOfCourses(int theNumberOfHoursOfCourses) {
-        this.theNumberOfHoursOfCourses = theNumberOfHoursOfCourses;
-    }
+   
     
     
 }

@@ -6,6 +6,7 @@
 package sia.ui;
 
 import java.awt.Dimension;
+import static java.nio.file.Files.size;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -66,13 +67,13 @@ public class CoursesForm extends javax.swing.JInternalFrame {
         tableDataMateri.setFont(new java.awt.Font("Menlo", 0, 12)); // NOI18N
         tableDataMateri.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Kode Materi", "Nama Materi", "Jumlah Jam"
+                "Kode Materi", "Nama Materi", "Jam Teori", "Jam Praktek"
             }
         ));
         tableDataMateri.addMouseListener(new java.awt.event.MouseAdapter() {

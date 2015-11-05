@@ -25,7 +25,7 @@ public class Config {
                 setProperty("hibernate.connection.username", "root").
                 /*ubah passwordnya*/
                 setProperty("hibernate.connection.password", "root").
-                setProperty("hibernate.hbm2ddl.auto","update").
+                setProperty("hibernate.hbm2ddl.auto","create").
                 buildSessionFactory();
     }
 

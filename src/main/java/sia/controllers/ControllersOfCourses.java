@@ -28,7 +28,7 @@ public class ControllersOfCourses implements JavaControllers{
         initTable();
         ServiceOfCourses service = new ServiceOfCourses(Config.config());
         for (ModelOfCourses aModelOfCourses : list){
-             Object[] anObjects = {aModelOfCourses.getCoursesCode(),aModelOfCourses.getCoursesName(),aModelOfCourses.getTheNumberOfHoursOfCourses()};
+             Object[] anObjects = {aModelOfCourses.getCoursesCode(),aModelOfCourses.getCoursesName(),aModelOfCourses.getCoursesTheory(),aModelOfCourses.getCoursesPractice()};
              this.defaultTableModel.addRow(anObjects);
             
         }
