@@ -6,10 +6,10 @@
 package ui;
 
 import configuration.HIbernateUtil;
-import controllers.ControllersOfCourses;
 import controllers.ControllersOfRuangan;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import model.ModelOfCourses;
 import model.Ruangan;
 import service.ServiceOfCourses;
 import service.ServiceOfRuangan;
@@ -55,8 +55,8 @@ public class FormRuangan extends javax.swing.JInternalFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnUbah = new javax.swing.JButton();
+        btnHapus = new javax.swing.JButton();
         btnKeluar = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
@@ -107,11 +107,21 @@ public class FormRuangan extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jButton3.setText("Ubah");
+        btnUbah.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        btnUbah.setText("Ubah");
+        btnUbah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUbahActionPerformed(evt);
+            }
+        });
 
-        jButton4.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jButton4.setText("Hapus");
+        btnHapus.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        btnHapus.setText("Hapus");
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusActionPerformed(evt);
+            }
+        });
 
         btnKeluar.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         btnKeluar.setText("Keluar");
@@ -138,9 +148,9 @@ public class FormRuangan extends javax.swing.JInternalFrame {
                         .addGap(28, 28, 28)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
+                        .addComponent(btnUbah)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4))
+                        .addComponent(btnHapus))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnKeluar)))
@@ -155,8 +165,8 @@ public class FormRuangan extends javax.swing.JInternalFrame {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(btnUbah)
+                    .addComponent(btnHapus))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -178,13 +188,41 @@ public class FormRuangan extends javax.swing.JInternalFrame {
         add.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
+        // TODO add your handling code here:
+        Integer rowSelected = tabelRuangan.getSelectedRow();
+        System.out.println("hapus data baris ke "+rowSelected);
+        if (rowSelected >= 0) {
+            service = new ServiceOfRuangan(HIbernateUtil.config());
+            Ruangan model = list.get(tabelRuangan.getSelectedRow());
+            service.doDelete(model);
+            refreshTable();
+        }else{
+            System.out.println("Tabel Belum diklick");
+        }
+    }//GEN-LAST:event_btnUbahActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        // TODO add your handling code here:
+        Integer rowSelected = tabelRuangan.getSelectedRow();
+        System.out.println("hapus data baris ke "+rowSelected);
+        if (rowSelected >= 0) {
+            service = new ServiceOfRuangan(HIbernateUtil.config());
+            Ruangan model = list.get(tabelRuangan.getSelectedRow());
+            service.doDelete(model);
+            refreshTable();
+        }else{
+            System.out.println("Tabel Belum diklick");
+        }
+    }//GEN-LAST:event_btnHapusActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnKeluar;
+    private javax.swing.JButton btnUbah;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
