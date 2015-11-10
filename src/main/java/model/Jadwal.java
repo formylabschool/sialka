@@ -3,15 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sia.interfaces;
+package model;
 
-import javax.swing.table.DefaultTableModel;
+import java.util.Date;
 
 /**
  *
  * @author muhamadhanifmuhsin
  */
-public interface JavaControllers {
-    public void inijectTable(DefaultTableModel defaultTableModel);
+public class Jadwal {
+    private Integer id;
+    private Ruangan ruangan;
+    private Instruktur instruktur;
+    private Date jam_awal;
+    private Date jam_akhir;
     
 }

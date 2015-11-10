@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sia.ui;
+package ui;
 
 import java.awt.Dimension;
 import static java.nio.file.Files.size;
@@ -11,10 +11,10 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import sia.configuration.ConfigOfSIA;
-import sia.controllers.ControllersOfCourses;
-import sia.models.ModelOfCourses;
-import sia.services.ServiceOfCourses;
+import configuration.HIbernateUtil;
+import controllers.ControllersOfCourses;
+import model.ModelOfCourses;
+import service.ServiceOfCourses;
 
 /**
  *
@@ -37,7 +37,7 @@ public class CoursesForm extends javax.swing.JInternalFrame {
     }
 
     public void refreshTable() {
-        service = new ServiceOfCourses(ConfigOfSIA.config());
+        service = new ServiceOfCourses(HIbernateUtil.config());
         list = service.findAll();
         this.controll.loadDataTable(list);
     }
@@ -241,7 +241,7 @@ public class CoursesForm extends javax.swing.JInternalFrame {
         Integer rowSelected = tableDataMateri.getSelectedRow();
         System.out.println("hapus data baris ke "+rowSelected);
         if (rowSelected >= 0) {
-            service = new ServiceOfCourses(ConfigOfSIA.config());
+            service = new ServiceOfCourses(HIbernateUtil.config());
             ModelOfCourses model = list.get(tableDataMateri.getSelectedRow());
             service.doDelete(model);
             refreshTable();

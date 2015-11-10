@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sia.configuration;
+package configuration;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import sia.models.ModelOfCourses;
+import model.ModelOfCourses;
 
 /**
  * @author muhamadhanifmuhsin
  */
-public class ConfigOfSIA {
+public class HIbernateUtil {
 
     /*klo mau tambahin entity tambahin disini pke metode addAnnotadedClass(NamaEntity.class)*/
     public static SessionFactory config() {

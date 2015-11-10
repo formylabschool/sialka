@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sia.ui;
+package ui;
 
 import javax.swing.JOptionPane;
-import sia.configuration.ConfigOfSIA;
-import sia.controllers.ControllersOfCourses;
-import sia.models.ModelOfCourses;
-import sia.services.ServiceOfCourses;
+import configuration.HIbernateUtil;
+import controllers.ControllersOfCourses;
+import model.ModelOfCourses;
+import service.ServiceOfCourses;
 
 /**
  * @author muhamadhanifmuhsin
@@ -186,7 +186,7 @@ public class CoursesFormAdd extends javax.swing.JDialog {
         // TODO add your handling code here:
         if (update) {
             try {
-                ServiceOfCourses service = new ServiceOfCourses(ConfigOfSIA.config());
+                ServiceOfCourses service = new ServiceOfCourses(HIbernateUtil.config());
                 model.setCoursesCode(txtKodeMateri.getText());
                 model.setCoursesName(txtNamaMateri.getText());
                 model.setCoursesTheory(Integer.valueOf(txtTeori.getText()));
@@ -203,7 +203,7 @@ public class CoursesFormAdd extends javax.swing.JDialog {
             }
         } else {
             try {
-                ServiceOfCourses service = new ServiceOfCourses(ConfigOfSIA.config());
+                ServiceOfCourses service = new ServiceOfCourses(HIbernateUtil.config());
                 model.setCoursesCode(txtKodeMateri.getText());
                 model.setCoursesName(txtNamaMateri.getText());
                 model.setCoursesTheory(Integer.valueOf(txtTeori.getText()));

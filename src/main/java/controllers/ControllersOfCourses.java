@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sia.controllers;
+package controllers;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import sia.configuration.ConfigOfSIA;
-import sia.interfaces.JavaControllers;
-import sia.models.ModelOfCourses;
-import sia.services.ServiceOfCourses;
+import configuration.HIbernateUtil;
+import interfaces.JavaControllers;
+import model.ModelOfCourses;
+import service.ServiceOfCourses;
 
 /**
  *
@@ -26,7 +26,7 @@ public class ControllersOfCourses implements JavaControllers{
 
     public void loadDataTable(List<ModelOfCourses> list){
         initTable();
-        ServiceOfCourses service = new ServiceOfCourses(ConfigOfSIA.config());
+        ServiceOfCourses service = new ServiceOfCourses(HIbernateUtil.config());
         for (ModelOfCourses aModelOfCourses : list){
              Object[] anObjects = {aModelOfCourses.getCoursesCode(),aModelOfCourses.getCoursesName(),aModelOfCourses.getCoursesTheory(),aModelOfCourses.getCoursesPractice()};
              this.defaultTableModel.addRow(anObjects);
