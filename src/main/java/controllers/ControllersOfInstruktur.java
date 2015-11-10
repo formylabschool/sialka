@@ -16,9 +16,8 @@ import service.ServiceOfRuangan;
  *
  * @author muhamadhanifmuhsin
  */
-public class ControllersOfRuangan implements JavaControllers{
-      private DefaultTableModel defaultTableModel;
-    
+public class ControllersOfInstruktur implements JavaControllers {
+
     public void initTable(){
         this.defaultTableModel.getDataVector().removeAllElements();
         this.defaultTableModel.fireTableDataChanged();
@@ -37,7 +36,7 @@ public class ControllersOfRuangan implements JavaControllers{
     
     @Override
     public void inijectTable(DefaultTableModel defaultTableModel) {
-        this.defaultTableModel = defaultTableModel;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
