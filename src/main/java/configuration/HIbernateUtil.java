@@ -8,6 +8,7 @@ package configuration;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import model.ModelOfCourses;
+import model.Ruangan;
 
 /**
  * @author muhamadhanifmuhsin
@@ -18,6 +19,7 @@ public class HIbernateUtil {
     public static SessionFactory config() {
         return new Configuration().
                 addAnnotatedClass(ModelOfCourses.class).
+                addAnnotatedClass(Ruangan.class).
                 /*addAnnotatedClass(KelasLain.class).*/
                 setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect").
                 setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver").
