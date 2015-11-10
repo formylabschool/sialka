@@ -233,6 +233,11 @@ public class MainForm extends javax.swing.JFrame {
 
         mniRuangan.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
         mniRuangan.setText("Ruangan");
+        mniRuangan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniRuanganActionPerformed(evt);
+            }
+        });
         mnuKurikulum.add(mniRuangan);
 
         jMenuBar1.add(mnuKurikulum);
@@ -335,6 +340,18 @@ public class MainForm extends javax.swing.JFrame {
                 (size.height - addSize.height) / 2);
         add.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void mniRuanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniRuanganActionPerformed
+        // TODO add your handling code here:
+        FormRuangan add = new FormRuangan();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+                (size.height - addSize.height) / 2);
+        add.setVisible(true);
+    }//GEN-LAST:event_mniRuanganActionPerformed
 
     /**
      * @param args the command line arguments
