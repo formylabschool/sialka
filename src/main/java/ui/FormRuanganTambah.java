@@ -5,19 +5,53 @@
  */
 package ui;
 
+import configuration.HIbernateUtil;
+import controllers.ControllersOfCourses;
+import controllers.ControllersOfRuangan;
+import javax.swing.JOptionPane;
+import model.ModelOfCourses;
+import model.Ruangan;
+import service.ServiceOfCourses;
+import service.ServiceOfRuangan;
+
 /**
  *
  * @author muhamadhanifmuhsin
  */
 public class FormRuanganTambah extends javax.swing.JDialog {
 
+    private ControllersOfRuangan controllers;
+    private final FormRuangan menu;
+    private Boolean update;
+    private Ruangan model;
+
     /**
      * Creates new form FormRuanganTambah
      */
-    public FormRuanganTambah(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
+    private void setUpdate(Boolean update) {
+        this.update = update;
     }
+
+    public FormRuanganTambah(java.awt.Frame parent, boolean modal, FormRuangan aThis) {
+        super(parent, modal);
+        this.model = new Ruangan();
+        initComponents();
+        setUpdate(false);
+        this.menu = aThis;
+        this.controllers = new ControllersOfRuangan();
+    }
+
+     public FormRuanganTambah(java.awt.Frame object, boolean b, FormRuangan aThis, Ruangan model) {
+        super(object, b);
+        setUpdate(true);
+        initComponents();
+        this.menu = aThis;
+        this.controllers = new ControllersOfRuangan();
+        this.model = model;
+        txtNamaRuangan.setText(model.getNama());
+       
+    }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,8 +64,8 @@ public class FormRuanganTambah extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtNamaRuangan = new javax.swing.JTextField();
+        btnSimpan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -40,7 +74,7 @@ public class FormRuanganTambah extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel1.setText("Nama Ruangan");
 
-        jTextField1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtNamaRuangan.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -50,7 +84,7 @@ public class FormRuanganTambah extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNamaRuangan, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -59,12 +93,17 @@ public class FormRuanganTambah extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNamaRuangan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jButton1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jButton1.setText("Simpan");
+        btnSimpan.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        btnSimpan.setText("Simpan");
+        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,7 +115,7 @@ public class FormRuanganTambah extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnSimpan)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -85,59 +124,49 @@ public class FormRuanganTambah extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(btnSimpan)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+        // TODO add your handling code here:
+         if (update) {
+            try {
+                ServiceOfRuangan service = new ServiceOfRuangan(HIbernateUtil.config());
+                model.setNama(txtNamaRuangan.getText());
+                service.doUpdate(model);
+                
+                this.menu.refreshTable();
+                
+                dispose();
+            } catch (Exception e) {
+                e.printStackTrace();
+                
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormRuanganTambah.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormRuanganTambah.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormRuanganTambah.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormRuanganTambah.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } else {
+            try {
+                ServiceOfRuangan service = new ServiceOfRuangan(HIbernateUtil.config());
+                model.setNama(txtNamaRuangan.getText());
+                service.doSave(model);
+                this.menu.refreshTable();
+                dispose();
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
         }
-        //</editor-fold>
+    }//GEN-LAST:event_btnSimpanActionPerformed
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                FormRuanganTambah dialog = new FormRuanganTambah(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+   
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSimpan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtNamaRuangan;
     // End of variables declaration//GEN-END:variables
 }
