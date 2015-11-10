@@ -9,7 +9,9 @@ import configuration.HIbernateUtil;
 import interfaces.JavaControllers;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import model.Instruktur;
 import model.Ruangan;
+import service.ServiceOfInstruktur;
 import service.ServiceOfRuangan;
 
 /**
@@ -17,17 +19,17 @@ import service.ServiceOfRuangan;
  * @author muhamadhanifmuhsin
  */
 public class ControllersOfInstruktur implements JavaControllers {
-
+private DefaultTableModel defaultTableModel;
     public void initTable(){
         this.defaultTableModel.getDataVector().removeAllElements();
         this.defaultTableModel.fireTableDataChanged();
     }
 
-    public void loadDataTable(List<Ruangan> list){
+    public void loadDataTable(List<Instruktur> list){
         initTable();
-        ServiceOfRuangan service = new ServiceOfRuangan(HIbernateUtil.config());
-        for (Ruangan aRuangan : list){
-             Object[] anObjects = {aRuangan.getId(),aRuangan.getNama()};
+        ServiceOfInstruktur service = new ServiceOfInstruktur(HIbernateUtil.config());
+        for (Instruktur aInstruktur : list){
+             Object[] anObjects = {aInstruktur.getNip(),aInstruktur.getNama(),aInstruktur.getKontak(),aInstruktur.getAlamat()};
              this.defaultTableModel.addRow(anObjects);
             
         }
@@ -36,7 +38,7 @@ public class ControllersOfInstruktur implements JavaControllers {
     
     @Override
     public void inijectTable(DefaultTableModel defaultTableModel) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.defaultTableModel = defaultTableModel;
     }
     
     

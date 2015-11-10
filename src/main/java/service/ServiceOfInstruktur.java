@@ -5,7 +5,9 @@
  */
 package service;
 
+import java.util.List;
 import model.Instruktur;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -42,6 +44,14 @@ public class ServiceOfInstruktur {
         aSession.delete(aInstruktur);
         aSession.getTransaction().commit();
         aSession.close();
+    }
+    
+    public List<Instruktur>findAll(){
+        Session aSession = aSessionFactory.openSession();
+        aSession.beginTransaction();
+        
+        Criteria aCriteria = aSession.createCriteria(Instruktur.class);
+        return aCriteria.list();
     }
     
 }
