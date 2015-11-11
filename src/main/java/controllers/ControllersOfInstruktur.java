@@ -29,7 +29,9 @@ private DefaultTableModel defaultTableModel;
         initTable();
         ServiceOfInstruktur service = new ServiceOfInstruktur(HIbernateUtil.config());
         for (Instruktur aInstruktur : list){
-             Object[] anObjects = {aInstruktur.getNip(),aInstruktur.getNama(),aInstruktur.getKontak(),aInstruktur.getAlamat()};
+             Object[] anObjects = {aInstruktur.getNip(),aInstruktur.getNama(),aInstruktur.getTempatLahir(),
+                                   aInstruktur.getTanggalLahir(),aInstruktur.getKontak(),aInstruktur.getEmail(),
+                                   aInstruktur.getAlamat()};
              this.defaultTableModel.addRow(anObjects);
             
         }
