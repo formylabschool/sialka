@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @Table(name="instruktur")
 public class Instruktur {
     @Id
-    private Integer nip;
+    private String nip;
     private String nama;
     private String tempatLahir;
     private Date tanggalLahir;
@@ -49,15 +49,17 @@ public class Instruktur {
     public void setEmail(String email) {
         this.email = email;
     }
-    
 
-    public Integer getNip() {
+    public String getNip() {
         return nip;
     }
 
-    public void setNip(Integer nip) {
+    public void setNip(String nip) {
         this.nip = nip;
     }
+    
+
+  
 
     public String getNama() {
         return nama;

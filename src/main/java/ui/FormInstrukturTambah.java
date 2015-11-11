@@ -5,18 +5,60 @@
  */
 package ui;
 
+import configuration.HIbernateUtil;
+import controllers.ControllersOfCourses;
+import controllers.ControllersOfInstruktur;
+import controllers.ControllersOfRuangan;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+import model.Instruktur;
+import service.ServiceOfInstruktur;
+import service.ServiceOfRuangan;
+
 /**
  *
  * @author muhamadhanifmuhsin
  */
 public class FormInstrukturTambah extends javax.swing.JDialog {
 
+    private ControllersOfInstruktur controllers;
+    private final FormInstruktur menu;
+    private Boolean update;
+    private Instruktur model;
+
     /**
      * Creates new form FormInstrukturTambah
      */
-    public FormInstrukturTambah(java.awt.Frame parent, boolean modal) {
+     private void setUpdate(Boolean update) {
+        this.update = update;
+    }
+     
+    public FormInstrukturTambah(java.awt.Frame parent, boolean modal, FormInstruktur aThis) {
         super(parent, modal);
         initComponents();
+        this.model = new Instruktur();
+        setUpdate(false);
+        this.menu = aThis;
+        this.controllers = new ControllersOfInstruktur();
+    }
+
+    FormInstrukturTambah(java.awt.Frame object, boolean b, FormInstruktur aThis, Instruktur model) {
+        super(object, b);
+        setUpdate(true);
+        initComponents();
+        this.menu = aThis;
+        this.controllers = new ControllersOfInstruktur();
+        this.model = model;
+        txtNIP.setText(model.getNip());
+        txtNama.setText(model.getNama());
+        txtTempat.setText(model.getTempatLahir());
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String tanggalLahir = format.format(dateChoose.getDate());
+        txtHP.setText(model.getKontak());
+        txtEmail.setText(model.getEmail());
+        txaAlamat.setText(model.getAlamat());
+      //  dateChoose.setDateFormatString(model.getTanggalLahir());
+      
     }
 
     /**
@@ -34,15 +76,15 @@ public class FormInstrukturTambah extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        txtNIP = new javax.swing.JTextField();
+        txtNama = new javax.swing.JTextField();
+        txtTempat = new javax.swing.JTextField();
+        dateChoose = new com.toedter.calendar.JDateChooser();
+        txtHP = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txaAlamat = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -64,25 +106,25 @@ public class FormInstrukturTambah extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel5.setText("E-mail");
 
-        jTextField1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtNIP.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtNama.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
-        jTextField3.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtTempat.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
-        jDateChooser1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        dateChoose.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
-        jTextField4.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtHP.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
-        jTextField5.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtEmail.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel6.setText("Alamat");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txaAlamat.setColumns(20);
+        txaAlamat.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txaAlamat.setRows(5);
+        jScrollPane1.setViewportView(txaAlamat);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -97,8 +139,8 @@ public class FormInstrukturTambah extends javax.swing.JDialog {
                             .addComponent(jLabel2))
                         .addGap(90, 90, 90)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtNIP, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -109,11 +151,11 @@ public class FormInstrukturTambah extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                                    .addComponent(jTextField3))
+                                    .addComponent(txtHP, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                                    .addComponent(txtTempat))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextField5)
+                                .addComponent(dateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtEmail)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -123,25 +165,25 @@ public class FormInstrukturTambah extends javax.swing.JDialog {
                 .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtTempat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtHP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
@@ -183,53 +225,41 @@ public class FormInstrukturTambah extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+          if (update) {
+            try {
+                ServiceOfInstruktur service = new ServiceOfInstruktur(HIbernateUtil.config());
+                model.setNip(txtNIP.getText());
+                model.setNama(txtNamaRuangan.getText());
+                service.doUpdate(model);
+                
+                this.menu.refreshTable();
+                
+                dispose();
+            } catch (Exception e) {
+                e.printStackTrace();
+                
+            }
+        } else {
+            try {
+                ServiceOfRuangan service = new ServiceOfRuangan(HIbernateUtil.config());
+                model.setId(txtKodeRuangan.getText());
+                model.setNama(txtNamaRuangan.getText());
+                service.doSave(model);
+                this.menu.refreshTable();
+                dispose();
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormInstrukturTambah.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormInstrukturTambah.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormInstrukturTambah.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormInstrukturTambah.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                FormInstrukturTambah dialog = new FormInstrukturTambah(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+   
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser dateChoose;
     private javax.swing.JButton jButton1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -238,11 +268,11 @@ public class FormInstrukturTambah extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextArea txaAlamat;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtHP;
+    private javax.swing.JTextField txtNIP;
+    private javax.swing.JTextField txtNama;
+    private javax.swing.JTextField txtTempat;
     // End of variables declaration//GEN-END:variables
 }
