@@ -10,6 +10,7 @@ import controllers.ControllersOfInstruktur;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.Instruktur;
+import model.ModelOfCourses;
 import model.Ruangan;
 import service.ServiceOfInstruktur;
 import service.ServiceOfRuangan;
@@ -189,16 +190,16 @@ private List<Instruktur> list;
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
         // TODO add your handling code here:
-        Integer rowSelected = tabelInstruktur.getSelectedRow();
-        System.out.println("hapus data baris ke "+rowSelected);
-        if (rowSelected >= 0) {
-            service = new ServiceOfInstruktur(HIbernateUtil.config());
-            Instruktur model = list.get(tabelInstruktur.getSelectedRow());
-            service.doDelete(model);
-            refreshTable();
-        }else{
-            System.out.println("Tabel Belum diklick");
+        Integer selectedRow = tabelInstruktur.getSelectedRow();
+        System.out.println(selectedRow + " selected row ");
+        if (selectedRow >= 0) {
+            Instruktur model = list.get(selectedRow);
+            FormInstrukturTambah add = new FormInstrukturTambah(null, true, this, model);
+            add.setVisible(true);
+        } else {
+
         }
+
     }//GEN-LAST:event_btnUbahActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed

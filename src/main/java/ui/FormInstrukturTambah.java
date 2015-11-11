@@ -53,9 +53,9 @@ public class FormInstrukturTambah extends javax.swing.JDialog {
         txtNIP.setText(model.getNip());
         txtNama.setText(model.getNama());
         txtTempat.setText(model.getTempatLahir());
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        String tanggalLahir = format.format(dateChoose.getDate());
-       // dateChoose.setDate(java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(model.getTanggalLahir())));
+      //  SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+      //  String tanggalLahir = format.format(dateChoose.getDate());
+        dateChoose.setDate(java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(model.getTanggalLahir())));
         // dateChoose.setDateFormatString(tanggalLahir);
         txtHP.setText(model.getKontak());
         txtEmail.setText(model.getEmail());
