@@ -10,6 +10,7 @@ import controllers.ControllersOfCourses;
 import controllers.ControllersOfInstruktur;
 import controllers.ControllersOfRuangan;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import model.Instruktur;
 import service.ServiceOfInstruktur;
@@ -229,7 +230,8 @@ public class FormInstrukturTambah extends javax.swing.JDialog {
             try {
                 ServiceOfInstruktur service = new ServiceOfInstruktur(HIbernateUtil.config());
                 model.setNip(txtNIP.getText());
-                model.setNama(txtNamaRuangan.getText());
+                model.setNama(txtNama.getText());
+                model.setTanggalLahir(java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(dateChoose.getDate())));
                 service.doUpdate(model);
                 
                 this.menu.refreshTable();
@@ -242,9 +244,9 @@ public class FormInstrukturTambah extends javax.swing.JDialog {
         } else {
             try {
                 ServiceOfRuangan service = new ServiceOfRuangan(HIbernateUtil.config());
-                model.setId(txtKodeRuangan.getText());
-                model.setNama(txtNamaRuangan.getText());
-                service.doSave(model);
+                model.setNip(txtNIP.getText());
+                model.setNama(txtNama.getText());
+                //service.doSave(model);
                 this.menu.refreshTable();
                 dispose();
             } catch (Exception e) {
