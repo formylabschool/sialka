@@ -298,7 +298,7 @@ public class MainForm extends javax.swing.JFrame {
 
     private void mniBukuTamuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniBukuTamuActionPerformed
         // TODO add your handling code here:
-        GuestBook add = new GuestBook();
+        BukuTamu add = new BukuTamu();
         desktop.add(add);
 
         Dimension size = desktop.getSize();

@@ -9,12 +9,12 @@ package ui;
  *
  * @author muhamadhanifmuhsin
  */
-public class GuestBook extends javax.swing.JInternalFrame {
+public class BukuTamu extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form BookForm
      */
-    public GuestBook() {
+    public BukuTamu() {
         initComponents();
     }
 
