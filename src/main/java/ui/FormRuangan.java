@@ -190,16 +190,16 @@ public class FormRuangan extends javax.swing.JInternalFrame {
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
         // TODO add your handling code here:
-        Integer rowSelected = tabelRuangan.getSelectedRow();
-        System.out.println("hapus data baris ke "+rowSelected);
-        if (rowSelected >= 0) {
-            service = new ServiceOfRuangan(HIbernateUtil.config());
-            Ruangan model = list.get(tabelRuangan.getSelectedRow());
-            service.doDelete(model);
-            refreshTable();
-        }else{
-            System.out.println("Tabel Belum diklick");
+        Integer selectedRow = tabelRuangan.getSelectedRow();
+        System.out.println(selectedRow + " selected row ");
+        if (selectedRow >= 0) {
+            Ruangan model = list.get(selectedRow);
+            FormRuanganTambah add = new FormRuanganTambah(null, true, this, model);
+            add.setVisible(true);
+        } else {
+
         }
+
     }//GEN-LAST:event_btnUbahActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed

@@ -10,7 +10,9 @@ import controllers.ControllersOfInstruktur;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.Instruktur;
+import model.Ruangan;
 import service.ServiceOfInstruktur;
+import service.ServiceOfRuangan;
 
 /**
  *
@@ -27,6 +29,7 @@ private List<Instruktur> list;
         initComponents();
         this.controlles = new ControllersOfInstruktur();
         this.controlles.inijectTable((DefaultTableModel)tabelInstruktur.getModel());
+        refreshTable();
         
     }
     
@@ -74,9 +77,19 @@ private List<Instruktur> list;
 
         btnUbah.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         btnUbah.setText("Ubah");
+        btnUbah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUbahActionPerformed(evt);
+            }
+        });
 
         btnHapus.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         btnHapus.setText("Hapus");
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Data Instruktur"));
 
@@ -173,6 +186,34 @@ private List<Instruktur> list;
         FormInstrukturTambah add = new FormInstrukturTambah(null, false, this);
         add.setVisible(true);
     }//GEN-LAST:event_btnTambahActionPerformed
+
+    private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
+        // TODO add your handling code here:
+        Integer rowSelected = tabelInstruktur.getSelectedRow();
+        System.out.println("hapus data baris ke "+rowSelected);
+        if (rowSelected >= 0) {
+            service = new ServiceOfInstruktur(HIbernateUtil.config());
+            Instruktur model = list.get(tabelInstruktur.getSelectedRow());
+            service.doDelete(model);
+            refreshTable();
+        }else{
+            System.out.println("Tabel Belum diklick");
+        }
+    }//GEN-LAST:event_btnUbahActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        // TODO add your handling code here:
+        Integer rowSelected = tabelInstruktur.getSelectedRow();
+        System.out.println("hapus data baris ke "+rowSelected);
+        if (rowSelected >= 0) {
+            service = new ServiceOfInstruktur(HIbernateUtil.config());
+            Instruktur model = list.get(tabelInstruktur.getSelectedRow());
+            service.doDelete(model);
+            refreshTable();
+        }else{
+            System.out.println("Tabel Belum diklick");
+        }
+    }//GEN-LAST:event_btnHapusActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
