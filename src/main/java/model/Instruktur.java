@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -19,8 +20,36 @@ public class Instruktur {
     @Id
     private Integer nip;
     private String nama;
-    private String alamat;
+    private String tempatLahir;
+    private Date tanggalLahir;
     private String kontak;
+    private String email;
+    private String alamat;
+
+    public String getTempatLahir() {
+        return tempatLahir;
+    }
+
+    public void setTempatLahir(String tempatLahir) {
+        this.tempatLahir = tempatLahir;
+    }
+
+    public Date getTanggalLahir() {
+        return tanggalLahir;
+    }
+
+    public void setTanggalLahir(Date tanggalLahir) {
+        this.tanggalLahir = tanggalLahir;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
 
     public Integer getNip() {
         return nip;
