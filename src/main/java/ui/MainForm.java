@@ -281,6 +281,14 @@ public class MainForm extends javax.swing.JFrame {
 
     private void mniInstrukturActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniInstrukturActionPerformed
         // TODO add your handling code here:
+        FormInstruktur add = new FormInstruktur();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+                (size.height - addSize.height) / 2);
+        add.setVisible(true);
     }//GEN-LAST:event_mniInstrukturActionPerformed
 
     private void mniMatikanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniMatikanActionPerformed
