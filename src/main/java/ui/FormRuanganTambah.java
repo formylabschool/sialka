@@ -45,6 +45,7 @@ public class FormRuanganTambah extends javax.swing.JDialog {
         super(object, b);
         setUpdate(true);
         initComponents();
+        
         this.menu = aThis;
         this.controllers = new ControllersOfRuangan();
         this.model = model;
