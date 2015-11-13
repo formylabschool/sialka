@@ -42,9 +42,7 @@ public class ControllersOfBukuTamu implements JavaControllers{
         this.defaultTableModel = defaultTableModel;
     }
 
-    public void loadDataTable(List<FormBukuTamu> list) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
     
 }
