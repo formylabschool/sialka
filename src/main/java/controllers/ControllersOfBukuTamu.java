@@ -29,8 +29,8 @@ public class ControllersOfBukuTamu implements JavaControllers{
         initTable();
         ServiceOfBukuTamu service = new ServiceOfBukuTamu(HIbernateUtil.config());
         for ( BukuTamu aBukuTamu : list){
-             Object[] anObjects = {aBukuTamu.getTanggal(),aBukuTamu.getNama(),aBukuTamu.getKeperluan(),
-                                   aBukuTamu.getYangDituju(),aBukuTamu.getAlamat()};
+             Object[] anObjects = {aBukuTamu.getTanggal(),aBukuTamu.getNama(),aBukuTamu.getYangDituju(),
+                                   aBukuTamu.getKeperluan(),aBukuTamu.getAlamat()};
              this.defaultTableModel.addRow(anObjects);
             
         }
