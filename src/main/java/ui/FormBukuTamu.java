@@ -18,8 +18,8 @@ import service.ServiceOfInstruktur;
  *
  * @author muhamadhanifmuhsin
  */
-public class FormBukuTamu extends javax.swing.JInternalFrame {
-private ControllersOfBukuTamu controllers;
+public final class FormBukuTamu extends javax.swing.JInternalFrame {
+private final ControllersOfBukuTamu controllers;
 private ServiceOfBukuTamu service;
 private List<BukuTamu> list;
     /**
