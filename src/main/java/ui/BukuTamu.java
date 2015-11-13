@@ -70,7 +70,7 @@ public class BukuTamu extends javax.swing.JInternalFrame {
         );
 
         btnClose.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        btnClose.setText("Close");
+        btnClose.setText("Keluar");
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCloseActionPerformed(evt);
@@ -78,10 +78,10 @@ public class BukuTamu extends javax.swing.JInternalFrame {
         });
 
         jButton2.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jButton2.setText("Add");
+        jButton2.setText("Tambah");
 
         jLabel1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jLabel1.setText("Cari Tamu");
+        jLabel1.setText("Tanggal");
 
         jTextField1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -91,7 +91,7 @@ public class BukuTamu extends javax.swing.JInternalFrame {
         });
 
         jButton3.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jButton3.setText("Search");
+        jButton3.setText("Cari");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
