@@ -9,10 +9,9 @@ import configuration.HIbernateUtil;
 import interfaces.JavaControllers;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import model.Instruktur;
+import model.BukuTamu;
 import service.ServiceOfBukuTamu;
-import service.ServiceOfInstruktur;
-import ui.BukuTamu;
+
 
 /**
  *
@@ -28,8 +27,9 @@ public class ControllersOfBukuTamu implements JavaControllers{
     public void loadDataTable(List<BukuTamu> list){
         initTable();
         ServiceOfBukuTamu service = new ServiceOfBukuTamu(HIbernateUtil.config());
-        for (BukuTamu aBukuTamu : list){
-             Object[] anObjects = {aBukuTamu.g};
+        for ( BukuTamu aBukuTamu : list){
+             Object[] anObjects = {aBukuTamu.getTanggal(),aBukuTamu.getNama(),aBukuTamu.getKeperluan(),
+                                   aBukuTamu.getYangDituju(),aBukuTamu.getAlamat()};
              this.defaultTableModel.addRow(anObjects);
             
         }
