@@ -8,7 +8,9 @@ package ui;
 import configuration.HIbernateUtil;
 import controllers.ControllersOfBukuTamu;
 import java.util.List;
+
 import javax.swing.table.DefaultTableModel;
+import model.BukuTamu;
 import service.ServiceOfBukuTamu;
 import service.ServiceOfInstruktur;
 
@@ -16,24 +18,25 @@ import service.ServiceOfInstruktur;
  *
  * @author muhamadhanifmuhsin
  */
-public class BukuTamu extends javax.swing.JInternalFrame {
+public class FormBukuTamu extends javax.swing.JInternalFrame {
 private ControllersOfBukuTamu controllers;
 private ServiceOfBukuTamu service;
 private List<BukuTamu> list;
     /**
      * Creates new form BookForm
      */
-    public BukuTamu() {
+    public FormBukuTamu() {
         initComponents();
         this.controllers= new ControllersOfBukuTamu();
         this.controllers.inijectTable((DefaultTableModel)tabelBukuTamu.getModel());
+        refreshTable();
     }
-    
       public void refreshTable(){
         service = new ServiceOfBukuTamu(HIbernateUtil.config());
         list = service.findAll();
         this.controllers.loadDataTable(list);
     }
+   
 
 
     /**

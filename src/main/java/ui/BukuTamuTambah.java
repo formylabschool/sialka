@@ -5,22 +5,53 @@
  */
 package ui;
 
+import configuration.HIbernateUtil;
+import controllers.ControllersOfBukuTamu;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+import model.BukuTamu;
+import service.ServiceOfBukuTamu;
+
 /**
  *
  * @author muhamadhanifmuhsin
  */
 public class BukuTamuTambah extends javax.swing.JDialog {
 
+    private ControllersOfBukuTamu controllers;
+    private final FormBukuTamu menu;
+    private Boolean update;
+    private BukuTamu model;
+
     /**
      * Creates new form GuestBookAdd
      */
-    public BukuTamuTambah(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
+    private void setUpdate(Boolean update) {
+        this.update = update;
     }
 
-    BukuTamuTambah(Object object, boolean b, BukuTamu aThis) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public BukuTamuTambah(java.awt.Frame parent, boolean modal, FormBukuTamu aThis) {
+        super(parent, modal);
+        initComponents();
+        this.model = new BukuTamu();
+        setUpdate(false);
+        this.menu = aThis;
+        this.controllers = new ControllersOfBukuTamu();
+    }
+
+    public BukuTamuTambah(java.awt.Frame object, boolean b, FormBukuTamu aThis, BukuTamu model) {
+        super(object, b);
+        setUpdate(true);
+        initComponents();
+        this.menu = aThis;
+        this.controllers = new ControllersOfBukuTamu();
+        this.model = model;
+
+        dateChoose.setDate(java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(model.getTanggal())));
+        txtNama.setText(model.getNama());
+        txtBertemu.setText(model.getYangDituju());
+        txtKeperluan.setText(model.getKeperluan());
+        txaAlamat.setText(model.getAlamat());
     }
 
     /**
@@ -35,16 +66,16 @@ public class BukuTamuTambah extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jTextField1 = new javax.swing.JTextField();
+        dateChoose = new com.toedter.calendar.JDateChooser();
+        txtNama = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtKeperluan = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtBertemu = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        txaAlamat = new javax.swing.JTextArea();
+        btnSimpan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -57,32 +88,32 @@ public class BukuTamuTambah extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel2.setText("Nama Lengkap");
 
-        jDateChooser1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        dateChoose.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
-        jTextField1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtNama.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel4.setText("Keperluan");
 
-        jTextField2.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtKeperluan.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel5.setText("Bertemu Dengan");
 
-        jTextField3.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txtBertemu.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtBertemu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txtBertemuActionPerformed(evt);
             }
         });
 
         jLabel6.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel6.setText("Alamat");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        txaAlamat.setColumns(20);
+        txaAlamat.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txaAlamat.setRows(5);
+        jScrollPane2.setViewportView(txaAlamat);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -98,10 +129,10 @@ public class BukuTamuTambah extends javax.swing.JDialog {
                     .addComponent(jLabel6))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField3)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNama, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                    .addComponent(txtKeperluan)
+                    .addComponent(txtBertemu)
+                    .addComponent(dateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -109,21 +140,21 @@ public class BukuTamuTambah extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1)))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBertemu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtKeperluan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,8 +163,13 @@ public class BukuTamuTambah extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jButton1.setText("Simpan");
+        btnSimpan.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        btnSimpan.setText("Simpan");
+        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,7 +178,7 @@ public class BukuTamuTambah extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
+                    .addComponent(btnSimpan)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
@@ -152,63 +188,60 @@ public class BukuTamuTambah extends javax.swing.JDialog {
                 .addGap(17, 17, 17)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(btnSimpan)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txtBertemuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBertemuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtBertemuActionPerformed
+
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+        // TODO add your handling code here:
+        if (update) {
+            try {
+                ServiceOfBukuTamu service = new ServiceOfBukuTamu(HIbernateUtil.config());
+                model.setTanggal(java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(dateChoose.getDate())));
+                model.setNama(txtNama.getText());
+                model.setKeperluan(txtKeperluan.getText());
+                model.setYangDituju(txtBertemu.getText());
+                model.setAlamat(txaAlamat.getText());
+                service.doUpdate(model);
+                this.menu.refreshTable();
+                dispose();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                ServiceOfBukuTamu service = new ServiceOfBukuTamu(HIbernateUtil.config());
+                model.setTanggal(java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(dateChoose.getDate())));
+                model.setNama(txtNama.getText());
+                model.setKeperluan(txtKeperluan.getText());
+                model.setYangDituju(txtBertemu.getText());
+                model.setAlamat(txaAlamat.getText());
+                service.doSave(model);
+                this.menu.refreshTable();
+                dispose();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_btnSimpanActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BukuTamuTambah.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BukuTamuTambah.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BukuTamuTambah.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BukuTamuTambah.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                BukuTamuTambah dialog = new BukuTamuTambah(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JButton btnSimpan;
+    private com.toedter.calendar.JDateChooser dateChoose;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -216,9 +249,9 @@ public class BukuTamuTambah extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextArea txaAlamat;
+    private javax.swing.JTextField txtBertemu;
+    private javax.swing.JTextField txtKeperluan;
+    private javax.swing.JTextField txtNama;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,8 +5,10 @@
  */
 package service;
 
+
 import java.util.List;
 import model.BukuTamu;
+import model.Instruktur;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -47,11 +49,12 @@ public class ServiceOfBukuTamu {
         aSession.close();
     }
     
-    public List<BukuTamu>findAll(){
-       Session aSession = aSessionFactory.openSession();
-       aSession.beginTransaction();
-       
-       Criteria aCriteria = aSession.createCriteria(BukuTamu.class);
-       return aCriteria.list();
+     public List<BukuTamu>findAll(){
+        Session aSession = aSessionFactory.openSession();
+        aSession.beginTransaction();
+        
+        Criteria aCriteria = aSession.createCriteria(Instruktur.class);
+        return aCriteria.list();
     }
+   
 }

@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.BukuTamu;
 import service.ServiceOfBukuTamu;
+import ui.FormBukuTamu;
 
 
 /**
@@ -39,6 +40,10 @@ public class ControllersOfBukuTamu implements JavaControllers{
     @Override
     public void inijectTable(DefaultTableModel defaultTableModel) {
         this.defaultTableModel = defaultTableModel;
+    }
+
+    public void loadDataTable(List<FormBukuTamu> list) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     

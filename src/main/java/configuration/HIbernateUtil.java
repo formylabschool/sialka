@@ -10,7 +10,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import model.ModelOfCourses;
 import model.Ruangan;
-import ui.BukuTamu;
+import ui.FormBukuTamu;
 
 /**
  * @author muhamadhanifmuhsin
@@ -23,7 +23,7 @@ public class HIbernateUtil {
                 addAnnotatedClass(ModelOfCourses.class).
                 addAnnotatedClass(Ruangan.class).
                 addAnnotatedClass(Instruktur.class).
-                addAnnotatedClass(BukuTamu.class).
+                addAnnotatedClass(FormBukuTamu.class).
                 /*addAnnotatedClass(KelasLain.class).*/
                 setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect").
                 setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver").
