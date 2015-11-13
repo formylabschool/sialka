@@ -206,8 +206,8 @@ public class BukuTamuTambah extends javax.swing.JDialog {
                 ServiceOfBukuTamu service = new ServiceOfBukuTamu(HIbernateUtil.config());
                 model.setTanggal(java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(dateChoose.getDate())));
                 model.setNama(txtNama.getText());
-                model.setKeperluan(txtKeperluan.getText());
                 model.setYangDituju(txtBertemu.getText());
+                model.setKeperluan(txtKeperluan.getText());
                 model.setAlamat(txaAlamat.getText());
                 service.doUpdate(model);
                 this.menu.refreshTable();
@@ -221,8 +221,8 @@ public class BukuTamuTambah extends javax.swing.JDialog {
                 ServiceOfBukuTamu service = new ServiceOfBukuTamu(HIbernateUtil.config());
                 model.setTanggal(java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(dateChoose.getDate())));
                 model.setNama(txtNama.getText());
-                model.setKeperluan(txtKeperluan.getText());
                 model.setYangDituju(txtBertemu.getText());
+                model.setKeperluan(txtKeperluan.getText());
                 model.setAlamat(txaAlamat.getText());
                 service.doSave(model);
                 this.menu.refreshTable();

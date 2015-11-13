@@ -53,7 +53,7 @@ public class ServiceOfBukuTamu {
         Session aSession = aSessionFactory.openSession();
         aSession.beginTransaction();
         
-        Criteria aCriteria = aSession.createCriteria(Instruktur.class);
+        Criteria aCriteria = aSession.createCriteria(BukuTamu.class);
         return aCriteria.list();
     }
    
