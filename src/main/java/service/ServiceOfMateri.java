@@ -6,8 +6,7 @@
 package service;
 
 import java.util.List;
-import model.ModelOfCourses;
-import model.Ruangan;
+import model.Materi;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,42 +15,44 @@ import org.hibernate.SessionFactory;
  *
  * @author muhamadhanifmuhsin
  */
-public class ServiceOfRuangan {
+public class ServiceOfMateri {
+
     private SessionFactory aSessionFactory;
-    public ServiceOfRuangan(SessionFactory aSessionFactory){
+
+    public ServiceOfMateri(SessionFactory aSessionFactory) {
         this.aSessionFactory = aSessionFactory;
     }
     
-    public void doSave(Ruangan aRuanga)throws Exception{
-        Session aSession =  aSessionFactory.openSession();
+    public void doSave(Materi aMateri){
+        Session aSession = aSessionFactory.openSession();
         aSession.beginTransaction();
-        aSession.save(aRuanga);
+        aSession.save(aMateri);
         aSession.getTransaction().commit();
         aSession.close();
     }
     
-    public void doUpdate(Ruangan aRuangan){
+    public void doUpdate(Materi aMateri){
         Session aSession = aSessionFactory.openSession();
         aSession.beginTransaction();
-        aSession.update(aRuangan);
+        aSession.update(aMateri);
         aSession.getTransaction().commit();
         aSession.close();
+    }
+    
+    public void doDelete(Materi aMateri){
+        Session aSession = aSessionFactory.openSession();
+        aSession.beginTransaction();
+        aSession.delete(aMateri);
+        aSession.getTransaction().commit();
+        aSession.close();
+    }
+    
+    public List<Materi> findAll(){
+        Session aSession = aSessionFactory.openSession();
+        aSession.beginTransaction();
         
+        Criteria aCriteria = aSession.createCriteria(Materi.class);
+        return aCriteria.list();
     }
-    
-      public void doDelete(Ruangan aRuangan){
-        Session aSession = aSessionFactory.openSession();
-        aSession.beginTransaction();
-        aSession.delete(aRuangan);
-        aSession.getTransaction().commit();
-        aSession.close();
-    }
-    
-    public List<Ruangan> findAll(){
-        Session aSession = aSessionFactory.openSession();
-        aSession.beginTransaction();
-        
-        Criteria aCriteria =aSession.createCriteria(Ruangan.class);
-         return aCriteria.list();
-    }
+
 }

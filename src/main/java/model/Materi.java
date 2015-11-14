@@ -5,15 +5,65 @@
  */
 package model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author muhamadhanifmuhsin
  */
+@Entity
+@Table(name="materi")
 public class Materi {
-    private String id;
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+    private String kodeMateri;
     private String nama;
     private Integer teori;
     private Integer praktek;
-    private Jurusan jurusan;
+ //   private Jurusan jurusan;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getKodeMateri() {
+        return kodeMateri;
+    }
+
+    public void setKodeMateri(String kodeMateri) {
+        this.kodeMateri = kodeMateri;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public Integer getTeori() {
+        return teori;
+    }
+
+    public void setTeori(Integer teori) {
+        this.teori = teori;
+    }
+
+    public Integer getPraktek() {
+        return praktek;
+    }
+
+    public void setPraktek(Integer praktek) {
+        this.praktek = praktek;
+    }
     
 }
