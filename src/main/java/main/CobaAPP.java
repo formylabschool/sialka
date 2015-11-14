@@ -24,9 +24,18 @@ public class CobaAPP {
         aJurusan.setKodeJurusan("PK001");
         aJurusan.setNama("PERAKITAN KOMPUTER");
         aJurusan.setHarga(Double.valueOf("2000000"));
-        aServiceOfJurusan.doSave(aJurusan);
-        aSessionFactory.close();
         
+       
+        
+        Jurusan aJurusan1 = new Jurusan();
+        ServiceOfJurusan aServiceOfJurusan1 = new ServiceOfJurusan(aSessionFactory);
+        aJurusan1.setKodeJurusan("ADM001");
+        aJurusan1.setNama("ADMINISTRASI");
+        aJurusan1.setHarga(Double.valueOf("2000000"));
+        aServiceOfJurusan.doSave(aJurusan);
+        aServiceOfJurusan1.doSave(aJurusan1);
+        
+        aSessionFactory.close();
     }
     
 }
