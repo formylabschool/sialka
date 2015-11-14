@@ -5,6 +5,7 @@
  */
 package model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +20,7 @@ import javax.persistence.Table;
 @Table(name="jurusan")
 public class Jurusan {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id_jurusan")
     private Integer id;
     private String kodeJurusan;
     private String nama;
