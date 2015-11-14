@@ -20,7 +20,7 @@ import javax.persistence.Table;
 public class Jurusan {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String kodeMateri;
+    private String kodeJurusan;
     private String nama;
     private Double harga;
 
@@ -32,13 +32,15 @@ public class Jurusan {
         this.id = id;
     }
 
-    public String getKodeMateri() {
-        return kodeMateri;
+    public String getKodeJurusan() {
+        return kodeJurusan;
     }
 
-    public void setKodeMateri(String kodeMateri) {
-        this.kodeMateri = kodeMateri;
+    public void setKodeJurusan(String kodeJurusan) {
+        this.kodeJurusan = kodeJurusan;
     }
+
+  
 
     public String getNama() {
         return nama;

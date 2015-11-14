@@ -7,6 +7,7 @@ package configuration;
 
 import model.BukuTamu;
 import model.Instruktur;
+import model.Jurusan;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import model.ModelOfCourses;
@@ -25,6 +26,7 @@ public class HIbernateUtil {
                 addAnnotatedClass(Ruangan.class).
                 addAnnotatedClass(Instruktur.class).
                 addAnnotatedClass(BukuTamu.class).
+                addAnnotatedClass(Jurusan.class).
                 /*addAnnotatedClass(KelasLain.class).*/
                 setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect").
                 setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver").
