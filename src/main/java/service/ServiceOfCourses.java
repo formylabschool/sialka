@@ -15,6 +15,7 @@ import model.ModelOfCourses;
  *
  * @author muhamadhanifmuhsin
  */
+@Deprecated
 public class ServiceOfCourses {
     private SessionFactory aSessionFactory;
     

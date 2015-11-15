@@ -322,7 +322,7 @@ public class MainForm extends javax.swing.JFrame {
 
     private void mniMateriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniMateriActionPerformed
         // TODO add your handling code here:
-        CoursesForm add = new CoursesForm();
+        FormMateri add = new FormMateri();
         desktop.add(add);
 
         Dimension size = desktop.getSize();
