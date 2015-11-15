@@ -15,6 +15,7 @@ import org.hibernate.SessionFactory;
  *
  * @author muhamadhanifmuhsin
  */
+@Deprecated
 public class CobaAPP {
 
     public static void main(String[] args) {

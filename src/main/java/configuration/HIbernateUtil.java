@@ -23,7 +23,7 @@ public class HIbernateUtil {
     /*klo mau tambahin entity tambahin disini pke metode addAnnotadedClass(NamaEntity.class)*/
     public static SessionFactory config() {
         return new Configuration().
-                addAnnotatedClass(ModelOfCourses.class).
+               // addAnnotatedClass(ModelOfCourses.class).
                 addAnnotatedClass(Ruangan.class).
                 addAnnotatedClass(Instruktur.class).
                 addAnnotatedClass(BukuTamu.class).
