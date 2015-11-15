@@ -60,6 +60,7 @@ public class MainForm extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         mniRuangan = new javax.swing.JMenuItem();
+        mniJurusan = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -240,6 +241,15 @@ public class MainForm extends javax.swing.JFrame {
         });
         mnuKurikulum.add(mniRuangan);
 
+        mniJurusan.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        mniJurusan.setText("Jurusan");
+        mniJurusan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniJurusanActionPerformed(evt);
+            }
+        });
+        mnuKurikulum.add(mniJurusan);
+
         jMenuBar1.add(mnuKurikulum);
 
         setJMenuBar(jMenuBar1);
@@ -361,6 +371,18 @@ public class MainForm extends javax.swing.JFrame {
         add.setVisible(true);
     }//GEN-LAST:event_mniRuanganActionPerformed
 
+    private void mniJurusanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniJurusanActionPerformed
+        // TODO add your handling code here:
+        FormJurusan add = new FormJurusan();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+                (size.height - addSize.height) / 2);
+        add.setVisible(true);
+    }//GEN-LAST:event_mniJurusanActionPerformed
+
   
     
 
@@ -382,6 +404,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenu mniAbsensi;
     private javax.swing.JMenuItem mniBukuTamu;
     private javax.swing.JMenuItem mniInstruktur;
+    private javax.swing.JMenuItem mniJurusan;
     private javax.swing.JMenuItem mniKeluar;
     private javax.swing.JMenuItem mniMasuk;
     private javax.swing.JMenuItem mniMateri;

@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -24,12 +25,13 @@ public class Materi implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "id_materi")
+    
     private Integer id;
     private String kodeMateri;
     private String nama;
     private Integer teori;
     private Integer praktek;
-
+   
     public Integer getId() {
         return id;
     }
