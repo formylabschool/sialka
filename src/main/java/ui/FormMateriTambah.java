@@ -5,22 +5,55 @@
  */
 package ui;
 
+import configuration.HIbernateUtil;
+import controllers.ControllersOfMateri;
+import javax.swing.JOptionPane;
+import model.Materi;
+import service.ServiceOfMateri;
+import service.ServiceOfRuangan;
+
 /**
  *
  * @author muhamadhanifmuhsin
  */
 public class FormMateriTambah extends javax.swing.JDialog {
 
+    private ControllersOfMateri controller;
+    private FormMateri menu;
+    private Boolean update;
+    private Materi model;
+
     /**
      * Creates new form FormMateriTambah
      */
-    public FormMateriTambah(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
+    private void setUpdate(Boolean update) {
+        this.update = update;
     }
 
-    FormMateriTambah(Object object, boolean b, FormMateri aThis) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public FormMateriTambah(java.awt.Frame parent, boolean modal, FormMateri aThis) {
+        super(parent, modal);
+        initComponents();
+        this.model = new Materi();
+        setUpdate(false);
+        this.menu = aThis;
+        this.controller = new ControllersOfMateri();
+
+    }
+
+    FormMateriTambah(java.awt.Frame object, boolean b, FormMateri aThis, Materi model) {
+        super(object, b);
+        setUpdate(true);
+        initComponents();
+
+        this.menu = aThis;
+        this.controller = new ControllersOfMateri();
+        this.model = model;
+
+        txtKode.setText(model.getKodeMateri());
+        txtNama.setText(model.getNama());
+        txtTeori.setText(model.getTeori().toString());
+        txtPraktek.setText(model.getPraktek().toString());
+
     }
 
     /**
@@ -41,7 +74,7 @@ public class FormMateriTambah extends javax.swing.JDialog {
         txtNama = new javax.swing.JTextField();
         txtTeori = new javax.swing.JTextField();
         txtPraktek = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnSimpan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -124,8 +157,13 @@ public class FormMateriTambah extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jButton1.setText("Simpan");
+        btnSimpan.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        btnSimpan.setText("Simpan");
+        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,7 +175,7 @@ public class FormMateriTambah extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnSimpan)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -146,7 +184,7 @@ public class FormMateriTambah extends javax.swing.JDialog {
                 .addGap(16, 16, 16)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnSimpan)
                 .addContainerGap())
         );
 
@@ -165,8 +203,43 @@ public class FormMateriTambah extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPraktekActionPerformed
 
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+        // TODO add your handling code here:
+        if (update) {
+            try {
+                ServiceOfMateri service = new ServiceOfMateri(HIbernateUtil.config());
+                model.setKodeMateri(txtKode.getText());
+                model.setNama(txtNama.getText());
+                model.setTeori(Integer.valueOf(txtTeori.getText()));
+                model.setPraktek(Integer.valueOf(txtPraktek.getText()));
+                service.doUpdate(model);
+
+                this.menu.refreshTable();
+
+                dispose();
+            } catch (Exception e) {
+                e.printStackTrace();
+
+            }
+        } else {
+            try {
+                ServiceOfMateri service = new ServiceOfMateri(HIbernateUtil.config());
+                model.setKodeMateri(txtKode.getText());
+                model.setNama(txtNama.getText());
+                model.setTeori(Integer.valueOf(txtTeori.getText()));
+                model.setPraktek(Integer.valueOf(txtPraktek.getText()));
+                service.doSave(model);
+                this.menu.refreshTable();
+                dispose();
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_btnSimpanActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSimpan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

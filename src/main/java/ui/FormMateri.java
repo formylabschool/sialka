@@ -11,8 +11,10 @@ import controllers.ControllersOfMateri;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.Materi;
+import model.Ruangan;
 import service.ServiceOfInstruktur;
 import service.ServiceOfMateri;
+import service.ServiceOfRuangan;
 
 /**
  *
@@ -99,9 +101,19 @@ public class FormMateri extends javax.swing.JInternalFrame {
 
         btnUbah.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         btnUbah.setText("Ubah");
+        btnUbah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUbahActionPerformed(evt);
+            }
+        });
 
         btnHapus.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         btnHapus.setText("Hapus");
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusActionPerformed(evt);
+            }
+        });
 
         btnKeluar.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         btnKeluar.setText("Keluar");
@@ -178,6 +190,33 @@ public class FormMateri extends javax.swing.JInternalFrame {
         add.setVisible(true);
 
     }//GEN-LAST:event_btnTambahActionPerformed
+
+    private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
+        // TODO add your handling code here:
+        Integer selectedRow = tabelMateri.getSelectedRow();
+        System.out.println(selectedRow + " selected row ");
+        if (selectedRow >= 0) {
+            Materi model = list.get(selectedRow);
+            FormMateriTambah add = new FormMateriTambah(null, true, this, model);
+            add.setVisible(true);
+        } else {
+
+        }
+    }//GEN-LAST:event_btnUbahActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        // TODO add your handling code here:
+        Integer rowSelected = tabelMateri.getSelectedRow();
+        System.out.println("hapus data baris ke "+rowSelected);
+        if (rowSelected >= 0) {
+            service = new ServiceOfMateri(HIbernateUtil.config());
+            Materi model = list.get(tabelMateri.getSelectedRow());
+            service.doDelete(model);
+            refreshTable();
+        }else{
+            System.out.println("Tabel Belum diklick");
+        }
+    }//GEN-LAST:event_btnHapusActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
