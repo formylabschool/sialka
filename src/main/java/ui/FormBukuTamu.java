@@ -11,8 +11,10 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 import model.BukuTamu;
+import model.Materi;
 import service.ServiceOfBukuTamu;
 import service.ServiceOfInstruktur;
+import service.ServiceOfMateri;
 
 /**
  *
@@ -56,8 +58,8 @@ private List<BukuTamu> list;
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnUbah = new javax.swing.JButton();
+        btnHapus = new javax.swing.JButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buku Tamu", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Menlo", 0, 13))); // NOI18N
         jPanel1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
@@ -121,11 +123,21 @@ private List<BukuTamu> list;
         jButton3.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jButton3.setText("Cari");
 
-        jButton1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jButton1.setText("Ubah");
+        btnUbah.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        btnUbah.setText("Ubah");
+        btnUbah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUbahActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jButton2.setText("Hapus");
+        btnHapus.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        btnHapus.setText("Hapus");
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,9 +159,9 @@ private List<BukuTamu> list;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnTambah)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(btnUbah)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)))
+                        .addComponent(btnHapus)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -161,8 +173,8 @@ private List<BukuTamu> list;
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnUbah)
+                    .addComponent(btnHapus))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -188,12 +200,39 @@ private List<BukuTamu> list;
          add.setVisible(true);
     }//GEN-LAST:event_btnTambahActionPerformed
 
+    private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
+        // TODO add your handling code here:
+        Integer selectedRow = tabelBukuTamu.getSelectedRow();
+        System.out.println(selectedRow + " selected row ");
+        if (selectedRow >= 0) {
+            BukuTamu model = list.get(selectedRow);
+            BukuTamuTambah add = new BukuTamuTambah(null, true, this, model);
+            add.setVisible(true);
+        } else {
+
+        }
+    }//GEN-LAST:event_btnUbahActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        // TODO add your handling code here:
+        Integer rowSelected = tabelBukuTamu.getSelectedRow();
+        System.out.println("hapus data baris ke "+rowSelected);
+        if (rowSelected >= 0) {
+            service = new ServiceOfBukuTamu(HIbernateUtil.config());
+            BukuTamu model = list.get(tabelBukuTamu.getSelectedRow());
+            service.doDelete(model);
+            refreshTable();
+        }else{
+            System.out.println("Tabel Belum diklick");
+        }
+    }//GEN-LAST:event_btnHapusActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnTambah;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnUbah;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
