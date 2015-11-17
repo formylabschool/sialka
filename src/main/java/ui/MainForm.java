@@ -148,7 +148,7 @@ public class MainForm extends javax.swing.JFrame {
         mniAbsensi.add(jSeparator2);
 
         mniRegistrasi.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
-        mniRegistrasi.setText("Registrasi");
+        mniRegistrasi.setText("Pendaftaran");
         mniRegistrasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mniRegistrasiActionPerformed(evt);
@@ -320,7 +320,7 @@ public class MainForm extends javax.swing.JFrame {
 
     private void mniRegistrasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniRegistrasiActionPerformed
         // TODO add your handling code here:
-        RegistrationForm add = new RegistrationForm();
+        FormPendaftaran add = new FormPendaftaran();
         desktop.add(add);
 
         Dimension size = desktop.getSize();
