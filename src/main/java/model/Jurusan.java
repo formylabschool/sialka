@@ -36,62 +36,9 @@ public class Jurusan {
     private String nama;
     private Double harga;
 
-    public Jurusan() {
-    }
-    
-    
-
-    public Jurusan(Integer id, String kodeJurusan, String nama, Double harga) {
-        this.id = id;
-        this.kodeJurusan = kodeJurusan;
-        this.nama = nama;
-        this.harga = harga;
-    }
-    
+    public static void main(String[]args){
+        Materi materi = new Materi();
         
-    @ManyToMany
-    private Set<Materi> materis = new HashSet<Materi>();
-
-    public Set<Materi> getMateris() {
-        return materis;
     }
-
-    public void setMateris(Set<Materi> materis) {
-        this.materis = materis;
-    }
-
   
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getKodeJurusan() {
-        return kodeJurusan;
-    }
-
-    public void setKodeJurusan(String kodeJurusan) {
-        this.kodeJurusan = kodeJurusan;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
-
-    public Double getHarga() {
-        return harga;
-    }
-
-    public void setHarga(Double harga) {
-        this.harga = harga;
-    }
-
 }

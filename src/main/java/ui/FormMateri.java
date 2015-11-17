@@ -6,15 +6,11 @@
 package ui;
 
 import configuration.HIbernateUtil;
-import controllers.ControllersOfInstruktur;
 import controllers.ControllersOfMateri;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.Materi;
-import model.Ruangan;
-import service.ServiceOfInstruktur;
 import service.ServiceOfMateri;
-import service.ServiceOfRuangan;
 
 /**
  *

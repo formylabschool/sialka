@@ -31,7 +31,10 @@ public class Materi implements Serializable {
     private String nama;
     private Integer teori;
     private Integer praktek;
-   
+    @ManyToOne
+    
+    private Jurusan jurusan;
+
     public Integer getId() {
         return id;
     }
@@ -72,4 +75,12 @@ public class Materi implements Serializable {
         this.praktek = praktek;
     }
 
+    public Jurusan getJurusan() {
+        return jurusan;
+    }
+
+    public void setJurusan(Jurusan jurusan) {
+        this.jurusan = jurusan;
+    }
+    
 }
