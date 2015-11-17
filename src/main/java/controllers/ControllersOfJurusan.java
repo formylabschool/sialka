@@ -5,8 +5,14 @@
  */
 package controllers;
 
+import configuration.HIbernateUtil;
 import interfaces.JavaControllers;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import model.Instruktur;
+import model.Jurusan;
+import service.ServiceOfInstruktur;
+import service.ServiceOfJurusan;
 
 /**
  *
@@ -17,6 +23,18 @@ public class ControllersOfJurusan implements JavaControllers{
     public void initTable(){
         this.defaultTableModel.getDataVector().removeAllElements();
         this.defaultTableModel.fireTableDataChanged();
+    }
+    
+     public void loadDataTable(List<Jurusan> list){
+        initTable();
+        ServiceOfJurusan service = new ServiceOfJurusan(HIbernateUtil.config());
+        for (Jurusan aJurusan : list){
+             Object[] anObjects = {aJurusan.getId(),aJurusan.getKodeJurusan(),aJurusan.getNama(),
+                                   aJurusan.getHarga()};
+             this.defaultTableModel.addRow(anObjects);
+            
+        }
+        
     }
     
     @Override
