@@ -6,8 +6,12 @@
 package ui;
 
 import configuration.HIbernateUtil;
+import java.time.Year;
+import java.util.Date;
 import java.util.List;
 import model.Jurusan;
+import model.Siswa;
+import org.hibernate.SessionFactory;
 import service.ServiceOfJurusan;
 import service.ServiceOfSiswa;
 
@@ -16,26 +20,30 @@ import service.ServiceOfSiswa;
  * @author muhamadhanifmuhsin
  */
 public class FormPendaftaran extends javax.swing.JInternalFrame {
-private List<Jurusan>listJurusan;
+
+    private List<Jurusan> listJurusan;
+
     /**
      * Creates new form FormPendaftaran
      */
     public FormPendaftaran() {
         initComponents();
         initCombo();
+        dateChooser.setDate(new Date());
     }
 
-    public void initCombo(){
+    public void initCombo() {
         this.listJurusan = new ServiceOfJurusan(HIbernateUtil.config()).findAll();
-        cbkJurusan.removeAllItems();
-        for(Jurusan aJurusan:listJurusan){
-            cbkJurusan.addItem(aJurusan.getKodeJurusan());
-            
-        }
         
+        cbkJurusan.removeAllItems();
+        for (Jurusan aJurusan : listJurusan) {
+
+            cbkJurusan.addItem(aJurusan.getKodeJurusan());
+
+        }
+cbkJurusan.setSelectedIndex(-1);
     }
-   
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,24 +54,22 @@ private List<Jurusan>listJurusan;
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jTextField1 = new javax.swing.JTextField();
+        dateChooser = new com.toedter.calendar.JDateChooser();
         cbkJurusan = new javax.swing.JComboBox();
         txtHarga = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        cbkGel = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         btnKeluar = new javax.swing.JButton();
+        btnSimpan = new javax.swing.JButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Data Pendaftaran", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Menlo", 0, 13))); // NOI18N
-
-        jLabel1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jLabel1.setText("No.Registrasi");
 
         jLabel2.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel2.setText("Tanggal");
@@ -74,9 +80,6 @@ private List<Jurusan>listJurusan;
         jLabel4.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel4.setText("Harga");
 
-        jTextField1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jTextField1.setText("jTextField1");
-
         cbkJurusan.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         cbkJurusan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbkJurusan.addItemListener(new java.awt.event.ItemListener() {
@@ -86,13 +89,22 @@ private List<Jurusan>listJurusan;
         });
 
         txtHarga.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        txtHarga.setText("jTextField2");
 
         jLabel6.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel6.setText("Uang Pendaftaran");
 
         jTextField3.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jTextField3.setText("jTextField3");
+
+        jLabel7.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        jLabel7.setText("Gelombang");
+
+        cbkGel.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        cbkGel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "=Pilih=", "1", "2", "3", "4" }));
+        cbkGel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbkGelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -101,45 +113,41 @@ private List<Jurusan>listJurusan;
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 423, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(9, 9, 9)
+                        .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7))
+                                .addGap(4, 4, 4)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1)
+                                    .addComponent(cbkGel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cbkJurusan, 0, 234, Short.MAX_VALUE)
                                     .addComponent(txtHarga, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
-                                    .addComponent(jTextField3))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 319, Short.MAX_VALUE)
-                                .addComponent(jLabel2)
-                                .addGap(9, 9, 9)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(17, 17, 17))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addComponent(jTextField3))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel2)))
-                .addGap(14, 14, 14)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(cbkGel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(cbkJurusan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -184,6 +192,13 @@ private List<Jurusan>listJurusan;
             }
         });
 
+        btnSimpan.setText("Simpan");
+        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -195,6 +210,8 @@ private List<Jurusan>listJurusan;
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnSimpan)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnKeluar)))
                 .addContainerGap())
         );
@@ -206,7 +223,9 @@ private List<Jurusan>listJurusan;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnKeluar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnKeluar)
+                    .addComponent(btnSimpan)))
         );
 
         pack();
@@ -219,28 +238,56 @@ private List<Jurusan>listJurusan;
 
     private void cbkJurusanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbkJurusanItemStateChanged
         // TODO add your handling code here:
-        if(cbkJurusan.getSelectedIndex()>= 0){
+        if (cbkJurusan.getSelectedIndex() >= 0) {
             Jurusan jurusan = listJurusan.get(cbkJurusan.getSelectedIndex());
             txtHarga.setText(jurusan.getHarga().toString());
-        }else{
+        } else {
             txtHarga.setText("0");
         }
     }//GEN-LAST:event_cbkJurusanItemStateChanged
 
+    private void cbkGelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbkGelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbkGelActionPerformed
 
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+        // TODO add your handling code here:
+        Siswa aSiswa = new Siswa();
+        aSiswa.setJurusan(listJurusan.get(cbkJurusan.getSelectedIndex()));
+        aSiswa.setHargaTotal(aSiswa.getJurusan().getHarga());
+        aSiswa.setTanggalPendaftaran(dateChooser.getDate());
+        SessionFactory aSessionFactory = HIbernateUtil.config();
+        ServiceOfSiswa serviceOfSiswa =new ServiceOfSiswa(aSessionFactory);
+        serviceOfSiswa.doSave(aSiswa);
+        aSiswa.setKodeSiswa(generateKode(aSiswa.getId()));
+        serviceOfSiswa = new ServiceOfSiswa(aSessionFactory);
+        serviceOfSiswa.doUpdate(aSiswa);
+        
+    }//GEN-LAST:event_btnSimpanActionPerformed
+
+
+    private String generateKode(Integer value){
+        StringBuilder aBuilder = new StringBuilder();
+        aBuilder.append(cbkGel.getSelectedItem().toString());
+        aBuilder.append(listJurusan.get(cbkJurusan.getSelectedIndex()).getKodeJurusan());
+        aBuilder.append(Year.now().getValue());
+        aBuilder.append(value);
+        return aBuilder.toString();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnKeluar;
+    private javax.swing.JButton btnSimpan;
+    private javax.swing.JComboBox cbkGel;
     private javax.swing.JComboBox cbkJurusan;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JLabel jLabel1;
+    private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField txtHarga;
     // End of variables declaration//GEN-END:variables

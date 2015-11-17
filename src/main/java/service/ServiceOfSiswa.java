@@ -26,7 +26,7 @@ public class ServiceOfSiswa {
     public void doSave(Siswa aSiswa) {
         Session session = aSessionFactory.openSession();
         session.beginTransaction();
-        session.save(aSiswa);
+        aSiswa.setId((Integer) session.save(aSiswa));
         session.getTransaction().commit();
         session.close();
     }

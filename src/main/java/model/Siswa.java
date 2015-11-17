@@ -5,10 +5,15 @@
  */
 package model;
 
+import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -17,10 +22,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name="siswa")
 public class Siswa {
-@Id
+@Id @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id; 
     private String kodeSiswa;
     private String nama;
+    @Temporal(TemporalType.DATE)
+    private Date tanggalPendaftaran;
     @OneToOne
     private Jurusan jurusan;
     private Double hargaTotal;
@@ -29,6 +36,14 @@ public class Siswa {
     private Double nilai1;
     private Double nilai2;
     private Double nilai3;
+
+    public Date getTanggalPendaftaran() {
+        return tanggalPendaftaran;
+    }
+
+    public void setTanggalPendaftaran(Date tanggalPendaftaran) {
+        this.tanggalPendaftaran = tanggalPendaftaran;
+    }
 
     public Integer getId() {
         return id;
