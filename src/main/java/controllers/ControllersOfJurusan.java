@@ -39,7 +39,7 @@ public class ControllersOfJurusan implements JavaControllers{
     
     @Override
     public void inijectTable(DefaultTableModel defaultTableModel) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.defaultTableModel = defaultTableModel;
     }
     
 }

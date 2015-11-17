@@ -7,8 +7,10 @@ package controllers;
 
 import configuration.HIbernateUtil;
 import interfaces.JavaControllers;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import model.Jurusan;
 import model.Materi;
 import service.ServiceOfMateri;
 
@@ -19,6 +21,7 @@ import service.ServiceOfMateri;
 public class ControllersOfMateri implements JavaControllers {
 
     private DefaultTableModel defaultTableModel;
+    
 
     public void initTable() {
         this.defaultTableModel.getDataVector().removeAllElements();
@@ -30,13 +33,14 @@ public class ControllersOfMateri implements JavaControllers {
         ServiceOfMateri service = new ServiceOfMateri(HIbernateUtil.config());
         for (Materi aMateri : list) {
             Object[] anObjects = {aMateri.getId(), aMateri.getKodeMateri(), aMateri.getNama(),
-                aMateri.getTeori(), aMateri.getPraktek()};
+                aMateri.getTeori(), aMateri.getPraktek(),aMateri.getJurusan().getKodeJurusan()};
             this.defaultTableModel.addRow(anObjects);
 
         }
 
     }
-
+    
+   
     @Override
     public void inijectTable(DefaultTableModel defaultTableModel) {
         this.defaultTableModel = defaultTableModel;

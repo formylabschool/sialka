@@ -7,8 +7,14 @@ package ui;
 
 import configuration.HIbernateUtil;
 import controllers.ControllersOfMateri;
+import java.util.List;
 import javax.swing.JOptionPane;
+import model.Jurusan;
 import model.Materi;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import service.ServiceOfJurusan;
 import service.ServiceOfMateri;
 import service.ServiceOfRuangan;
 
@@ -22,6 +28,8 @@ public class FormMateriTambah extends javax.swing.JDialog {
     private FormMateri menu;
     private Boolean update;
     private Materi model;
+    private SessionFactory aSessionFactory;
+    private List<Jurusan> listJurusan;
 
     /**
      * Creates new form FormMateriTambah
@@ -33,6 +41,7 @@ public class FormMateriTambah extends javax.swing.JDialog {
     public FormMateriTambah(java.awt.Frame parent, boolean modal, FormMateri aThis) {
         super(parent, modal);
         initComponents();
+        initCombo();
         this.model = new Materi();
         setUpdate(false);
         this.menu = aThis;
@@ -44,7 +53,7 @@ public class FormMateriTambah extends javax.swing.JDialog {
         super(object, b);
         setUpdate(true);
         initComponents();
-
+        initCombo();
         this.menu = aThis;
         this.controller = new ControllersOfMateri();
         this.model = model;
@@ -53,7 +62,16 @@ public class FormMateriTambah extends javax.swing.JDialog {
         txtNama.setText(model.getNama());
         txtTeori.setText(model.getTeori().toString());
         txtPraktek.setText(model.getPraktek().toString());
+        cbkJurusan.setSelectedItem(model.getJurusan().getKodeJurusan());
 
+    }
+
+    private void initCombo() {
+        this.listJurusan = new ServiceOfJurusan(HIbernateUtil.config()).findAll();
+        cbkJurusan.removeAllItems();
+        for (Jurusan aJurusan : listJurusan) {
+            cbkJurusan.addItem(aJurusan.getKodeJurusan());
+        }
     }
 
     /**
@@ -74,6 +92,8 @@ public class FormMateriTambah extends javax.swing.JDialog {
         txtNama = new javax.swing.JTextField();
         txtTeori = new javax.swing.JTextField();
         txtPraktek = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        cbkJurusan = new javax.swing.JComboBox();
         btnSimpan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -115,6 +135,16 @@ public class FormMateriTambah extends javax.swing.JDialog {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        jLabel5.setText("Jurusan");
+
+        cbkJurusan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbkJurusan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbkJurusanActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -125,14 +155,16 @@ public class FormMateriTambah extends javax.swing.JDialog {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtKode, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtPraktek, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                        .addComponent(txtTeori, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addComponent(txtTeori, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtPraktek, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(cbkJurusan, javax.swing.GroupLayout.Alignment.LEADING, 0, 121, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -154,7 +186,11 @@ public class FormMateriTambah extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtPraktek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(cbkJurusan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
         btnSimpan.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
@@ -182,8 +218,8 @@ public class FormMateriTambah extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnSimpan)
                 .addContainerGap())
         );
@@ -212,6 +248,7 @@ public class FormMateriTambah extends javax.swing.JDialog {
                 model.setNama(txtNama.getText());
                 model.setTeori(Integer.valueOf(txtTeori.getText()));
                 model.setPraktek(Integer.valueOf(txtPraktek.getText()));
+                model.setJurusan(listJurusan.get(cbkJurusan.getSelectedIndex()));
                 service.doUpdate(model);
 
                 this.menu.refreshTable();
@@ -228,6 +265,7 @@ public class FormMateriTambah extends javax.swing.JDialog {
                 model.setNama(txtNama.getText());
                 model.setTeori(Integer.valueOf(txtTeori.getText()));
                 model.setPraktek(Integer.valueOf(txtPraktek.getText()));
+                model.setJurusan(listJurusan.get(cbkJurusan.getSelectedIndex()));
                 service.doSave(model);
                 this.menu.refreshTable();
                 dispose();
@@ -238,12 +276,19 @@ public class FormMateriTambah extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnSimpanActionPerformed
 
+    private void cbkJurusanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbkJurusanActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_cbkJurusanActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSimpan;
+    private javax.swing.JComboBox cbkJurusan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtKode;
     private javax.swing.JTextField txtNama;
