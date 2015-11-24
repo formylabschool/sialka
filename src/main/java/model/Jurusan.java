@@ -35,6 +35,17 @@ public class Jurusan {
     private String kodeJurusan;
     private String nama;
     private Double harga;
+    private Integer jumlahPertemuan;
+
+    public Integer getJumlahPertemuan() {
+        return jumlahPertemuan;
+    }
+
+    public void setJumlahPertemuan(Integer jumlahPertemuan) {
+        this.jumlahPertemuan = jumlahPertemuan;
+    }
+    
+    
 
     public Integer getId() {
         return id;

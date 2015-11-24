@@ -43,6 +43,7 @@ public class FormJurusanTambah extends javax.swing.JDialog {
         this.model= model;
         txtKode.setText(model.getKodeJurusan());
         txtNama.setText(model.getNama());
+        sJP.setValue(model.getJumlahPertemuan());
         sHarga.setValue(model.getHarga());
         
     }
@@ -67,6 +68,8 @@ public class FormJurusanTambah extends javax.swing.JDialog {
         txtKode = new javax.swing.JTextField();
         txtNama = new javax.swing.JTextField();
         sHarga = new javax.swing.JSpinner();
+        jLabel4 = new javax.swing.JLabel();
+        sJP = new javax.swing.JSpinner();
         btnSimpan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -89,6 +92,12 @@ public class FormJurusanTambah extends javax.swing.JDialog {
         sHarga.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         sHarga.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(0.0d), Double.valueOf(0.0d), null, Double.valueOf(500.0d)));
 
+        jLabel4.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        jLabel4.setText("Jumlah Pertemuan");
+
+        sJP.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        sJP.setModel(new javax.swing.SpinnerNumberModel());
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -98,14 +107,17 @@ public class FormJurusanTambah extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(26, 26, 26)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addGap(2, 2, 2)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtKode, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 76, Short.MAX_VALUE))
                     .addComponent(txtNama)
-                    .addComponent(sHarga))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtKode, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sJP, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 80, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -119,11 +131,15 @@ public class FormJurusanTambah extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(sJP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(sHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
         );
 
         btnSimpan.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
@@ -167,6 +183,7 @@ public class FormJurusanTambah extends javax.swing.JDialog {
                 ServiceOfJurusan aJurusan = new ServiceOfJurusan(HIbernateUtil.config());
                 model.setKodeJurusan(txtKode.getText());
                 model.setNama(txtNama.getText());
+                model.setJumlahPertemuan(Integer.valueOf(sJP.getValue().toString()));
                 model.setHarga(Double.valueOf(sHarga.getValue().toString()));
                 aJurusan.doUpdate(model);
                 this.menu.refreshTable();
@@ -179,6 +196,7 @@ public class FormJurusanTambah extends javax.swing.JDialog {
                 ServiceOfJurusan aJurusan = new ServiceOfJurusan(HIbernateUtil.config());
                 model.setKodeJurusan(txtKode.getText());
                 model.setNama(txtNama.getText());
+                model.setJumlahPertemuan(Integer.valueOf(sJP.getValue().toString()));
                 model.setHarga(Double.valueOf(sHarga.getValue().toString()));
                 aJurusan.doSave(model);
                 this.menu.refreshTable();
@@ -197,8 +215,10 @@ public class FormJurusanTambah extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSpinner sHarga;
+    private javax.swing.JSpinner sJP;
     private javax.swing.JTextField txtKode;
     private javax.swing.JTextField txtNama;
     // End of variables declaration//GEN-END:variables

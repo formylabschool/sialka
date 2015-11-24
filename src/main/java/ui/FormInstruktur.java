@@ -8,7 +8,14 @@ package ui;
 import configuration.HIbernateUtil;
 import controllers.ControllersOfInstruktur;
 import java.util.List;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.RowFilter;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import model.Instruktur;
 import model.ModelOfCourses;
 import model.Ruangan;
@@ -23,6 +30,7 @@ public class FormInstruktur extends javax.swing.JInternalFrame {
 private ControllersOfInstruktur controlles;
 private ServiceOfInstruktur service;
 private List<Instruktur> list;
+private DefaultTableModel model;
     /**
      * Creates new form FormInstruktur
      */
@@ -31,6 +39,7 @@ private List<Instruktur> list;
         this.controlles = new ControllersOfInstruktur();
         this.controlles.inijectTable((DefaultTableModel)tabelInstruktur.getModel());
         refreshTable();
+        setTableRowSorter(tabelInstruktur, txtKodeNII);
         
     }
     
@@ -39,6 +48,34 @@ private List<Instruktur> list;
         list = service.findAll();
         this.controlles.loadDataTable(list);
     }
+    
+     public void setTableRowSorter(JTable tabelInstruktur, JTextField txtKodeNII) {
+        TableRowSorter<TableModel> filterRows;
+        filterRows = new TableRowSorter<>(tabelInstruktur.getModel());
+        tabelInstruktur.setRowSorter(filterRows);
+        txtKodeNII.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                filterRows.setRowFilter(RowFilter.regexFilter(txtKodeNII.getText(),0));
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                filterRows.setRowFilter(RowFilter.regexFilter(txtKodeNII.getText(),0));
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                filterRows.setRowFilter(RowFilter.regexFilter(txtKodeNII.getText(),0));
+            }
+        });
+    }
+     
+     public DefaultTableModel getModel() {
+        return model;
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,7 +87,7 @@ private List<Instruktur> list;
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtKodeNII = new javax.swing.JTextField();
         btnCari = new javax.swing.JButton();
         btnTambah = new javax.swing.JButton();
         btnUbah = new javax.swing.JButton();
@@ -63,7 +100,7 @@ private List<Instruktur> list;
         jLabel1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel1.setText("NIP");
 
-        jTextField1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtKodeNII.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
         btnCari.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         btnCari.setText("Cari");
@@ -97,13 +134,13 @@ private List<Instruktur> list;
         tabelInstruktur.setFont(new java.awt.Font("Menlo", 0, 12)); // NOI18N
         tabelInstruktur.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "NIP", "Nama", "Tempat Lahir", "Tanggal Lahir", "Kontak", "Email", "Alamat"
+                "NIP", "Nama", "Tempat Lahir", "Tanggal Lahir", "Jenis Kelamin", "Kontak", "Email", "Alamat"
             }
         ));
         jScrollPane1.setViewportView(tabelInstruktur);
@@ -143,7 +180,7 @@ private List<Instruktur> list;
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtKodeNII, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCari)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -163,7 +200,7 @@ private List<Instruktur> list;
                 .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtKodeNII, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCari)
                     .addComponent(btnTambah)
                     .addComponent(btnUbah)
@@ -226,7 +263,7 @@ private List<Instruktur> list;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tabelInstruktur;
+    private javax.swing.JTextField txtKodeNII;
     // End of variables declaration//GEN-END:variables
 }

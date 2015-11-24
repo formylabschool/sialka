@@ -51,6 +51,7 @@ public class BukuTamuTambah extends javax.swing.JDialog {
         txtNama.setText(model.getNama());
         txtBertemu.setText(model.getYangDituju());
         txtKeperluan.setText(model.getKeperluan());
+        txtKontak.setText(model.getKontak());
         txaAlamat.setText(model.getAlamat());
     }
 
@@ -75,6 +76,8 @@ public class BukuTamuTambah extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txaAlamat = new javax.swing.JTextArea();
+        jLabel3 = new javax.swing.JLabel();
+        txtKontak = new javax.swing.JTextField();
         btnSimpan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -115,6 +118,9 @@ public class BukuTamuTambah extends javax.swing.JDialog {
         txaAlamat.setRows(5);
         jScrollPane2.setViewportView(txaAlamat);
 
+        jLabel3.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        jLabel3.setText("Kontak");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -126,14 +132,16 @@ public class BukuTamuTambah extends javax.swing.JDialog {
                     .addComponent(jLabel2)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel3))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtNama, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                     .addComponent(txtKeperluan)
                     .addComponent(txtBertemu)
                     .addComponent(dateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2))
+                    .addComponent(jScrollPane2)
+                    .addComponent(txtKontak))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -156,11 +164,15 @@ public class BukuTamuTambah extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtKeperluan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(14, 14, 14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtKontak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
 
         btnSimpan.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
@@ -180,16 +192,16 @@ public class BukuTamuTambah extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnSimpan)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSimpan)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -208,6 +220,7 @@ public class BukuTamuTambah extends javax.swing.JDialog {
                 model.setNama(txtNama.getText());
                 model.setYangDituju(txtBertemu.getText());
                 model.setKeperluan(txtKeperluan.getText());
+                model.setKontak(txtKontak.getText());
                 model.setAlamat(txaAlamat.getText());
                 service.doUpdate(model);
                 this.menu.refreshTable();
@@ -223,6 +236,7 @@ public class BukuTamuTambah extends javax.swing.JDialog {
                 model.setNama(txtNama.getText());
                 model.setYangDituju(txtBertemu.getText());
                 model.setKeperluan(txtKeperluan.getText());
+                model.setKontak(txtKontak.getText());
                 model.setAlamat(txaAlamat.getText());
                 service.doSave(model);
                 this.menu.refreshTable();
@@ -244,6 +258,7 @@ public class BukuTamuTambah extends javax.swing.JDialog {
     private com.toedter.calendar.JDateChooser dateChoose;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -252,6 +267,7 @@ public class BukuTamuTambah extends javax.swing.JDialog {
     private javax.swing.JTextArea txaAlamat;
     private javax.swing.JTextField txtBertemu;
     private javax.swing.JTextField txtKeperluan;
+    private javax.swing.JTextField txtKontak;
     private javax.swing.JTextField txtNama;
     // End of variables declaration//GEN-END:variables
 }

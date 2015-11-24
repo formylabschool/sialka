@@ -8,7 +8,14 @@ package ui;
 import configuration.HIbernateUtil;
 import controllers.ControllersOfMateri;
 import java.util.List;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.RowFilter;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import model.Materi;
 import service.ServiceOfMateri;
 
@@ -21,6 +28,7 @@ public class FormMateri extends javax.swing.JInternalFrame {
     private ControllersOfMateri controller;
     private ServiceOfMateri service;
     private List<Materi> list;
+    private DefaultTableModel model;
 
     /**
      * Creates new form FormMateri
@@ -29,6 +37,7 @@ public class FormMateri extends javax.swing.JInternalFrame {
         initComponents();
         this.controller = new ControllersOfMateri();
         this.controller.inijectTable((DefaultTableModel) tabelMateri.getModel());
+        setTableRowSorter(tabelMateri, txtKodeMateri);
         refreshTable();
     }
 
@@ -36,6 +45,33 @@ public class FormMateri extends javax.swing.JInternalFrame {
         service = new ServiceOfMateri(HIbernateUtil.config());
         list = service.findAll();
         this.controller.loadDataTable(list);
+    }
+    
+    public void setTableRowSorter(JTable tabelMateri, JTextField txtKodeMateri) {
+        TableRowSorter<TableModel> filterRows;
+        filterRows = new TableRowSorter<>(tabelMateri.getModel());
+        tabelMateri.setRowSorter(filterRows);
+        txtKodeMateri.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                filterRows.setRowFilter(RowFilter.regexFilter(txtKodeMateri.getText(),0));
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                filterRows.setRowFilter(RowFilter.regexFilter(txtKodeMateri.getText(),0));
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                filterRows.setRowFilter(RowFilter.regexFilter(txtKodeMateri.getText(),0));
+            }
+        });
+    }
+     
+     public DefaultTableModel getModel() {
+        return model;
     }
 
     /**
@@ -55,20 +91,19 @@ public class FormMateri extends javax.swing.JInternalFrame {
         btnHapus = new javax.swing.JButton();
         btnKeluar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        txtKodeMateri = new javax.swing.JTextField();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Data Materi", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Menlo", 0, 13))); // NOI18N
 
         tabelMateri.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "KODE MATERI", "NAMA MATERI", "TEORI", "PRAKTEK", "KODE JURUSAN"
+                "KODE MATERI", "NAMA MATERI", "TEORI", "PRAKTEK", "KODE JURUSAN"
             }
         ));
         jScrollPane1.setViewportView(tabelMateri);
@@ -122,10 +157,7 @@ public class FormMateri extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel1.setText("KODE MATERI");
 
-        jTextField1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-
-        jButton5.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jButton5.setText("Cari");
+        txtKodeMateri.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,10 +173,8 @@ public class FormMateri extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
+                        .addComponent(txtKodeMateri, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 274, Short.MAX_VALUE)
                         .addComponent(btnTambah)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnUbah)
@@ -163,8 +193,7 @@ public class FormMateri extends javax.swing.JInternalFrame {
                         .addComponent(btnHapus))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton5)))
+                        .addComponent(txtKodeMateri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -220,11 +249,10 @@ public class FormMateri extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnKeluar;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tabelMateri;
+    private javax.swing.JTextField txtKodeMateri;
     // End of variables declaration//GEN-END:variables
 }

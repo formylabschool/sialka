@@ -8,7 +8,14 @@ package ui;
 import configuration.HIbernateUtil;
 import controllers.ControllersOfRuangan;
 import java.util.List;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.RowFilter;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import model.ModelOfCourses;
 import model.Ruangan;
 import service.ServiceOfCourses;
@@ -23,6 +30,7 @@ public class FormRuangan extends javax.swing.JInternalFrame {
     private ControllersOfRuangan controll;
     private ServiceOfRuangan service;
     private List<Ruangan> list;
+    private DefaultTableModel model;
     /**
      * Creates new form FormRuangan
      */
@@ -30,6 +38,7 @@ public class FormRuangan extends javax.swing.JInternalFrame {
         initComponents();
         this.controll = new ControllersOfRuangan();
         this.controll.inijectTable((DefaultTableModel) tabelRuangan.getModel());
+        setTableRowSorter(tabelRuangan, txtKodeRuangan);
         refreshTable();
     }
     
@@ -39,6 +48,32 @@ public class FormRuangan extends javax.swing.JInternalFrame {
         this.controll.loadDataTable(list);
     }
 
+      public void setTableRowSorter(JTable tabelRuangan, JTextField txtKodeRuangan) {
+        TableRowSorter<TableModel> filterRows;
+        filterRows = new TableRowSorter<>(tabelRuangan.getModel());
+        tabelRuangan.setRowSorter(filterRows);
+        txtKodeRuangan.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                filterRows.setRowFilter(RowFilter.regexFilter(txtKodeRuangan.getText(),0));
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                filterRows.setRowFilter(RowFilter.regexFilter(txtKodeRuangan.getText(),0));
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                filterRows.setRowFilter(RowFilter.regexFilter(txtKodeRuangan.getText(),0));
+            }
+        });
+    }
+     
+     public DefaultTableModel getModel() {
+        return model;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,15 +87,14 @@ public class FormRuangan extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelRuangan = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtKodeRuangan = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         btnUbah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
         btnKeluar = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jLabel1.setText("ID Ruangan");
+        jLabel1.setText("KODE RUANGAN");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Data Ruangan", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Menlo", 0, 13))); // NOI18N
 
@@ -73,7 +107,7 @@ public class FormRuangan extends javax.swing.JInternalFrame {
                 {null, null}
             },
             new String [] {
-                "ID RUANGAN", "NAMA RUANGAN"
+                "KODE RUANGAN", "NAMA RUANGAN"
             }
         ));
         jScrollPane1.setViewportView(tabelRuangan);
@@ -94,10 +128,7 @@ public class FormRuangan extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jTextField1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-
-        jButton1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jButton1.setText("Cari");
+        txtKodeRuangan.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
         jButton2.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jButton2.setText("Tambah");
@@ -142,10 +173,8 @@ public class FormRuangan extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addGap(28, 28, 28)
+                        .addComponent(txtKodeRuangan, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(110, 110, 110)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnUbah)
@@ -162,8 +191,7 @@ public class FormRuangan extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
+                    .addComponent(txtKodeRuangan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2)
                     .addComponent(btnUbah)
                     .addComponent(btnHapus))
@@ -221,12 +249,11 @@ public class FormRuangan extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnKeluar;
     private javax.swing.JButton btnUbah;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tabelRuangan;
+    private javax.swing.JTextField txtKodeRuangan;
     // End of variables declaration//GEN-END:variables
 }

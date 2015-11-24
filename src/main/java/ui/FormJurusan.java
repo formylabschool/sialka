@@ -8,7 +8,16 @@ package ui;
 import configuration.HIbernateUtil;
 import controllers.ControllersOfJurusan;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.RowFilter;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import model.Instruktur;
 import model.Jurusan;
 import service.ServiceOfInstruktur;
@@ -19,20 +28,52 @@ import service.ServiceOfJurusan;
  * @author muhamadhanifmuhsin
  */
 public class FormJurusan extends javax.swing.JInternalFrame {
-private ControllersOfJurusan controller;
-private ServiceOfJurusan service;
-private List<Jurusan>list;
+
+    private ControllersOfJurusan controller;
+    private ServiceOfJurusan service;
+    private List<Jurusan> list;
+    private DefaultTableModel model;
+
     /**
      * Creates new form FormJurusan
      */
     public FormJurusan() {
         initComponents();
         this.controller = new ControllersOfJurusan();
-        this.controller.inijectTable((DefaultTableModel)tabelJurusan.getModel());
+        this.controller.inijectTable((DefaultTableModel) tabelJurusan.getModel());
+        setTableRowSorter(tabelJurusan, txtKodeJurusan);
         refreshTable();
+
     }
-    
-      public void refreshTable(){
+
+     public void setTableRowSorter(JTable tabelJurusan, JTextField txtKodeJurusan) {
+        TableRowSorter<TableModel> filterRows;
+        filterRows = new TableRowSorter<>(tabelJurusan.getModel());
+        tabelJurusan.setRowSorter(filterRows);
+        txtKodeJurusan.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                filterRows.setRowFilter(RowFilter.regexFilter(txtKodeJurusan.getText(),0));
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                filterRows.setRowFilter(RowFilter.regexFilter(txtKodeJurusan.getText(),0));
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                filterRows.setRowFilter(RowFilter.regexFilter(txtKodeJurusan.getText(),0));
+            }
+        });
+    }
+     
+     public DefaultTableModel getModel() {
+        return model;
+    }
+            
+    public void refreshTable() {
         service = new ServiceOfJurusan(HIbernateUtil.config());
         list = service.findAll();
         this.controller.loadDataTable(list);
@@ -51,8 +92,7 @@ private List<Jurusan>list;
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelJurusan = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtKodeJurusan = new javax.swing.JTextField();
         btnTambah = new javax.swing.JButton();
         btnUbah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
@@ -60,6 +100,7 @@ private List<Jurusan>list;
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Data Jurusan", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Menlo", 0, 13))); // NOI18N
 
+        tabelJurusan.setFont(new java.awt.Font("Menlo", 0, 12)); // NOI18N
         tabelJurusan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -68,7 +109,7 @@ private List<Jurusan>list;
                 {null, null, null, null}
             },
             new String [] {
-                "ID JURUSAN", "KODE JURUSAN", "NAMA JURUSAN", "HARGA JURUSAN"
+                "KODE JURUSAN", "NAMA JURUSAN", "JUMLAH PERTEMUAN", "HARGA JURUSAN"
             }
         ));
         jScrollPane1.setViewportView(tabelJurusan);
@@ -90,10 +131,7 @@ private List<Jurusan>list;
         jLabel1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel1.setText("Kode Jurusan");
 
-        jTextField1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-
-        jButton1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jButton1.setText("Cari");
+        txtKodeJurusan.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
         btnTambah.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         btnTambah.setText("Tambah");
@@ -140,10 +178,8 @@ private List<Jurusan>list;
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                        .addComponent(txtKodeJurusan, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
                         .addComponent(btnTambah)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnUbah)
@@ -160,8 +196,7 @@ private List<Jurusan>list;
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
+                    .addComponent(txtKodeJurusan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTambah)
                     .addComponent(btnUbah)
                     .addComponent(btnHapus))
@@ -203,13 +238,17 @@ private List<Jurusan>list;
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
         Integer rowSelected = tabelJurusan.getSelectedRow();
-        System.out.println("hapus data baris ke "+rowSelected);
+        System.out.println("hapus data baris ke " + rowSelected);
         if (rowSelected >= 0) {
-            service = new ServiceOfJurusan(HIbernateUtil.config());
-            Jurusan model = list.get(tabelJurusan.getSelectedRow());
-            service.doDelete(model);
-            refreshTable();
-        }else{
+            try {
+                service = new ServiceOfJurusan(HIbernateUtil.config());
+                Jurusan model = list.get(tabelJurusan.getSelectedRow());
+                service.deleteMateri(model);
+                refreshTable();
+            } catch (Exception ex) {
+                Logger.getLogger(FormJurusan.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
             System.out.println("Tabel Belum diklick");
         }
     }//GEN-LAST:event_btnHapusActionPerformed
@@ -220,11 +259,10 @@ private List<Jurusan>list;
     private javax.swing.JButton btnKeluar;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tabelJurusan;
+    private javax.swing.JTextField txtKodeJurusan;
     // End of variables declaration//GEN-END:variables
 }

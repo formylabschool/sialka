@@ -8,8 +8,15 @@ package ui;
 import configuration.HIbernateUtil;
 import controllers.ControllersOfBukuTamu;
 import java.util.List;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.RowFilter;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import model.BukuTamu;
 import model.Materi;
 import service.ServiceOfBukuTamu;
@@ -24,6 +31,8 @@ public final class FormBukuTamu extends javax.swing.JInternalFrame {
 private final ControllersOfBukuTamu controllers;
 private ServiceOfBukuTamu service;
 private List<BukuTamu> list;
+private DefaultTableModel model;
+
     /**
      * Creates new form BookForm
      */
@@ -32,12 +41,42 @@ private List<BukuTamu> list;
         this.controllers= new ControllersOfBukuTamu();
         this.controllers.inijectTable((DefaultTableModel)tabelBukuTamu.getModel());
         refreshTable();
+        setTableRowSorter(tabelBukuTamu, txtDate);
     }
       public void refreshTable(){
         service = new ServiceOfBukuTamu(HIbernateUtil.config());
         list = service.findAll();
         this.controllers.loadDataTable(list);
     }
+      
+       public void setTableRowSorter(JTable tabelBukuTamu, JTextField txtDate) {
+        TableRowSorter<TableModel> filterRows;
+        filterRows = new TableRowSorter<>(tabelBukuTamu.getModel());
+        tabelBukuTamu.setRowSorter(filterRows);
+        txtDate.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                filterRows.setRowFilter(RowFilter.regexFilter(txtDate.getText(),0));
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                filterRows.setRowFilter(RowFilter.regexFilter(txtDate.getText(),0));
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                filterRows.setRowFilter(RowFilter.regexFilter(txtDate.getText(),0));
+            }
+        });
+    }
+     
+     public DefaultTableModel getModel() {
+        return model;
+    }
+
+
    
 
 
@@ -56,8 +95,7 @@ private List<BukuTamu> list;
         btnClose = new javax.swing.JButton();
         btnTambah = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        txtDate = new javax.swing.JTextField();
         btnUbah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
 
@@ -67,13 +105,13 @@ private List<BukuTamu> list;
         tabelBukuTamu.setFont(new java.awt.Font("Menlo", 0, 12)); // NOI18N
         tabelBukuTamu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Tanggal", "Nama Lengkap", "Yang di tuju", "Keperluan", "Alamat"
+                "Tanggal", "Nama Lengkap", "Yang di tuju", "Keperluan", "Alamat", "Kontak"
             }
         ));
         jScrollPane1.setViewportView(tabelBukuTamu);
@@ -113,15 +151,12 @@ private List<BukuTamu> list;
         jLabel1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel1.setText("Tanggal");
 
-        jTextField1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtDate.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtDateActionPerformed(evt);
             }
         });
-
-        jButton3.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jButton3.setText("Cari");
 
         btnUbah.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         btnUbah.setText("Ubah");
@@ -153,9 +188,7 @@ private List<BukuTamu> list;
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
+                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnTambah)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -171,8 +204,7 @@ private List<BukuTamu> list;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTambah)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3)
+                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUbah)
                     .addComponent(btnHapus))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -185,9 +217,9 @@ private List<BukuTamu> list;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtDateActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         // TODO add your handling code here:
@@ -233,11 +265,10 @@ private List<BukuTamu> list;
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tabelBukuTamu;
+    private javax.swing.JTextField txtDate;
     // End of variables declaration//GEN-END:variables
 }

@@ -32,7 +32,7 @@ public class ControllersOfMateri implements JavaControllers {
         initTable();
         ServiceOfMateri service = new ServiceOfMateri(HIbernateUtil.config());
         for (Materi aMateri : list) {
-            Object[] anObjects = {aMateri.getId(), aMateri.getKodeMateri(), aMateri.getNama(),
+            Object[] anObjects = { aMateri.getKodeMateri(), aMateri.getNama(),
                 aMateri.getTeori(), aMateri.getPraktek(),aMateri.getJurusan().getKodeJurusan()};
             this.defaultTableModel.addRow(anObjects);
 

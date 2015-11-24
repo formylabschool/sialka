@@ -29,8 +29,8 @@ public class ControllersOfJurusan implements JavaControllers{
         initTable();
         ServiceOfJurusan service = new ServiceOfJurusan(HIbernateUtil.config());
         for (Jurusan aJurusan : list){
-             Object[] anObjects = {aJurusan.getId(),aJurusan.getKodeJurusan(),aJurusan.getNama(),
-                                   aJurusan.getHarga()};
+             Object[] anObjects = {aJurusan.getKodeJurusan(),aJurusan.getNama(),
+                                   aJurusan.getJumlahPertemuan(),aJurusan.getHarga()};
              this.defaultTableModel.addRow(anObjects);
             
         }

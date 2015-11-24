@@ -26,6 +26,14 @@ public class Siswa {
     private Integer id; 
     private String kodeSiswa;
     private String nama;
+    private String tempatLahir;
+    @Temporal(TemporalType.DATE)
+    private Date tanggalLahir;
+    private String jenisKelamin;
+    private String pendidikanTerakhir;
+    private String kontak;
+    private String email;
+    private String alamat;
     @Temporal(TemporalType.DATE)
     private Date tanggalPendaftaran;
     @OneToOne
@@ -33,9 +41,76 @@ public class Siswa {
     private Double hargaTotal;
     private Double sisa;
     private Boolean lunas;
-    private Double nilai1;
-    private Double nilai2;
-    private Double nilai3;
+    private Integer nilai1 = 0;
+    private Integer nilai2 = 0;
+    private Integer nilai3 = 0;
+    private String indeks;
+
+    public String getJenisKelamin() {
+        return jenisKelamin;
+    }
+
+    public void setJenisKelamin(String jenisKelamin) {
+        this.jenisKelamin = jenisKelamin;
+    }
+    
+
+    public String getIndeks() {
+        return indeks;
+    }
+
+    public void setIndeks(String indeks) {
+        this.indeks = indeks;
+    }
+    
+
+    public String getTempatLahir() {
+        return tempatLahir;
+    }
+
+    public void setTempatLahir(String tempatLahir) {
+        this.tempatLahir = tempatLahir;
+    }
+
+    public Date getTanggalLahir() {
+        return tanggalLahir;
+    }
+
+    public void setTanggalLahir(Date tanggalLahir) {
+        this.tanggalLahir = tanggalLahir;
+    }
+
+    public String getPendidikanTerakhir() {
+        return pendidikanTerakhir;
+    }
+
+    public void setPendidikanTerakhir(String pendidikanTerakhir) {
+        this.pendidikanTerakhir = pendidikanTerakhir;
+    }
+
+    public String getKontak() {
+        return kontak;
+    }
+
+    public void setKontak(String kontak) {
+        this.kontak = kontak;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
 
     public Date getTanggalPendaftaran() {
         return tanggalPendaftaran;
@@ -101,28 +176,30 @@ public class Siswa {
         this.lunas = lunas;
     }
 
-    public Double getNilai1() {
+    public Integer getNilai1() {
         return nilai1;
     }
 
-    public void setNilai1(Double nilai1) {
+    public void setNilai1(Integer nilai1) {
         this.nilai1 = nilai1;
     }
 
-    public Double getNilai2() {
+    public Integer getNilai2() {
         return nilai2;
     }
 
-    public void setNilai2(Double nilai2) {
+    public void setNilai2(Integer nilai2) {
         this.nilai2 = nilai2;
     }
 
-    public Double getNilai3() {
+    public Integer getNilai3() {
         return nilai3;
     }
 
-    public void setNilai3(Double nilai3) {
+    public void setNilai3(Integer nilai3) {
         this.nilai3 = nilai3;
     }
+
+   
 
 }
