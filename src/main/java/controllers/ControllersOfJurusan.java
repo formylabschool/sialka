@@ -10,28 +10,27 @@ import interfaces.JavaControllers;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.Instruktur;
-import model.Ruangan;
+import model.Jurusan;
 import service.ServiceOfInstruktur;
-import service.ServiceOfRuangan;
+import service.ServiceOfJurusan;
 
 /**
  *
  * @author muhamadhanifmuhsin
  */
-public class ControllersOfInstruktur implements JavaControllers {
-private DefaultTableModel defaultTableModel;
+public class ControllersOfJurusan implements JavaControllers{
+ private DefaultTableModel defaultTableModel;
     public void initTable(){
         this.defaultTableModel.getDataVector().removeAllElements();
         this.defaultTableModel.fireTableDataChanged();
     }
-
-    public void loadDataTable(List<Instruktur> list){
+    
+     public void loadDataTable(List<Jurusan> list){
         initTable();
-        ServiceOfInstruktur service = new ServiceOfInstruktur(HIbernateUtil.config());
-        for (Instruktur aInstruktur : list){
-             Object[] anObjects = {aInstruktur.getNip(),aInstruktur.getNama(),aInstruktur.getTempatLahir(),
-                                   aInstruktur.getTanggalLahir(),aInstruktur.getJenisKelamin(),aInstruktur.getKontak(),aInstruktur.getEmail(),
-                                   aInstruktur.getAlamat()};
+        ServiceOfJurusan service = new ServiceOfJurusan(HIbernateUtil.config());
+        for (Jurusan aJurusan : list){
+             Object[] anObjects = {aJurusan.getKodeJurusan(),aJurusan.getNama(),
+                                   aJurusan.getJumlahPertemuan(),aJurusan.getHarga()};
              this.defaultTableModel.addRow(anObjects);
             
         }
@@ -42,6 +41,5 @@ private DefaultTableModel defaultTableModel;
     public void inijectTable(DefaultTableModel defaultTableModel) {
         this.defaultTableModel = defaultTableModel;
     }
-    
     
 }

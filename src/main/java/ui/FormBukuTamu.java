@@ -6,68 +6,68 @@
 package ui;
 
 import configuration.HIbernateUtil;
-import controllers.ControllersOfInstruktur;
+import controllers.ControllersOfBukuTamu;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import model.Instruktur;
-import model.ModelOfCourses;
-import model.Ruangan;
+import model.BukuTamu;
+import model.Materi;
+import service.ServiceOfBukuTamu;
 import service.ServiceOfInstruktur;
-import service.ServiceOfRuangan;
+import service.ServiceOfMateri;
 
 /**
  *
  * @author muhamadhanifmuhsin
  */
-public class FormInstruktur extends javax.swing.JInternalFrame {
-private ControllersOfInstruktur controlles;
-private ServiceOfInstruktur service;
-private List<Instruktur> list;
+public final class FormBukuTamu extends javax.swing.JInternalFrame {
+private final ControllersOfBukuTamu controllers;
+private ServiceOfBukuTamu service;
+private List<BukuTamu> list;
 private DefaultTableModel model;
+
     /**
-     * Creates new form FormInstruktur
+     * Creates new form BookForm
      */
-    public FormInstruktur() {
+    public FormBukuTamu() {
         initComponents();
-        this.controlles = new ControllersOfInstruktur();
-        this.controlles.inijectTable((DefaultTableModel)tabelInstruktur.getModel());
+        this.controllers= new ControllersOfBukuTamu();
+        this.controllers.inijectTable((DefaultTableModel)tabelBukuTamu.getModel());
         refreshTable();
-        setTableRowSorter(tabelInstruktur, txtKodeNII);
-        
+        setTableRowSorter(tabelBukuTamu, txtDate);
     }
-    
-    public void refreshTable(){
-        service = new ServiceOfInstruktur(HIbernateUtil.config());
+      public void refreshTable(){
+        service = new ServiceOfBukuTamu(HIbernateUtil.config());
         list = service.findAll();
-        this.controlles.loadDataTable(list);
+        this.controllers.loadDataTable(list);
     }
-    
-     public void setTableRowSorter(JTable tabelInstruktur, JTextField txtKodeNII) {
+      
+       public void setTableRowSorter(JTable tabelBukuTamu, JTextField txtDate) {
         TableRowSorter<TableModel> filterRows;
-        filterRows = new TableRowSorter<>(tabelInstruktur.getModel());
-        tabelInstruktur.setRowSorter(filterRows);
-        txtKodeNII.getDocument().addDocumentListener(new DocumentListener() {
+        filterRows = new TableRowSorter<>(tabelBukuTamu.getModel());
+        tabelBukuTamu.setRowSorter(filterRows);
+        txtDate.getDocument().addDocumentListener(new DocumentListener() {
 
             @Override
             public void insertUpdate(DocumentEvent e) {
-                filterRows.setRowFilter(RowFilter.regexFilter(txtKodeNII.getText(),0));
+                filterRows.setRowFilter(RowFilter.regexFilter(txtDate.getText(),0));
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                filterRows.setRowFilter(RowFilter.regexFilter(txtKodeNII.getText(),0));
+                filterRows.setRowFilter(RowFilter.regexFilter(txtDate.getText(),0));
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                filterRows.setRowFilter(RowFilter.regexFilter(txtKodeNII.getText(),0));
+                filterRows.setRowFilter(RowFilter.regexFilter(txtDate.getText(),0));
             }
         });
     }
@@ -75,6 +75,9 @@ private DefaultTableModel model;
      public DefaultTableModel getModel() {
         return model;
     }
+
+
+   
 
 
     /**
@@ -86,30 +89,72 @@ private DefaultTableModel model;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        txtKodeNII = new javax.swing.JTextField();
-        btnCari = new javax.swing.JButton();
-        btnTambah = new javax.swing.JButton();
-        btnUbah = new javax.swing.JButton();
-        btnHapus = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelInstruktur = new javax.swing.JTable();
-        btnKeluar = new javax.swing.JButton();
+        tabelBukuTamu = new javax.swing.JTable();
+        btnClose = new javax.swing.JButton();
+        btnTambah = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txtDate = new javax.swing.JTextField();
+        btnUbah = new javax.swing.JButton();
+        btnHapus = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jLabel1.setText("NIP");
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buku Tamu", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Menlo", 0, 13))); // NOI18N
+        jPanel1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
-        txtKodeNII.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        tabelBukuTamu.setFont(new java.awt.Font("Menlo", 0, 12)); // NOI18N
+        tabelBukuTamu.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Tanggal", "Nama Lengkap", "Yang di tuju", "Keperluan", "Alamat", "Kontak"
+            }
+        ));
+        jScrollPane1.setViewportView(tabelBukuTamu);
 
-        btnCari.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        btnCari.setText("Cari");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 734, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        btnClose.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        btnClose.setText("Keluar");
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
 
         btnTambah.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         btnTambah.setText("Tambah");
         btnTambah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTambahActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        jLabel1.setText("Tanggal");
+
+        txtDate.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDateActionPerformed(evt);
             }
         });
 
@@ -129,46 +174,6 @@ private DefaultTableModel model;
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Data Instruktur"));
-
-        tabelInstruktur.setFont(new java.awt.Font("Menlo", 0, 12)); // NOI18N
-        tabelInstruktur.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "NIP", "Nama", "Tempat Lahir", "Tanggal Lahir", "Jenis Kelamin", "Kontak", "Email", "Alamat"
-            }
-        ));
-        jScrollPane1.setViewportView(tabelInstruktur);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 964, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        btnKeluar.setText("Keluar");
-        btnKeluar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnKeluarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -177,75 +182,76 @@ private DefaultTableModel model;
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnClose))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtKodeNII, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCari)
+                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnTambah)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnUbah)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnHapus))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnKeluar)))
+                        .addComponent(btnHapus)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtKodeNII, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCari)
                     .addComponent(btnTambah)
+                    .addComponent(jLabel1)
+                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUbah)
                     .addComponent(btnHapus))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnKeluar))
+                .addComponent(btnClose)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKeluarActionPerformed
+    private void txtDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDateActionPerformed
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         // TODO add your handling code here:
         dispose();
-    }//GEN-LAST:event_btnKeluarActionPerformed
+    }//GEN-LAST:event_btnCloseActionPerformed
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // TODO add your handling code here:
-        FormInstrukturTambah add = new FormInstrukturTambah(null, false, this);
-        add.setVisible(true);
+         BukuTamuTambah add = new BukuTamuTambah(null, false, this);
+         add.setVisible(true);
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
         // TODO add your handling code here:
-        Integer selectedRow = tabelInstruktur.getSelectedRow();
+        Integer selectedRow = tabelBukuTamu.getSelectedRow();
         System.out.println(selectedRow + " selected row ");
         if (selectedRow >= 0) {
-            Instruktur model = list.get(selectedRow);
-            FormInstrukturTambah add = new FormInstrukturTambah(null, true, this, model);
+            BukuTamu model = list.get(selectedRow);
+            BukuTamuTambah add = new BukuTamuTambah(null, true, this, model);
             add.setVisible(true);
         } else {
 
         }
-
     }//GEN-LAST:event_btnUbahActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
-        Integer rowSelected = tabelInstruktur.getSelectedRow();
+        Integer rowSelected = tabelBukuTamu.getSelectedRow();
         System.out.println("hapus data baris ke "+rowSelected);
         if (rowSelected >= 0) {
-            service = new ServiceOfInstruktur(HIbernateUtil.config());
-            Instruktur model = list.get(tabelInstruktur.getSelectedRow());
+            service = new ServiceOfBukuTamu(HIbernateUtil.config());
+            BukuTamu model = list.get(tabelBukuTamu.getSelectedRow());
             service.doDelete(model);
             refreshTable();
         }else{
@@ -255,15 +261,14 @@ private DefaultTableModel model;
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCari;
+    private javax.swing.JButton btnClose;
     private javax.swing.JButton btnHapus;
-    private javax.swing.JButton btnKeluar;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tabelInstruktur;
-    private javax.swing.JTextField txtKodeNII;
+    private javax.swing.JTable tabelBukuTamu;
+    private javax.swing.JTextField txtDate;
     // End of variables declaration//GEN-END:variables
 }

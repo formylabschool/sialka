@@ -14,6 +14,7 @@ import service.ServiceOfCourses;
 /**
  * @author muhamadhanifmuhsin
  */
+@Deprecated
 public class CoursesFormAdd extends javax.swing.JDialog {
 
     private ControllersOfCourses controllers;

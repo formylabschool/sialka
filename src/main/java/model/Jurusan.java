@@ -5,13 +5,80 @@
  */
 package model;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 /**
  *
  * @author muhamadhanifmuhsin
  */
+@Entity
+@Table(name = "jurusan")
 public class Jurusan {
-    private String Id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name = "id_jurusan")
+    private Integer id;
+    private String kodeJurusan;
     private String nama;
     private Double harga;
+    private Integer jumlahPertemuan;
+
+    public Integer getJumlahPertemuan() {
+        return jumlahPertemuan;
+    }
+
+    public void setJumlahPertemuan(Integer jumlahPertemuan) {
+        this.jumlahPertemuan = jumlahPertemuan;
+    }
     
+    
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getKodeJurusan() {
+        return kodeJurusan;
+    }
+
+    public void setKodeJurusan(String kodeJurusan) {
+        this.kodeJurusan = kodeJurusan;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public Double getHarga() {
+        return harga;
+    }
+
+    public void setHarga(Double harga) {
+        this.harga = harga;
+    }
+
+   
+  
 }

@@ -5,55 +5,56 @@
  */
 package service;
 
+
 import java.util.List;
+import model.BukuTamu;
+import model.Instruktur;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import model.ModelOfCourses;
 
 /**
  *
  * @author muhamadhanifmuhsin
  */
-@Deprecated
-public class ServiceOfCourses {
+public class ServiceOfBukuTamu {
+
     private SessionFactory aSessionFactory;
-    
-    public ServiceOfCourses(SessionFactory aSessionFactory){
+
+    public ServiceOfBukuTamu(SessionFactory aSessionFactory) {
         this.aSessionFactory = aSessionFactory;
     }
-    
-    public void doSave(ModelOfCourses aCourses)throws Exception{
+
+    public void doSave(BukuTamu aBukuTamu){
         Session aSession = aSessionFactory.openSession();
         aSession.beginTransaction();
-        aSession.save(aCourses);
+        aSession.save(aBukuTamu);
         aSession.getTransaction().commit();
         aSession.close();
     }
     
-    public void doUpdate(ModelOfCourses aCourses){
+    public void doUpdate(BukuTamu aBukuTamu){
         Session aSession = aSessionFactory.openSession();
         aSession.beginTransaction();
-        aSession.update(aCourses);
+        aSession.update(aBukuTamu);
         aSession.getTransaction().commit();
         aSession.close();
     }
     
-    public void doDelete(ModelOfCourses aCourses){
+    public void doDelete(BukuTamu aBukuTamu){
         Session aSession = aSessionFactory.openSession();
         aSession.beginTransaction();
-        aSession.delete(aCourses);
+        aSession.delete(aBukuTamu);
         aSession.getTransaction().commit();
         aSession.close();
     }
     
-    public List<ModelOfCourses> findAll(){
+     public List<BukuTamu>findAll(){
         Session aSession = aSessionFactory.openSession();
         aSession.beginTransaction();
         
-        Criteria aCriteria =aSession.createCriteria(ModelOfCourses.class);
-         return aCriteria.list();
+        Criteria aCriteria = aSession.createCriteria(BukuTamu.class);
+        return aCriteria.list();
     }
-    
-    
+   
 }

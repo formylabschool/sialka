@@ -6,54 +6,53 @@
 package service;
 
 import java.util.List;
+import model.Materi;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import model.ModelOfCourses;
 
 /**
  *
  * @author muhamadhanifmuhsin
  */
-@Deprecated
-public class ServiceOfCourses {
+public class ServiceOfMateri {
+
     private SessionFactory aSessionFactory;
-    
-    public ServiceOfCourses(SessionFactory aSessionFactory){
+
+    public ServiceOfMateri(SessionFactory aSessionFactory) {
         this.aSessionFactory = aSessionFactory;
     }
     
-    public void doSave(ModelOfCourses aCourses)throws Exception{
+    public void doSave(Materi aMateri){
         Session aSession = aSessionFactory.openSession();
         aSession.beginTransaction();
-        aSession.save(aCourses);
+        aSession.save(aMateri);
         aSession.getTransaction().commit();
         aSession.close();
     }
     
-    public void doUpdate(ModelOfCourses aCourses){
+    public void doUpdate(Materi aMateri){
         Session aSession = aSessionFactory.openSession();
         aSession.beginTransaction();
-        aSession.update(aCourses);
+        aSession.update(aMateri);
         aSession.getTransaction().commit();
         aSession.close();
     }
     
-    public void doDelete(ModelOfCourses aCourses){
+    public void doDelete(Materi aMateri){
         Session aSession = aSessionFactory.openSession();
         aSession.beginTransaction();
-        aSession.delete(aCourses);
+        aSession.delete(aMateri);
         aSession.getTransaction().commit();
         aSession.close();
     }
     
-    public List<ModelOfCourses> findAll(){
+    public List<Materi> findAll(){
         Session aSession = aSessionFactory.openSession();
         aSession.beginTransaction();
         
-        Criteria aCriteria =aSession.createCriteria(ModelOfCourses.class);
-         return aCriteria.list();
+        Criteria aCriteria = aSession.createCriteria(Materi.class);
+        return aCriteria.list();
     }
-    
-    
+
 }

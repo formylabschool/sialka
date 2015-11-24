@@ -14,6 +14,7 @@ import javax.persistence.Table;
  *
  * @author muhamadhanifmuhsin
  */
+@Deprecated
 @Entity
 @Table(name="courses")
 public class ModelOfCourses {

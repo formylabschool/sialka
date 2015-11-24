@@ -33,7 +33,7 @@ public class ServiceOfRuangan {
     public void doUpdate(Ruangan aRuangan){
         Session aSession = aSessionFactory.openSession();
         aSession.beginTransaction();
-        aSession.save(aRuangan);
+        aSession.update(aRuangan);
         aSession.getTransaction().commit();
         aSession.close();
         
