@@ -13,6 +13,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import model.ModelOfCourses;
 import model.Ruangan;
+import model.Siswa;
 import ui.FormBukuTamu;
 
 /**
@@ -23,19 +24,20 @@ public class HIbernateUtil {
     /*klo mau tambahin entity tambahin disini pke metode addAnnotadedClass(NamaEntity.class)*/
     public static SessionFactory config() {
         return new Configuration().
-                addAnnotatedClass(ModelOfCourses.class).
+               // addAnnotatedClass(ModelOfCourses.class).
                 addAnnotatedClass(Ruangan.class).
                 addAnnotatedClass(Instruktur.class).
                 addAnnotatedClass(BukuTamu.class).
                 addAnnotatedClass(Jurusan.class).
                 addAnnotatedClass(Materi.class).
+                addAnnotatedClass(Siswa.class).
                 /*addAnnotatedClass(KelasLain.class).*/
                 setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect").
                 setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver").
                 setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/sia_lpkkanira").
                 setProperty("hibernate.connection.username", "root").
                 /*ubah passwordnya*/
-                setProperty("hibernate.connection.password", "admin").
+                setProperty("hibernate.connection.password", "root").
                 setProperty("hibernate.hbm2ddl.auto","update").
                 setProperty("hibernate.show_sql", "true").
                 buildSessionFactory();

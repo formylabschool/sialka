@@ -6,12 +6,16 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -22,40 +26,26 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "jurusan")
-@SequenceGenerator(name = "jurusan_sq", allocationSize = 1, initialValue = 1, sequenceName = "sq_jurusan")
 public class Jurusan {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jurusan_sq")
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "id_jurusan")
     private Integer id;
     private String kodeJurusan;
     private String nama;
     private Double harga;
+    private Integer jumlahPertemuan;
 
-    public Jurusan() {
+    public Integer getJumlahPertemuan() {
+        return jumlahPertemuan;
+    }
+
+    public void setJumlahPertemuan(Integer jumlahPertemuan) {
+        this.jumlahPertemuan = jumlahPertemuan;
     }
     
     
-
-    public Jurusan(Integer id, String kodeJurusan, String nama, Double harga) {
-        this.id = id;
-        this.kodeJurusan = kodeJurusan;
-        this.nama = nama;
-        this.harga = harga;
-    }
-    
-        
-    @OneToMany
-    private List<Materi> materis = new ArrayList<>();
-
-    public List<Materi> getMateris() {
-        return materis;
-    }
-
-    public void setMateris(List<Materi> materis) {
-        this.materis = materis;
-    }
 
     public Integer getId() {
         return id;
@@ -89,4 +79,6 @@ public class Jurusan {
         this.harga = harga;
     }
 
+   
+  
 }

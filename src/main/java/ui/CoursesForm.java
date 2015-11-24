@@ -20,6 +20,7 @@ import service.ServiceOfCourses;
  *
  * @author muhamadhanifmuhsin
  */
+@Deprecated
 public class CoursesForm extends javax.swing.JInternalFrame {
 
     private ControllersOfCourses controll;

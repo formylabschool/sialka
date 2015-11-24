@@ -9,6 +9,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -21,10 +23,20 @@ public class Instruktur {
     private String nip;
     private String nama;
     private String tempatLahir;
+    @Temporal(TemporalType.DATE)
     private Date tanggalLahir;
     private String kontak;
     private String email;
     private String alamat;
+    private String jenisKelamin;
+
+    public String getJenisKelamin() {
+        return jenisKelamin;
+    }
+
+    public void setJenisKelamin(String jenisKelamin) {
+        this.jenisKelamin = jenisKelamin;
+    }
 
     public String getTempatLahir() {
         return tempatLahir;

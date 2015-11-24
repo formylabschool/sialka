@@ -45,6 +45,9 @@ public class MainForm extends javax.swing.JFrame {
         mniBukuTamu = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         mniRegistrasi = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        mniDaftarSiswa = new javax.swing.JMenuItem();
+        mniDataNilaiSiswa = new javax.swing.JMenuItem();
         mnuKeuangan = new javax.swing.JMenu();
         mniPemRegistrasi = new javax.swing.JMenuItem();
         mniPemBulanan = new javax.swing.JMenuItem();
@@ -60,6 +63,7 @@ public class MainForm extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         mniRuangan = new javax.swing.JMenuItem();
+        mniJurusan = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -147,7 +151,7 @@ public class MainForm extends javax.swing.JFrame {
         mniAbsensi.add(jSeparator2);
 
         mniRegistrasi.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
-        mniRegistrasi.setText("Registrasi");
+        mniRegistrasi.setText("Pendaftaran");
         mniRegistrasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mniRegistrasiActionPerformed(evt);
@@ -156,6 +160,29 @@ public class MainForm extends javax.swing.JFrame {
         mniAbsensi.add(mniRegistrasi);
 
         jMenuBar1.add(mniAbsensi);
+
+        jMenu2.setText("Data Siswa");
+        jMenu2.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+
+        mniDaftarSiswa.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        mniDaftarSiswa.setText("Daftar Siswa ");
+        mniDaftarSiswa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniDaftarSiswaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniDaftarSiswa);
+
+        mniDataNilaiSiswa.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        mniDataNilaiSiswa.setText("Data Nilai Siswa");
+        mniDataNilaiSiswa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniDataNilaiSiswaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniDataNilaiSiswa);
+
+        jMenuBar1.add(jMenu2);
 
         mnuKeuangan.setText("Keuangan");
         mnuKeuangan.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
@@ -240,6 +267,15 @@ public class MainForm extends javax.swing.JFrame {
         });
         mnuKurikulum.add(mniRuangan);
 
+        mniJurusan.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        mniJurusan.setText("Jurusan");
+        mniJurusan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniJurusanActionPerformed(evt);
+            }
+        });
+        mnuKurikulum.add(mniJurusan);
+
         jMenuBar1.add(mnuKurikulum);
 
         setJMenuBar(jMenuBar1);
@@ -310,7 +346,7 @@ public class MainForm extends javax.swing.JFrame {
 
     private void mniRegistrasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniRegistrasiActionPerformed
         // TODO add your handling code here:
-        RegistrationForm add = new RegistrationForm();
+        FormPendaftaran add = new FormPendaftaran();
         desktop.add(add);
 
         Dimension size = desktop.getSize();
@@ -322,7 +358,7 @@ public class MainForm extends javax.swing.JFrame {
 
     private void mniMateriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniMateriActionPerformed
         // TODO add your handling code here:
-        CoursesForm add = new CoursesForm();
+        FormMateri add = new FormMateri();
         desktop.add(add);
 
         Dimension size = desktop.getSize();
@@ -361,6 +397,42 @@ public class MainForm extends javax.swing.JFrame {
         add.setVisible(true);
     }//GEN-LAST:event_mniRuanganActionPerformed
 
+    private void mniJurusanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniJurusanActionPerformed
+        // TODO add your handling code here:
+        FormJurusan add = new FormJurusan();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+                (size.height - addSize.height) / 2);
+        add.setVisible(true);
+    }//GEN-LAST:event_mniJurusanActionPerformed
+
+    private void mniDaftarSiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDaftarSiswaActionPerformed
+        // TODO add your handling code here:
+        FormSiswa add = new FormSiswa();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+                (size.height - addSize.height) / 2);
+        add.setVisible(true);
+    }//GEN-LAST:event_mniDaftarSiswaActionPerformed
+
+    private void mniDataNilaiSiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDataNilaiSiswaActionPerformed
+        // TODO add your handling code here:
+        FormDaftarNilai add = new FormDaftarNilai();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+                (size.height - addSize.height) / 2);
+        add.setVisible(true);
+    }//GEN-LAST:event_mniDataNilaiSiswaActionPerformed
+
   
     
 
@@ -368,6 +440,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -381,7 +454,10 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JMenu mniAbsensi;
     private javax.swing.JMenuItem mniBukuTamu;
+    private javax.swing.JMenuItem mniDaftarSiswa;
+    private javax.swing.JMenuItem mniDataNilaiSiswa;
     private javax.swing.JMenuItem mniInstruktur;
+    private javax.swing.JMenuItem mniJurusan;
     private javax.swing.JMenuItem mniKeluar;
     private javax.swing.JMenuItem mniMasuk;
     private javax.swing.JMenuItem mniMateri;

@@ -7,42 +7,43 @@ package controllers;
 
 import configuration.HIbernateUtil;
 import interfaces.JavaControllers;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import model.BukuTamu;
-import service.ServiceOfBukuTamu;
-import ui.FormBukuTamu;
-
+import model.Jurusan;
+import model.Materi;
+import service.ServiceOfMateri;
 
 /**
  *
  * @author muhamadhanifmuhsin
  */
-public class ControllersOfBukuTamu implements JavaControllers{
+public class ControllersOfMateri implements JavaControllers {
+
     private DefaultTableModel defaultTableModel;
-    public void initTable(){
+    
+
+    public void initTable() {
         this.defaultTableModel.getDataVector().removeAllElements();
         this.defaultTableModel.fireTableDataChanged();
     }
 
-    public void loadDataTable(List<BukuTamu> list){
+    public void loadDataTable(List<Materi> list) {
         initTable();
-        ServiceOfBukuTamu service = new ServiceOfBukuTamu(HIbernateUtil.config());
-        for ( BukuTamu aBukuTamu : list){
-             Object[] anObjects = {aBukuTamu.getTanggal(),aBukuTamu.getNama(),aBukuTamu.getYangDituju(),
-                                   aBukuTamu.getKeperluan(),aBukuTamu.getAlamat(),aBukuTamu.getKontak()};
-             this.defaultTableModel.addRow(anObjects);
-            
-        }
-        
-    }
+        ServiceOfMateri service = new ServiceOfMateri(HIbernateUtil.config());
+        for (Materi aMateri : list) {
+            Object[] anObjects = { aMateri.getKodeMateri(), aMateri.getNama(),
+                aMateri.getTeori(), aMateri.getPraktek(),aMateri.getJurusan().getKodeJurusan()};
+            this.defaultTableModel.addRow(anObjects);
 
+        }
+
+    }
+    
+   
     @Override
     public void inijectTable(DefaultTableModel defaultTableModel) {
         this.defaultTableModel = defaultTableModel;
     }
 
-   
-
-    
 }

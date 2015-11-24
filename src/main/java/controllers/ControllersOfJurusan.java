@@ -9,40 +9,37 @@ import configuration.HIbernateUtil;
 import interfaces.JavaControllers;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import model.BukuTamu;
-import service.ServiceOfBukuTamu;
-import ui.FormBukuTamu;
-
+import model.Instruktur;
+import model.Jurusan;
+import service.ServiceOfInstruktur;
+import service.ServiceOfJurusan;
 
 /**
  *
  * @author muhamadhanifmuhsin
  */
-public class ControllersOfBukuTamu implements JavaControllers{
-    private DefaultTableModel defaultTableModel;
+public class ControllersOfJurusan implements JavaControllers{
+ private DefaultTableModel defaultTableModel;
     public void initTable(){
         this.defaultTableModel.getDataVector().removeAllElements();
         this.defaultTableModel.fireTableDataChanged();
     }
-
-    public void loadDataTable(List<BukuTamu> list){
+    
+     public void loadDataTable(List<Jurusan> list){
         initTable();
-        ServiceOfBukuTamu service = new ServiceOfBukuTamu(HIbernateUtil.config());
-        for ( BukuTamu aBukuTamu : list){
-             Object[] anObjects = {aBukuTamu.getTanggal(),aBukuTamu.getNama(),aBukuTamu.getYangDituju(),
-                                   aBukuTamu.getKeperluan(),aBukuTamu.getAlamat(),aBukuTamu.getKontak()};
+        ServiceOfJurusan service = new ServiceOfJurusan(HIbernateUtil.config());
+        for (Jurusan aJurusan : list){
+             Object[] anObjects = {aJurusan.getKodeJurusan(),aJurusan.getNama(),
+                                   aJurusan.getJumlahPertemuan(),aJurusan.getHarga()};
              this.defaultTableModel.addRow(anObjects);
             
         }
         
     }
-
+    
     @Override
     public void inijectTable(DefaultTableModel defaultTableModel) {
         this.defaultTableModel = defaultTableModel;
     }
-
-   
-
     
 }
