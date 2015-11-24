@@ -5,16 +5,9 @@
  */
 package configuration;
 
-import model.BukuTamu;
-import model.Instruktur;
-import model.Jurusan;
-import model.Materi;
+import model.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import model.ModelOfCourses;
-import model.Ruangan;
-import model.Siswa;
-import ui.FormBukuTamu;
 
 /**
  * @author muhamadhanifmuhsin
@@ -37,7 +30,7 @@ public class HIbernateUtil {
                 setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/sia_lpkkanira").
                 setProperty("hibernate.connection.username", "root").
                 /*ubah passwordnya*/
-                setProperty("hibernate.connection.password", "root").
+                        setProperty("hibernate.connection.password", "admin").
                 setProperty("hibernate.hbm2ddl.auto","update").
                 setProperty("hibernate.show_sql", "true").
                 buildSessionFactory();
