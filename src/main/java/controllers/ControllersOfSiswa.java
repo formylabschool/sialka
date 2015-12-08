@@ -32,7 +32,7 @@ public class ControllersOfSiswa implements JavaControllers {
         ServiceOfSiswa service = new ServiceOfSiswa(HIbernateUtil.config());
         for (Siswa siswa : list) {
             Object[] anObjects = {siswa.getKodeSiswa(), siswa.getNama(), siswa.getTempatLahir(), siswa.getTanggalLahir(), siswa.getJenisKelamin(),
-                siswa.getPendidikanTerakhir(), siswa.getKontak(), siswa.getEmail(), siswa.getAlamat()};
+                siswa.getPendidikanTerakhir(), siswa.getKontak(), siswa.getEmail(), siswa.getAlamat(),siswa.getTahunAjaran()};
             this.defaultTableModel.addRow(anObjects);
 
         }
@@ -48,6 +48,25 @@ public class ControllersOfSiswa implements JavaControllers {
         }
 
     }
+    
+     public void loadDataAbsen(List<Siswa> list) {
+        initTable();
+        ServiceOfSiswa serviceOfSiswa = new ServiceOfSiswa(HIbernateUtil.config());
+        for (Siswa aSiswa : list) {
+            Object[] aObjects = {aSiswa.getKodeSiswa(),aSiswa.getNama()};
+            this.defaultTableModel.addRow(aObjects);
+        }
+
+    }
+     
+     public void loadDataKeuanganSiswa(List<Siswa>list){
+          initTable();
+        ServiceOfSiswa serviceOfSiswa = new ServiceOfSiswa(HIbernateUtil.config());
+        for (Siswa aSiswa : list) {
+            Object[] aObjects = {aSiswa.getKodeSiswa(),aSiswa.getSisa()};
+            this.defaultTableModel.addRow(aObjects);
+        }
+     }
 
     @Override
     public void inijectTable(DefaultTableModel defaultTableModel) {

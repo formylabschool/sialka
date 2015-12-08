@@ -15,6 +15,7 @@ import service.ServiceOfJurusan;
  * @author muhamadhanifmuhsin
  */
 public class FormJurusanTambah extends javax.swing.JDialog {
+
     private ControllersOfJurusan controller;
     private final FormJurusan menu;
     private Boolean update;
@@ -23,8 +24,6 @@ public class FormJurusanTambah extends javax.swing.JDialog {
     /**
      * Creates new form FormJurusanTambah
      */
-    
-    
     public FormJurusanTambah(java.awt.Frame parent, boolean modal, FormJurusan aThis) {
         super(parent, modal);
         initComponents();
@@ -32,6 +31,8 @@ public class FormJurusanTambah extends javax.swing.JDialog {
         setUpdate(false);
         this.menu = aThis;
         this.controller = new ControllersOfJurusan();
+        this.setLocationRelativeTo(this);
+        this.setAlwaysOnTop(true);
     }
 
     public FormJurusanTambah(java.awt.Frame object, boolean b, FormJurusan aThis, Jurusan model) {
@@ -40,15 +41,15 @@ public class FormJurusanTambah extends javax.swing.JDialog {
         initComponents();
         this.menu = aThis;
         this.controller = new ControllersOfJurusan();
-        this.model= model;
+        this.model = model;
         txtKode.setText(model.getKodeJurusan());
         txtNama.setText(model.getNama());
         sJP.setValue(model.getJumlahPertemuan());
         sHarga.setValue(model.getHarga());
-        
+
     }
-    
-    public void setUpdate(Boolean update){
+
+    public void setUpdate(Boolean update) {
         this.update = update;
     }
 
@@ -71,6 +72,8 @@ public class FormJurusanTambah extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         sJP = new javax.swing.JSpinner();
         btnSimpan = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -150,6 +153,30 @@ public class FormJurusanTambah extends javax.swing.JDialog {
             }
         });
 
+        jPanel2.setBackground(new java.awt.Color(0, 153, 204));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel5.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("||Jurusan||");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel5)
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -162,15 +189,17 @@ public class FormJurusanTambah extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnSimpan)))
                 .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSimpan)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -178,8 +207,8 @@ public class FormJurusanTambah extends javax.swing.JDialog {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        if(update){
-            try{
+        if (update) {
+            try {
                 ServiceOfJurusan aJurusan = new ServiceOfJurusan(HIbernateUtil.config());
                 model.setKodeJurusan(txtKode.getText());
                 model.setNama(txtNama.getText());
@@ -188,11 +217,11 @@ public class FormJurusanTambah extends javax.swing.JDialog {
                 aJurusan.doUpdate(model);
                 this.menu.refreshTable();
                 dispose();
-            }catch (Exception e){
-                
+            } catch (Exception e) {
+
             }
-        }else{
-            try{
+        } else {
+            try {
                 ServiceOfJurusan aJurusan = new ServiceOfJurusan(HIbernateUtil.config());
                 model.setKodeJurusan(txtKode.getText());
                 model.setNama(txtNama.getText());
@@ -201,13 +230,12 @@ public class FormJurusanTambah extends javax.swing.JDialog {
                 aJurusan.doSave(model);
                 this.menu.refreshTable();
                 dispose();
-                
-            }catch(Exception e){
-                
+
+            } catch (Exception e) {
+
             }
         }
     }//GEN-LAST:event_btnSimpanActionPerformed
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -216,7 +244,9 @@ public class FormJurusanTambah extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JSpinner sHarga;
     private javax.swing.JSpinner sJP;
     private javax.swing.JTextField txtKode;

@@ -6,15 +6,52 @@
 package model;
 
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author muhamadhanifmuhsin
  */
+@Entity
 public class Absensi {
-    private Integer id;
+    @Id @GeneratedValue(strategy = GenerationType.TABLE)
+   
+    private Integer idAbsensi;
+    @ManyToOne
     private Siswa siswa;
-    private Integer hari;
+
+    public Siswa getSiswa() {
+        return siswa;
+    }
+
+    public void setSiswa(Siswa siswa) {
+        this.siswa = siswa;
+    }
+    @Temporal(TemporalType.DATE)
+    @Column(unique = true)
     private Date tanggal;
+
+    public Integer getIdAbsensi() {
+        return idAbsensi;
+    }
+
+    public void setIdAbsensi(Integer idAbsensi) {
+        this.idAbsensi = idAbsensi;
+    }
+
+    public Date getTanggal() {
+        return tanggal;
+    }
+
+    public void setTanggal(Date tanggal) {
+        this.tanggal = tanggal;
+    }
     
 }

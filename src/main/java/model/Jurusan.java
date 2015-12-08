@@ -5,19 +5,11 @@
  */
 package model;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -44,8 +36,6 @@ public class Jurusan {
     public void setJumlahPertemuan(Integer jumlahPertemuan) {
         this.jumlahPertemuan = jumlahPertemuan;
     }
-    
-    
 
     public Integer getId() {
         return id;
@@ -79,6 +69,4 @@ public class Jurusan {
         this.harga = harga;
     }
 
-   
-  
 }

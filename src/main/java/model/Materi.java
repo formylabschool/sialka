@@ -6,12 +6,19 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -25,15 +32,26 @@ public class Materi implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "id_materi")
-    
+
     private Integer id;
     private String kodeMateri;
     private String nama;
     private Integer teori;
     private Integer praktek;
     @ManyToOne
-    
     private Jurusan jurusan;
+
+    @ElementCollection
+
+    private List<String> keterangan = new ArrayList<String>();
+
+    public List<String> getKeterangan() {
+        return keterangan;
+    }
+
+    public void setKeterangan(List<String> keterangan) {
+        this.keterangan = keterangan;
+    }
 
     public Integer getId() {
         return id;
@@ -82,5 +100,5 @@ public class Materi implements Serializable {
     public void setJurusan(Jurusan jurusan) {
         this.jurusan = jurusan;
     }
-    
+
 }

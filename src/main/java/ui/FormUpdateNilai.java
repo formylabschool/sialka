@@ -19,7 +19,7 @@ public class FormUpdateNilai extends javax.swing.JDialog {
     private final FormDaftarNilai menu;
     private ControllersOfSiswa control;
     private Siswa model;
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton btnSimpan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -36,8 +36,6 @@ public class FormUpdateNilai extends javax.swing.JDialog {
     /**
      * Creates new form FormUpdateNilai
      */
-
-
     public FormUpdateNilai(java.awt.Frame parent, boolean modal, FormDaftarNilai aThis) {
         super(parent, modal);
         initComponents();
@@ -45,6 +43,8 @@ public class FormUpdateNilai extends javax.swing.JDialog {
 
         this.menu = aThis;
         this.control = new ControllersOfSiswa();
+        this.setLocationRelativeTo(this);
+        this.setAlwaysOnTop(true);
     }
 
     FormUpdateNilai(java.awt.Frame object, boolean b, FormDaftarNilai aThis, Siswa model) {
@@ -60,6 +60,9 @@ public class FormUpdateNilai extends javax.swing.JDialog {
         txtKP.setText(model.getNilai1().toString());
         txtKN.setText(model.getNilai2().toString());
         txtPM.setText(model.getNilai3().toString());
+        
+        this.setLocationRelativeTo(this);
+        this.setAlwaysOnTop(true);
     }
 
     /**
@@ -205,5 +208,5 @@ public class FormUpdateNilai extends javax.swing.JDialog {
         this.menu.refreshTable();
         dispose();
     }//GEN-LAST:event_btnSimpanActionPerformed
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }
