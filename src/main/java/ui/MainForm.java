@@ -14,7 +14,9 @@ import my_scription.koneksi.Koneksi;
  * @author muhamadhanifmuhsin
  */
 public class MainForm extends javax.swing.JFrame {
-Koneksi hubung = new Koneksi();
+
+    Koneksi hubung = new Koneksi();
+
     /**
      * Creates new form MainForm
      */
@@ -65,6 +67,7 @@ Koneksi hubung = new Koneksi();
         jMenuItem5 = new javax.swing.JMenuItem();
         mniRuangan = new javax.swing.JMenuItem();
         mniJurusan = new javax.swing.JMenuItem();
+        mniKelas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -297,6 +300,14 @@ Koneksi hubung = new Koneksi();
         });
         mnuKurikulum.add(mniJurusan);
 
+        mniKelas.setText("Kelas");
+        mniKelas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniKelasActionPerformed(evt);
+            }
+        });
+        mnuKurikulum.add(mniKelas);
+
         jMenuBar1.add(mnuKurikulum);
 
         setJMenuBar(jMenuBar1);
@@ -330,8 +341,8 @@ Koneksi hubung = new Koneksi();
         this.setContentPane(desktop);
 
     }
-    
-    
+
+
     private void mniMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniMasukActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_mniMasukActionPerformed
@@ -459,7 +470,7 @@ Koneksi hubung = new Koneksi();
         add.setLocation((size.width - addSize.width) / 2,
                 (size.height - addSize.height) / 2);
         add.setVisible(true);
-                      
+
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void mniPemBulananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniPemBulananActionPerformed
@@ -500,7 +511,7 @@ Koneksi hubung = new Koneksi();
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-         FormDataKeuanganSiswa add = new FormDataKeuanganSiswa();
+        FormDataKeuanganSiswa add = new FormDataKeuanganSiswa();
         desktop.add(add);
 
         Dimension size = desktop.getSize();
@@ -508,12 +519,22 @@ Koneksi hubung = new Koneksi();
         add.setLocation((size.width - addSize.width) / 2,
                 (size.height - addSize.height) / 2);
         add.setVisible(true);
-                                               
+
 
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
-  
-    
+    private void mniKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKelasActionPerformed
+        // TODO add your handling code here:
+        FormKelas add = new FormKelas();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+                (size.height - addSize.height) / 2);
+        add.setVisible(true);
+    }//GEN-LAST:event_mniKelasActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktop;
@@ -540,6 +561,7 @@ Koneksi hubung = new Koneksi();
     private javax.swing.JMenuItem mniDataNilaiSiswa;
     private javax.swing.JMenuItem mniInstruktur;
     private javax.swing.JMenuItem mniJurusan;
+    private javax.swing.JMenuItem mniKelas;
     private javax.swing.JMenuItem mniKeluar;
     private javax.swing.JMenuItem mniMasuk;
     private javax.swing.JMenuItem mniMateri;

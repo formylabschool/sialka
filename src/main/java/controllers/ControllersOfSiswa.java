@@ -39,15 +39,15 @@ public class ControllersOfSiswa implements JavaControllers {
 
     }
 
-    public void loadDataNilaiSiswa(List<Siswa> list) {
-        initTable();
-        ServiceOfSiswa serviceOfSiswa = new ServiceOfSiswa(HIbernateUtil.config());
-        for (Siswa aSiswa : list) {
-            Object[] aObjects = {aSiswa.getKodeSiswa(),aSiswa.getNama(),aSiswa.getNilai1(),aSiswa.getNilai2(),aSiswa.getNilai3()};
-            this.defaultTableModel.addRow(aObjects);
-        }
-
-    }
+//    public void loadDataNilaiSiswa(List<Siswa> list) {
+//        initTable();
+//        ServiceOfSiswa serviceOfSiswa = new ServiceOfSiswa(HIbernateUtil.config());
+//        for (Siswa aSiswa : list) {
+//            Object[] aObjects = {aSiswa.getKodeSiswa(),aSiswa.getNama(),aSiswa.getNilai1(),aSiswa.getNilai2(),aSiswa.getNilai3()};
+//            this.defaultTableModel.addRow(aObjects);
+//        }
+//
+//    }
     
      public void loadDataAbsen(List<Siswa> list) {
         initTable();

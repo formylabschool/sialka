@@ -147,14 +147,14 @@ public class FormPenilaian extends javax.swing.JInternalFrame {
             if (cbkNIP.getSelectedIndex() >= 0) {
                 Siswa siswa = listSiswa.get(cbkNIP.getSelectedIndex());
                 txtNIP.setText(siswa.getNama());
-                System.out.println(siswa.getJurusan());
+              //  System.out.println(siswa.getJurusan());
                 ServiceOfNilai service = new ServiceOfNilai();
                 service.setSessionFactory(HIbernateUtil.config());
 
                 List<Materi> materi;
                 try {
                     controllerNilai.initTable();
-                    materi = service.findMateriByJurusan(siswa.getJurusan());
+                    materi = service.findMateriByJurusan(siswa.getKelas().getJurusan());
                     System.out.println("jumlah data materi ditemukan "+materi.size());
                     for (Materi aMateri : materi) {
                         for (int i = 0; i < aMateri.getKeterangan().size(); i++) {

@@ -38,14 +38,13 @@ public class Siswa {
     private String alamat;
     @Temporal(TemporalType.DATE)
     private Date tanggalPendaftaran;
+//    @OneToOne
+//    private Jurusan jurusan;
     @OneToOne
-    private Jurusan jurusan;
+    private Kelas kelas;
     private Double hargaTotal;
     private Double sisa;
     private Boolean lunas;
-    private Integer nilai1 = 0;
-    private Integer nilai2 = 0;
-    private Integer nilai3 = 0;
     private String indeks;
     private String tahunAjaran;
     
@@ -159,13 +158,13 @@ public class Siswa {
         this.nama = nama;
     }
 
-    public Jurusan getJurusan() {
-        return jurusan;
-    }
-
-    public void setJurusan(Jurusan jurusan) {
-        this.jurusan = jurusan;
-    }
+//    public Jurusan getJurusan() {
+//        return jurusan;
+//    }
+//
+//    public void setJurusan(Jurusan jurusan) {
+//        this.jurusan = jurusan;
+//    }
 
     public Double getHargaTotal() {
         return hargaTotal;
@@ -191,28 +190,12 @@ public class Siswa {
         this.lunas = lunas;
     }
 
-    public Integer getNilai1() {
-        return nilai1;
+    public Kelas getKelas() {
+        return kelas;
     }
 
-    public void setNilai1(Integer nilai1) {
-        this.nilai1 = nilai1;
-    }
-
-    public Integer getNilai2() {
-        return nilai2;
-    }
-
-    public void setNilai2(Integer nilai2) {
-        this.nilai2 = nilai2;
-    }
-
-    public Integer getNilai3() {
-        return nilai3;
-    }
-
-    public void setNilai3(Integer nilai3) {
-        this.nilai3 = nilai3;
+    public void setKelas(Kelas kelas) {
+        this.kelas = kelas;
     }
 
    

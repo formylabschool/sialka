@@ -51,7 +51,7 @@ public class FormDaftarNilai extends javax.swing.JInternalFrame {
     public void refreshTable() {
         service = new ServiceOfSiswa(HIbernateUtil.config());
         list = service.findAll();
-        this.controllers.loadDataNilaiSiswa(list);
+       // this.controllers.loadDataNilaiSiswa(list);
     }
 
     public void initCombo() {
@@ -264,8 +264,8 @@ public class FormDaftarNilai extends javax.swing.JInternalFrame {
         System.out.println(selectedRow + " selected row ");
         if (selectedRow >= 0) {
             Siswa model = list.get(selectedRow);
-            FormUpdateNilai add = new FormUpdateNilai(null, true, this, model);
-            add.setVisible(true);
+       //     FormUpdateNilai add = new FormUpdateNilai(null, true, this, model);
+           // add.setVisible(true);
         } else {
 
         }
