@@ -68,6 +68,7 @@ public class MainForm extends javax.swing.JFrame {
         mniRuangan = new javax.swing.JMenuItem();
         mniJurusan = new javax.swing.JMenuItem();
         mniKelas = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -300,6 +301,7 @@ public class MainForm extends javax.swing.JFrame {
         });
         mnuKurikulum.add(mniJurusan);
 
+        mniKelas.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
         mniKelas.setText("Kelas");
         mniKelas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -307,6 +309,14 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
         mnuKurikulum.add(mniKelas);
+
+        jMenuItem8.setText("Coba");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        mnuKurikulum.add(jMenuItem8);
 
         jMenuBar1.add(mnuKurikulum);
 
@@ -535,6 +545,18 @@ public class MainForm extends javax.swing.JFrame {
         add.setVisible(true);
     }//GEN-LAST:event_mniKelasActionPerformed
 
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        FormPenjadwalan add = new FormPenjadwalan();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+                (size.height - addSize.height) / 2);
+        add.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktop;
@@ -549,6 +571,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu.Separator jSeparator1;

@@ -8,14 +8,12 @@ package ui;
 import configuration.HIbernateUtil;
 import java.time.Year;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import model.Jurusan;
 import model.Kelas;
 import model.Siswa;
 import my_scription.koneksi.Koneksi;
 import org.hibernate.SessionFactory;
-import service.ServiceOfJurusan;
 import service.ServiceOfKelas;
 import service.ServiceOfSiswa;
 
@@ -33,22 +31,22 @@ Koneksi hubung = new Koneksi();
      */
     public FormPendaftaran() {
         initComponents();
-        initCombo();
+       // initCombo();
         initCombox();
         dateChooser.setDate(new Date());
     }
 
-    public void initCombo() {
-        this.listJurusan = new ServiceOfJurusan(HIbernateUtil.config()).findAll();
-        
-        cbkJurusan.removeAllItems();
-        for (Jurusan aJurusan : listJurusan) {
-
-            cbkJurusan.addItem(aJurusan.getNama());
-
-        }
-cbkJurusan.setSelectedIndex(-1);
-    }
+//    public void initCombo() {
+//        this.listJurusan = new ServiceOfJurusan(HIbernateUtil.config()).findAll();
+//        
+//        cbkJurusan.removeAllItems();
+//        for (Jurusan aJurusan : listJurusan) {
+//
+//            cbkJurusan.addItem(aJurusan.getNama());
+//
+//        }
+//cbkJurusan.setSelectedIndex(-1);
+//    }
     
     public void initCombox(){
         this.listKelas = new ServiceOfKelas(HIbernateUtil.config()).findAll();
@@ -77,7 +75,6 @@ cbkJurusan.setSelectedIndex(-1);
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         dateChooser = new com.toedter.calendar.JDateChooser();
-        cbkJurusan = new javax.swing.JComboBox();
         txtHarga = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
@@ -115,23 +112,10 @@ cbkJurusan.setSelectedIndex(-1);
         jLabel2.setText("Tanggal");
 
         jLabel3.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jLabel3.setText("Jurusan");
+        jLabel3.setText("Kelas");
 
         jLabel4.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel4.setText("Harga");
-
-        cbkJurusan.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        cbkJurusan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbkJurusan.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbkJurusanItemStateChanged(evt);
-            }
-        });
-        cbkJurusan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbkJurusanActionPerformed(evt);
-            }
-        });
 
         txtHarga.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
@@ -160,6 +144,7 @@ cbkJurusan.setSelectedIndex(-1);
             }
         });
 
+        cbkKelas.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         cbkKelas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbkKelas.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -177,7 +162,7 @@ cbkJurusan.setSelectedIndex(-1);
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel2)
-                        .addGap(12, 12, 12))
+                        .addGap(18, 18, 18))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -187,19 +172,13 @@ cbkJurusan.setSelectedIndex(-1);
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtAjaran, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(cbkGel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtHarga)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(cbkJurusan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbkKelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtAjaran, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(cbkGel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtHarga)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbkKelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -220,7 +199,6 @@ cbkJurusan.setSelectedIndex(-1);
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cbkJurusan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
                             .addComponent(cbkKelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -450,16 +428,6 @@ cbkJurusan.setSelectedIndex(-1);
         dispose();
     }//GEN-LAST:event_btnKeluarActionPerformed
 
-    private void cbkJurusanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbkJurusanItemStateChanged
-        // TODO add your handling code here:
-        if (cbkJurusan.getSelectedIndex() >= 0) {
-            Jurusan jurusan = listJurusan.get(cbkJurusan.getSelectedIndex());
-            txtHarga.setText(jurusan.getHarga().toString());
-        } else {
-            txtHarga.setText("0");
-        }
-    }//GEN-LAST:event_cbkJurusanItemStateChanged
-
     private void cbkGelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbkGelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbkGelActionPerformed
@@ -492,10 +460,6 @@ cbkJurusan.setSelectedIndex(-1);
         
         
     }//GEN-LAST:event_btnSimpanActionPerformed
-
-    private void cbkJurusanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbkJurusanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbkJurusanActionPerformed
 
     private void txtAjaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAjaranActionPerformed
         // TODO add your handling code here:
@@ -534,7 +498,6 @@ cbkJurusan.setSelectedIndex(-1);
     private javax.swing.JButton btnSimpan;
     private javax.swing.JComboBox cbkGel;
     private javax.swing.JComboBox cbkJK;
-    private javax.swing.JComboBox cbkJurusan;
     private javax.swing.JComboBox cbkKelas;
     private javax.swing.JComboBox cbkPT;
     private com.toedter.calendar.JDateChooser dateChooser;
