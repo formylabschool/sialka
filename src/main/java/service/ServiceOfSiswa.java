@@ -10,6 +10,7 @@ import model.Siswa;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -55,4 +56,15 @@ public class ServiceOfSiswa {
        Criteria criteria = session.createCriteria(Siswa.class);
        return criteria.list();
     }
+    
+    public Siswa findSiswa(String kodeSiswa){
+        Session session = aSessionFactory.openSession();
+        session.beginTransaction();
+        
+        Criteria criteria = session.createCriteria(Siswa.class);
+        criteria.add(Restrictions.eq("kodeSiswa",kodeSiswa ));
+        return (Siswa) criteria.uniqueResult();
+    }
+    
+    
 }

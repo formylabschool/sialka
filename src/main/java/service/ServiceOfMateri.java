@@ -54,5 +54,7 @@ public class ServiceOfMateri {
         Criteria aCriteria = aSession.createCriteria(Materi.class);
         return aCriteria.list();
     }
+    
+   
 
 }

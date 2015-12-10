@@ -7,7 +7,9 @@ package ui;
 
 import configuration.HIbernateUtil;
 import controllers.ControllersOfMateri;
+import java.awt.Dimension;
 import java.util.List;
+import javax.swing.JInternalFrame;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
@@ -29,10 +31,13 @@ public class FormMateri extends javax.swing.JInternalFrame {
     private ServiceOfMateri service;
     private List<Materi> list;
     private DefaultTableModel model;
+   // private Object desktop;
 
     /**
      * Creates new form FormMateri
      */
+      
+    
     public FormMateri() {
         initComponents();
         this.controller = new ControllersOfMateri();
@@ -92,6 +97,8 @@ public class FormMateri extends javax.swing.JInternalFrame {
         btnKeluar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtKodeMateri = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Data Materi", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Menlo", 0, 13))); // NOI18N
 
@@ -159,6 +166,30 @@ public class FormMateri extends javax.swing.JInternalFrame {
 
         txtKodeMateri.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
+        jPanel2.setBackground(new java.awt.Color(0, 153, 204));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel2.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("||Data Materi||");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel2)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -181,11 +212,13 @@ public class FormMateri extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnHapus)))
                 .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnTambah)
@@ -223,7 +256,9 @@ public class FormMateri extends javax.swing.JInternalFrame {
         if (selectedRow >= 0) {
             Materi model = list.get(selectedRow);
             FormMateriTambah add = new FormMateriTambah(null, true, this, model);
+        
             add.setVisible(true);
+            
         } else {
 
         }
@@ -250,7 +285,9 @@ public class FormMateri extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelMateri;
     private javax.swing.JTextField txtKodeMateri;
