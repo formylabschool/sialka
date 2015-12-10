@@ -19,21 +19,20 @@ import org.hibernate.criterion.Restrictions;
  */
 public class ServiceOfNilai {
 
-    private SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
-    public List<Materi> findMateriByJurusan(Jurusan jurusan) throws Exception {
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        
+	public List<Materi> findMateriByJurusan(Jurusan jurusan) throws Exception {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
 
-        Criteria aCriteria = session.createCriteria(Materi.class);
-        aCriteria.createAlias("jurusan", "j");
-        aCriteria.add(Restrictions.eq("j.id", jurusan.getId()));
-        return aCriteria.list();
-    }
+		Criteria aCriteria = session.createCriteria(Materi.class);
+		aCriteria.createAlias("jurusan", "j");
+		aCriteria.add(Restrictions.eq("j.id", jurusan.getId()));
+		return aCriteria.list();
+	}
 
 }
