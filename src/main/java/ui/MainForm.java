@@ -5,17 +5,30 @@
  */
 package ui;
 
+import ui.datamaster.FormPendaftaran;
+import ui.datamaster.FormBukuTamu;
+import ui.datamaster.FormPenjadwalan;
+import ui.datamaster.FormDataAbsensi;
+import ui.datamaster.FormDataPembayaran;
+import ui.datamaster.FormPenilaian;
+import ui.datamaster.FormDataKelas;
+import ui.datamaster.FormKelas;
+import ui.datamaster.FormDataKeuanganSiswa;
+import ui.datamaster.FormPembayaran;
+import ui.datamaster.FormSiswa;
+import ui.dataadd.FormAbsensi;
+import ui.datamaster.FormMateri;
+import ui.datamaster.FormInstruktur;
+import ui.datamaster.FormRuangan;
+import ui.datamaster.FormJurusan;
 import java.awt.Dimension;
 import javax.swing.JInternalFrame;
-import my_scription.koneksi.Koneksi;
 
 /**
  *
  * @author muhamadhanifmuhsin
  */
 public class MainForm extends javax.swing.JFrame {
-
-    Koneksi hubung = new Koneksi();
 
     /**
      * Creates new form MainForm
@@ -61,11 +74,6 @@ public class MainForm extends javax.swing.JFrame {
         mnuKurikulum = new javax.swing.JMenu();
         mniInstruktur = new javax.swing.JMenuItem();
         mniMateri = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
         mniRuangan = new javax.swing.JMenuItem();
         mniJurusan = new javax.swing.JMenuItem();
         mniKelas = new javax.swing.JMenuItem();
@@ -267,32 +275,6 @@ public class MainForm extends javax.swing.JFrame {
         });
         mnuKurikulum.add(mniMateri);
 
-        jMenu1.setText("Penjadwalan");
-        jMenu1.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
-
-        jMenuItem1.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
-        jMenuItem1.setText("Gelombang 1");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem1);
-
-        jMenuItem2.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
-        jMenuItem2.setText("Gelombang 2");
-        jMenu1.add(jMenuItem2);
-
-        jMenuItem3.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
-        jMenuItem3.setText("Gelombang 3");
-        jMenu1.add(jMenuItem3);
-
-        jMenuItem5.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
-        jMenuItem5.setText("Gelombang 4");
-        jMenu1.add(jMenuItem5);
-
-        mnuKurikulum.add(jMenu1);
-
         mniRuangan.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
         mniRuangan.setText("Ruangan");
         mniRuangan.addActionListener(new java.awt.event.ActionListener() {
@@ -419,18 +401,6 @@ public class MainForm extends javax.swing.JFrame {
                 (size.height - addSize.height) / 2);
         add.setVisible(true);
     }//GEN-LAST:event_mniMateriActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-        Schedule1Form add = new Schedule1Form();
-        desktop.add(add);
-
-        Dimension size = desktop.getSize();
-        Dimension addSize = add.getSize();
-        add.setLocation((size.width - addSize.width) / 2,
-                (size.height - addSize.height) / 2);
-        add.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void mniRuanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniRuanganActionPerformed
         // TODO add your handling code here:
@@ -583,14 +553,9 @@ public class MainForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;

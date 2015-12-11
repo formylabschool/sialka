@@ -11,7 +11,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.BukuTamu;
 import service.ServiceOfBukuTamu;
-import ui.FormBukuTamu;
+import ui.datamaster.FormBukuTamu;
 
 
 /**
