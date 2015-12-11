@@ -19,6 +19,15 @@ import javax.swing.table.TableRowSorter;
 import model.Instruktur;
 import model.ModelOfCourses;
 import model.Ruangan;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import service.ServiceOfInstruktur;
 import service.ServiceOfRuangan;
 
@@ -49,6 +58,13 @@ private DefaultTableModel model;
         this.controlles.loadDataTable(list);
     }
     
+     private void printDataInstruktur(List<Instruktur> list)throws JRException{
+          JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/data_mahasiswa.jrxml"));
+          JasperReport report = JasperCompileManager.compileReport(design);
+          JasperPrint print = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(null));
+          JasperViewer view = new JasperViewer(print,false);
+          view.setVisible(true);}
+     
      public void setTableRowSorter(JTable tabelInstruktur, JTextField txtKodeNII) {
         TableRowSorter<TableModel> filterRows;
         filterRows = new TableRowSorter<>(tabelInstruktur.getModel());
@@ -97,6 +113,7 @@ private DefaultTableModel model;
         btnKeluar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel1.setText("No Induk Instruktur");
@@ -191,6 +208,13 @@ private DefaultTableModel model;
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -204,6 +228,8 @@ private DefaultTableModel model;
                         .addGap(18, 18, 18)
                         .addComponent(txtKodeNII, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
                         .addComponent(btnTambah)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnUbah)
@@ -225,7 +251,8 @@ private DefaultTableModel model;
                     .addComponent(txtKodeNII, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTambah)
                     .addComponent(btnUbah)
-                    .addComponent(btnHapus))
+                    .addComponent(btnHapus)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -274,12 +301,20 @@ private DefaultTableModel model;
         }
     }//GEN-LAST:event_btnHapusActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+     
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnKeluar;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

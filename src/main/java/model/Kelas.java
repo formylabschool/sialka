@@ -21,8 +21,19 @@ public class Kelas {
     private int id;
     private String kodeKelas;
     private String namaKelas;
+    private String tahun;
     @ManyToOne
     private Jurusan jurusan;
+
+    public String getTahun() {
+        return tahun;
+    }
+
+    public void setTahun(String tahun) {
+        this.tahun = tahun;
+    }
+
+   
 
     public int getId() {
         return id;

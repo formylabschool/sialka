@@ -8,9 +8,11 @@ package service;
 import java.util.List;
 import model.Jurusan;
 import model.Kelas;
+import model.Siswa;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -19,9 +21,15 @@ import org.hibernate.SessionFactory;
 public class ServiceOfKelas {
      private SessionFactory aSessionFactory;
 
+   
+
     public ServiceOfKelas(SessionFactory aSessionFactory) {
         this.aSessionFactory = aSessionFactory;
+        
     }
+
+ 
+   
     
     public void doSave(Kelas aKelas){
         Session aSession = aSessionFactory.openSession();
@@ -46,4 +54,16 @@ public class ServiceOfKelas {
         Criteria aCriteria = aSession.createCriteria(Kelas.class);
         return aCriteria.list();
     }
+
+    public List<Siswa> findSiswaByKelas(Kelas kelas)throws Exception{
+        Session session = aSessionFactory.openSession();
+        session.beginTransaction();
+        
+        Criteria aCriteria = session.createCriteria(Siswa.class);
+        aCriteria.createAlias("kelas", "k");
+        aCriteria.add(Restrictions.eq("k.kodeKelas", kelas.getKodeKelas()));
+        return aCriteria.list();
+    }
+     
+    
 }

@@ -20,7 +20,10 @@ import service.ServiceOfMateri;
  */
 public class ControllersOfKelas implements JavaControllers {
      private DefaultTableModel defaultTableModel;
-    
+
+    public DefaultTableModel getDefaultTableModel() {
+        return defaultTableModel;
+    }
 
     public void initTable() {
         this.defaultTableModel.getDataVector().removeAllElements();
@@ -31,7 +34,7 @@ public class ControllersOfKelas implements JavaControllers {
         initTable();
         ServiceOfKelas service = new ServiceOfKelas(HIbernateUtil.config());
         for (Kelas aKelas : list) {
-            Object[] anObjects = { aKelas.getKodeKelas(), aKelas.getNamaKelas(),
+            Object[] anObjects = { aKelas.getKodeKelas(), aKelas.getNamaKelas(),aKelas.getTahun(),
                 aKelas.getJurusan().getNama()};
             this.defaultTableModel.addRow(anObjects);
 

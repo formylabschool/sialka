@@ -65,13 +65,13 @@ public class FormKelas extends javax.swing.JInternalFrame {
 
         tableKelas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Kode Kelas", "Nama Kelas", "Nama Jurusan"
+                "Kode Kelas", "Nama Kelas", "Tahun", "Nama Jurusan"
             }
         ));
         jScrollPane1.setViewportView(tableKelas);
@@ -82,7 +82,7 @@ public class FormKelas extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
