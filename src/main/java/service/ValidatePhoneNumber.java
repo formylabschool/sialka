@@ -12,13 +12,14 @@ import java.util.regex.Pattern;
  *
  * @author muhamadhanifmuhsin
  */
-public class Validate {
-     public static boolean validateEmail(String email){
+public class ValidatePhoneNumber {
+    public static boolean validatePhoneNumber(String phone){
         boolean status = false;
         
-        String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
-        Pattern pattern = Pattern.compile(EMAIL_REGEX);
-        Matcher matcher = pattern.matcher(email);
+        String PHONE_REGEX = "^\\+([0-9\\-]?){9,11}[0-9]$";
+        Pattern pattern = Pattern.compile(PHONE_REGEX);
+        phone=phone.replaceAll("[\\-\\+]", "");
+        Matcher matcher = pattern.matcher(phone);
         if(matcher.matches()){
             status = true;
         }else{
@@ -26,5 +27,4 @@ public class Validate {
         }
         return status;
     }
-    
 }

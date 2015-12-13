@@ -28,6 +28,7 @@ public class HIbernateUtil {
                 addAnnotatedClass(Pembayaran.class).
                 addAnnotatedClass(Kelas.class).
                 addAnnotatedClass(Jadwal.class).
+                addAnnotatedClass(Login.class).
                 /*addAnnotatedClass(KelasLain.class).*/
                 setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect").
                 setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver").
@@ -39,5 +40,8 @@ public class HIbernateUtil {
                 setProperty("hibernate.show_sql", "true").
                 buildSessionFactory();
     }
+    
+    
+   
 
 }

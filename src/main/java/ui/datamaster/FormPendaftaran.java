@@ -16,7 +16,7 @@ import model.Siswa;
 import org.hibernate.SessionFactory;
 import service.ServiceOfKelas;
 import service.ServiceOfSiswa;
-import service.Validate;
+import service.ValidateEmail;
 
 /**
  *
@@ -496,7 +496,7 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
 
     private void txtEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyPressed
         // TODO add your handling code here:
-         boolean status = Validate.validateEmail(txtEmail.getText());
+         boolean status = ValidateEmail.validateEmail(txtEmail.getText());
         if(status){
             txtValidate.setText("emial valid");
         }else{

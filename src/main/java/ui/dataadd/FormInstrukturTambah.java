@@ -12,7 +12,8 @@ import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import model.Instruktur;
 import service.ServiceOfInstruktur;
-import service.Validate;
+import service.ValidateEmail;
+import service.ValidatePhoneNumber;
 
 /**
  *
@@ -125,6 +126,11 @@ public class FormInstrukturTambah extends javax.swing.JDialog {
         dateChoose.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
         txtHP.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtHP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtHPKeyPressed(evt);
+            }
+        });
 
         txtEmail.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -349,13 +355,18 @@ public class FormInstrukturTambah extends javax.swing.JDialog {
 
     private void txtEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyPressed
         // TODO add your handling code here:
-         boolean status = Validate.validateEmail(txtEmail.getText());
+         boolean status = ValidateEmail.validateEmail(txtEmail.getText());
         if(status){
             txtValidate.setText("emial valid");
         }else{
             txtValidate.setText("not valid email");
         }
     }//GEN-LAST:event_txtEmailKeyPressed
+
+    private void txtHPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHPKeyPressed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_txtHPKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
