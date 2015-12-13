@@ -40,6 +40,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
 		initComboKelas();
 		initComboRuangan();
 		initComboNII();
+                cbkMateri.removeAllItems();
 	}
 
 	public void initComboKelas() {
@@ -406,6 +407,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
 
 	private void cbkKelasItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_cbkKelasItemStateChanged
 		// TODO add your handling code here:
+            cbkMateri.removeAllItems();
 		if (cbkKelas.getSelectedIndex() >= 0) {
 			Kelas kelas = listKelas.get(cbkKelas.getSelectedIndex());
 			ServiceOfNilai nilai = new ServiceOfNilai();
@@ -413,7 +415,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
 			try {
                            
 				materi = nilai.findMateriByJurusan(kelas.getJurusan());
-				cbkMateri.removeAllItems();
+				
 				for (Iterator iterator = materi.iterator(); iterator.hasNext();) {
 					Materi aMateri = (Materi) iterator.next();
                                          
