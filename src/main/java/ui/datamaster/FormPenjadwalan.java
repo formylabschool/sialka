@@ -13,11 +13,14 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 
 import configuration.HIbernateUtil;
+import java.util.Date;
 import model.Instruktur;
+import model.Jadwal;
 import model.Kelas;
 import model.Materi;
 import model.Ruangan;
 import service.ServiceOfInstruktur;
+import service.ServiceOfJadwal;
 import service.ServiceOfKelas;
 import service.ServiceOfNilai;
 import service.ServiceOfRuangan;
@@ -97,7 +100,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
         cbkRuangan = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         txtKelas = new javax.swing.JTextField();
-        jSpinner1 = new javax.swing.JSpinner();
+        sAwal = new javax.swing.JSpinner();
         jSpinner3 = new javax.swing.JSpinner();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -110,7 +113,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
         jTextField2 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnTambah = new javax.swing.JButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Data Penjadwalan"));
 
@@ -140,8 +143,8 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -183,12 +186,12 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
 
         txtKelas.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
-        jSpinner1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel());
+        sAwal.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        sAwal.setModel(new javax.swing.SpinnerNumberModel());
         SpinnerDateModel spinnermodel = new SpinnerDateModel();
         spinnermodel.setCalendarField(Calendar.MINUTE);
-        jSpinner1 .setModel(spinnermodel);
-        jSpinner1 .setEditor(new JSpinner.DateEditor(jSpinner1 , "hh:mm:ss"));
+        sAwal .setModel(spinnermodel);
+        sAwal .setEditor(new JSpinner.DateEditor(sAwal , "hh:mm:ss"));
 
         jSpinner3.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.MINUTE));
         SpinnerDateModel spinnermodel1 = new SpinnerDateModel();
@@ -216,9 +219,8 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
                         .addComponent(cbkRuangan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cbkKelas, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSpinner3, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addComponent(sAwal)
+                        .addComponent(jSpinner3))
                     .addComponent(txtKelas, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
@@ -247,7 +249,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sAwal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -354,8 +356,13 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        jButton1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jButton1.setText("Tambah");
+        btnTambah.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        btnTambah.setText("Tambah");
+        btnTambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTambahActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -373,7 +380,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
                                 .addGap(6, 6, 6))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton1))))
+                                .addComponent(btnTambah))))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -388,7 +395,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
-                        .addComponent(jButton1)))
+                        .addComponent(btnTambah)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
@@ -400,6 +407,20 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
     private void cbkNIIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbkNIIActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbkNIIActionPerformed
+
+    private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
+        // TODO add your handling code here:
+        Jadwal aJadwal = new Jadwal();
+        aJadwal.setInstruktur(listInstruktur.get(cbkNII.getSelectedIndex()));
+        aJadwal.setRuangan(listRuangan.get(cbkRuangan.getSelectedIndex()));
+        aJadwal.setMateri(materi.get(cbkMateri.getSelectedIndex()));
+        aJadwal.setJam_awal((Date) sAwal.getModel().getValue());
+        
+        ServiceOfJadwal service = new ServiceOfJadwal(HIbernateUtil.config());
+        service.doSave(aJadwal);
+                
+        
+    }//GEN-LAST:event_btnTambahActionPerformed
 
 	private void cbkKelasActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbkKelasActionPerformed
 		// TODO add your handling code here:
@@ -442,11 +463,11 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
 	}// GEN-LAST:event_cbkNIIItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnTambah;
     private javax.swing.JComboBox cbkKelas;
     private javax.swing.JComboBox cbkMateri;
     private javax.swing.JComboBox cbkNII;
     private javax.swing.JComboBox cbkRuangan;
-    private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -464,10 +485,10 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JSpinner sAwal;
     private javax.swing.JTextField txtKelas;
     private javax.swing.JTextField txtNII;
     // End of variables declaration//GEN-END:variables

@@ -27,6 +27,7 @@ public class HIbernateUtil {
                 addAnnotatedClass(Absensi.class).
                 addAnnotatedClass(Pembayaran.class).
                 addAnnotatedClass(Kelas.class).
+                addAnnotatedClass(Jadwal.class).
                 /*addAnnotatedClass(KelasLain.class).*/
                 setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect").
                 setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver").

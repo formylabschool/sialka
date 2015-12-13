@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2015-12-13T03:36:47 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="data_tamu" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8a31c482-e4ea-4ced-ae53-64862ad34152">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<import value="model.BukuTamu"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="kontak" class="java.lang.String">
+		<fieldDescription><![CDATA[kontak]]></fieldDescription>
+	</field>
+	<field name="keperluan" class="java.lang.String">
+		<fieldDescription><![CDATA[keperluan]]></fieldDescription>
+	</field>
+	<field name="nama" class="java.lang.String">
+		<fieldDescription><![CDATA[nama]]></fieldDescription>
+	</field>
+	<field name="tanggal" class="java.util.Date">
+		<fieldDescription><![CDATA[tanggal]]></fieldDescription>
+	</field>
+	<field name="yangDituju" class="java.lang.String">
+		<fieldDescription><![CDATA[yangDituju]]></fieldDescription>
+	</field>
+	<field name="alamat" class="java.lang.String">
+		<fieldDescription><![CDATA[alamat]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="30" uuid="58aff04c-1777-4c0a-affd-556b3f9e133c"/>
+				<text><![CDATA[tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="0" width="100" height="30" uuid="8cae8e22-aaba-4782-9182-701fbd82d58d"/>
+				<text><![CDATA[nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="1" width="100" height="30" uuid="a87dab91-dce1-45c2-8301-a78238f15a0e"/>
+				<text><![CDATA[keperluan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="0" width="100" height="30" uuid="39c7d151-25fa-4081-b4c1-df910bb233f5"/>
+				<text><![CDATA[yangDituju]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="606" y="0" width="100" height="30" uuid="67bd3d10-d17a-44a7-bb4c-a34476b44b6b"/>
+				<text><![CDATA[kontak]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="12" width="100" height="30" uuid="bd288e15-a212-4542-b448-765f85bc5d12"/>
+				<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="12" width="100" height="30" uuid="575aace8-640a-468d-99cc-e9e548902466"/>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="12" width="100" height="30" uuid="7b905230-fade-4438-9c8a-69c2ea2d6083"/>
+				<textFieldExpression><![CDATA[$F{keperluan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="12" width="100" height="30" uuid="33369f62-e230-422d-acbd-87d98867ab20"/>
+				<textFieldExpression><![CDATA[$F{yangDituju}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="606" y="10" width="100" height="30" uuid="f0b56640-3332-414f-a8ec-d1c0ebbc3fb9"/>
+				<textFieldExpression><![CDATA[$F{kontak}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -8,6 +8,8 @@ package ui.datamaster;
 import configuration.HIbernateUtil;
 import controllers.ControllersOfInstruktur;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
@@ -60,9 +62,9 @@ private DefaultTableModel model;
     }
     
      private void printDataInstruktur(List<Instruktur> list)throws JRException{
-          JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/data_mahasiswa.jrxml"));
+          JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/data_instruktur.jrxml"));
           JasperReport report = JasperCompileManager.compileReport(design);
-          JasperPrint print = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(null));
+          JasperPrint print = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(list));
           JasperViewer view = new JasperViewer(print,false);
           view.setVisible(true);}
      
@@ -303,8 +305,12 @@ private DefaultTableModel model;
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    try {
         // TODO add your handling code here:
-        
+        printDataInstruktur(list);
+    } catch (JRException ex) {
+        Logger.getLogger(FormInstruktur.class.getName()).log(Level.SEVERE, null, ex);
+    }
      
 
     }//GEN-LAST:event_jButton1ActionPerformed
