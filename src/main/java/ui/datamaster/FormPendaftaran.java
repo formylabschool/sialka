@@ -16,6 +16,7 @@ import model.Siswa;
 import org.hibernate.SessionFactory;
 import service.ServiceOfKelas;
 import service.ServiceOfSiswa;
+import service.Validate;
 
 /**
  *
@@ -96,6 +97,7 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
         dateLahir = new com.toedter.calendar.JDateChooser();
         jLabel14 = new javax.swing.JLabel();
         cbkJK = new javax.swing.JComboBox();
+        txtValidate = new javax.swing.JLabel();
         btnKeluar = new javax.swing.JButton();
         btnSimpan = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
@@ -251,6 +253,11 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
                 txtEmailActionPerformed(evt);
             }
         });
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEmailKeyPressed(evt);
+            }
+        });
 
         txaAlamat.setColumns(20);
         txaAlamat.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
@@ -262,6 +269,8 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
 
         cbkJK.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         cbkJK.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "=Pilih=", "L", "P" }));
+
+        txtValidate.setText("example@domain.com");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -283,18 +292,22 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
                         .addComponent(cbkJK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbkPT, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtKontak)
-                            .addComponent(txtEmail))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                            .addComponent(txtTempatLahir)
-                            .addComponent(txtNama))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dateLahir, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cbkPT, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtKontak)
+                                    .addComponent(txtEmail))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtValidate)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                                    .addComponent(txtTempatLahir)
+                                    .addComponent(txtNama))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dateLahir, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
@@ -325,7 +338,8 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtValidate))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
@@ -480,6 +494,16 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_cbkKelasItemStateChanged
 
+    private void txtEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyPressed
+        // TODO add your handling code here:
+         boolean status = Validate.validateEmail(txtEmail.getText());
+        if(status){
+            txtValidate.setText("emial valid");
+        }else{
+            txtValidate.setText("not valid email");
+        }
+    }//GEN-LAST:event_txtEmailKeyPressed
+
     private String generateKode(Integer value) {
         StringBuilder aBuilder = new StringBuilder();
         aBuilder.append(cbkGel.getSelectedItem().toString());
@@ -524,5 +548,6 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtKontak;
     private javax.swing.JTextField txtNama;
     private javax.swing.JTextField txtTempatLahir;
+    private javax.swing.JLabel txtValidate;
     // End of variables declaration//GEN-END:variables
 }
