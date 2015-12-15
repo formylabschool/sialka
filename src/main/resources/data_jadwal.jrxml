@@ -1,24 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-15T13:11:54 -->
+<!-- 2015-12-15T14:23:35 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="data_jadwal" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="45a80911-5162-492e-a5f3-312e08f251e6">
+	<import value="model.Jadwal"/>
+	<parameter name="KodeKelas" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="NamaKelas" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
+	<field name="materi" class="model.Materi">
+		<fieldDescription><![CDATA[materi]]></fieldDescription>
+	</field>
+	<field name="tanggal" class="java.util.Date">
+		<fieldDescription><![CDATA[tanggal]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="108" splitType="Stretch">
+			<staticText>
+				<reportElement x="301" y="16" width="100" height="30" uuid="83899cca-3202-4c60-85e8-32d0617d32da"/>
+				<text><![CDATA[Bebas]]></text>
+			</staticText>
+		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="5" width="100" height="30" uuid="d0f84e11-48d0-4995-90bc-d396e102d8d2"/>
+				<textFieldExpression><![CDATA[$P{KodeKelas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="100" height="30" uuid="2a3765d3-7913-4a56-ac7e-04c03e121837"/>
+				<textFieldExpression><![CDATA[$P{NamaKelas}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="283" y="0" width="100" height="30" uuid="ce2cec98-a54f-4d00-bd39-a2e1784e163e"/>
+				<text><![CDATA[tanggal]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="283" y="20" width="100" height="30" uuid="10cc47a4-8322-43b2-8d92-2c674b5cb431"/>
+				<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>

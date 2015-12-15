@@ -7,6 +7,7 @@ package ui.rekapitulation;
 
 import configuration.HIbernateUtil;
 import controllers.ControllersOfKelas;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,6 +35,7 @@ public class RekapJadwal extends javax.swing.JInternalFrame {
     private List<Kelas> listKelas;
     private ControllersOfKelas controll;
     private ServiceOfKelas service;
+    private List<Jadwal> jadwal;
 
     /**
      * Creates new form RekapJadwal
@@ -44,26 +46,32 @@ public class RekapJadwal extends javax.swing.JInternalFrame {
         this.controll.inijectTable((DefaultTableModel) tableJadwal.getModel());
         initCombo();
     }
-    
+
     public void initCombo() {
         this.listKelas = new ServiceOfKelas(HIbernateUtil.config()).findAll();
-        
+
         cbKKelas.removeAllItems();
         for (Kelas aKelas : listKelas) {
-            
+
             cbKKelas.addItem(aKelas.getKodeKelas());
-            
+
         }
         cbKKelas.setSelectedIndex(-1);
     }
 
-     private void printDataInstruktur(List<Jadwal> list)throws JRException{
-         
-          JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/data_jadwal.jrxml"));
-          JasperReport report = JasperCompileManager.compileReport(design);
-          JasperPrint print = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(list));
-          JasperViewer view = new JasperViewer(print,false);
-          view.setVisible(true);}
+    private void printDataInstruktur(List<Jadwal> list) throws JRException {
+        HashMap<String, Object> jadwalMap = new HashMap<String, Object>();
+        Kelas kelas = listKelas.get(cbKKelas.getSelectedIndex());
+        jadwalMap.put("KodeKelas", kelas.getKodeKelas());
+        jadwalMap.put("NamaKelas", kelas.getNamaKelas());
+
+        JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/data_jadwal.jrxml"));
+        JasperReport report = JasperCompileManager.compileReport(design);
+        JasperPrint print = JasperFillManager.fillReport(report, jadwalMap, new JRBeanCollectionDataSource(list));
+        JasperViewer view = new JasperViewer(print, false);
+        view.setVisible(true);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -208,30 +216,29 @@ public class RekapJadwal extends javax.swing.JInternalFrame {
 
     private void cbKKelasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbKKelasItemStateChanged
         // TODO add your handling code here:
-         try {
-             controll.initTable();
-            if (cbKKelas.getSelectedItem()!=null) {
+        try {
+            controll.initTable();
+            if (cbKKelas.getSelectedItem() != null) {
                 Kelas kelas = listKelas.get(cbKKelas.getSelectedIndex());
                 txtNamaKelas.setText(kelas.getNamaKelas());
-                
-                
+
                 ServiceOfJadwal service = new ServiceOfJadwal(HIbernateUtil.config());
-                List<Jadwal> jadwal;
+
                 try {
-                    
+
                     jadwal = service.findJadwalByKelas(kelas);
                     System.out.println("jumlah data siswa ditemukan " + jadwal.size());
                     for (Jadwal aJadwal : jadwal) {
-                      
-                            Object[] value = {aJadwal.getTanggal(), aJadwal.getRuangan().getId(),aJadwal.getJam_awal(),
-                                               aJadwal.getJam_akhir(),aJadwal.getMateri().getNama(),aJadwal.getInstruktur().getNama()};
-                            controll.getDefaultTableModel().addRow(value);
-                      
+
+                        Object[] value = {aJadwal.getTanggal(), aJadwal.getRuangan().getId(), aJadwal.getJam_awal(),
+                            aJadwal.getJam_akhir(), aJadwal.getMateri().getNama(), aJadwal.getInstruktur().getNama()};
+                        controll.getDefaultTableModel().addRow(value);
+
                     }
                 } catch (Exception ex) {
                     Logger.getLogger(RekapJadwal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
             } else {
                 txtNamaKelas.setText("");
             }
@@ -241,8 +248,12 @@ public class RekapJadwal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbKKelasItemStateChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
+        try {
+            // TODO add your handling code here:
+            printDataInstruktur(jadwal);
+        } catch (JRException ex) {
+            Logger.getLogger(RekapJadwal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

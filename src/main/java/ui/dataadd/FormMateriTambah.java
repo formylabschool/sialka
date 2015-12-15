@@ -74,11 +74,11 @@ public class FormMateriTambah extends javax.swing.JDialog {
         txtPraktek.setText(model.getPraktek().toString());
         cbkJurusan.setSelectedItem(model.getJurusan().getKodeJurusan());
 
-        values.removeAllElements();
-        Iterator<String> index = model.getKeterangan().iterator();
-        while (index.hasNext()) {
-            values.addElement(index.next());
-        }
+//        values.removeAllElements();
+//        Iterator<String> index = model.getKeterangan().iterator();
+//        while (index.hasNext()) {
+//            values.addElement(index.next());
+//        }
 
     }
 
@@ -373,12 +373,12 @@ public class FormMateriTambah extends javax.swing.JDialog {
                 model.setTeori(Integer.valueOf(txtTeori.getText()));
                 model.setPraktek(Integer.valueOf(txtPraktek.getText()));
                 model.setJurusan(listJurusan.get(cbkJurusan.getSelectedIndex()));
-                int max = values.getSize();
-                for (int i = 0; i < max; i++) {
-                    String ket = values.getElementAt(i);
-                    model.getKeterangan().add(ket);
-
-                }
+//                int max = values.getSize();
+//                for (int i = 0; i < max; i++) {
+//                    String ket = values.getElementAt(i);
+//                    model.getKeterangan().add(ket);
+//
+//                }
                 service.doSave(model);
                 this.menu.refreshTable();
                 dispose();
