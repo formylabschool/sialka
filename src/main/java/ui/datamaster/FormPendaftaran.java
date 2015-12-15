@@ -8,10 +8,25 @@ package ui.datamaster;
 import configuration.HIbernateUtil;
 import java.time.Year;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Instruktur;
 import model.Jurusan;
 import model.Kelas;
 import model.Siswa;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import org.hibernate.SessionFactory;
 import service.ServiceOfKelas;
@@ -58,6 +73,17 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
 
     }
 
+    
+     private void printKwitansi(String genID,Siswa siswa)throws JRException{
+          HashMap<String, Object>noSiswa=new HashMap<String, Object>();
+          noSiswa.put("no_reg", genID);
+          noSiswa.put("namaSiswa", siswa.getNama());
+          noSiswa.put("harga", jTextField3.getText());
+          JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/kwitansi_pendaftaran.jrxml"));
+          JasperReport report = JasperCompileManager.compileReport(design);
+          JasperPrint print = JasperFillManager.fillReport(report, noSiswa, new JREmptyDataSource());
+          JasperViewer view = new JasperViewer(print,false);
+          view.setVisible(true);}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -464,8 +490,14 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
         ServiceOfSiswa serviceOfSiswa = new ServiceOfSiswa(aSessionFactory);
         serviceOfSiswa.doSave(aSiswa);
         aSiswa.setKodeSiswa(generateKode(aSiswa.getId()));
+        
         serviceOfSiswa = new ServiceOfSiswa(aSessionFactory);
         serviceOfSiswa.doUpdate(aSiswa);
+        try {
+            printKwitansi(aSiswa.getKodeSiswa(), aSiswa);
+        } catch (JRException ex) {
+            Logger.getLogger(FormPendaftaran.class.getName()).log(Level.SEVERE, null, ex);
+        }
         dispose();
 
 
