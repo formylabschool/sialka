@@ -206,13 +206,13 @@ public class FormPenilaian extends javax.swing.JInternalFrame {
                     controllerNilai.initTable();
                     materi = service.findMateriByJurusan(siswa.getKelas().getJurusan());
                     System.out.println("jumlah data materi ditemukan " + materi.size());
-                    for (Materi aMateri : materi) {
-                        for (int i = 0; i < aMateri.getKeterangan().size(); i++) {
-                            System.out.println(aMateri.getNama() + ", " + aMateri.getKeterangan().get(i));
-                            Object[] values = {aMateri.getKodeMateri(), aMateri.getNama(), aMateri.getKeterangan().get(i), 0};
-                            controllerNilai.getDefaultTableModel().addRow(values);
-                        }
-                    }
+//                    for (Materi aMateri : materi) {
+//                        for (int i = 0; i < aMateri.getKeterangan().size(); i++) {
+//                            System.out.println(aMateri.getNama() + ", " + aMateri.getKeterangan().get(i));
+//                            Object[] values = {aMateri.getKodeMateri(), aMateri.getNama(), aMateri.getKeterangan().get(i), 0};
+//                            controllerNilai.getDefaultTableModel().addRow(values);
+//                        }
+//                    }
 
                 } catch (Exception ex) {
                     Logger.getLogger(FormPenilaian.class.getName()).log(Level.SEVERE, null, ex);

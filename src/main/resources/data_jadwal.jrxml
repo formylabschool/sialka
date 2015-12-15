@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-15T14:23:35 -->
+<!-- 2015-12-16T04:42:25 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="data_jadwal" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="45a80911-5162-492e-a5f3-312e08f251e6">
 	<import value="model.Jadwal"/>
 	<parameter name="KodeKelas" class="java.lang.String">
@@ -24,8 +24,25 @@
 	<title>
 		<band height="108" splitType="Stretch">
 			<staticText>
-				<reportElement x="301" y="16" width="100" height="30" uuid="83899cca-3202-4c60-85e8-32d0617d32da"/>
-				<text><![CDATA[Bebas]]></text>
+				<reportElement x="420" y="0" width="99" height="24" uuid="83899cca-3202-4c60-85e8-32d0617d32da"/>
+				<textElement>
+					<font fontName="Arial Black" size="12"/>
+				</textElement>
+				<text><![CDATA[LPK KANIRA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="24" width="141" height="16" uuid="6090303c-8642-495f-9f42-cdb3c7be4323"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[JL. CIPARAY INDAH NO.5A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="40" width="141" height="20" uuid="23997f80-552e-41c2-adb6-3f6e95f8a9ec"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Tlp. 022-85964311]]></text>
 			</staticText>
 		</band>
 	</title>
