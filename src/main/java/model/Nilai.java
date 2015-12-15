@@ -7,6 +7,7 @@ package model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -18,12 +19,11 @@ import javax.persistence.OneToOne;
 public class Nilai {
     @Id
     private int Id;
-    private String keterangan;
+    @OneToOne
+    private Keterangan keterangan;
     private Integer Skor;
     @OneToOne
     Siswa siswa;
-    @OneToMany
-    Materi materi;
 
     public int getId() {
         return Id;
@@ -33,11 +33,11 @@ public class Nilai {
         this.Id = Id;
     }
 
-    public String getKeterangan() {
+    public Keterangan getKeterangan() {
         return keterangan;
     }
 
-    public void setKeterangan(String keterangan) {
+    public void setKeterangan(Keterangan keterangan) {
         this.keterangan = keterangan;
     }
 
@@ -56,14 +56,7 @@ public class Nilai {
     public void setSiswa(Siswa siswa) {
         this.siswa = siswa;
     }
+   
 
-    public Materi getMateri() {
-        return materi;
-    }
-
-    public void setMateri(Materi materi) {
-        this.materi = materi;
-    }
-    
     
 }

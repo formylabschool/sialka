@@ -23,6 +23,7 @@ import ui.datamaster.FormRuangan;
 import ui.datamaster.FormJurusan;
 import java.awt.Dimension;
 import javax.swing.JInternalFrame;
+import ui.rekapitulation.RekapJadwal;
 
 /**
  *
@@ -78,6 +79,8 @@ public class MainForm extends javax.swing.JFrame {
         mniJurusan = new javax.swing.JMenuItem();
         mniKelas = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -302,7 +305,7 @@ public class MainForm extends javax.swing.JFrame {
         });
         mnuKurikulum.add(mniKelas);
 
-        jMenuItem8.setText("Coba");
+        jMenuItem8.setText("Penjadwalan");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem8ActionPerformed(evt);
@@ -311,6 +314,20 @@ public class MainForm extends javax.swing.JFrame {
         mnuKurikulum.add(jMenuItem8);
 
         jMenuBar1.add(mnuKurikulum);
+
+        jMenu1.setText("Rekapitulasi");
+        jMenu1.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+
+        jMenuItem1.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        jMenuItem1.setText("Jadwal");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -549,12 +566,26 @@ public class MainForm extends javax.swing.JFrame {
         add.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        RekapJadwal add = new RekapJadwal();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+                (size.height - addSize.height) / 2);
+        add.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;

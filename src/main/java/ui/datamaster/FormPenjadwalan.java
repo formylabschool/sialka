@@ -13,6 +13,7 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 
 import configuration.HIbernateUtil;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import model.Instruktur;
 import model.Jadwal;
@@ -96,24 +97,23 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         cbkKelas = new javax.swing.JComboBox();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        dateChooser = new com.toedter.calendar.JDateChooser();
         cbkRuangan = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         txtKelas = new javax.swing.JTextField();
         sAwal = new javax.swing.JSpinner();
-        jSpinner3 = new javax.swing.JSpinner();
+        sAkhir = new javax.swing.JSpinner();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         cbkNII = new javax.swing.JComboBox();
         txtNII = new javax.swing.JTextField();
         cbkMateri = new javax.swing.JComboBox();
-        jTextField2 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         btnTambah = new javax.swing.JButton();
+        btnKeluar = new javax.swing.JButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Data Penjadwalan"));
 
@@ -177,7 +177,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
             }
         });
 
-        jDateChooser1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        dateChooser.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
         cbkRuangan.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         cbkRuangan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -193,12 +193,12 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
         sAwal .setModel(spinnermodel);
         sAwal .setEditor(new JSpinner.DateEditor(sAwal , "hh:mm:ss"));
 
-        jSpinner3.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.MINUTE));
+        sAkhir.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.MINUTE));
         SpinnerDateModel spinnermodel1 = new SpinnerDateModel();
         spinnermodel1.setCalendarField(Calendar.MINUTE);
-        jSpinner3 .setModel(spinnermodel1);
-        jSpinner3 .setEditor(new JSpinner.DateEditor(jSpinner3 , "hh:mm:ss"));
-        jSpinner3.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        sAkhir .setModel(spinnermodel1);
+        sAkhir .setEditor(new JSpinner.DateEditor(sAkhir , "hh:mm:ss"));
+        sAkhir.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -217,10 +217,10 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(cbkRuangan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cbkKelas, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(sAwal)
-                        .addComponent(jSpinner3))
+                        .addComponent(sAkhir))
                     .addComponent(txtKelas, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
@@ -241,7 +241,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(txtKelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
@@ -253,7 +253,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sAkhir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -267,9 +267,6 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
 
         jLabel7.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel7.setText("Kode Materi");
-
-        jLabel8.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jLabel8.setText("Nama Materi");
 
         cbkNII.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         cbkNII.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -289,8 +286,6 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
         cbkMateri.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         cbkMateri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTextField2.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -300,14 +295,12 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel8)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cbkMateri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbkNII, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNII)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE))
+                    .addComponent(txtNII, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(80, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -325,11 +318,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(cbkMateri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(0, 153, 204));
@@ -364,6 +353,13 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
             }
         });
 
+        btnKeluar.setText("Keluar");
+        btnKeluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKeluarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -384,6 +380,9 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnKeluar))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -398,7 +397,9 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
                         .addComponent(btnTambah)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnKeluar)
+                .addContainerGap())
         );
 
         pack();
@@ -411,16 +412,24 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // TODO add your handling code here:
         Jadwal aJadwal = new Jadwal();
+        aJadwal.setKelas(listKelas.get(cbkKelas.getSelectedIndex()));
         aJadwal.setInstruktur(listInstruktur.get(cbkNII.getSelectedIndex()));
         aJadwal.setRuangan(listRuangan.get(cbkRuangan.getSelectedIndex()));
         aJadwal.setMateri(materi.get(cbkMateri.getSelectedIndex()));
-        aJadwal.setJam_awal((Date) sAwal.getModel().getValue());
+        aJadwal.setJam_awal((Date) sAwal.getValue());
+        aJadwal.setJam_akhir((Date) sAkhir.getValue());
+        aJadwal.setTanggal(java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(dateChooser.getDate())));
         
         ServiceOfJadwal service = new ServiceOfJadwal(HIbernateUtil.config());
         service.doSave(aJadwal);
                 
         
     }//GEN-LAST:event_btnTambahActionPerformed
+
+    private void btnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKeluarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnKeluarActionPerformed
 
 	private void cbkKelasActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbkKelasActionPerformed
 		// TODO add your handling code here:
@@ -440,8 +449,11 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
 				for (Iterator iterator = materi.iterator(); iterator.hasNext();) {
 					Materi aMateri = (Materi) iterator.next();
                                          
-					cbkMateri.addItem(aMateri.getId() + " " + aMateri.getNama());
+					//cbkMateri.addItem(aMateri.getId() + " " + aMateri.getNama());
+                                       cbkMateri.addItem(aMateri.getNama());
+                                        
 				}
+                                
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -463,12 +475,13 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
 	}// GEN-LAST:event_cbkNIIItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnKeluar;
     private javax.swing.JButton btnTambah;
     private javax.swing.JComboBox cbkKelas;
     private javax.swing.JComboBox cbkMateri;
     private javax.swing.JComboBox cbkNII;
     private javax.swing.JComboBox cbkRuangan;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -478,16 +491,14 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JSpinner sAkhir;
     private javax.swing.JSpinner sAwal;
     private javax.swing.JTextField txtKelas;
     private javax.swing.JTextField txtNII;

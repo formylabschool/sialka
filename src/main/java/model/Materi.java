@@ -41,18 +41,7 @@ public class Materi implements Serializable {
     @ManyToOne
     private Jurusan jurusan;
 
-    @ElementCollection
-
-    private List<String> keterangan = new ArrayList<String>();
-
-    public List<String> getKeterangan() {
-        return keterangan;
-    }
-
-    public void setKeterangan(List<String> keterangan) {
-        this.keterangan = keterangan;
-    }
-
+  
     public Integer getId() {
         return id;
     }

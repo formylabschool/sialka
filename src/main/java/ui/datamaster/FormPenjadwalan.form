@@ -41,6 +41,10 @@
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="btnKeluar" min="-2" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -58,7 +62,9 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnKeluar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -143,10 +149,10 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="cbkRuangan" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jDateChooser1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="dateChooser" alignment="0" max="32767" attributes="0"/>
                           <Component id="cbkKelas" min="-2" pref="129" max="-2" attributes="0"/>
                           <Component id="sAwal" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jSpinner3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="sAkhir" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <Component id="txtKelas" min="-2" pref="201" max="-2" attributes="0"/>
                   </Group>
@@ -173,7 +179,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="txtKelas" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
+                          <Component id="dateChooser" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -189,7 +195,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jSpinner3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="sAkhir" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -256,7 +262,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbkKelasActionPerformed"/>
           </Events>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
+        <Component class="com.toedter.calendar.JDateChooser" name="dateChooser">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Menlo" size="13" style="0"/>
@@ -303,14 +309,14 @@
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="SpinnerDateModel spinnermodel = new SpinnerDateModel();&#xa;spinnermodel.setCalendarField(Calendar.MINUTE);&#xa;sAwal .setModel(spinnermodel);&#xa;sAwal .setEditor(new JSpinner.DateEditor(sAwal , &quot;hh:mm:ss&quot;));"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JSpinner" name="jSpinner3">
+        <Component class="javax.swing.JSpinner" name="sAkhir">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Menlo" size="13" style="0"/>
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jSpinner3.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.MINUTE));&#xa;SpinnerDateModel spinnermodel1 = new SpinnerDateModel();&#xa;spinnermodel1.setCalendarField(Calendar.MINUTE);&#xa;jSpinner3 .setModel(spinnermodel1);&#xa;jSpinner3 .setEditor(new JSpinner.DateEditor(jSpinner3 , &quot;hh:mm:ss&quot;));"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="sAkhir.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.MINUTE));&#xa;SpinnerDateModel spinnermodel1 = new SpinnerDateModel();&#xa;spinnermodel1.setCalendarField(Calendar.MINUTE);&#xa;sAkhir .setModel(spinnermodel1);&#xa;sAkhir .setEditor(new JSpinner.DateEditor(sAkhir , &quot;hh:mm:ss&quot;));"/>
           </AuxValues>
         </Component>
       </SubComponents>
@@ -332,15 +338,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="cbkMateri" min="-2" max="-2" attributes="0"/>
                       <Component id="cbkNII" min="-2" pref="140" max="-2" attributes="0"/>
-                      <Component id="txtNII" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jTextField2" pref="192" max="32767" attributes="0"/>
+                      <Component id="txtNII" alignment="0" min="-2" pref="192" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="80" max="32767" attributes="0"/>
               </Group>
@@ -364,12 +368,7 @@
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cbkMateri" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="18" max="32767" attributes="0"/>
+                  <EmptySpace pref="53" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -397,14 +396,6 @@
               <Font name="Menlo" size="13" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Kode Materi"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel8">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Menlo" size="13" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Nama Materi"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cbkNII">
@@ -445,13 +436,6 @@
                 <StringItem index="2" value="Item 3"/>
                 <StringItem index="3" value="Item 4"/>
               </StringArray>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Menlo" size="13" style="0"/>
             </Property>
           </Properties>
         </Component>
@@ -512,6 +496,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTambahActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnKeluar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Keluar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnKeluarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

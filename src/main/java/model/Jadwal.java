@@ -6,13 +6,23 @@
 package model;
 
 import java.util.Date;
+import javax.annotation.Generated;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author muhamadhanifmuhsin
  */
+@Entity
 public class Jadwal {
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
     @OneToOne
     private Ruangan ruangan;
@@ -20,10 +30,24 @@ public class Jadwal {
     private Instruktur instruktur;
     @OneToOne
     private Materi materi;
+    @OneToOne
+    private Kelas kelas;
+    @Temporal(TemporalType.DATE)
     private Date tanggal;
+    @Temporal(TemporalType.TIME)
     private Date jam_awal;
+    @Temporal(TemporalType.TIME)
     private Date jam_akhir;
 
+    public Kelas getKelas() {
+        return kelas;
+    }
+
+    public void setKelas(Kelas kelas) {
+        this.kelas = kelas;
+    }
+
+    
     public Integer getId() {
         return id;
     }
