@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2015-12-16T15:03:46 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="laporan_transaksi" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="75d65c7f-8c2e-4e06-83d5-220369531588">
+	<import value="model.Pembayaran"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="noPembayaran" class="java.lang.String">
+		<fieldDescription><![CDATA[noPembayaran]]></fieldDescription>
+	</field>
+	<field name="tanggal" class="java.sql.Date">
+		<fieldDescription><![CDATA[tanggal]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="0" width="100" height="30" uuid="ef6f8810-5cda-456c-bf44-be90216a8ecb"/>
+				<text><![CDATA[noPembayaran]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="379" y="0" width="100" height="30" uuid="5f8678a8-6ed1-48ba-87db-25ba9aeab47b"/>
+				<text><![CDATA[tanggal]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="100" y="34" width="100" height="30" uuid="9cf0ca6f-d01e-47be-9a4e-29a6f3a9b9e6"/>
+				<textFieldExpression><![CDATA[$F{noPembayaran}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="379" y="38" width="100" height="30" uuid="0436223b-0178-4ecf-b3b2-fd23070b0740"/>
+				<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

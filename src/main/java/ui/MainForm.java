@@ -23,6 +23,7 @@ import ui.datamaster.FormRuangan;
 import ui.datamaster.FormJurusan;
 import java.awt.Dimension;
 import javax.swing.JInternalFrame;
+import ui.datamaster.FormLaporan;
 import ui.rekapitulation.RekapJadwal;
 
 /**
@@ -81,6 +82,8 @@ public class MainForm extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        mniTransaksiPEmbayaran = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -328,6 +331,20 @@ public class MainForm extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
+
+        jMenu3.setText("Laporan");
+        jMenu3.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+
+        mniTransaksiPEmbayaran.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        mniTransaksiPEmbayaran.setText("Transaksi Pembayaran");
+        mniTransaksiPEmbayaran.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniTransaksiPEmbayaranActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mniTransaksiPEmbayaran);
+
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -578,12 +595,25 @@ public class MainForm extends javax.swing.JFrame {
         add.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void mniTransaksiPEmbayaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniTransaksiPEmbayaranActionPerformed
+        // TODO add your handling code here:
+        FormLaporan add = new FormLaporan();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+                (size.height - addSize.height) / 2);
+        add.setVisible(true);
+    }//GEN-LAST:event_mniTransaksiPEmbayaranActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem4;
@@ -611,6 +641,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem mniPemBulanan;
     private javax.swing.JMenuItem mniRegistrasi;
     private javax.swing.JMenuItem mniRuangan;
+    private javax.swing.JMenuItem mniTransaksiPEmbayaran;
     private javax.swing.JMenu mnuAkses;
     private javax.swing.JMenu mnuKeuangan;
     private javax.swing.JMenu mnuKurikulum;

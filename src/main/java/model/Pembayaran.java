@@ -5,7 +5,7 @@
  */
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +29,7 @@ public class Pembayaran {
     private Integer id;
     @Column(name="no_pembayaran")
     private String noPembayaran;
-    @Temporal(TemporalType.DATE)
+    
     private Date tanggal;
     @ManyToOne
     private Siswa siswa;
