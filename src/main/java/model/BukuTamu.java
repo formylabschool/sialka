@@ -5,8 +5,11 @@
  */
 package model;
 
-import java.util.Date;
+import java.sql.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -20,9 +23,13 @@ import javax.persistence.TemporalType;
 @Table(name="buku_tamu")
 public class BukuTamu {
     @Id
-   @Temporal(TemporalType.DATE)
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name="id_buku_tamu")
+    private int id;
+   //@Temporal(TemporalType.DATE)
     private Date tanggal;
     private String nama;
+    @Column(name="yang_dituju")
     private String yangDituju;
     private String keperluan;
     private String alamat;

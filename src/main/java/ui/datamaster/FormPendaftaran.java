@@ -76,8 +76,10 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
     
      private void printKwitansi(String genID,Siswa siswa)throws JRException{
           HashMap<String, Object>noSiswa=new HashMap<String, Object>();
+          Kelas kelas = listKelas.get(cbkKelas.getSelectedIndex());
           noSiswa.put("no_reg", genID);
           noSiswa.put("namaSiswa", siswa.getNama());
+          noSiswa.put("namaPelatihan",kelas.getNamaKelas());
           noSiswa.put("harga", jTextField3.getText());
           JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/kwitansi_pendaftaran.jrxml"));
           JasperReport report = JasperCompileManager.compileReport(design);

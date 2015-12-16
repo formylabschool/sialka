@@ -5,6 +5,7 @@
  */
 package model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +20,9 @@ import javax.persistence.Table;
 @Table (name="ruangan")
 public class Ruangan {
     @Id 
+    @Column(name="id_ruangan")
     private String id;
+    @Column(name="nama_ruangan")
     private String nama;
 
     public String getId() {

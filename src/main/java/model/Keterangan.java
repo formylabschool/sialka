@@ -5,21 +5,26 @@
  */
 package model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author muhamadhanifmuhsin
  */
 @Entity
+@Table(name="keterangan")
 public class Keterangan {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name="id_keterangan")
     private int id;
+    @Column(name="nama_keterangan")
     private String namaKeterangan;
     @ManyToOne
     private Materi materi;

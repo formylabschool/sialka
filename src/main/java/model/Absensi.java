@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -20,9 +21,10 @@ import javax.persistence.TemporalType;
  * @author muhamadhanifmuhsin
  */
 @Entity
+@Table(name="absensi")
 public class Absensi {
     @Id @GeneratedValue(strategy = GenerationType.TABLE)
-   
+    @Column(name="id_absensi")
     private Integer idAbsensi;
     @ManyToOne
     private Siswa siswa;

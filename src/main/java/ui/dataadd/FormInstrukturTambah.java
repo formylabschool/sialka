@@ -51,7 +51,7 @@ public class FormInstrukturTambah extends javax.swing.JDialog {
         this.menu = aThis;
         this.controllers = new ControllersOfInstruktur();
         this.model = model;
-        txtNIP.setText(model.getNip());
+        txtNIP.setText(model.getNii());
         txtNama.setText(model.getNama());
         txtTempat.setText(model.getTempatLahir());
       //  SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -315,7 +315,7 @@ public class FormInstrukturTambah extends javax.swing.JDialog {
         if (update) {
             try {
                 ServiceOfInstruktur service = new ServiceOfInstruktur(HIbernateUtil.config());
-                model.setNip(txtNIP.getText());
+                model.setNii(txtNIP.getText());
                 model.setNama(txtNama.getText());
                 model.setTempatLahir(txtTempat.getText());
                 model.setTanggalLahir(java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(dateChoose.getDate())));
@@ -335,7 +335,7 @@ public class FormInstrukturTambah extends javax.swing.JDialog {
         } else {
             try {
                 ServiceOfInstruktur service = new ServiceOfInstruktur(HIbernateUtil.config());
-                model.setNip(txtNIP.getText());
+                model.setNii(txtNIP.getText());
                 model.setNama(txtNama.getText());
                 model.setTempatLahir(txtTempat.getText());
                 model.setTanggalLahir(java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(dateChoose.getDate())));

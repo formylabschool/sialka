@@ -72,7 +72,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
 		this.listInstruktur = new ServiceOfInstruktur(HIbernateUtil.config()).findAll();
 		cbkNII.removeAllItems();
 		for (Instruktur aInstruktur : listInstruktur) {
-			cbkNII.addItem(aInstruktur.getNip());
+			cbkNII.addItem(aInstruktur.getNii());
 		}
 		cbkNII.setSelectedIndex(-1);
 	}

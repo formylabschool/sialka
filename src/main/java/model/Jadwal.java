@@ -7,11 +7,13 @@ package model;
 
 import java.util.Date;
 import javax.annotation.Generated;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -20,9 +22,11 @@ import javax.persistence.TemporalType;
  * @author muhamadhanifmuhsin
  */
 @Entity
+@Table(name="jadwal")
 public class Jadwal {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name="id_jadwal")
     private Integer id;
     @OneToOne
     private Ruangan ruangan;

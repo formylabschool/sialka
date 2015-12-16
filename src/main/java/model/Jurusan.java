@@ -24,9 +24,11 @@ public class Jurusan {
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "id_jurusan")
     private Integer id;
+    @Column(name="kode_jurusan")
     private String kodeJurusan;
     private String nama;
     private Double harga;
+    @Column (name="jumlah_pertemuan")
     private Integer jumlahPertemuan;
 
     public Integer getJumlahPertemuan() {

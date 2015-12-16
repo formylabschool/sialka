@@ -89,12 +89,14 @@ private DefaultTableModel model;
     }
 
 
-   private void printDataInstruktur(List<BukuTamu> list)throws JRException{
-          JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/data_tamu.jrxml"));
-          JasperReport report = JasperCompileManager.compileReport(design);
-          JasperPrint print = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(list));
-          JasperViewer view = new JasperViewer(print,false);
-          view.setVisible(true);}
+//   private void printDataInstruktur(List<BukuTamu> list)throws JRException{
+//          
+//       
+//          JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/data_tamu.jrxml"));
+//          JasperReport report = JasperCompileManager.compileReport(design);
+//          JasperPrint print = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(list));
+//          JasperViewer view = new JasperViewer(print,false);
+//          view.setVisible(true);}
 
 
     /**
@@ -117,7 +119,6 @@ private DefaultTableModel model;
         btnHapus = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        btnPrint = new javax.swing.JButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buku Tamu", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Menlo", 0, 13))); // NOI18N
         jPanel1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
@@ -218,13 +219,6 @@ private DefaultTableModel model;
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        btnPrint.setText("Print");
-        btnPrint.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrintActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -245,10 +239,7 @@ private DefaultTableModel model;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnUbah)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnHapus)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnPrint)
-                        .addGap(14, 14, 14)))
+                        .addComponent(btnHapus)))
                 .addContainerGap())
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -256,20 +247,14 @@ private DefaultTableModel model;
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnTambah)
-                            .addComponent(jLabel1)
-                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnUbah)
-                            .addComponent(btnHapus))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnPrint)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTambah)
+                    .addComponent(jLabel1)
+                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUbah)
+                    .addComponent(btnHapus))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnClose)
@@ -300,6 +285,7 @@ private DefaultTableModel model;
         System.out.println(selectedRow + " selected row ");
         if (selectedRow >= 0) {
             BukuTamu model = list.get(selectedRow);
+            model.getTanggal().toLocalDate();
             BukuTamuTambah add = new BukuTamuTambah(null, true, this, model);
             add.setVisible(true);
         } else {
@@ -321,20 +307,10 @@ private DefaultTableModel model;
         }
     }//GEN-LAST:event_btnHapusActionPerformed
 
-    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-    try {
-        // TODO add your handling code here:
-        printDataInstruktur(list);
-    } catch (JRException ex) {
-        Logger.getLogger(FormBukuTamu.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    }//GEN-LAST:event_btnPrintActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnHapus;
-    private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
     private javax.swing.JLabel jLabel1;

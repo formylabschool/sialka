@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-16T04:42:25 -->
+<!-- 2015-12-16T11:41:40 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="data_jadwal" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="45a80911-5162-492e-a5f3-312e08f251e6">
 	<import value="model.Jadwal"/>
 	<parameter name="KodeKelas" class="java.lang.String">
@@ -18,11 +18,23 @@
 	<field name="tanggal" class="java.util.Date">
 		<fieldDescription><![CDATA[tanggal]]></fieldDescription>
 	</field>
+	<field name="instruktur" class="model.Instruktur">
+		<fieldDescription><![CDATA[instruktur]]></fieldDescription>
+	</field>
+	<field name="ruangan" class="model.Ruangan">
+		<fieldDescription><![CDATA[ruangan]]></fieldDescription>
+	</field>
+	<field name="jam_akhir" class="java.util.Date">
+		<fieldDescription><![CDATA[jam_akhir]]></fieldDescription>
+	</field>
+	<field name="jam_awal" class="java.util.Date">
+		<fieldDescription><![CDATA[jam_awal]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="108" splitType="Stretch">
+		<band height="68" splitType="Stretch">
 			<staticText>
 				<reportElement x="420" y="0" width="99" height="24" uuid="83899cca-3202-4c60-85e8-32d0617d32da"/>
 				<textElement>
@@ -47,30 +59,63 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch">
+		<band height="159" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="5" width="100" height="30" uuid="d0f84e11-48d0-4995-90bc-d396e102d8d2"/>
+				<reportElement x="104" y="53" width="200" height="20" uuid="d0f84e11-48d0-4995-90bc-d396e102d8d2"/>
 				<textFieldExpression><![CDATA[$P{KodeKelas}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="180" y="0" width="100" height="30" uuid="2a3765d3-7913-4a56-ac7e-04c03e121837"/>
+				<reportElement x="104" y="83" width="283" height="20" uuid="2a3765d3-7913-4a56-ac7e-04c03e121837"/>
 				<textFieldExpression><![CDATA[$P{NamaKelas}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="0" y="52" width="100" height="22" uuid="a33f1d00-d54c-4613-a981-5b450d085f33"/>
+				<text><![CDATA[Kode Kelas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="82" width="100" height="22" uuid="98b5aecb-144c-4123-b197-b4f8ef61e21d"/>
+				<text><![CDATA[Nama Kelas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="0" width="252" height="18" uuid="4d67454b-7427-4629-9367-3f67209149ab"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[JADWAL KEGIATAN PELATIHAN]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch">
+		<band splitType="Stretch">
 			<staticText>
-				<reportElement x="283" y="0" width="100" height="30" uuid="ce2cec98-a54f-4d00-bd39-a2e1784e163e"/>
-				<text><![CDATA[tanggal]]></text>
+				<reportElement x="0" y="-33" width="100" height="30" uuid="ce2cec98-a54f-4d00-bd39-a2e1784e163e"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="-33" width="100" height="30" uuid="b3cb3d26-dfde-40de-ae4d-653ebf790bf0"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Jam Mulai]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="-33" width="100" height="30" uuid="d4245299-3eda-4287-ae81-a9f7f849fc9b"/>
+				<text><![CDATA[jam_akhir]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="70" splitType="Stretch">
 			<textField>
-				<reportElement x="283" y="20" width="100" height="30" uuid="10cc47a4-8322-43b2-8d92-2c674b5cb431"/>
+				<reportElement x="0" y="2" width="100" height="30" uuid="10cc47a4-8322-43b2-8d92-2c674b5cb431"/>
 				<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="101" y="2" width="100" height="30" uuid="f17bd53d-747c-45a9-b43f-fcb93f5aff4a"/>
+				<textFieldExpression><![CDATA[$F{jam_awal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="203" y="2" width="100" height="30" uuid="f34eca7e-8752-44f1-9828-a645513e5970"/>
+				<textFieldExpression><![CDATA[$F{jam_akhir}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

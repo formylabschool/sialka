@@ -40,8 +40,8 @@ private Nilai model;
         this.controll = new ControllersOfNilai();
         this.model = model;
         
-        txtKode.setText(model.getMateri().getKodeMateri());
-        txtNama.setText(model.getMateri().getNama());
+//        txtKode.setText(model.getMateri().getKodeMateri());
+//        txtNama.setText(model.getMateri().getNama());
        // txtSkor.setText(model.getMat);
     }
     

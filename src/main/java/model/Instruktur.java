@@ -6,6 +6,7 @@
 package model;
 
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -20,14 +21,16 @@ import javax.persistence.TemporalType;
 @Table(name="instruktur")
 public class Instruktur {
     @Id
-    private String nip;
+    private String nii;
     private String nama;
     private String tempatLahir;
     @Temporal(TemporalType.DATE)
+    @Column(name="tanggal_lahir")
     private Date tanggalLahir;
     private String kontak;
     private String email;
     private String alamat;
+    @Column(name="jenis_kelamin")
     private String jenisKelamin;
 
     public String getJenisKelamin() {
@@ -62,12 +65,12 @@ public class Instruktur {
         this.email = email;
     }
 
-    public String getNip() {
-        return nip;
+    public String getNii() {
+        return nii;
     }
 
-    public void setNip(String nip) {
-        this.nip = nip;
+    public void setNii(String nii) {
+        this.nii = nii;
     }
     
 

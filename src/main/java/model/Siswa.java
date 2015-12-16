@@ -6,6 +6,7 @@
 package model;
 
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,27 +26,36 @@ import javax.persistence.TemporalType;
 @Table(name="siswa")
 public class Siswa {
 @Id @GeneratedValue(strategy = GenerationType.TABLE)
+@Column(name="id_siswa")
     private Integer id; 
+@Column(name="kode_siswa")
     private String kodeSiswa;
     private String nama;
+@Column(name="tempat_lahir")    
     private String tempatLahir;
     @Temporal(TemporalType.DATE)
+    @Column(name="tanggal_lahir")
     private Date tanggalLahir;
+    @Column(name="jenis_kelamin")
     private String jenisKelamin;
+    @Column(name="pendidikan_terakhir")
     private String pendidikanTerakhir;
     private String kontak;
     private String email;
     private String alamat;
     @Temporal(TemporalType.DATE)
+    @Column(name="tanggal_pendaftaran")
     private Date tanggalPendaftaran;
 //    @OneToOne
 //    private Jurusan jurusan;
     @OneToOne
     private Kelas kelas;
+    @Column(name="harga_total")
     private Double hargaTotal;
     private Double sisa;
     private Boolean lunas;
     private String indeks;
+    @Column(name="tahun_ajaran")
     private String tahunAjaran;
     
    

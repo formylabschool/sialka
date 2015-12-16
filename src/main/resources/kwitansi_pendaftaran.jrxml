@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-16T04:56:55 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="kwitansi_pendaftaran" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b6aa98c9-ccad-483e-aed2-cf393ec9cf03">
+<!-- 2015-12-16T05:31:57 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="kwitansi_pendaftaran" pageWidth="595" pageHeight="340" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b6aa98c9-ccad-483e-aed2-cf393ec9cf03">
+	<property name="com.jaspersoft.studio.unit." value="cm"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<import value="model.Siswa"/>
 	<parameter name="no_reg" class="java.lang.String"/>
@@ -9,6 +10,7 @@
 		<parameterDescription><![CDATA[]]></parameterDescription>
 	</parameter>
 	<parameter name="harga" class="java.lang.String"/>
+	<parameter name="namaPelatihan" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -16,34 +18,34 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="66" splitType="Stretch">
 			<staticText>
-				<reportElement x="420" y="0" width="99" height="24" uuid="5ad07981-6a0e-49ed-9172-16320b7d4ef5"/>
+				<reportElement x="420" y="0" width="141" height="24" uuid="5ad07981-6a0e-49ed-9172-16320b7d4ef5"/>
 				<textElement>
-					<font fontName="Arial Black" size="12"/>
+					<font fontName="Arial Black" size="16"/>
 				</textElement>
 				<text><![CDATA[LPK KANIRA]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="420" y="24" width="141" height="16" uuid="6eeec52e-58ac-4b92-942c-5393c6d57bec"/>
 				<textElement>
-					<font fontName="Arial" size="10"/>
+					<font fontName="Times New Roman" size="9"/>
 				</textElement>
 				<text><![CDATA[JL. CIPARAY INDAH NO.5A]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="420" y="40" width="141" height="20" uuid="543d9d28-af0f-4b31-886b-0e90d101ae4d"/>
 				<textElement>
-					<font fontName="Arial"/>
+					<font fontName="Times New Roman" size="9"/>
 				</textElement>
 				<text><![CDATA[Tlp. 022-85964311]]></text>
 			</staticText>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="61" splitType="Stretch">
+		<band height="37" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="20" width="187" height="30" uuid="1389c208-37d7-43c6-9188-3d8c6d97d0fc"/>
+				<reportElement x="0" y="0" width="187" height="30" uuid="1389c208-37d7-43c6-9188-3d8c6d97d0fc"/>
 				<textElement>
 					<font fontName="Arial Black" size="12"/>
 				</textElement>
@@ -52,7 +54,7 @@
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="124" splitType="Stretch">
+		<band height="85" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="100" height="19" uuid="cdc69e06-c4c0-4b2f-8c9a-254ce4270b40"/>
 				<textElement>
@@ -61,14 +63,14 @@
 				<text><![CDATA[No. Pendaftaran]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="30" width="100" height="19" uuid="7e6bb7f3-413f-4ebb-82d9-4999ef546470"/>
+				<reportElement x="0" y="21" width="100" height="19" uuid="7e6bb7f3-413f-4ebb-82d9-4999ef546470"/>
 				<textElement>
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<text><![CDATA[Nama]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="60" width="100" height="20" uuid="695e2d87-42bf-4c69-abd7-20f69f26106a"/>
+				<reportElement x="0" y="42" width="100" height="20" uuid="695e2d87-42bf-4c69-abd7-20f69f26106a"/>
 				<textElement>
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
@@ -82,46 +84,53 @@
 				<textFieldExpression><![CDATA[$P{no_reg}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="140" y="30" width="220" height="19" uuid="5f2d8e9b-ac7b-4e11-b1e0-70a227f5106c"/>
+				<reportElement x="140" y="21" width="220" height="19" uuid="5f2d8e9b-ac7b-4e11-b1e0-70a227f5106c"/>
 				<textElement>
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{namaSiswa}]]></textFieldExpression>
 			</textField>
 			<textField pattern="">
-				<reportElement x="140" y="97" width="160" height="16" uuid="e7544dbe-d505-4f6d-ac46-4913684c7549"/>
+				<reportElement x="140" y="65" width="160" height="16" uuid="e7544dbe-d505-4f6d-ac46-4913684c7549"/>
 				<textElement>
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{harga}]]></textFieldExpression>
 			</textField>
-		</band>
-	</detail>
-	<columnFooter>
-		<band height="67" splitType="Stretch">
+			<textField>
+				<reportElement x="140" y="42" width="260" height="20" uuid="f241ebe8-9d92-43dd-8f9d-ed509ae695f2"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{namaPelatihan}]]></textFieldExpression>
+			</textField>
 			<staticText>
-				<reportElement x="0" y="-28" width="100" height="18" uuid="620504c4-cbf7-4c70-a8b4-9b0e744c9a19"/>
+				<reportElement x="0" y="65" width="100" height="18" uuid="620504c4-cbf7-4c70-a8b4-9b0e744c9a19"/>
 				<textElement>
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<text><![CDATA[Biaya Pendaftaran]]></text>
 			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="72" splitType="Stretch">
 			<staticText>
 				<reportElement x="445" y="0" width="100" height="23" uuid="42caec21-8ae2-4b85-96d4-e462d2851d92"/>
 				<textElement>
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
-				<text><![CDATA[Hormat Kami]]></text>
+				<text><![CDATA[Hormat Kami,]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="1" y="24" width="229" height="16" uuid="8c68daa2-0f93-4302-822f-787bad47f30c"/>
+				<reportElement x="1" y="38" width="229" height="16" uuid="8c68daa2-0f93-4302-822f-787bad47f30c"/>
 				<textElement>
 					<font fontName="Times New Roman" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[*Kwitansi ini harus disimpan dengan baik]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="40" width="226" height="27" uuid="7d79cbdd-d297-4596-a6b7-80b4e4b54de3"/>
+				<reportElement x="0" y="54" width="226" height="15" uuid="7d79cbdd-d297-4596-a6b7-80b4e4b54de3"/>
 				<textElement>
 					<font fontName="Times New Roman" isItalic="true"/>
 				</textElement>

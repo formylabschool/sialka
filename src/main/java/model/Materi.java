@@ -34,6 +34,7 @@ public class Materi implements Serializable {
     @Column(name = "id_materi")
 
     private Integer id;
+    @Column (name="kode_materi")
     private String kodeMateri;
     private String nama;
     private Integer teori;
