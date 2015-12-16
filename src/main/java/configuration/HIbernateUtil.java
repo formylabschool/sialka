@@ -29,13 +29,15 @@ public class HIbernateUtil {
                 addAnnotatedClass(Kelas.class).
                 addAnnotatedClass(Jadwal.class).
                 addAnnotatedClass(Login.class).
+                addAnnotatedClass(Keterangan.class).
+                addAnnotatedClass(Nilai.class).
                 /*addAnnotatedClass(KelasLain.class).*/
                 setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect").
                 setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver").
                 setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/sia_lpkkanira").
                 setProperty("hibernate.connection.username", "root").
                 /*ubah passwordnya*/
-                        setProperty("hibernate.connection.password", "root").
+                        setProperty("hibernate.connection.password", "").
                 setProperty("hibernate.hbm2ddl.auto","update").
                 setProperty("hibernate.show_sql", "true").
                 buildSessionFactory();

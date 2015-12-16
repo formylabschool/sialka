@@ -8,6 +8,7 @@ package service;
 import java.util.List;
 import model.Jurusan;
 import model.Materi;
+import model.Nilai;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -34,5 +35,12 @@ public class ServiceOfNilai {
 		aCriteria.add(Restrictions.eq("j.id", jurusan.getId()));
 		return aCriteria.list();
 	}
-
+        
+        public List<Nilai> findAll(){
+        Session aSession = sessionFactory.openSession();
+        aSession.beginTransaction();
+        
+        Criteria aCriteria = aSession.createCriteria(Nilai.class);
+        return aCriteria.list();
+        }
 }

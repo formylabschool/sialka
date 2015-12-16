@@ -28,4 +28,29 @@ public class Keterangan {
     private String namaKeterangan;
     @ManyToOne
     private Materi materi;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNamaKeterangan() {
+        return namaKeterangan;
+    }
+
+    public void setNamaKeterangan(String namaKeterangan) {
+        this.namaKeterangan = namaKeterangan;
+    }
+
+    public Materi getMateri() {
+        return materi;
+    }
+
+    public void setMateri(Materi materi) {
+        this.materi = materi;
+    }
+    
 }

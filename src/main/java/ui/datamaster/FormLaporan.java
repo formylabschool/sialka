@@ -6,17 +6,10 @@
 package ui.datamaster;
 
 import configuration.HIbernateUtil;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Kelas;
 import model.Pembayaran;
-import model.Siswa;
-import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -26,9 +19,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import org.freedesktop.DBus;
 import service.ServiceOfLaporan;
-import sun.security.krb5.JavaxSecurityAuthKerberosAccess;
 
 /**
  *

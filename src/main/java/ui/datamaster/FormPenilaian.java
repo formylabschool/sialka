@@ -201,11 +201,17 @@ public class FormPenilaian extends javax.swing.JInternalFrame {
                 ServiceOfNilai service = new ServiceOfNilai();
                 service.setSessionFactory(HIbernateUtil.config());
 
-                List<Materi> materi;
+              //  List<Materi> materi;
+                List<Nilai> nilai;
                 try {
                     controllerNilai.initTable();
-                    materi = service.findMateriByJurusan(siswa.getKelas().getJurusan());
-                    System.out.println("jumlah data materi ditemukan " + materi.size());
+                   // materi = service.findMateriByJurusan(siswa.getKelas().getJurusan());
+                    nilai = service.findAll();
+                    System.out.println("jumlah data materi ditemukan " + nilai.size());
+                    for(Nilai aNilai : nilai){
+                        Object[] values = {aNilai.getKeterangan().getMateri().getKodeMateri(),aNilai.getKeterangan().getMateri().getNama(),aNilai.getKeterangan().getNamaKeterangan(),aNilai.getSkor()};
+                        controllerNilai.getDefaultTableModel().addRow(values);
+                    }
 //                    for (Materi aMateri : materi) {
 //                        for (int i = 0; i < aMateri.getKeterangan().size(); i++) {
 //                            System.out.println(aMateri.getNama() + ", " + aMateri.getKeterangan().get(i));
