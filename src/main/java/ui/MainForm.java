@@ -27,6 +27,7 @@ import ui.dataadd.FormSubMateri;
 import ui.datamaster.FormIsiNilai;
 import ui.datamaster.FormLaporan;
 import ui.rekapitulation.RekapJadwal;
+import ui.rekapitulation.RekapJadwalInstruktur;
 
 /**
  *
@@ -71,7 +72,7 @@ public class MainForm extends javax.swing.JFrame {
         mniDataNilaiSiswa = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        mniIsiNilai = new javax.swing.JMenuItem();
         mnuKeuangan = new javax.swing.JMenu();
         mniPemBulanan = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
@@ -85,7 +86,8 @@ public class MainForm extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        mniJadwal = new javax.swing.JMenuItem();
+        mniJadwalInstruktur = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         mniTransaksiPEmbayaran = new javax.swing.JMenuItem();
 
@@ -238,13 +240,14 @@ public class MainForm extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem9);
 
-        jMenuItem3.setText("Isi Nilai Siswa");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        mniIsiNilai.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        mniIsiNilai.setText("Isi Nilai Siswa");
+        mniIsiNilai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                mniIsiNilaiActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        jMenu2.add(mniIsiNilai);
 
         jMenuBar1.add(jMenu2);
 
@@ -320,6 +323,7 @@ public class MainForm extends javax.swing.JFrame {
         });
         mnuKurikulum.add(mniKelas);
 
+        jMenuItem8.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
         jMenuItem8.setText("Penjadwalan");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -328,6 +332,7 @@ public class MainForm extends javax.swing.JFrame {
         });
         mnuKurikulum.add(jMenuItem8);
 
+        jMenuItem2.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
         jMenuItem2.setText("Sub Materi");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -341,14 +346,23 @@ public class MainForm extends javax.swing.JFrame {
         jMenu1.setText("Rekapitulasi");
         jMenu1.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
 
-        jMenuItem1.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
-        jMenuItem1.setText("Jadwal");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        mniJadwal.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        mniJadwal.setText("Jadwal");
+        mniJadwal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                mniJadwalActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(mniJadwal);
+
+        mniJadwalInstruktur.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        mniJadwalInstruktur.setText("Jadwal Instruktur");
+        mniJadwalInstruktur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniJadwalInstrukturActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mniJadwalInstruktur);
 
         jMenuBar1.add(jMenu1);
 
@@ -603,7 +617,7 @@ public class MainForm extends javax.swing.JFrame {
         add.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void mniJadwalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniJadwalActionPerformed
         // TODO add your handling code here:
         RekapJadwal add = new RekapJadwal();
         desktop.add(add);
@@ -613,7 +627,7 @@ public class MainForm extends javax.swing.JFrame {
         add.setLocation((size.width - addSize.width) / 2,
                 (size.height - addSize.height) / 2);
         add.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_mniJadwalActionPerformed
 
     private void mniTransaksiPEmbayaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniTransaksiPEmbayaranActionPerformed
         // TODO add your handling code here:
@@ -639,7 +653,7 @@ public class MainForm extends javax.swing.JFrame {
         add.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void mniIsiNilaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniIsiNilaiActionPerformed
         // TODO add your handling code here:
         FormIsiNilai add = new FormIsiNilai();
         desktop.add(add);
@@ -649,7 +663,20 @@ public class MainForm extends javax.swing.JFrame {
         add.setLocation((size.width - addSize.width) / 2,
                 (size.height - addSize.height) / 2);
         add.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_mniIsiNilaiActionPerformed
+
+    private void mniJadwalInstrukturActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniJadwalInstrukturActionPerformed
+        // TODO add your handling code here:
+        RekapJadwalInstruktur add = new RekapJadwalInstruktur();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+                (size.height - addSize.height) / 2);
+        add.setVisible(true);
+                            
+    }//GEN-LAST:event_mniJadwalInstrukturActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -659,9 +686,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
@@ -678,6 +703,9 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem mniDataAbsensi;
     private javax.swing.JMenuItem mniDataNilaiSiswa;
     private javax.swing.JMenuItem mniInstruktur;
+    private javax.swing.JMenuItem mniIsiNilai;
+    private javax.swing.JMenuItem mniJadwal;
+    private javax.swing.JMenuItem mniJadwalInstruktur;
     private javax.swing.JMenuItem mniJurusan;
     private javax.swing.JMenuItem mniKelas;
     private javax.swing.JMenuItem mniKeluar;

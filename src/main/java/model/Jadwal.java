@@ -12,17 +12,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
  * @author muhamadhanifmuhsin
  */
 @Entity
-@Table(name="jadwal")
+@Table(name="jadwal", uniqueConstraints = @UniqueConstraint(name = "uq_jadwal",columnNames = {"jam_awal","jam_akhir","intruktur_id"}))
 public class Jadwal {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
@@ -31,6 +35,7 @@ public class Jadwal {
     @OneToOne
     private Ruangan ruangan;
     @OneToOne
+    @JoinColumns(@JoinColumn(name = "intruktur_id"))
     private Instruktur instruktur;
     @OneToOne
     private Materi materi;

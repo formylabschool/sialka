@@ -9,10 +9,23 @@ import configuration.HIbernateUtil;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Year;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
+import model.Kelas;
 import model.Pembayaran;
 import model.Siswa;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import org.hibernate.SessionFactory;
 import service.ServiceOfPembayaran;
 import service.ServiceOfSiswa;
@@ -38,6 +51,19 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
         aBuilder.append(value);
         return aBuilder.toString();
     }
+    
+     private void printKwitansi(String generateKode, Pembayaran pembayaran)throws JRException{
+          HashMap<String, Object>pembayaranMap=new HashMap<String, Object>();
+          //Kelas kelas = listKelas.get(cbkKelas.getSelectedIndex());
+          pembayaranMap.put("noPembayaran", generateKode);
+          pembayaranMap.put("nama", txtNama.getText());
+          pembayaranMap.put("jumlah",sPem.getValue().toString());
+          pembayaranMap.put("sisa", txtSisa.getText());
+          JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/kwitansi_pembayaran.jrxml"));
+          JasperReport report = JasperCompileManager.compileReport(design);
+          JasperPrint print = JasperFillManager.fillReport(report, pembayaranMap, new JREmptyDataSource());
+          JasperViewer view = new JasperViewer(print,false);
+          view.setVisible(true);}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -272,6 +298,11 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
         serviceOfpembayaran.doUpdate(pembayaran);
         ServiceOfSiswa aServiceOfSiswa = new ServiceOfSiswa(aSessionFactory);
         aServiceOfSiswa.doUpdate(siswa);
+        try {
+            printKwitansi(pembayaran.getNoPembayaran(), pembayaran);
+        } catch (JRException ex) {
+            Logger.getLogger(FormPembayaran.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnSimpanActionPerformed
 
 

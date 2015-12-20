@@ -6,6 +6,9 @@
 package ui.dataadd;
 
 import configuration.HIbernateUtil;
+import java.awt.Event;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
@@ -25,8 +28,19 @@ private Siswa siswa;
      */
     public FormAbsensi() {
         initComponents();
+        
+       
     }
 
+    
+    
+    public void filterHuruf(KeyEvent a){
+        if(Character.isAlphabetic(a.getKeyChar())){
+            a.consume();
+            JOptionPane.showMessageDialog(null, "Masukan Harus Berbentuk Angka");
+        }
+    }
+  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -78,6 +92,19 @@ private Siswa siswa;
         txtNIP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNIPActionPerformed(evt);
+            }
+        });
+        txtNIP.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                txtNIPPropertyChange(evt);
+            }
+        });
+        txtNIP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNIPKeyTyped(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNIPKeyPressed(evt);
             }
         });
 
@@ -156,6 +183,7 @@ private Siswa siswa;
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         // TODO add your handling code here:
+        
         ServiceOfSiswa aSiswa = new ServiceOfSiswa(HIbernateUtil.config());
          siswa = aSiswa.findSiswa(txtNIP.getText());
         if(siswa == null ){
@@ -181,6 +209,22 @@ private Siswa siswa;
             System.err.println(npe);
         }
     }//GEN-LAST:event_btnMasukActionPerformed
+
+    private void txtNIPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNIPKeyPressed
+        // TODO add your handling code here:
+       
+        
+    }//GEN-LAST:event_txtNIPKeyPressed
+
+    private void txtNIPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNIPKeyTyped
+        // TODO add your handling code here:
+        filterHuruf(evt);
+    }//GEN-LAST:event_txtNIPKeyTyped
+
+    private void txtNIPPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtNIPPropertyChange
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtNIPPropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

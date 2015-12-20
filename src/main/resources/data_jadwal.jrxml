@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-16T11:41:40 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="data_jadwal" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="45a80911-5162-492e-a5f3-312e08f251e6">
+<!-- 2015-12-18T15:57:00 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="data_jadwal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="45a80911-5162-492e-a5f3-312e08f251e6">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<import value="model.Jadwal"/>
+	<import value="model.Instruktur"/>
 	<parameter name="KodeKelas" class="java.lang.String">
 		<parameterDescription><![CDATA[]]></parameterDescription>
 	</parameter>
@@ -12,23 +22,23 @@
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<field name="materi" class="model.Materi">
-		<fieldDescription><![CDATA[materi]]></fieldDescription>
+	<field name="materi" class="java.lang.String">
+		<fieldDescription><![CDATA[materi.nama]]></fieldDescription>
 	</field>
 	<field name="tanggal" class="java.util.Date">
 		<fieldDescription><![CDATA[tanggal]]></fieldDescription>
 	</field>
-	<field name="instruktur" class="model.Instruktur">
-		<fieldDescription><![CDATA[instruktur]]></fieldDescription>
-	</field>
-	<field name="ruangan" class="model.Ruangan">
-		<fieldDescription><![CDATA[ruangan]]></fieldDescription>
+	<field name="instruktur" class="java.lang.String">
+		<fieldDescription><![CDATA[instruktur.nama]]></fieldDescription>
 	</field>
 	<field name="jam_akhir" class="java.util.Date">
 		<fieldDescription><![CDATA[jam_akhir]]></fieldDescription>
 	</field>
 	<field name="jam_awal" class="java.util.Date">
 		<fieldDescription><![CDATA[jam_awal]]></fieldDescription>
+	</field>
+	<field name="ruangan" class="java.lang.String">
+		<fieldDescription><![CDATA[ruangan.id]]></fieldDescription>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
@@ -83,6 +93,26 @@
 				</textElement>
 				<text><![CDATA[JADWAL KEGIATAN PELATIHAN]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="300" y="126" width="100" height="30" uuid="cd8fde69-fb62-4436-ac5e-c3a43064d194"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Materi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="126" width="100" height="30" uuid="8b107d33-995e-4bfe-b6c1-5dbb7f181924"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Instruktur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="126" width="100" height="30" uuid="6cfb07d7-9dce-4ab7-82e5-6713d763476e"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Ruangan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="126" width="100" height="30" uuid="d4245299-3eda-4287-ae81-a9f7f849fc9b"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Jam Akhir]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -97,30 +127,44 @@
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[Jam Mulai]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="200" y="-33" width="100" height="30" uuid="d4245299-3eda-4287-ae81-a9f7f849fc9b"/>
-				<text><![CDATA[jam_akhir]]></text>
-			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="70" splitType="Stretch">
-			<textField>
+		<band height="43" splitType="Stretch">
+			<textField pattern="M/d/yy">
 				<reportElement x="0" y="2" width="100" height="30" uuid="10cc47a4-8322-43b2-8d92-2c674b5cb431"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="h:mm a">
 				<reportElement x="101" y="2" width="100" height="30" uuid="f17bd53d-747c-45a9-b43f-fcb93f5aff4a"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{jam_awal}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="203" y="2" width="100" height="30" uuid="f34eca7e-8752-44f1-9828-a645513e5970"/>
+				<reportElement x="200" y="0" width="100" height="30" uuid="f34eca7e-8752-44f1-9828-a645513e5970"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{jam_akhir}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="100" height="30" uuid="6d7b2863-f38f-46da-b578-accc471ef35b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{materi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="100" height="30" uuid="6a8c0d81-e321-476d-812d-b88a5e25740a"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{instruktur}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="2" width="100" height="30" uuid="fc5a0a09-d82b-4f1d-b9e2-18b85d492332"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ruangan}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="38" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch"/>

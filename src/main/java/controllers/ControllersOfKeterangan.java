@@ -12,23 +12,22 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author muhamadhanifmuhsin
  */
-public class ControllersOfPenjadwalan implements JavaControllers {
+public class ControllersOfKeterangan implements JavaControllers {
 
     private DefaultTableModel defaultTableModel;
-    
-    public void initTable(){
+
+    public DefaultTableModel getDefaultTableModel() {
+        return defaultTableModel;
+    }
+
+    public void initTable() {
         this.defaultTableModel.getDataVector().removeAllElements();
         this.defaultTableModel.fireTableDataChanged();
     }
-    
-  
 
     @Override
     public void inijectTable(DefaultTableModel defaultTableModel) {
         this.defaultTableModel = defaultTableModel;
     }
 
-      public DefaultTableModel getDefaultTableModel(){
-        return defaultTableModel;
-    }
 }

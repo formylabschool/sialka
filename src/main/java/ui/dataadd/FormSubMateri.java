@@ -53,6 +53,8 @@ private List<Materi>listMateri;
         cbkMateri = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
 
+        setClosable(true);
+
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setText("Nama Sub Materi");

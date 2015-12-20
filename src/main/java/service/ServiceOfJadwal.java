@@ -6,6 +6,7 @@
 package service;
 
 import java.util.List;
+import model.Instruktur;
 import model.Jadwal;
 import model.Kelas;
 import org.hibernate.Criteria;
@@ -43,4 +44,20 @@ public class ServiceOfJadwal {
         aCriteria.add(Restrictions.eq("k.kodeKelas", kelas.getKodeKelas()));
         return aCriteria.list();
     }
+     
+     public List<Jadwal> findJadwalByInstruktur(Kelas kelas, Instruktur instruktur)throws Exception{
+         Session session = aSessionFactory.openSession();
+         session.beginTransaction();
+         Criteria aCriteria = session.createCriteria(Jadwal.class);
+         aCriteria.createAlias("kelas", "k");
+         aCriteria.createAlias("instruktur", "i");
+         aCriteria.add(
+                 Restrictions.and(
+                         Restrictions.eq("k.kodeKelas", kelas.getKodeKelas()),
+                         Restrictions.eq("i.nii", instruktur.getNii())
+                 )
+         
+         );
+         return aCriteria.list();
+     }
 }

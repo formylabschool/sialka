@@ -7,9 +7,11 @@ package service;
 
 import java.util.List;
 import model.Materi;
+import model.Siswa;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -55,6 +57,15 @@ public class ServiceOfMateri {
         return aCriteria.list();
     }
     
+     public List<Materi> findMateriBySiswa(Siswa siswa)throws Exception{
+        Session session = aSessionFactory.openSession();
+        session.beginTransaction();
+        
+        Criteria aCriteria = session.createCriteria(Materi.class);
+        aCriteria.createAlias("jurusan", "j");
+        aCriteria.add(Restrictions.eq("j.kodeJurusan", siswa.getKelas().getJurusan().getKodeJurusan()));
+        return aCriteria.list();
+    }
    
 
 }
