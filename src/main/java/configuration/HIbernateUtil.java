@@ -28,7 +28,7 @@ public class HIbernateUtil {
                 addAnnotatedClass(Pembayaran.class).
                 addAnnotatedClass(Kelas.class).
                 addAnnotatedClass(Jadwal.class).
-                addAnnotatedClass(Login.class).
+              //  addAnnotatedClass(Login.class).
                 addAnnotatedClass(Keterangan.class).
                 addAnnotatedClass(Nilai.class).
                 /*addAnnotatedClass(KelasLain.class).*/

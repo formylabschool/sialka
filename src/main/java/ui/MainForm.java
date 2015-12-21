@@ -22,6 +22,7 @@ import ui.datamaster.FormInstruktur;
 import ui.datamaster.FormRuangan;
 import ui.datamaster.FormJurusan;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JInternalFrame;
 import ui.dataadd.FormSubMateri;
 import ui.datamaster.FormIsiNilai;
@@ -34,12 +35,16 @@ import ui.rekapitulation.RekapJadwalInstruktur;
  * @author muhamadhanifmuhsin
  */
 public class MainForm extends javax.swing.JFrame {
-
+private boolean pemakaiAktif;
+GuiLogin login;
     /**
      * Creates new form MainForm
      */
     public MainForm() {
         initComponents();
+        panggilJendelaLogin();
+        setMenubarEnabled(login.opLogin.isLogin(), login.opLogin.isAdmin());
+        
     }
 
     /**
@@ -61,13 +66,13 @@ public class MainForm extends javax.swing.JFrame {
         mniKeluar = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mniMatikan = new javax.swing.JMenuItem();
-        mniAbsensi = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        mnuAdministrasi = new javax.swing.JMenu();
+        mniAbsensi = new javax.swing.JMenuItem();
         mniBukuTamu = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         mniRegistrasi = new javax.swing.JMenuItem();
         mniDataAbsensi = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        mnuDataSiswa = new javax.swing.JMenu();
         mniDaftarSiswa = new javax.swing.JMenuItem();
         mniDataNilaiSiswa = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -85,10 +90,10 @@ public class MainForm extends javax.swing.JFrame {
         mniKelas = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        mnuRekap = new javax.swing.JMenu();
         mniJadwal = new javax.swing.JMenuItem();
         mniJadwalInstruktur = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        mnuLaporan = new javax.swing.JMenu();
         mniTransaksiPEmbayaran = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -145,6 +150,11 @@ public class MainForm extends javax.swing.JFrame {
 
         mniKeluar.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
         mniKeluar.setText("Keluar");
+        mniKeluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniKeluarActionPerformed(evt);
+            }
+        });
         mnuAkses.add(mniKeluar);
         mnuAkses.add(jSeparator1);
 
@@ -159,17 +169,17 @@ public class MainForm extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuAkses);
 
-        mniAbsensi.setText("Administrasi");
-        mniAbsensi.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        mnuAdministrasi.setText("Administrasi");
+        mnuAdministrasi.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
 
-        jMenuItem4.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
-        jMenuItem4.setText("Absensi");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        mniAbsensi.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        mniAbsensi.setText("Absensi");
+        mniAbsensi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                mniAbsensiActionPerformed(evt);
             }
         });
-        mniAbsensi.add(jMenuItem4);
+        mnuAdministrasi.add(mniAbsensi);
 
         mniBukuTamu.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
         mniBukuTamu.setText("Buku Tamu");
@@ -178,8 +188,8 @@ public class MainForm extends javax.swing.JFrame {
                 mniBukuTamuActionPerformed(evt);
             }
         });
-        mniAbsensi.add(mniBukuTamu);
-        mniAbsensi.add(jSeparator2);
+        mnuAdministrasi.add(mniBukuTamu);
+        mnuAdministrasi.add(jSeparator2);
 
         mniRegistrasi.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
         mniRegistrasi.setText("Pendaftaran");
@@ -188,7 +198,7 @@ public class MainForm extends javax.swing.JFrame {
                 mniRegistrasiActionPerformed(evt);
             }
         });
-        mniAbsensi.add(mniRegistrasi);
+        mnuAdministrasi.add(mniRegistrasi);
 
         mniDataAbsensi.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
         mniDataAbsensi.setText("Data Absensi");
@@ -197,12 +207,12 @@ public class MainForm extends javax.swing.JFrame {
                 mniDataAbsensiActionPerformed(evt);
             }
         });
-        mniAbsensi.add(mniDataAbsensi);
+        mnuAdministrasi.add(mniDataAbsensi);
 
-        jMenuBar1.add(mniAbsensi);
+        jMenuBar1.add(mnuAdministrasi);
 
-        jMenu2.setText("Data Siswa");
-        jMenu2.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        mnuDataSiswa.setText("Data Siswa");
+        mnuDataSiswa.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
 
         mniDaftarSiswa.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
         mniDaftarSiswa.setText("Daftar Siswa ");
@@ -211,7 +221,7 @@ public class MainForm extends javax.swing.JFrame {
                 mniDaftarSiswaActionPerformed(evt);
             }
         });
-        jMenu2.add(mniDaftarSiswa);
+        mnuDataSiswa.add(mniDaftarSiswa);
 
         mniDataNilaiSiswa.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
         mniDataNilaiSiswa.setText("Data Nilai Siswa");
@@ -220,7 +230,7 @@ public class MainForm extends javax.swing.JFrame {
                 mniDataNilaiSiswaActionPerformed(evt);
             }
         });
-        jMenu2.add(mniDataNilaiSiswa);
+        mnuDataSiswa.add(mniDataNilaiSiswa);
 
         jMenuItem7.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
         jMenuItem7.setText("Data Keuangan Siswa");
@@ -229,7 +239,7 @@ public class MainForm extends javax.swing.JFrame {
                 jMenuItem7ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem7);
+        mnuDataSiswa.add(jMenuItem7);
 
         jMenuItem9.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
         jMenuItem9.setText("Daftar Siswa Per Kelas");
@@ -238,7 +248,7 @@ public class MainForm extends javax.swing.JFrame {
                 jMenuItem9ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem9);
+        mnuDataSiswa.add(jMenuItem9);
 
         mniIsiNilai.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
         mniIsiNilai.setText("Isi Nilai Siswa");
@@ -247,9 +257,9 @@ public class MainForm extends javax.swing.JFrame {
                 mniIsiNilaiActionPerformed(evt);
             }
         });
-        jMenu2.add(mniIsiNilai);
+        mnuDataSiswa.add(mniIsiNilai);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(mnuDataSiswa);
 
         mnuKeuangan.setText("Keuangan");
         mnuKeuangan.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
@@ -343,8 +353,8 @@ public class MainForm extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuKurikulum);
 
-        jMenu1.setText("Rekapitulasi");
-        jMenu1.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        mnuRekap.setText("Rekapitulasi");
+        mnuRekap.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
 
         mniJadwal.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
         mniJadwal.setText("Jadwal");
@@ -353,7 +363,7 @@ public class MainForm extends javax.swing.JFrame {
                 mniJadwalActionPerformed(evt);
             }
         });
-        jMenu1.add(mniJadwal);
+        mnuRekap.add(mniJadwal);
 
         mniJadwalInstruktur.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
         mniJadwalInstruktur.setText("Jadwal Instruktur");
@@ -362,12 +372,12 @@ public class MainForm extends javax.swing.JFrame {
                 mniJadwalInstrukturActionPerformed(evt);
             }
         });
-        jMenu1.add(mniJadwalInstruktur);
+        mnuRekap.add(mniJadwalInstruktur);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(mnuRekap);
 
-        jMenu3.setText("Laporan");
-        jMenu3.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        mnuLaporan.setText("Laporan");
+        mnuLaporan.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
 
         mniTransaksiPEmbayaran.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
         mniTransaksiPEmbayaran.setText("Transaksi Pembayaran");
@@ -376,9 +386,9 @@ public class MainForm extends javax.swing.JFrame {
                 mniTransaksiPEmbayaranActionPerformed(evt);
             }
         });
-        jMenu3.add(mniTransaksiPEmbayaran);
+        mnuLaporan.add(mniTransaksiPEmbayaran);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(mnuLaporan);
 
         setJMenuBar(jMenuBar1);
 
@@ -411,10 +421,40 @@ public class MainForm extends javax.swing.JFrame {
         this.setContentPane(desktop);
 
     }
+    
+    public void panggilJendelaLogin(){
+        login = new GuiLogin(this,true);
+        Dimension lebar = Toolkit.getDefaultToolkit().getScreenSize();
+        int l = (lebar.width - login.getSize().width)/2;
+        int t = (lebar.width - login.getSize().height)/2;
+        login.setLocation(l,t);
+        login.setVisible(true);
+    }
+    
+    public void setPemakaiAktif(boolean pemakaiAktif){
+        this.mniKeluar.setEnabled(pemakaiAktif);
+        this.pemakaiAktif = pemakaiAktif;
+    }
+    
+    public void setMenubarEnabled(boolean mnu, boolean mni){
+        mnuKeuangan.setEnabled(mnu);
+        mnuAdministrasi.setEnabled(mnu);
+        mnuDataSiswa.setEnabled(mnu);
+        mnuKurikulum.setEnabled(mnu);
+        mnuKurikulum.setEnabled(mni);
+        mnuRekap.setEnabled(mnu);
+        mnuLaporan.setEnabled(mnu);
+        
+        setPemakaiAktif(mnu);
+    }
 
 
     private void mniMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniMasukActionPerformed
         // TODO add your handling code here:
+        desktop.removeAll();
+        desktop.repaint();
+        panggilJendelaLogin();
+        setMenubarEnabled(login.opLogin.isLogin(), login.opLogin.isAdmin());
     }//GEN-LAST:event_mniMasukActionPerformed
 
     private void mniInstrukturActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniInstrukturActionPerformed
@@ -518,7 +558,7 @@ public class MainForm extends javax.swing.JFrame {
         add.setVisible(true);
     }//GEN-LAST:event_mniDataNilaiSiswaActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void mniAbsensiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniAbsensiActionPerformed
         // TODO add your handling code here:
         FormAbsensi add = new FormAbsensi();
         desktop.add(add);
@@ -529,7 +569,7 @@ public class MainForm extends javax.swing.JFrame {
                 (size.height - addSize.height) / 2);
         add.setVisible(true);
 
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_mniAbsensiActionPerformed
 
     private void mniPemBulananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniPemBulananActionPerformed
         // TODO add your handling code here:
@@ -678,16 +718,20 @@ public class MainForm extends javax.swing.JFrame {
                             
     }//GEN-LAST:event_mniJadwalInstrukturActionPerformed
 
+    private void mniKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKeluarActionPerformed
+        // TODO add your handling code here:
+        desktop.removeAll();
+        desktop.repaint();
+        setMenubarEnabled(false, false);
+        panggilJendelaLogin();
+    }//GEN-LAST:event_mniKeluarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
@@ -697,7 +741,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
-    private javax.swing.JMenu mniAbsensi;
+    private javax.swing.JMenuItem mniAbsensi;
     private javax.swing.JMenuItem mniBukuTamu;
     private javax.swing.JMenuItem mniDaftarSiswa;
     private javax.swing.JMenuItem mniDataAbsensi;
@@ -716,8 +760,12 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem mniRegistrasi;
     private javax.swing.JMenuItem mniRuangan;
     private javax.swing.JMenuItem mniTransaksiPEmbayaran;
+    private javax.swing.JMenu mnuAdministrasi;
     private javax.swing.JMenu mnuAkses;
+    private javax.swing.JMenu mnuDataSiswa;
     private javax.swing.JMenu mnuKeuangan;
     private javax.swing.JMenu mnuKurikulum;
+    private javax.swing.JMenu mnuLaporan;
+    private javax.swing.JMenu mnuRekap;
     // End of variables declaration//GEN-END:variables
 }
