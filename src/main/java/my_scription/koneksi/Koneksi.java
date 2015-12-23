@@ -21,25 +21,23 @@ public class Koneksi implements Connect {
 
     @Override
     public void panggilDriver() {
-        try{
-			Class.forName(Connect.DRIVERSERVER);
-			System.out.println("Proses Pemanggilan Driver Sukses");
-		}catch(ClassNotFoundException ex){
-			JOptionPane.showMessageDialog(null, "DRIVER NOT FOUND",
-				"WARNING!",JOptionPane.WARNING_MESSAGE);
-		}
+        try {
+            Class.forName(Connect.DRIVERSERVER);
+            System.out.println("Proses Pemanggilan Driver Sukses");
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "DRIVER NOT FOUND",
+                    "WARNING!", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     @Override
     public Connection HubungkanDBbtpn() {
-        try{
-			konek = (Connection) DriverManager.getConnection(Connect.URL,Connect.username,Connect.PASS);
-		}catch(SQLException ex){
-			JOptionPane.showMessageDialog(null, "Connection failure"
-				,"WARNING!",JOptionPane.WARNING_MESSAGE);
-		}
-		return konek;
+        try {
+            konek = (Connection) DriverManager.getConnection(Connect.URL, Connect.username, Connect.PASS);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Connection failure", "WARNING!", JOptionPane.WARNING_MESSAGE);
+        }
+        return konek;
     }
-
 
 }

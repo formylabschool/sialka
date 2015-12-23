@@ -17,7 +17,7 @@ public class HIbernateUtil {
     /*klo mau tambahin entity tambahin disini pke metode addAnnotadedClass(NamaEntity.class)*/
     public static SessionFactory config() {
         return new Configuration().
-               // addAnnotatedClass(ModelOfCourses.class).
+                // addAnnotatedClass(ModelOfCourses.class).
                 addAnnotatedClass(Ruangan.class).
                 addAnnotatedClass(Instruktur.class).
                 addAnnotatedClass(BukuTamu.class).
@@ -28,7 +28,7 @@ public class HIbernateUtil {
                 addAnnotatedClass(Pembayaran.class).
                 addAnnotatedClass(Kelas.class).
                 addAnnotatedClass(Jadwal.class).
-              //  addAnnotatedClass(Login.class).
+                //  addAnnotatedClass(Login.class).
                 addAnnotatedClass(Keterangan.class).
                 addAnnotatedClass(Nilai.class).
                 /*addAnnotatedClass(KelasLain.class).*/
@@ -37,13 +37,10 @@ public class HIbernateUtil {
                 setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/sia_lpkkanira").
                 setProperty("hibernate.connection.username", "root").
                 /*ubah passwordnya*/
-                        setProperty("hibernate.connection.password", "root").
-                setProperty("hibernate.hbm2ddl.auto","update").
+                setProperty("hibernate.connection.password", "admin").
+                setProperty("hibernate.hbm2ddl.auto", "update").
                 setProperty("hibernate.show_sql", "true").
                 buildSessionFactory();
     }
-    
-    
-   
 
 }

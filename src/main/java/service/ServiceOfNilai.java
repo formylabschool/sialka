@@ -5,10 +5,13 @@
  */
 package service;
 
+import configuration.HIbernateUtil;
 import java.util.List;
 import model.Jurusan;
+import model.Keterangan;
 import model.Materi;
 import model.Nilai;
+import model.Siswa;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -54,6 +57,39 @@ public class ServiceOfNilai {
         aSession.getTransaction().commit();
         aSession.close();
     }
-    
-    
+
+    public List<Keterangan> findKeteranganByJurusan(Jurusan jurusan) throws Exception {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        Criteria aCriteria = session.createCriteria(Keterangan.class);
+        aCriteria.createAlias("materi", "m");
+        aCriteria.createAlias("m.jurusan", "j");
+        aCriteria.add(Restrictions.eq("j.id", jurusan.getId()));
+
+        return aCriteria.list();
+    }
+
+    public void setNilai(Jurusan jurusan, Siswa siswa) throws Exception {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        List<Keterangan> keterangans = findKeteranganByJurusan(jurusan);
+        for (Keterangan ket : keterangans) {
+            Nilai n = new Nilai();
+            n.setKeterangan(ket);
+            n.setSkor(0);
+            n.setSiswa(siswa);
+            StringBuilder sb = new StringBuilder();
+            sb.append(n.getKeterangan().getMateri().getNama());
+            sb.append(n.getSkor());
+            System.out.println(sb.toString());
+
+            session.saveOrUpdate(n);
+
+        }
+        session.getTransaction().commit();
+
+    }
+
 }

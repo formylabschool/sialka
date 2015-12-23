@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Instruktur;
 import model.Jurusan;
 import model.Kelas;
 import model.Siswa;
@@ -22,14 +21,13 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 import org.hibernate.SessionFactory;
 import service.ServiceOfKelas;
+import service.ServiceOfNilai;
 import service.ServiceOfSiswa;
 import service.ValidateEmail;
 
@@ -73,19 +71,20 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
 
     }
 
-    
-     private void printKwitansi(String genID,Siswa siswa)throws JRException{
-          HashMap<String, Object>noSiswa=new HashMap<String, Object>();
-          Kelas kelas = listKelas.get(cbkKelas.getSelectedIndex());
-          noSiswa.put("no_reg", genID);
-          noSiswa.put("namaSiswa", siswa.getNama());
-          noSiswa.put("namaPelatihan",kelas.getNamaKelas());
-          noSiswa.put("harga", jTextField3.getText());
-          JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/kwitansi_pendaftaran.jrxml"));
-          JasperReport report = JasperCompileManager.compileReport(design);
-          JasperPrint print = JasperFillManager.fillReport(report, noSiswa, new JREmptyDataSource());
-          JasperViewer view = new JasperViewer(print,false);
-          view.setVisible(true);}
+    private void printKwitansi(String genID, Siswa siswa) throws JRException {
+        HashMap<String, Object> noSiswa = new HashMap<String, Object>();
+        Kelas kelas = listKelas.get(cbkKelas.getSelectedIndex());
+        noSiswa.put("no_reg", genID);
+        noSiswa.put("namaSiswa", siswa.getNama());
+        noSiswa.put("namaPelatihan", kelas.getNamaKelas());
+        noSiswa.put("harga", jTextField3.getText());
+        JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/kwitansi_pendaftaran.jrxml"));
+        JasperReport report = JasperCompileManager.compileReport(design);
+        JasperPrint print = JasperFillManager.fillReport(report, noSiswa, new JREmptyDataSource());
+        JasperViewer view = new JasperViewer(print, false);
+        view.setVisible(true);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -471,36 +470,43 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbkGelActionPerformed
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
-        // TODO add your handling code here:
-        Siswa aSiswa = new Siswa();
+        try {
+            // TODO add your handling code here:
+            Siswa aSiswa = new Siswa();
 //        aSiswa.setJurusan(listJurusan.get(cbkJurusan.getSelectedIndex()));
 //        aSiswa.setHargaTotal(aSiswa.getJurusan().getHarga());
-        aSiswa.setKelas(listKelas.get(cbkKelas.getSelectedIndex()));
-        aSiswa.setHargaTotal(aSiswa.getKelas().getJurusan().getHarga());
-        aSiswa.setSisa(aSiswa.getHargaTotal());
-        aSiswa.setTanggalPendaftaran(dateChooser.getDate());
-        aSiswa.setNama(txtNama.getText());
-        aSiswa.setTempatLahir(txtTempatLahir.getText());
-        aSiswa.setTanggalLahir(dateLahir.getDate());
-        aSiswa.setJenisKelamin((String) cbkJK.getSelectedItem());
-        aSiswa.setPendidikanTerakhir((String) cbkPT.getSelectedItem());
-        aSiswa.setKontak(txtKontak.getText());
-        aSiswa.setEmail(txtEmail.getText());
-        aSiswa.setAlamat(txaAlamat.getText());
-        aSiswa.setTahunAjaran(txtAjaran.getText());
-        SessionFactory aSessionFactory = HIbernateUtil.config();
-        ServiceOfSiswa serviceOfSiswa = new ServiceOfSiswa(aSessionFactory);
-        serviceOfSiswa.doSave(aSiswa);
-        aSiswa.setKodeSiswa(generateKode(aSiswa.getId()));
-        
-        serviceOfSiswa = new ServiceOfSiswa(aSessionFactory);
-        serviceOfSiswa.doUpdate(aSiswa);
-        try {
-            printKwitansi(aSiswa.getKodeSiswa(), aSiswa);
-        } catch (JRException ex) {
+            aSiswa.setKelas(listKelas.get(cbkKelas.getSelectedIndex()));
+            aSiswa.setHargaTotal(aSiswa.getKelas().getJurusan().getHarga());
+            aSiswa.setSisa(aSiswa.getHargaTotal());
+            aSiswa.setTanggalPendaftaran(dateChooser.getDate());
+            aSiswa.setNama(txtNama.getText());
+            aSiswa.setTempatLahir(txtTempatLahir.getText());
+            aSiswa.setTanggalLahir(dateLahir.getDate());
+            aSiswa.setJenisKelamin((String) cbkJK.getSelectedItem());
+            aSiswa.setPendidikanTerakhir((String) cbkPT.getSelectedItem());
+            aSiswa.setKontak(txtKontak.getText());
+            aSiswa.setEmail(txtEmail.getText());
+            aSiswa.setAlamat(txaAlamat.getText());
+            aSiswa.setTahunAjaran(txtAjaran.getText());
+            SessionFactory aSessionFactory = HIbernateUtil.config();
+            ServiceOfSiswa serviceOfSiswa = new ServiceOfSiswa(aSessionFactory);
+            ServiceOfNilai serviceNilai = new ServiceOfNilai(aSessionFactory);
+            serviceOfSiswa.doSave(aSiswa);
+            aSiswa.setKodeSiswa(generateKode(aSiswa.getId()));
+
+            serviceOfSiswa = new ServiceOfSiswa(aSessionFactory);
+            serviceOfSiswa.doUpdate(aSiswa);
+            serviceNilai.setNilai(aSiswa.getKelas().getJurusan(), aSiswa);
+            try {
+                printKwitansi(aSiswa.getKodeSiswa(), aSiswa);
+            } catch (JRException ex) {
+                Logger.getLogger(FormPendaftaran.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            dispose();
+
+        } catch (Exception ex) {
             Logger.getLogger(FormPendaftaran.class.getName()).log(Level.SEVERE, null, ex);
         }
-        dispose();
 
 
     }//GEN-LAST:event_btnSimpanActionPerformed
@@ -530,10 +536,10 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
 
     private void txtEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyPressed
         // TODO add your handling code here:
-         boolean status = ValidateEmail.validateEmail(txtEmail.getText());
-        if(status){
+        boolean status = ValidateEmail.validateEmail(txtEmail.getText());
+        if (status) {
             txtValidate.setText("emial valid");
-        }else{
+        } else {
             txtValidate.setText("not valid email");
         }
     }//GEN-LAST:event_txtEmailKeyPressed
