@@ -22,7 +22,7 @@ public interface Connect {
 	String HOST ="localhost";
 	String PORT = "3306";
 	String DB = "sia_lpkkanira";//inisisalisasi schema pada MySQL
-	String username = "root";//inisialisasi username pada MySQl
+	String username = "admin";//inisialisasi username pada MySQl
 
     /**
      *
