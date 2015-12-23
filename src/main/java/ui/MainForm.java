@@ -10,7 +10,7 @@ import ui.datamaster.FormBukuTamu;
 import ui.datamaster.FormPenjadwalan;
 import ui.datamaster.FormDataAbsensi;
 import ui.datamaster.FormDataPembayaran;
-import ui.datamaster.FormPenilaian;
+//import ui.datamaster.FormPenilaian;
 import ui.datamaster.FormDataKelas;
 import ui.datamaster.FormKelas;
 import ui.datamaster.FormDataKeuanganSiswa;
@@ -548,14 +548,14 @@ GuiLogin login;
 
     private void mniDataNilaiSiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDataNilaiSiswaActionPerformed
         // TODO add your handling code here:
-        FormPenilaian add = new FormPenilaian();
-        desktop.add(add);
-
-        Dimension size = desktop.getSize();
-        Dimension addSize = add.getSize();
-        add.setLocation((size.width - addSize.width) / 2,
-                (size.height - addSize.height) / 2);
-        add.setVisible(true);
+//        FormPenilaian add = new FormPenilaian();
+//        desktop.add(add);
+//
+//        Dimension size = desktop.getSize();
+//        Dimension addSize = add.getSize();
+//        add.setLocation((size.width - addSize.width) / 2,
+//                (size.height - addSize.height) / 2);
+//        add.setVisible(true);
     }//GEN-LAST:event_mniDataNilaiSiswaActionPerformed
 
     private void mniAbsensiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniAbsensiActionPerformed

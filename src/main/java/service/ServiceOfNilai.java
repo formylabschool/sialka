@@ -20,27 +20,40 @@ import org.hibernate.criterion.Restrictions;
  */
 public class ServiceOfNilai {
 
-	private SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+//	public void setSessionFactory(SessionFactory sessionFactory) {
+//		this.sessionFactory = sessionFactory;
+//	}
+    public ServiceOfNilai(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
-	public List<Materi> findMateriByJurusan(Jurusan jurusan) throws Exception {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+    public List<Materi> findMateriByJurusan(Jurusan jurusan) throws Exception {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
 
-		Criteria aCriteria = session.createCriteria(Materi.class);
-		aCriteria.createAlias("jurusan", "j");
-		aCriteria.add(Restrictions.eq("j.id", jurusan.getId()));
-		return aCriteria.list();
-	}
-        
-        public List<Nilai> findAll(){
+        Criteria aCriteria = session.createCriteria(Materi.class);
+        aCriteria.createAlias("jurusan", "j");
+        aCriteria.add(Restrictions.eq("j.id", jurusan.getId()));
+        return aCriteria.list();
+    }
+
+    public List<Nilai> findAll() {
         Session aSession = sessionFactory.openSession();
         aSession.beginTransaction();
-        
+
         Criteria aCriteria = aSession.createCriteria(Nilai.class);
         return aCriteria.list();
-        }
+    }
+
+    public void doUpdate(Nilai aNilai) {
+        Session aSession = sessionFactory.openSession();
+        aSession.beginTransaction();
+        aSession.saveOrUpdate(aNilai);
+        aSession.getTransaction().commit();
+        aSession.close();
+    }
+    
+    
 }

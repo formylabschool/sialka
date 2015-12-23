@@ -220,7 +220,7 @@ public class FormDataKelas extends javax.swing.JInternalFrame {
                         //}
                     }
                 } catch (Exception ex) {
-                    Logger.getLogger(FormPenilaian.class.getName()).log(Level.SEVERE, null, ex);
+                  //  Logger.getLogger(FormPenilaian.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
             } else {

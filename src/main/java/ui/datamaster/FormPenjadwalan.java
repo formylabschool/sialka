@@ -440,8 +440,8 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
             cbkMateri.removeAllItems();
 		if (cbkKelas.getSelectedIndex() >= 0) {
 			Kelas kelas = listKelas.get(cbkKelas.getSelectedIndex());
-			ServiceOfNilai nilai = new ServiceOfNilai();
-			nilai.setSessionFactory(HIbernateUtil.config());
+			ServiceOfNilai nilai = new ServiceOfNilai(HIbernateUtil.config());
+			//nilai.setSessionFactory(HIbernateUtil.config());
 			try {
                            
 				materi = nilai.findMateriByJurusan(kelas.getJurusan());
