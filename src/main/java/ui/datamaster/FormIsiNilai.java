@@ -19,6 +19,7 @@ import model.Nilai;
 import model.Siswa;
 import service.ServiceOfKeterangan;
 import service.ServiceOfMateri;
+import service.ServiceOfNilai;
 import service.ServiceOfSiswa;
 import ui.dataadd.FormUpdateNilai;
 
@@ -30,35 +31,36 @@ public class FormIsiNilai extends javax.swing.JInternalFrame {
 
     private List<Siswa> listSiswa;
     private Siswa siswa;
-    private ServiceOfKeterangan service;
+    private ServiceOfNilai service;
     private ControllersOfKeterangan control;
     private List<Materi> listMateri;
-    private final List<Nilai> listNilai = new ArrayList<>();
+    private List<Nilai> listNilai = new ArrayList<>();
 
     /**
      * Creates new form FormIsiNilai
      */
     public FormIsiNilai() {
         initComponents();
-        this.service = new ServiceOfKeterangan(HIbernateUtil.config());
+        this.service = new ServiceOfNilai(HIbernateUtil.config());
         this.control = new ControllersOfKeterangan();
 
         this.control.inijectTable((DefaultTableModel) tableKeterangan.getModel());
         this.control.initTable();
-        //initComboSiswa();
+        initComboSiswa();
     }
 
-//    public void initComboSiswa() {
-//		this.listSiswa = new ServiceOfSiswa(HIbernateUtil.config()).findAll();
-//
-//		cbkPeserta.removeAllItems();
-//		for (Siswa aSiswa : listSiswa) {
-//
-//			cbkPeserta.addItem(aSiswa.getKodeSiswa());
-//
-//		}
-//		cbkPeserta.setSelectedIndex(-1);
-//	}
+    public void initComboSiswa() {
+        this.listSiswa = new ServiceOfSiswa(HIbernateUtil.config()).findAll();
+
+        cbkPeserta.removeAllItems();
+        for (Siswa aSiswa : listSiswa) {
+
+            cbkPeserta.addItem(aSiswa.getKodeSiswa());
+
+        }
+        cbkPeserta.setSelectedIndex(-1);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,18 +73,15 @@ public class FormIsiNilai extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         txtNama = new javax.swing.JTextField();
-        cbkMateri = new javax.swing.JComboBox();
-        txtNo = new javax.swing.JTextField();
-        btnCariPeserta = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        cbkPeserta = new javax.swing.JComboBox();
+        btnKeluar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableKeterangan = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -94,41 +93,18 @@ public class FormIsiNilai extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel2.setText("Nama");
 
-        jLabel3.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jLabel3.setText("Nama Materi");
-
-        cbkMateri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbkMateri.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbkMateriActionPerformed(evt);
-            }
-        });
-
-        btnCariPeserta.setText("Cari Peserta");
-        btnCariPeserta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCariPesertaActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Cari Sub Materi");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("jButton3");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
+        btnUpdate.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         btnUpdate.setText("Perbaharui");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
+            }
+        });
+
+        cbkPeserta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbkPeserta.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbkPesertaItemStateChanged(evt);
             }
         });
 
@@ -143,54 +119,35 @@ public class FormIsiNilai extends javax.swing.JInternalFrame {
                         .addComponent(jLabel1)
                         .addGap(26, 26, 26)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtNo, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnCariPeserta))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnUpdate))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(cbkMateri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)))
+                            .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbkPeserta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnUpdate)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCariPeserta))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(btnUpdate)))
+                    .addComponent(cbkPeserta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbkMateri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
+                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdate))
+                .addGap(14, 14, 14))
         );
 
-        jButton1.setText("Simpan");
+        btnKeluar.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        btnKeluar.setText("Keluar");
+        btnKeluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKeluarActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -218,10 +175,34 @@ public class FormIsiNilai extends javax.swing.JInternalFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(11, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jPanel3.setBackground(new java.awt.Color(0, 153, 204));
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel3.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("||Isi Nilai||");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel3)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -235,82 +216,25 @@ public class FormIsiNilai extends javax.swing.JInternalFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(btnKeluar)))
                 .addContainerGap())
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1))
+                .addComponent(btnKeluar)
+                .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cbkMateriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbkMateriActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbkMateriActionPerformed
-
-    private void btnCariPesertaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariPesertaActionPerformed
-        // TODO add your handling code here:
-        ServiceOfSiswa aSiswa = new ServiceOfSiswa(HIbernateUtil.config());
-        siswa = aSiswa.findSiswa(txtNo.getText());
-        cbkMateri.removeAllItems();
-        if (siswa == null) {
-            JOptionPane.showMessageDialog(null, "Siswa Tidak di temukan");
-        } else {
-            ServiceOfMateri materi = new ServiceOfMateri(HIbernateUtil.config());
-            try {
-                this.listMateri = materi.findMateriBySiswa(siswa);
-                for (Materi aMateri : listMateri) {
-                    cbkMateri.addItem(aMateri.getNama());
-                }
-            } catch (Exception ex) {
-                Logger.getLogger(FormIsiNilai.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            txtNama.setText(siswa.getNama());
-        }
-
-    }//GEN-LAST:event_btnCariPesertaActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        List<Keterangan> listKeterangan;
-        try {
-            listNilai.clear();
-            control.initTable();
-            listKeterangan = service.findKeteranganByMateri(listMateri.get(cbkMateri.getSelectedIndex()));
-            System.out.println("jumlah data keternagan " + listKeterangan.size());
-            for (Keterangan keterangan : listKeterangan) {
-                Nilai aNilai = new Nilai();
-                aNilai.setSiswa(siswa);
-                aNilai.setKeterangan(keterangan);
-                aNilai.setSkor(0);
-                listNilai.add(aNilai);
-            }
-            loadDataNilai();
-        } catch (Exception ex) {
-            Logger.getLogger(FormIsiNilai.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        
-        int row = tableKeterangan.getSelectedRow();
-        if (row >= 0) {
-            Nilai nilai = listNilai.get(row);
-            nilai.setSkor(6);
-            listNilai.set(row, nilai);
-            control.initTable();
-            loadDataNilai();
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
@@ -320,41 +244,79 @@ public class FormIsiNilai extends javax.swing.JInternalFrame {
         System.out.println(selectedRow + " selected row ");
         if (selectedRow >= 0) {
             Nilai model = listNilai.get(selectedRow);
-            System.out.println("tampil keterangan" +model.getKeterangan().getMateri().getNama());
-            FormUpdateNilai add = new FormUpdateNilai(null, true, this, model);
-        
+            System.out.println("tampil keterangan" + model.getKeterangan().getMateri().getNama());
+            FormUpdateNilai add = new FormUpdateNilai(null, true, this, model, siswa);
+
             add.setVisible(true);
-            
+
         } else {
 
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
-    public void loadDataNilai() {
-        
-        for (Nilai aNilai : listNilai) {
-            Object[] value = {aNilai.getKeterangan().getMateri().getNama(),
-                aNilai.getKeterangan().getNamaKeterangan(), aNilai.getSkor()};
-            control.getDefaultTableModel().addRow(value);
+    private void cbkPesertaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbkPesertaItemStateChanged
+        // TODO add your handling code here:
+        System.out.println("aksi");
+        control.initTable();
+        try {
+            if (cbkPeserta.getSelectedIndex() >= 0) {
+                siswa = listSiswa.get(cbkPeserta.getSelectedIndex());
+                txtNama.setText(siswa.getNama());
+
+                service = new ServiceOfNilai(HIbernateUtil.config());
+                updateTableView(siswa);
+            } else {
+                txtNama.setText("");
+            }
+        } catch (NullPointerException npe) {
+            npe.printStackTrace();
+        }
+    }//GEN-LAST:event_cbkPesertaItemStateChanged
+
+    private void btnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKeluarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnKeluarActionPerformed
+
+    public void updateTableView(Siswa siswa) {
+        control.initTable();
+
+        try {
+            listNilai.clear();
+
+            for (Nilai n : service.findNilaiBySiswa(siswa)) {
+                listNilai.add(n);
+            }
+            for (Nilai n : listNilai) {
+                System.out.println(n.getSkor() + " nilai diperbaharusi");
+            }
+            loadDataNilai();
+        } catch (NullPointerException npe) {
+        } catch (Exception ex) {
+            Logger.getLogger(FormIsiNilai.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
+    public void loadDataNilai() {
+        for (Nilai aNilai : listNilai) {
+            Object[] value = {aNilai.getKeterangan().getMateri().getNama(), aNilai.getKeterangan().getNamaKeterangan(), aNilai.getSkor()};
+            control.getDefaultTableModel().addRow(value);
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCariPeserta;
+    private javax.swing.JButton btnKeluar;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox cbkMateri;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox cbkPeserta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableKeterangan;
     private javax.swing.JTextField txtNama;
-    private javax.swing.JTextField txtNo;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,6 +10,7 @@ import controllers.ControllersOfNilai;
 import javax.swing.JOptionPane;
 import model.Materi;
 import model.Nilai;
+import model.Siswa;
 import org.hibernate.SessionFactory;
 import service.ServiceOfNilai;
 import ui.datamaster.FormIsiNilai;
@@ -25,6 +26,8 @@ public class FormUpdateNilai extends javax.swing.JDialog {
     private Boolean update;
     private Nilai model;
     private SessionFactory aSessionFactory;
+    private FormIsiNilai frmUtama;
+    private Siswa siswa;
 
     /**
      * Creates new form FormUpdateNilai
@@ -40,9 +43,11 @@ public class FormUpdateNilai extends javax.swing.JDialog {
         this.setAlwaysOnTop(true);
     }
 
-    public FormUpdateNilai(java.awt.Frame object, boolean b, FormIsiNilai aThis, Nilai model) {
+    public FormUpdateNilai(java.awt.Frame object, boolean b, FormIsiNilai aThis, Nilai model,Siswa siswa) {
         super(object, b);
         initComponents();
+        this.siswa = siswa;
+        this.frmUtama = aThis;
         this.model = model;
         setUpdate(true);
         this.menu = aThis;
@@ -212,12 +217,14 @@ public class FormUpdateNilai extends javax.swing.JDialog {
                 ServiceOfNilai service = new ServiceOfNilai(HIbernateUtil.config());
                 
                 model.setSkor(Integer.valueOf(txtSkor.getText()));
-                StringBuilder sb =new StringBuilder();
-                sb.append("KODE :").append(model.getId());
-                sb.append("\nSKORE :").append(model.getSkor());
-                System.out.println(sb.toString());
+                
+//                StringBuilder sb =new StringBuilder();
+//                sb.append("KODE :").append(model.getId());
+//                sb.append("\nSKORE :").append(model.getSkor());
+//                System.out.println(sb.toString());
                 service.doUpdate(model);
-                this.menu.loadDataNilai();
+                frmUtama.updateTableView(siswa);
+              //  this.menu.loadDataNilai();
                 
                 dispose();
             } catch (Exception e) {

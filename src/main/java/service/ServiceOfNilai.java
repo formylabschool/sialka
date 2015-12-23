@@ -53,7 +53,7 @@ public class ServiceOfNilai {
     public void doUpdate(Nilai aNilai) {
         Session aSession = sessionFactory.openSession();
         aSession.beginTransaction();
-        aSession.saveOrUpdate(aNilai);
+        aSession.update(aNilai);
         aSession.getTransaction().commit();
         aSession.close();
     }
@@ -67,6 +67,17 @@ public class ServiceOfNilai {
         aCriteria.createAlias("m.jurusan", "j");
         aCriteria.add(Restrictions.eq("j.id", jurusan.getId()));
 
+        return aCriteria.list();
+    }
+    
+    public List<Nilai> findNilaiBySiswa(Siswa siswa)throws Exception{
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        
+        Criteria aCriteria = session.createCriteria(Nilai.class);
+       
+        aCriteria.createAlias("siswa", "s");
+        aCriteria.add(Restrictions.eq("s.kodeSiswa", siswa.getKodeSiswa()));
         return aCriteria.list();
     }
 

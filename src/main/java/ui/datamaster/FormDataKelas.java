@@ -102,6 +102,11 @@ public class FormDataKelas extends javax.swing.JInternalFrame {
                 cbkKelasItemStateChanged(evt);
             }
         });
+        cbkKelas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbkKelasActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel2.setText("Nama Kelas");
@@ -230,6 +235,10 @@ public class FormDataKelas extends javax.swing.JInternalFrame {
             npe.printStackTrace();
         }
     }//GEN-LAST:event_cbkKelasItemStateChanged
+
+    private void cbkKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbkKelasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbkKelasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -7,8 +7,6 @@ package main;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import javax.swing.SwingUtilities;
-import ui.LoginForm;
 import ui.MainForm;
 
 /**
