@@ -320,6 +320,7 @@ public class FormIsiNilai extends javax.swing.JInternalFrame {
         System.out.println(selectedRow + " selected row ");
         if (selectedRow >= 0) {
             Nilai model = listNilai.get(selectedRow);
+            System.out.println("tampil keterangan" +model.getKeterangan().getMateri().getNama());
             FormUpdateNilai add = new FormUpdateNilai(null, true, this, model);
         
             add.setVisible(true);
@@ -329,7 +330,7 @@ public class FormIsiNilai extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
-    private void loadDataNilai() {
+    public void loadDataNilai() {
         
         for (Nilai aNilai : listNilai) {
             Object[] value = {aNilai.getKeterangan().getMateri().getNama(),
