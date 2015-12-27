@@ -133,7 +133,7 @@ public class RekapJadwalInstruktur extends javax.swing.JInternalFrame {
 
         jLabel5.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("||Jadwal||");
+        jLabel5.setText("||Jadwal Per Instruktur||");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

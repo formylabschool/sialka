@@ -94,7 +94,7 @@ public class GuiLogin extends javax.swing.JDialog {
         });
 
         tblLogin.setFont(new java.awt.Font("Lucida Grande", 0, 11)); // NOI18N
-        tblLogin.setText("LOGIN");
+        tblLogin.setText("MASUK");
         tblLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tblLoginActionPerformed(evt);
