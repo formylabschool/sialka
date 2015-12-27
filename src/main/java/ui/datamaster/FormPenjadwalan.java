@@ -45,6 +45,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
 		initComboRuangan();
 		initComboNII();
                 cbkMateri.removeAllItems();
+                
 	}
 
 	public void initComboKelas() {
