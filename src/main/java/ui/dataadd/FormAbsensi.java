@@ -89,6 +89,11 @@ private Siswa siswa;
         jLabel2.setText("No. Induk Peserta");
 
         txtNIP.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtNIP.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtNIPCaretUpdate(evt);
+            }
+        });
         txtNIP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNIPActionPerformed(evt);
@@ -212,7 +217,7 @@ private Siswa siswa;
 
     private void txtNIPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNIPKeyPressed
         // TODO add your handling code here:
-       
+       btnCari.setEnabled(txtNIP.getText().trim().length()>5);
         
     }//GEN-LAST:event_txtNIPKeyPressed
 
@@ -225,6 +230,11 @@ private Siswa siswa;
         // TODO add your handling code here:
         
     }//GEN-LAST:event_txtNIPPropertyChange
+
+    private void txtNIPCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNIPCaretUpdate
+        // TODO add your handling code here:
+      
+    }//GEN-LAST:event_txtNIPCaretUpdate
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

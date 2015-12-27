@@ -7,8 +7,6 @@ package main;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import javax.swing.SwingUtilities;
-import ui.LoginForm;
 import ui.MainForm;
 
 /**
@@ -17,11 +15,11 @@ import ui.MainForm;
  */
 public class MainAPP {
     private Dimension layarUtama;
-//    private LoginForm loginForm;
+
     private MainForm utama;
 	
 	public MainAPP(){
-//             loginForm = new LoginForm(utama, true);
+
 		MainForm utama =new MainForm();
 		utama.setSize(getLayarUtama().width,getLayarUtama().height-30);
 		utama.setVisible(true);
@@ -33,18 +31,11 @@ public class MainAPP {
 		return layarUtama;
 	}
         
-//        public void startMainAPP(){
-//            loginForm.setLocationRelativeTo(utama);
-//            utama.setVisible(true);
-//            loginForm.setVisible(true);
-//        }
+
     public static void main(String[]args){
-//        SwingUtilities.invokeLater(new Runnable(){
-//        public void run(){
+
       MainAPP mainAPP = new MainAPP();
-//      mainAPP.startMainAPP();
-//        }
-//        });
+
     }
     
 }

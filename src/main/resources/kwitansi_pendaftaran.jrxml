@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-16T05:31:57 -->
+<!-- 2015-12-26T13:52:58 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="kwitansi_pendaftaran" pageWidth="595" pageHeight="340" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b6aa98c9-ccad-483e-aed2-cf393ec9cf03">
 	<property name="com.jaspersoft.studio.unit." value="cm"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<import value="model.Siswa"/>
 	<parameter name="no_reg" class="java.lang.String"/>
 	<parameter name="namaSiswa" class="java.lang.String">
@@ -18,7 +17,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="66" splitType="Stretch">
+		<band height="67" splitType="Stretch">
 			<staticText>
 				<reportElement x="420" y="0" width="141" height="24" uuid="5ad07981-6a0e-49ed-9172-16320b7d4ef5"/>
 				<textElement>
@@ -40,6 +39,9 @@
 				</textElement>
 				<text><![CDATA[Tlp. 022-85964311]]></text>
 			</staticText>
+			<line>
+				<reportElement x="-20" y="66" width="595" height="1" uuid="7f98a391-33c3-4536-a612-49fefa22d547"/>
+			</line>
 		</band>
 	</title>
 	<pageHeader>

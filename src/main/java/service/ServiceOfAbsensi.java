@@ -7,9 +7,11 @@ package service;
 
 import java.util.List;
 import model.Absensi;
+import model.Siswa;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -37,5 +39,15 @@ public class ServiceOfAbsensi {
         Criteria aCriteria = aSession.createCriteria(Absensi.class);
         return aCriteria.list();
     }
+     
+     public List<Absensi>findAbsensiBySiswa(Siswa siswa){
+         Session aSession = aSessionFactory.openSession();
+         aSession.beginTransaction();
+         
+         Criteria aCriteria = aSession.createCriteria(Absensi.class);
+         aCriteria.createAlias("siswa", "s");
+         aCriteria.add(Restrictions.eq("s.kodeSiswa", siswa.getKodeSiswa()));
+         return aCriteria.list();
+     }
     
 }

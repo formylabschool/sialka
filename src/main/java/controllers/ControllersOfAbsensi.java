@@ -19,6 +19,9 @@ import service.ServiceOfAbsensi;
 public class ControllersOfAbsensi implements JavaControllers{
      private DefaultTableModel defaultTableModel;
     
+      public DefaultTableModel getDefaultTableModel() {
+        return defaultTableModel;
+    }
 
     public void initTable() {
         this.defaultTableModel.getDataVector().removeAllElements();

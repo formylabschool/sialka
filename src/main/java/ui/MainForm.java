@@ -25,6 +25,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JInternalFrame;
 import ui.dataadd.FormSubMateri;
+import ui.datamaster.FormDataAbsensiSiswa;
 import ui.datamaster.FormIsiNilai;
 import ui.datamaster.FormLaporan;
 import ui.rekapitulation.RekapJadwal;
@@ -35,16 +36,18 @@ import ui.rekapitulation.RekapJadwalInstruktur;
  * @author muhamadhanifmuhsin
  */
 public class MainForm extends javax.swing.JFrame {
-private boolean pemakaiAktif;
-GuiLogin login;
+
+    private boolean pemakaiAktif;
+    GuiLogin login;
+
     /**
      * Creates new form MainForm
      */
     public MainForm() {
         initComponents();
         panggilJendelaLogin();
-       // setMenubarEnabled(login.opLogin.isLogin(), login.opLogin.isAdmin());
-        
+        setMenubarEnabled(login.opLogin.isLogin(), login.opLogin.isAdmin());
+
     }
 
     /**
@@ -77,19 +80,19 @@ GuiLogin login;
         mniDataNilaiSiswa = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
-        mniIsiNilai = new javax.swing.JMenuItem();
         mnuKeuangan = new javax.swing.JMenu();
         mniPemBulanan = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenuItem6 = new javax.swing.JMenuItem();
         mnuKurikulum = new javax.swing.JMenu();
-        mniInstruktur = new javax.swing.JMenuItem();
-        mniMateri = new javax.swing.JMenuItem();
-        mniRuangan = new javax.swing.JMenuItem();
         mniJurusan = new javax.swing.JMenuItem();
         mniKelas = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        mniRuangan = new javax.swing.JMenuItem();
+        mniInstruktur = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         mnuRekap = new javax.swing.JMenu();
         mniJadwal = new javax.swing.JMenuItem();
         mniJadwalInstruktur = new javax.swing.JMenuItem();
@@ -250,15 +253,6 @@ GuiLogin login;
         });
         mnuDataSiswa.add(jMenuItem9);
 
-        mniIsiNilai.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
-        mniIsiNilai.setText("Isi Nilai Siswa");
-        mniIsiNilai.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mniIsiNilaiActionPerformed(evt);
-            }
-        });
-        mnuDataSiswa.add(mniIsiNilai);
-
         jMenuBar1.add(mnuDataSiswa);
 
         mnuKeuangan.setText("Keuangan");
@@ -288,33 +282,6 @@ GuiLogin login;
         mnuKurikulum.setText("Kurikulum");
         mnuKurikulum.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
 
-        mniInstruktur.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
-        mniInstruktur.setText("Instruktur");
-        mniInstruktur.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mniInstrukturActionPerformed(evt);
-            }
-        });
-        mnuKurikulum.add(mniInstruktur);
-
-        mniMateri.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
-        mniMateri.setText("Materi");
-        mniMateri.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mniMateriActionPerformed(evt);
-            }
-        });
-        mnuKurikulum.add(mniMateri);
-
-        mniRuangan.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
-        mniRuangan.setText("Ruangan");
-        mniRuangan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mniRuanganActionPerformed(evt);
-            }
-        });
-        mnuKurikulum.add(mniRuangan);
-
         mniJurusan.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
         mniJurusan.setText("Jurusan");
         mniJurusan.addActionListener(new java.awt.event.ActionListener() {
@@ -333,6 +300,47 @@ GuiLogin login;
         });
         mnuKurikulum.add(mniKelas);
 
+        jMenu1.setText("Pelajaran");
+        jMenu1.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+
+        jMenuItem1.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        jMenuItem1.setText("Materi");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem3.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        jMenuItem3.setText("Sub Materi");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
+
+        mnuKurikulum.add(jMenu1);
+
+        mniRuangan.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        mniRuangan.setText("Ruangan");
+        mniRuangan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniRuanganActionPerformed(evt);
+            }
+        });
+        mnuKurikulum.add(mniRuangan);
+
+        mniInstruktur.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        mniInstruktur.setText("Instruktur");
+        mniInstruktur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniInstrukturActionPerformed(evt);
+            }
+        });
+        mnuKurikulum.add(mniInstruktur);
+
         jMenuItem8.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
         jMenuItem8.setText("Penjadwalan");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
@@ -342,22 +350,13 @@ GuiLogin login;
         });
         mnuKurikulum.add(jMenuItem8);
 
-        jMenuItem2.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
-        jMenuItem2.setText("Sub Materi");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        mnuKurikulum.add(jMenuItem2);
-
         jMenuBar1.add(mnuKurikulum);
 
         mnuRekap.setText("Rekapitulasi");
         mnuRekap.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
 
         mniJadwal.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
-        mniJadwal.setText("Jadwal");
+        mniJadwal.setText("Jadwal Keseluruhan");
         mniJadwal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mniJadwalActionPerformed(evt);
@@ -421,22 +420,22 @@ GuiLogin login;
         this.setContentPane(desktop);
 
     }
-    
-    public void panggilJendelaLogin(){
-        login = new GuiLogin(this,true);
+
+    public void panggilJendelaLogin() {
+        login = new GuiLogin(this, true);
         Dimension lebar = Toolkit.getDefaultToolkit().getScreenSize();
-        int l = (lebar.width - login.getSize().width)/2;
-        int t = (lebar.width - login.getSize().height)/2;
-        login.setLocation(l,t);
+        int l = (lebar.width - login.getSize().width) /2;
+        int t = (lebar.width - login.getSize().height) /4;
+        login.setLocation(l, t);
         login.setVisible(true);
     }
-    
-    public void setPemakaiAktif(boolean pemakaiAktif){
+
+    public void setPemakaiAktif(boolean pemakaiAktif) {
         this.mniKeluar.setEnabled(pemakaiAktif);
         this.pemakaiAktif = pemakaiAktif;
     }
-    
-    public void setMenubarEnabled(boolean mnu, boolean mni){
+
+    public void setMenubarEnabled(boolean mnu, boolean mni) {
         mnuKeuangan.setEnabled(mnu);
         mnuAdministrasi.setEnabled(mnu);
         mnuDataSiswa.setEnabled(mnu);
@@ -444,7 +443,7 @@ GuiLogin login;
         mnuKurikulum.setEnabled(mni);
         mnuRekap.setEnabled(mnu);
         mnuLaporan.setEnabled(mnu);
-        
+
         setPemakaiAktif(mnu);
     }
 
@@ -456,18 +455,6 @@ GuiLogin login;
         panggilJendelaLogin();
         setMenubarEnabled(login.opLogin.isLogin(), login.opLogin.isAdmin());
     }//GEN-LAST:event_mniMasukActionPerformed
-
-    private void mniInstrukturActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniInstrukturActionPerformed
-        // TODO add your handling code here:
-        FormInstruktur add = new FormInstruktur();
-        desktop.add(add);
-
-        Dimension size = desktop.getSize();
-        Dimension addSize = add.getSize();
-        add.setLocation((size.width - addSize.width) / 2,
-                (size.height - addSize.height) / 2);
-        add.setVisible(true);
-    }//GEN-LAST:event_mniInstrukturActionPerformed
 
     private void mniMatikanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniMatikanActionPerformed
         // TODO add your handling code here:
@@ -498,42 +485,6 @@ GuiLogin login;
         add.setVisible(true);
     }//GEN-LAST:event_mniRegistrasiActionPerformed
 
-    private void mniMateriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniMateriActionPerformed
-        // TODO add your handling code here:
-        FormMateri add = new FormMateri();
-        desktop.add(add);
-
-        Dimension size = desktop.getSize();
-        Dimension addSize = add.getSize();
-        add.setLocation((size.width - addSize.width) / 2,
-                (size.height - addSize.height) / 2);
-        add.setVisible(true);
-    }//GEN-LAST:event_mniMateriActionPerformed
-
-    private void mniRuanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniRuanganActionPerformed
-        // TODO add your handling code here:
-        FormRuangan add = new FormRuangan();
-        desktop.add(add);
-
-        Dimension size = desktop.getSize();
-        Dimension addSize = add.getSize();
-        add.setLocation((size.width - addSize.width) / 2,
-                (size.height - addSize.height) / 2);
-        add.setVisible(true);
-    }//GEN-LAST:event_mniRuanganActionPerformed
-
-    private void mniJurusanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniJurusanActionPerformed
-        // TODO add your handling code here:
-        FormJurusan add = new FormJurusan();
-        desktop.add(add);
-
-        Dimension size = desktop.getSize();
-        Dimension addSize = add.getSize();
-        add.setLocation((size.width - addSize.width) / 2,
-                (size.height - addSize.height) / 2);
-        add.setVisible(true);
-    }//GEN-LAST:event_mniJurusanActionPerformed
-
     private void mniDaftarSiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDaftarSiswaActionPerformed
         // TODO add your handling code here:
         FormSiswa add = new FormSiswa();
@@ -547,15 +498,14 @@ GuiLogin login;
     }//GEN-LAST:event_mniDaftarSiswaActionPerformed
 
     private void mniDataNilaiSiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDataNilaiSiswaActionPerformed
-        // TODO add your handling code here:
-//        FormPenilaian add = new FormPenilaian();
-//        desktop.add(add);
-//
-//        Dimension size = desktop.getSize();
-//        Dimension addSize = add.getSize();
-//        add.setLocation((size.width - addSize.width) / 2,
-//                (size.height - addSize.height) / 2);
-//        add.setVisible(true);
+        FormIsiNilai add = new FormIsiNilai();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+                (size.height - addSize.height) / 2);
+        add.setVisible(true);
     }//GEN-LAST:event_mniDataNilaiSiswaActionPerformed
 
     private void mniAbsensiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniAbsensiActionPerformed
@@ -597,7 +547,7 @@ GuiLogin login;
 
     private void mniDataAbsensiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDataAbsensiActionPerformed
         // TODO add your handling code here:
-        FormDataAbsensi add = new FormDataAbsensi();
+        FormDataAbsensiSiswa add = new FormDataAbsensiSiswa();
         desktop.add(add);
 
         Dimension size = desktop.getSize();
@@ -620,30 +570,6 @@ GuiLogin login;
 
 
     }//GEN-LAST:event_jMenuItem7ActionPerformed
-
-    private void mniKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKelasActionPerformed
-        // TODO add your handling code here:
-        FormKelas add = new FormKelas();
-        desktop.add(add);
-
-        Dimension size = desktop.getSize();
-        Dimension addSize = add.getSize();
-        add.setLocation((size.width - addSize.width) / 2,
-                (size.height - addSize.height) / 2);
-        add.setVisible(true);
-    }//GEN-LAST:event_mniKelasActionPerformed
-
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // TODO add your handling code here:
-        FormPenjadwalan add = new FormPenjadwalan();
-        desktop.add(add);
-
-        Dimension size = desktop.getSize();
-        Dimension addSize = add.getSize();
-        add.setLocation((size.width - addSize.width) / 2,
-                (size.height - addSize.height) / 2);
-        add.setVisible(true);
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
@@ -681,30 +607,6 @@ GuiLogin login;
         add.setVisible(true);
     }//GEN-LAST:event_mniTransaksiPEmbayaranActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-        FormSubMateri add = new FormSubMateri();
-        desktop.add(add);
-
-        Dimension size = desktop.getSize();
-        Dimension addSize = add.getSize();
-        add.setLocation((size.width - addSize.width) / 2,
-                (size.height - addSize.height) / 2);
-        add.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void mniIsiNilaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniIsiNilaiActionPerformed
-        // TODO add your handling code here:
-        FormIsiNilai add = new FormIsiNilai();
-        desktop.add(add);
-
-        Dimension size = desktop.getSize();
-        Dimension addSize = add.getSize();
-        add.setLocation((size.width - addSize.width) / 2,
-                (size.height - addSize.height) / 2);
-        add.setVisible(true);
-    }//GEN-LAST:event_mniIsiNilaiActionPerformed
-
     private void mniJadwalInstrukturActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniJadwalInstrukturActionPerformed
         // TODO add your handling code here:
         RekapJadwalInstruktur add = new RekapJadwalInstruktur();
@@ -715,7 +617,7 @@ GuiLogin login;
         add.setLocation((size.width - addSize.width) / 2,
                 (size.height - addSize.height) / 2);
         add.setVisible(true);
-                            
+
     }//GEN-LAST:event_mniJadwalInstrukturActionPerformed
 
     private void mniKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKeluarActionPerformed
@@ -726,12 +628,98 @@ GuiLogin login;
         panggilJendelaLogin();
     }//GEN-LAST:event_mniKeluarActionPerformed
 
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        FormPenjadwalan add = new FormPenjadwalan();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+            (size.height - addSize.height) / 2);
+        add.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void mniInstrukturActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniInstrukturActionPerformed
+        // TODO add your handling code here:
+        FormInstruktur add = new FormInstruktur();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+            (size.height - addSize.height) / 2);
+        add.setVisible(true);
+    }//GEN-LAST:event_mniInstrukturActionPerformed
+
+    private void mniRuanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniRuanganActionPerformed
+        // TODO add your handling code here:
+        FormRuangan add = new FormRuangan();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+            (size.height - addSize.height) / 2);
+        add.setVisible(true);
+    }//GEN-LAST:event_mniRuanganActionPerformed
+
+    private void mniKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKelasActionPerformed
+        // TODO add your handling code here:
+        FormKelas add = new FormKelas();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+            (size.height - addSize.height) / 2);
+        add.setVisible(true);
+    }//GEN-LAST:event_mniKelasActionPerformed
+
+    private void mniJurusanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniJurusanActionPerformed
+        // TODO add your handling code here:
+        FormJurusan add = new FormJurusan();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+            (size.height - addSize.height) / 2);
+        add.setVisible(true);
+    }//GEN-LAST:event_mniJurusanActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        FormMateri add = new FormMateri();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+            (size.height - addSize.height) / 2);
+        add.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        FormSubMateri add = new FormSubMateri();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+            (size.height - addSize.height) / 2);
+        add.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
@@ -747,14 +735,12 @@ GuiLogin login;
     private javax.swing.JMenuItem mniDataAbsensi;
     private javax.swing.JMenuItem mniDataNilaiSiswa;
     private javax.swing.JMenuItem mniInstruktur;
-    private javax.swing.JMenuItem mniIsiNilai;
     private javax.swing.JMenuItem mniJadwal;
     private javax.swing.JMenuItem mniJadwalInstruktur;
     private javax.swing.JMenuItem mniJurusan;
     private javax.swing.JMenuItem mniKelas;
     private javax.swing.JMenuItem mniKeluar;
     private javax.swing.JMenuItem mniMasuk;
-    private javax.swing.JMenuItem mniMateri;
     private javax.swing.JMenuItem mniMatikan;
     private javax.swing.JMenuItem mniPemBulanan;
     private javax.swing.JMenuItem mniRegistrasi;
