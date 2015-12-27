@@ -13,13 +13,21 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 
 import configuration.HIbernateUtil;
+import controllers.ControllersOfPenjadwalan;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.Instruktur;
 import model.Jadwal;
 import model.Kelas;
 import model.Materi;
 import model.Ruangan;
+import model.Validasi;
+import org.hibernate.exception.ConstraintViolationException;
 import service.ServiceOfInstruktur;
 import service.ServiceOfJadwal;
 import service.ServiceOfKelas;
@@ -31,66 +39,115 @@ import service.ServiceOfRuangan;
  * @author muhamadhanifmuhsin
  */
 public class FormPenjadwalan extends javax.swing.JInternalFrame {
-	private List<Kelas> listKelas;
-	private List<Ruangan> listRuangan;
-	private List<Instruktur> listInstruktur;
-	private List<Materi> materi;
 
-	/**
-	 * Creates new form FormPenjadwalan
-	 */
-	public FormPenjadwalan() {
-		initComponents();
-		initComboKelas();
-		initComboRuangan();
-		initComboNII();
-                cbkMateri.removeAllItems();
+    private List<Kelas> listKelas;
+    private List<Ruangan> listRuangan;
+    private List<Instruktur> listInstruktur;
+    private List<Materi> materi;
+    private List<Jadwal> listJadwal = new ArrayList<>();
+    private ServiceOfJadwal service;
+    private ControllersOfPenjadwalan controll;
+    private ControllersOfPenjadwalan controllForTableValidate;
+
+    /**
+     * Creates new form FormPenjadwalan
+     */
+    public FormPenjadwalan() {
+        initComponents();
+        this.controll = new ControllersOfPenjadwalan();
+        this.controllForTableValidate = new ControllersOfPenjadwalan();
+        
+        this.controll.inijectTable((DefaultTableModel) tabelPenjadwalan.getModel());
+        this.controllForTableValidate.inijectTable((DefaultTableModel)tabelValidasi.getModel());
+        initComboKelas();
+        initComboRuangan();
+        initComboNII();
+        cbkMateri.removeAllItems();
+        //loadDataValidasi();
+    }
+    
+    public void initComboKelas() {
+        this.listKelas = new ServiceOfKelas(HIbernateUtil.config()).findAll();
+        
+        cbkKelas.removeAllItems();
+        for (Kelas aKelas : listKelas) {
+            
+            cbkKelas.addItem(aKelas.getKodeKelas());
+            
+        }
+        cbkKelas.setSelectedIndex(-1);
+         controllForTableValidate.initTable();
+    }
+    
+    public void initComboRuangan() {
+        this.listRuangan = new ServiceOfRuangan(HIbernateUtil.config()).findAll();
+        cbkRuangan.removeAllItems();
+        for (Ruangan aRuangan : listRuangan) {
+            cbkRuangan.addItem(aRuangan.getId());
+        }
+        cbkRuangan.setSelectedIndex(-1);
+    }
+    
+    public void initComboNII() {
+        this.listInstruktur = new ServiceOfInstruktur(HIbernateUtil.config()).findAll();
+        cbkNII.removeAllItems();
+        for (Instruktur aInstruktur : listInstruktur) {
+            cbkNII.addItem(aInstruktur.getNii());
+        }
+        cbkNII.setSelectedIndex(-1);
+    }
+    
+    public void refreshTable() {
+        service = new ServiceOfJadwal(HIbernateUtil.config());
+        listJadwal = service.findAllByKelas(listKelas.get(cbkKelas.getSelectedIndex()));
+        this.controll.loadDataTable(listJadwal);
+    }
+    
+    public List<Validasi> findJumlahJam() throws Exception{
+       
+         ServiceOfJadwal service = new ServiceOfJadwal(HIbernateUtil.config());
+         List<Validasi>listVAlidasi = new ArrayList<>();
+         List<Materi> listMateri = service.findAllMateri(listKelas.get(cbkKelas.getSelectedIndex()).getJurusan());
+         for(Materi materi : listMateri){
+             Validasi aValidasi = new Validasi();
+             aValidasi.setMateri(materi);
+             aValidasi.setJumlahJam(service.hitungJumlahJamPerMateri(materi));
+                 listVAlidasi.add(aValidasi);
+                 
+             
+             
+            // System.out.println(materi.getNama()+" jumlah jam : "+service.hitungJumlahJamPerMateri(materi));
+         }
+         return listVAlidasi;
+    }
+    public void loadDataValidasi(){
+        try {
+            controllForTableValidate.initTable();
+            for(Validasi validasi : findJumlahJam()){
+                Object[]value={validasi.getMateri().getNama(),validasi.getJumlahJam()
+                        
+                };
+                controllForTableValidate.getDefaultTableModel().addRow(value);
                 
-	}
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(FormPenjadwalan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
-	public void initComboKelas() {
-		this.listKelas = new ServiceOfKelas(HIbernateUtil.config()).findAll();
-
-		cbkKelas.removeAllItems();
-		for (Kelas aKelas : listKelas) {
-
-			cbkKelas.addItem(aKelas.getKodeKelas());
-
-		}
-		cbkKelas.setSelectedIndex(-1);
-	}
-
-	public void initComboRuangan() {
-		this.listRuangan = new ServiceOfRuangan(HIbernateUtil.config()).findAll();
-		cbkRuangan.removeAllItems();
-		for (Ruangan aRuangan : listRuangan) {
-			cbkRuangan.addItem(aRuangan.getId());
-		}
-		cbkRuangan.setSelectedIndex(-1);
-	}
-
-	public void initComboNII() {
-		this.listInstruktur = new ServiceOfInstruktur(HIbernateUtil.config()).findAll();
-		cbkNII.removeAllItems();
-		for (Instruktur aInstruktur : listInstruktur) {
-			cbkNII.addItem(aInstruktur.getNii());
-		}
-		cbkNII.setSelectedIndex(-1);
-	}
-
-	/**
-	 * This method is called from within the constructor to initialize the form.
-	 * WARNING: Do NOT modify this code. The content of this method is always
-	 * regenerated by the Form Editor.
-	 */
-	@SuppressWarnings("unchecked")
-	// <editor-fold defaultstate="collapsed" desc="Generated
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelPenjadwalan = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -115,21 +172,25 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
         jLabel11 = new javax.swing.JLabel();
         btnTambah = new javax.swing.JButton();
         btnKeluar = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabelValidasi = new javax.swing.JTable();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Data Penjadwalan"));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelPenjadwalan.setFont(new java.awt.Font("Menlo", 0, 12)); // NOI18N
+        tabelPenjadwalan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Kode Kelas", "Tanggal", "Ruangan", "Jam Awal", "Jam Akhir", "Materi", "Instruktur"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelPenjadwalan);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -137,15 +198,15 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 779, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -255,7 +316,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(sAkhir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -302,7 +363,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
                     .addComponent(cbkMateri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbkNII, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNII, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,7 +380,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(cbkMateri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(0, 153, 204));
@@ -361,6 +422,38 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
             }
         });
 
+        jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        tabelValidasi.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Nama Materi", "Jumlah Jam"
+            }
+        ));
+        jScrollPane2.setViewportView(tabelValidasi);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(10, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -371,13 +464,12 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(6, 6, 6))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnTambah))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnTambah))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -391,12 +483,15 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(btnTambah)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnTambah)
+                            .addGap(47, 47, 47)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnKeluar)
@@ -412,7 +507,8 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // TODO add your handling code here:
-        Jadwal aJadwal = new Jadwal();
+        try{
+             Jadwal aJadwal = new Jadwal();
         aJadwal.setKelas(listKelas.get(cbkKelas.getSelectedIndex()));
         aJadwal.setInstruktur(listInstruktur.get(cbkNII.getSelectedIndex()));
         aJadwal.setRuangan(listRuangan.get(cbkRuangan.getSelectedIndex()));
@@ -423,57 +519,64 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
         
         ServiceOfJadwal service = new ServiceOfJadwal(HIbernateUtil.config());
         service.doSave(aJadwal);
-                
+        refreshTable();
+        }catch (ConstraintViolationException ce){
+            JOptionPane.showMessageDialog(null, ce.getMessage());
+            
+        }
+       
         
+
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void btnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKeluarActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnKeluarActionPerformed
+    
+    private void cbkKelasActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbkKelasActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_cbkKelasActionPerformed
 
-	private void cbkKelasActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbkKelasActionPerformed
-		// TODO add your handling code here:
-	}// GEN-LAST:event_cbkKelasActionPerformed
+    private void cbkKelasItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_cbkKelasItemStateChanged
+        // TODO add your handling code here:
+        cbkMateri.removeAllItems();
+        if (cbkKelas.getSelectedIndex() >= 0) {
+            Kelas kelas = listKelas.get(cbkKelas.getSelectedIndex());
+            loadDataValidasi();
+            ServiceOfNilai nilai = new ServiceOfNilai(HIbernateUtil.config());
+            //nilai.setSessionFactory(HIbernateUtil.config());
+            try {
+                
+                materi = nilai.findMateriByJurusan(kelas.getJurusan());
+                
+                for (Iterator iterator = materi.iterator(); iterator.hasNext();) {
+                    Materi aMateri = (Materi) iterator.next();
 
-	private void cbkKelasItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_cbkKelasItemStateChanged
-		// TODO add your handling code here:
-            cbkMateri.removeAllItems();
-		if (cbkKelas.getSelectedIndex() >= 0) {
-			Kelas kelas = listKelas.get(cbkKelas.getSelectedIndex());
-			ServiceOfNilai nilai = new ServiceOfNilai(HIbernateUtil.config());
-			//nilai.setSessionFactory(HIbernateUtil.config());
-			try {
-                           
-				materi = nilai.findMateriByJurusan(kelas.getJurusan());
-				
-				for (Iterator iterator = materi.iterator(); iterator.hasNext();) {
-					Materi aMateri = (Materi) iterator.next();
-                                         
-					//cbkMateri.addItem(aMateri.getId() + " " + aMateri.getNama());
-                                       cbkMateri.addItem(aMateri.getNama());
-                                        
-				}
-                                
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			txtKelas.setText(kelas.getNamaKelas());
-		} else {
-			txtKelas.setText("");
-		}
-	}// GEN-LAST:event_cbkKelasItemStateChanged
+                    //cbkMateri.addItem(aMateri.getId() + " " + aMateri.getNama());
+                    cbkMateri.addItem(aMateri.getNama());
+                    
+                }
+                
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            txtKelas.setText(kelas.getNamaKelas());
+        } else {
+            txtKelas.setText("");
+        }
+    }// GEN-LAST:event_cbkKelasItemStateChanged
 
-	private void cbkNIIItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_cbkNIIItemStateChanged
-		// TODO add your handling code here:
-		if (cbkNII.getSelectedIndex() >= 0) {
-			Instruktur instruktur = listInstruktur.get(cbkNII.getSelectedIndex());
-			txtNII.setText(instruktur.getNama());
-		} else {
-			txtNII.setText("");
-		}
-	}// GEN-LAST:event_cbkNIIItemStateChanged
+    private void cbkNIIItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_cbkNIIItemStateChanged
+        // TODO add your handling code here:
+        if (cbkNII.getSelectedIndex() >= 0) {
+            Instruktur instruktur = listInstruktur.get(cbkNII.getSelectedIndex());
+            txtNII.setText(instruktur.getNama());
+        } else {
+            txtNII.setText("");
+        }
+    }// GEN-LAST:event_cbkNIIItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnKeluar;
@@ -497,10 +600,13 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner sAkhir;
     private javax.swing.JSpinner sAwal;
+    private javax.swing.JTable tabelPenjadwalan;
+    private javax.swing.JTable tabelValidasi;
     private javax.swing.JTextField txtKelas;
     private javax.swing.JTextField txtNII;
     // End of variables declaration//GEN-END:variables

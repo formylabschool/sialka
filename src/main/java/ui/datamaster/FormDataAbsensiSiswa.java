@@ -99,6 +99,11 @@ private ControllersOfAbsensi controll;
                 cbkPesertaItemStateChanged(evt);
             }
         });
+        cbkPeserta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbkPesertaActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel3.setText("Nama");
@@ -237,6 +242,10 @@ private ControllersOfAbsensi controll;
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnKeluarActionPerformed
+
+    private void cbkPesertaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbkPesertaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbkPesertaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

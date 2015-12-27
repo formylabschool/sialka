@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import model.Instruktur;
 import model.Jadwal;
+import model.Jurusan;
 import model.Kelas;
 import model.Materi;
 import org.hibernate.Criteria;
@@ -62,12 +63,23 @@ public class ServiceOfJadwal {
          );
          return aCriteria.list();
      }
+      public List<Jadwal>findAllByKelas(Kelas kelas){
+        Session aSession = aSessionFactory.openSession();
+        aSession.beginTransaction();
+        
+        Criteria aCriteria = aSession.createCriteria(Jadwal.class);
+        aCriteria.createAlias("kelas", "k");
+        aCriteria.add(Restrictions.eq("k.kodeKelas", kelas.getKodeKelas()));
+        return aCriteria.list();
+    }
      
-     public List<Materi> findAllMateri()throws Exception{
+     public List<Materi> findAllMateri(Jurusan jurusan)throws Exception{
          
          Session session = aSessionFactory.openSession();
          session.beginTransaction();
          Criteria aCriteria = session.createCriteria(Materi.class);
+         aCriteria.createAlias("jurusan", "j");
+         aCriteria.add(Restrictions.eq("j.id", jurusan.getId()));
          return aCriteria.list();         
      }
      
@@ -82,12 +94,7 @@ public class ServiceOfJadwal {
          return aCriteria.list().size();
      }
      
-     public static void main(String[] args) throws Exception{
-         ServiceOfJadwal service = new ServiceOfJadwal(HIbernateUtil.config());
-         List<Materi> listMateri = service.findAllMateri();
-         for(Materi materi : listMateri){
-             System.out.println(materi.getNama()+" jumlah jam : "+service.hitungJumlahJamPerMateri(materi));
-         }
-         
-     }
+    
+     
+    
 }
