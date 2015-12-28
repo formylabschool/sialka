@@ -45,6 +45,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
     private List<Instruktur> listInstruktur;
     private List<Materi> materi;
     private List<Jadwal> listJadwal = new ArrayList<>();
+    private List<Validasi> listVAlidasi = new ArrayList<>();
     private ServiceOfJadwal service;
     private ControllersOfPenjadwalan controll;
     private ControllersOfPenjadwalan controllForTableValidate;
@@ -56,29 +57,29 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
         initComponents();
         this.controll = new ControllersOfPenjadwalan();
         this.controllForTableValidate = new ControllersOfPenjadwalan();
-        
+
         this.controll.inijectTable((DefaultTableModel) tabelPenjadwalan.getModel());
-        this.controllForTableValidate.inijectTable((DefaultTableModel)tabelValidasi.getModel());
+        this.controllForTableValidate.inijectTable((DefaultTableModel) tabelValidasi.getModel());
         initComboKelas();
         initComboRuangan();
         initComboNII();
         cbkMateri.removeAllItems();
         //loadDataValidasi();
     }
-    
+
     public void initComboKelas() {
         this.listKelas = new ServiceOfKelas(HIbernateUtil.config()).findAll();
-        
+
         cbkKelas.removeAllItems();
         for (Kelas aKelas : listKelas) {
-            
+
             cbkKelas.addItem(aKelas.getKodeKelas());
-            
+
         }
         cbkKelas.setSelectedIndex(-1);
-         controllForTableValidate.initTable();
+        controllForTableValidate.initTable();
     }
-    
+
     public void initComboRuangan() {
         this.listRuangan = new ServiceOfRuangan(HIbernateUtil.config()).findAll();
         cbkRuangan.removeAllItems();
@@ -87,7 +88,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
         }
         cbkRuangan.setSelectedIndex(-1);
     }
-    
+
     public void initComboNII() {
         this.listInstruktur = new ServiceOfInstruktur(HIbernateUtil.config()).findAll();
         cbkNII.removeAllItems();
@@ -96,39 +97,38 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
         }
         cbkNII.setSelectedIndex(-1);
     }
-    
+
     public void refreshTable() {
         service = new ServiceOfJadwal(HIbernateUtil.config());
         listJadwal = service.findAllByKelas(listKelas.get(cbkKelas.getSelectedIndex()));
         this.controll.loadDataTable(listJadwal);
     }
-    
-    public List<Validasi> findJumlahJam() throws Exception{
-       
-         ServiceOfJadwal service = new ServiceOfJadwal(HIbernateUtil.config());
-         List<Validasi>listVAlidasi = new ArrayList<>();
-         List<Materi> listMateri = service.findAllMateri(listKelas.get(cbkKelas.getSelectedIndex()).getJurusan());
-         for(Materi materi : listMateri){
-             Validasi aValidasi = new Validasi();
-             aValidasi.setMateri(materi);
-             aValidasi.setJumlahJam(service.hitungJumlahJamPerMateri(materi));
-                 listVAlidasi.add(aValidasi);
-                 
-             
-             
+
+    public List<Validasi> findJumlahJam() throws Exception {
+
+        ServiceOfJadwal service = new ServiceOfJadwal(HIbernateUtil.config());
+        // List<Validasi>listVAlidasi = new ArrayList<>();
+        List<Materi> listMateri = service.findAllMateri(listKelas.get(cbkKelas.getSelectedIndex()).getJurusan());
+        for (Materi materi : listMateri) {
+            Validasi aValidasi = new Validasi();
+            aValidasi.setMateri(materi);
+            aValidasi.setJumlahJam(service.hitungJumlahJamPerMateri(materi));
+            listVAlidasi.add(aValidasi);
+
             // System.out.println(materi.getNama()+" jumlah jam : "+service.hitungJumlahJamPerMateri(materi));
-         }
-         return listVAlidasi;
+        }
+        return listVAlidasi;
     }
-    public void loadDataValidasi(){
+
+    public void loadDataValidasi() {
         try {
             controllForTableValidate.initTable();
-            for(Validasi validasi : findJumlahJam()){
-                Object[]value={validasi.getMateri().getNama(),validasi.getJumlahJam()
-                        
+            for (Validasi validasi : findJumlahJam()) {
+                Object[] value = {validasi.getMateri().getNama(), validasi.getJumlahJam()
+
                 };
                 controllForTableValidate.getDefaultTableModel().addRow(value);
-                
+
             }
         } catch (Exception ex) {
             Logger.getLogger(FormPenjadwalan.class.getName()).log(Level.SEVERE, null, ex);
@@ -507,25 +507,39 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // TODO add your handling code here:
-        try{
-             Jadwal aJadwal = new Jadwal();
-        aJadwal.setKelas(listKelas.get(cbkKelas.getSelectedIndex()));
-        aJadwal.setInstruktur(listInstruktur.get(cbkNII.getSelectedIndex()));
-        aJadwal.setRuangan(listRuangan.get(cbkRuangan.getSelectedIndex()));
-        aJadwal.setMateri(materi.get(cbkMateri.getSelectedIndex()));
-        aJadwal.setJam_awal((Date) sAwal.getValue());
-        aJadwal.setJam_akhir((Date) sAkhir.getValue());
-        aJadwal.setTanggal(java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(dateChooser.getDate())));
-        
-        ServiceOfJadwal service = new ServiceOfJadwal(HIbernateUtil.config());
-        service.doSave(aJadwal);
-        refreshTable();
-        }catch (ConstraintViolationException ce){
-            JOptionPane.showMessageDialog(null, ce.getMessage());
-            
+        try {
+            Jadwal aJadwal = new Jadwal();
+            aJadwal.setKelas(listKelas.get(cbkKelas.getSelectedIndex()));
+            aJadwal.setInstruktur(listInstruktur.get(cbkNII.getSelectedIndex()));
+            aJadwal.setRuangan(listRuangan.get(cbkRuangan.getSelectedIndex()));
+            aJadwal.setMateri(materi.get(cbkMateri.getSelectedIndex()));
+            aJadwal.setJam_awal((Date) sAwal.getValue());
+            aJadwal.setJam_akhir((Date) sAkhir.getValue());
+            aJadwal.setTanggal(java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(dateChooser.getDate())));
+            Boolean isValid = false;
+            Integer jmlJamYangAda = 0;
+            for (Validasi validasi : listVAlidasi) {
+                if (aJadwal.getMateri().getId() == validasi.getMateri().getId()) {
+                    isValid = true;
+                    jmlJamYangAda = validasi.getJumlahJam();
+                }
+
+            }
+
+            if (isValid && jmlJamYangAda < aJadwal.getMateri().getPraktek()) {
+                System.out.println(jmlJamYangAda +":" +aJadwal.getMateri().getPraktek());
+                ServiceOfJadwal service = new ServiceOfJadwal(HIbernateUtil.config());
+                service.doSave(aJadwal);
+                refreshTable();
+            }else{
+            JOptionPane.showMessageDialog(null,"Melebihi Batas Maksmal Jam");
         }
-       
-        
+
+        } catch (ConstraintViolationException ce) {
+            JOptionPane.showMessageDialog(null, ce.getMessage());
+
+        }
+
 
     }//GEN-LAST:event_btnTambahActionPerformed
 
@@ -533,7 +547,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnKeluarActionPerformed
-    
+
     private void cbkKelasActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbkKelasActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_cbkKelasActionPerformed
@@ -547,17 +561,17 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
             ServiceOfNilai nilai = new ServiceOfNilai(HIbernateUtil.config());
             //nilai.setSessionFactory(HIbernateUtil.config());
             try {
-                
+
                 materi = nilai.findMateriByJurusan(kelas.getJurusan());
-                
+
                 for (Iterator iterator = materi.iterator(); iterator.hasNext();) {
                     Materi aMateri = (Materi) iterator.next();
 
                     //cbkMateri.addItem(aMateri.getId() + " " + aMateri.getNama());
                     cbkMateri.addItem(aMateri.getNama());
-                    
+
                 }
-                
+
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

@@ -10,14 +10,27 @@ import controllers.ControllersOfInstruktur;
 import controllers.ControllersOfKelas;
 import controllers.ControllersOfPenjadwalan;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import model.Instruktur;
 import model.Jadwal;
 import model.Kelas;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import service.ServiceOfInstruktur;
 import service.ServiceOfJadwal;
 import service.ServiceOfKelas;
+import sun.print.resources.serviceui;
 
 /**
  *
@@ -65,6 +78,16 @@ public class RekapJadwalInstruktur extends javax.swing.JInternalFrame {
         }
         cbkInstruktur.setSelectedIndex(-1);
     }
+    
+    private void printJadwalInstruktur(List<Jadwal>listJadwal,java.util.Date date1,java.util.Date date2)throws JRException{
+          HashMap<String, Object> jadwalInstrukturMap = new HashMap<String, Object>();
+          jadwalInstrukturMap.put("tanggalAwal", date1);
+          jadwalInstrukturMap.put("tanggalAkhir", date2);
+          JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/jadwal_instruktur.jrxml"));
+          JasperReport report = JasperCompileManager.compileReport(design);
+          JasperPrint print = JasperFillManager.fillReport(report, null , new JRBeanCollectionDataSource(listJadwal));
+          JasperViewer view = new JasperViewer(print,false);
+          view.setVisible(true);}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -90,6 +113,10 @@ public class RekapJadwalInstruktur extends javax.swing.JInternalFrame {
         tableJadwal = new javax.swing.JTable();
         btnKeluar = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        date1 = new com.toedter.calendar.JDateChooser();
+        jLabel7 = new javax.swing.JLabel();
+        date2 = new com.toedter.calendar.JDateChooser();
 
         jLabel1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel1.setText("Kelas");
@@ -182,7 +209,7 @@ public class RekapJadwalInstruktur extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -203,6 +230,21 @@ public class RekapJadwalInstruktur extends javax.swing.JInternalFrame {
 
         btnPrint.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         btnPrint.setText("Print");
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        jLabel8.setText("Cetak Jadwal");
+
+        date1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+
+        jLabel7.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        jLabel7.setText("Sampai");
+
+        date2.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -229,7 +271,14 @@ public class RekapJadwalInstruktur extends javax.swing.JInternalFrame {
                         .addComponent(btnCari)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(date1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(date2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnPrint)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnKeluar)))
@@ -256,13 +305,18 @@ public class RekapJadwalInstruktur extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtNamaInstruktur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCari))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(7, 7, 7)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnKeluar)
-                    .addComponent(btnPrint))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnKeluar)
+                        .addComponent(btnPrint)
+                        .addComponent(jLabel8)
+                        .addComponent(jLabel7))
+                    .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(date2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pack();
@@ -317,6 +371,16 @@ public class RekapJadwalInstruktur extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_cbkInstrukturItemStateChanged
 
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+     try {
+         // TODO add your handling code here:
+
+         printJadwalInstruktur(listJadwal,date1.getDate(),date2.getDate()) ;
+     } catch (JRException ex) {
+         Logger.getLogger(RekapJadwalInstruktur.class.getName()).log(Level.SEVERE, null, ex);
+     }
+    }//GEN-LAST:event_btnPrintActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCari;
@@ -324,11 +388,15 @@ public class RekapJadwalInstruktur extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnPrint;
     private javax.swing.JComboBox cbkInstruktur;
     private javax.swing.JComboBox cbkKelas;
+    private com.toedter.calendar.JDateChooser date1;
+    private com.toedter.calendar.JDateChooser date2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

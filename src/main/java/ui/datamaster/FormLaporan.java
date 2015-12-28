@@ -167,6 +167,11 @@ private ServiceOfLaporan service;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
        List<Pembayaran>filter =  service.cariPembayaran(date1.getDate(), date2.getDate());
+       Double total = 0.0;
+       for(Pembayaran aPem : filter){
+           total += aPem.getAmount();
+       }
+        System.out.println("total" +total);
     try {
         printLaporanTransaksi(filter);
     } catch (JRException ex) {
