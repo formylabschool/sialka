@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-16T15:03:46 -->
+<!-- 2015-12-29T09:25:40 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="laporan_transaksi" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="75d65c7f-8c2e-4e06-83d5-220369531588">
 	<import value="model.Pembayaran"/>
+	<parameter name="totalTransaksi" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -12,41 +13,105 @@
 	<field name="tanggal" class="java.sql.Date">
 		<fieldDescription><![CDATA[tanggal]]></fieldDescription>
 	</field>
+	<field name="amount" class="java.lang.Double">
+		<fieldDescription><![CDATA[amount]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
-	</title>
-	<pageHeader>
-		<band height="35" splitType="Stretch"/>
-	</pageHeader>
-	<columnHeader>
-		<band height="61" splitType="Stretch">
+		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="100" y="0" width="100" height="30" uuid="ef6f8810-5cda-456c-bf44-be90216a8ecb"/>
-				<text><![CDATA[noPembayaran]]></text>
+				<reportElement x="222" y="0" width="110" height="20" uuid="d8631b2f-36af-4d0a-a5a7-e49a601b6ed9"/>
+				<textElement>
+					<font fontName="Arial Black" size="14"/>
+				</textElement>
+				<text><![CDATA[LPK (KANIRA)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="379" y="0" width="100" height="30" uuid="5f8678a8-6ed1-48ba-87db-25ba9aeab47b"/>
-				<text><![CDATA[tanggal]]></text>
+				<reportElement x="133" y="24" width="300" height="30" uuid="0e269a31-06c2-4471-8fc0-64325937b772"/>
+				<textElement>
+					<font fontName="Arial Black" size="14"/>
+				</textElement>
+				<text><![CDATA[LEMBAGA PELATIHAN KERJA KANIRA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="43" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="197" height="17" uuid="1a84d3ad-18da-43d1-b2f6-33e062c53ab2"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Laporan Transaksi Pembayaran :]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="100" height="18" uuid="ef6f8810-5cda-456c-bf44-be90216a8ecb"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Nota Pembayaran]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="225" y="0" width="100" height="20" uuid="5f8678a8-6ed1-48ba-87db-25ba9aeab47b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="0" width="100" height="20" uuid="8f0d88d1-3290-4336-b9e9-b92b0484d0a0"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Sub Total]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="22" splitType="Stretch">
 			<textField>
-				<reportElement x="100" y="34" width="100" height="30" uuid="9cf0ca6f-d01e-47be-9a4e-29a6f3a9b9e6"/>
+				<reportElement x="0" y="0" width="100" height="20" uuid="9cf0ca6f-d01e-47be-9a4e-29a6f3a9b9e6"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{noPembayaran}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="379" y="38" width="100" height="30" uuid="0436223b-0178-4ecf-b3b2-fd23070b0740"/>
+			<textField pattern="MMMM d, yyyy">
+				<reportElement x="225" y="-2" width="100" height="22" uuid="0436223b-0178-4ecf-b3b2-fd23070b0740"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.##¤;(#,##0.##) ¤">
+				<reportElement x="440" y="0" width="100" height="20" uuid="e03caf9b-e2db-4dbc-9647-ff90f9eaa04c"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="49" splitType="Stretch">
+			<staticText>
+				<reportElement x="340" y="1" width="100" height="21" uuid="0fec010b-c1c6-4bb2-b8e2-b77fde3c6b09"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Transaksi]]></text>
+			</staticText>
+			<textField pattern="#,##0.##¤;(#,##0.##) ¤">
+				<reportElement x="440" y="1" width="100" height="30" uuid="95833b40-afb3-4cb5-b3b8-2d7c992095ec"/>
+				<textFieldExpression><![CDATA[$P{totalTransaksi}]]></textFieldExpression>
+			</textField>
+		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch"/>

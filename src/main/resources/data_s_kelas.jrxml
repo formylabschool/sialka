@@ -1,33 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-26T13:48:10 -->
+<!-- 2015-12-29T11:23:08 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="data_s_kelas" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c887711a-0e4d-4130-95f2-9ec68a3164cd">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="kodeKelas" class="java.lang.String"/>
+	<parameter name="namaKelas" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
+	<field name="kodeSiswa" class="java.lang.String">
+		<fieldDescription><![CDATA[kodeSiswa]]></fieldDescription>
+	</field>
+	<field name="nama" class="java.lang.String">
+		<fieldDescription><![CDATA[nama]]></fieldDescription>
+	</field>
 	<background>
-		<band splitType="Stretch"/>
+		<band height="1" splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="71" splitType="Stretch">
+			<staticText>
+				<reportElement x="222" y="0" width="110" height="20" uuid="166eacce-72ee-4dce-9cff-b27724d69f20"/>
+				<textElement>
+					<font fontName="Arial Black" size="14"/>
+				</textElement>
+				<text><![CDATA[LPK (KANIRA)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="133" y="24" width="300" height="30" uuid="94778167-14da-49f2-9a73-3c762c7c5dd4"/>
+				<textElement>
+					<font fontName="Arial Black" size="14"/>
+				</textElement>
+				<text><![CDATA[LEMBAGA PELATIHAN KERJA KANIRA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-20" y="70" width="595" height="1" uuid="e4318c5e-1c9d-4af8-acde-9ddfa4da288b"/>
+			</line>
+		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="5" y="29" width="75" height="17" uuid="c4cd6982-d7b9-4440-883a-0937f02b970f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Kelas :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="6" width="75" height="17" uuid="2aeba4af-4479-4df1-9bff-2b7b6e631dd7"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kode Kelas  :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="6" width="100" height="17" uuid="f29c9666-5b01-40c9-842f-226ff269884c"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{kodeKelas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="31" width="100" height="13" uuid="702823c5-cbe6-4a84-8a4d-2f28ebe9e3ea"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{namaKelas}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="100" height="20" uuid="de881854-43ad-47b0-b8fb-cb3fb7e99334"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[No. Induk Peserta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="10" width="100" height="20" uuid="0eda0f78-bcde-4319-a853-3b27d08d7bc5"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Nama]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-20" y="1" width="595" height="1" uuid="e5490f54-0255-4047-b56e-ebffc0fe5909"/>
+			</line>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="b5775132-ed5c-48a3-8c26-e5d2a79c4628"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kodeSiswa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="100" height="20" uuid="906a7cd9-f06e-49a9-ad03-82ef8a2b2ec5"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="33" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-20" y="2" width="595" height="31" backcolor="#FF3D40" uuid="d49939f0-cfc3-42e5-8a50-5688d927a24e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="10" width="560" height="17" forecolor="#FFFCFC" uuid="ef8ba2f5-5e3d-4217-9afb-737c5bec8a29"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[JL. Ciparay Indah No 5a Ciparay-Bandung 40381 Telp 022-85964311 e-mail : lpk.kanira@gmail.com]]></text>
+			</staticText>
+		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="32" splitType="Stretch"/>
 	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>
