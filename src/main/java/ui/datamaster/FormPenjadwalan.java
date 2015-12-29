@@ -121,8 +121,9 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
     }
 
     public void loadDataValidasi() {
+         controllForTableValidate.initTable();
         try {
-            controllForTableValidate.initTable();
+           
             for (Validasi validasi : findJumlahJam()) {
                 Object[] value = {validasi.getMateri().getNama(), validasi.getJumlahJam()
 
@@ -531,6 +532,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
                 ServiceOfJadwal service = new ServiceOfJadwal(HIbernateUtil.config());
                 service.doSave(aJadwal);
                 refreshTable();
+                loadDataValidasi();
             }else{
             JOptionPane.showMessageDialog(null,"Melebihi Batas Maksmal Jam");
         }
