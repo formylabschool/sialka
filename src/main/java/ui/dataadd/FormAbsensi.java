@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import model.Absensi;
 import model.Siswa;
+import org.hibernate.exception.ConstraintViolationException;
 import service.ServiceOfAbsensi;
 import service.ServiceOfSiswa;
 
@@ -39,6 +40,11 @@ private Siswa siswa;
             a.consume();
             JOptionPane.showMessageDialog(null, "Masukan Harus Berbentuk Angka");
         }
+    }
+    
+    public void clearField(){
+        txtNIP.setText("");
+        txtNama.setText("");
     }
   
     /**
@@ -209,15 +215,17 @@ private Siswa siswa;
         absensi.setSiswa(siswa);
             System.out.println(siswa.getNama());
             absensi1.doSave(absensi);
+            clearField();
             
-        }catch(NullPointerException npe){
-            System.err.println(npe);
+        }catch(ConstraintViolationException ce) {
+            JOptionPane.showMessageDialog(null,"No Peserta ini sudah melakukan absensi");
+            clearField();
         }
     }//GEN-LAST:event_btnMasukActionPerformed
 
     private void txtNIPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNIPKeyPressed
         // TODO add your handling code here:
-       btnCari.setEnabled(txtNIP.getText().trim().length()>5);
+    //   btnCari.setEnabled(txtNIP.getText().trim().length()>7);
         
     }//GEN-LAST:event_txtNIPKeyPressed
 
