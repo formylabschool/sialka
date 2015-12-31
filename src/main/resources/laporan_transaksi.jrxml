@@ -3,7 +3,7 @@
 <!-- 2015-12-29T09:25:40 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="laporan_transaksi" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="75d65c7f-8c2e-4e06-83d5-220369531588">
 	<import value="model.Pembayaran"/>
-	<parameter name="totalTransaksi" class="java.lang.String"/>
+	<parameter name="totalTransaksi" class="java.lang.Double"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>

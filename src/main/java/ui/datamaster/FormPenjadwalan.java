@@ -23,6 +23,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Instruktur;
 import model.Jadwal;
+import model.Jurusan;
 import model.Kelas;
 import model.Materi;
 import model.Ruangan;
@@ -105,14 +106,16 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
     }
 
     public List<Validasi> findJumlahJam() throws Exception {
-
+        listVAlidasi.clear();
         ServiceOfJadwal service = new ServiceOfJadwal(HIbernateUtil.config());
         // List<Validasi>listVAlidasi = new ArrayList<>();
-        List<Materi> listMateri = service.findAllMateri(listKelas.get(cbkKelas.getSelectedIndex()).getJurusan());
+        Kelas kelas = listKelas.get(cbkKelas.getSelectedIndex());
+        Jurusan jurusan = kelas.getJurusan();
+        List<Materi> listMateri = service.findAllMateri(jurusan);
         for (Materi materi : listMateri) {
             Validasi aValidasi = new Validasi();
             aValidasi.setMateri(materi);
-            aValidasi.setJumlahJam(service.hitungJumlahJamPerMateri(materi));
+            aValidasi.setJumlahJam(service.hitungJumlahJamPerMateri(materi, kelas));
             listVAlidasi.add(aValidasi);
 
             // System.out.println(materi.getNama()+" jumlah jam : "+service.hitungJumlahJamPerMateri(materi));
@@ -121,9 +124,9 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
     }
 
     public void loadDataValidasi() {
-         controllForTableValidate.initTable();
+        controllForTableValidate.initTable();
         try {
-           
+
             for (Validasi validasi : findJumlahJam()) {
                 Object[] value = {validasi.getMateri().getNama(), validasi.getJumlahJam()
 
@@ -528,14 +531,14 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
             }
 
             if (isValid && jmlJamYangAda < aJadwal.getMateri().getPraktek()) {
-                System.out.println(jmlJamYangAda +":" +aJadwal.getMateri().getPraktek());
+                System.out.println(jmlJamYangAda + ":" + aJadwal.getMateri().getPraktek());
                 ServiceOfJadwal service = new ServiceOfJadwal(HIbernateUtil.config());
                 service.doSave(aJadwal);
                 refreshTable();
                 loadDataValidasi();
-            }else{
-            JOptionPane.showMessageDialog(null,"Melebihi Batas Maksmal Jam");
-        }
+            } else {
+                JOptionPane.showMessageDialog(null, "Melebihi Batas Maksmal Jam");
+            }
 
         } catch (ConstraintViolationException ce) {
             JOptionPane.showMessageDialog(null, ce.getMessage());

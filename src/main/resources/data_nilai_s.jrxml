@@ -1,25 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-26T13:48:46 -->
+<!-- 2015-12-29T21:26:01 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="data_nilai_s" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a44c36ac-fcb6-41c0-b9d2-b68b62d52d5f">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="noPeserta" class="java.lang.String"/>
+	<parameter name="namaPeserta" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
+	<field name="keterangan" class="java.lang.String">
+		<fieldDescription><![CDATA[keterangan.namaKeterangan]]></fieldDescription>
+	</field>
+	<field name="skor" class="java.lang.Integer">
+		<fieldDescription><![CDATA[skor]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="66" splitType="Stretch">
+			<staticText>
+				<reportElement x="222" y="0" width="110" height="20" uuid="77c75be7-a436-4dd1-8041-137af313c8bc"/>
+				<textElement>
+					<font fontName="Arial Black" size="14"/>
+				</textElement>
+				<text><![CDATA[LPK (KANIRA)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="133" y="24" width="300" height="30" uuid="800c978a-41f0-4f8a-8060-a6c7b289ac1f"/>
+				<textElement>
+					<font fontName="Arial Black" size="14"/>
+				</textElement>
+				<text><![CDATA[LEMBAGA PELATIHAN KERJA KANIRA]]></text>
+			</staticText>
+		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="67" splitType="Stretch">
+			<textField>
+				<reportElement x="70" y="0" width="100" height="20" uuid="fca1086b-3cbf-44f6-9ff7-8b5f2a03789d"/>
+				<textFieldExpression><![CDATA[$P{noPeserta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="30" width="100" height="20" uuid="6450c811-b62d-4e84-90d7-2f1a70d95b34"/>
+				<textFieldExpression><![CDATA[$P{namaPeserta}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="285" y="0" width="100" height="30" uuid="415a9bd4-7958-48d3-bbd2-82c2224ae515"/>
+				<text><![CDATA[skor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="0" width="100" height="30" uuid="ac013892-7788-4a16-9679-f6d21f3e6432"/>
+				<text><![CDATA[keterangan]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="285" y="41" width="100" height="30" uuid="1c9eefea-790a-41e6-b764-6f57ace5e6c9"/>
+				<textFieldExpression><![CDATA[$F{skor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="0" width="100" height="30" uuid="5d5a0b26-6165-4e26-a58c-eeb1cdf5c0a4"/>
+				<textFieldExpression><![CDATA[$F{keterangan}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>

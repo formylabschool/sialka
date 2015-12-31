@@ -41,10 +41,11 @@ public class FormLaporan extends javax.swing.JInternalFrame {
 
     private void printLaporanTransaksi(List<Pembayaran> cariPembayaran, Double total) throws JRException {
         HashMap<String, Object> pembayaranMap = new HashMap<String, Object>();
+        
         pembayaranMap.put("totalTransaksi", total);
         JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/laporan_transaksi.jrxml"));
         JasperReport report = JasperCompileManager.compileReport(design);
-        JasperPrint print = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(cariPembayaran));
+        JasperPrint print = JasperFillManager.fillReport(report, pembayaranMap, new JRBeanCollectionDataSource(cariPembayaran));
         JasperViewer view = new JasperViewer(print, false);
         view.setVisible(true);
     }

@@ -32,9 +32,11 @@ import service.ServiceOfSiswa;
  * @author muhamadhanifmuhsin
  */
 public class FormDataAbsensiSiswa extends javax.swing.JInternalFrame {
-private List<Siswa>listSiswa;
-private ControllersOfAbsensi controll;
-List<Absensi> absensi;
+
+    private List<Siswa> listSiswa;
+    private ControllersOfAbsensi controll;
+    List<Absensi> absensi;
+
     /**
      * Creates new form FormDataAbsensiSiswa
      */
@@ -44,8 +46,8 @@ List<Absensi> absensi;
         controll = new ControllersOfAbsensi();
         this.controll.inijectTable((DefaultTableModel) tableAbsensi.getModel());
     }
-    
-      public void initComboSiswa() {
+
+    public void initComboSiswa() {
         this.listSiswa = new ServiceOfSiswa(HIbernateUtil.config()).findAll();
 
         cbkPeserta.removeAllItems();
@@ -57,19 +59,20 @@ List<Absensi> absensi;
         cbkPeserta.setSelectedIndex(-1);
     }
 
-      
-       private void printDataAbsensiSiswa(List<Absensi> list) throws JRException {
+    private void printDataAbsensiSiswa(List<Absensi> list) throws JRException {
         HashMap<String, Object> absensiMap = new HashMap<String, Object>();
         Siswa siswa = listSiswa.get(cbkPeserta.getSelectedIndex());
-        absensiMap.put("kodeKelas", siswa.getKodeSiswa());
-        absensiMap.put("namaKelas", siswa.getNama());
+        absensiMap.put("noPeserta", siswa.getKodeSiswa());
+        absensiMap.put("namaPeserta", siswa.getNama());
+        absensiMap.put("jumlahKehadiran", txtJml.getText());
 
-        JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/data_s_kelas.jrxml"));
+        JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/data_absensi_s.jrxml"));
         JasperReport report = JasperCompileManager.compileReport(design);
         JasperPrint print = JasperFillManager.fillReport(report, absensiMap, new JRBeanCollectionDataSource(list));
         JasperViewer view = new JasperViewer(print, false);
         view.setVisible(true);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -248,29 +251,29 @@ List<Absensi> absensi;
 
     private void cbkPesertaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbkPesertaItemStateChanged
         // TODO add your handling code here:
-            try {
+        try {
             if (cbkPeserta.getSelectedIndex() >= 0) {
                 Siswa siswa = listSiswa.get(cbkPeserta.getSelectedIndex());
                 txtNama.setText(siswa.getNama());
-                
+
                 ServiceOfAbsensi service = new ServiceOfAbsensi(HIbernateUtil.config());
-                
-               try {
-                   controll.initTable();
-                   absensi = service.findAbsensiBySiswa(siswa);
-                   System.out.println("jumlah data siswa ditemukan " + absensi.size());
-                   txtJml.setText(""+absensi.size());
+
+                try {
+                    controll.initTable();
+                    absensi = service.findAbsensiBySiswa(siswa);
+                    System.out.println("jumlah data siswa ditemukan " + absensi.size());
+                    txtJml.setText("" + absensi.size());
                     for (Absensi aAbsensi : absensi) {
-                       // for (int i = 0; i < aSiswa; i++)  {
-                            Object[] value = {aAbsensi.getIdAbsensi(),aAbsensi.getTanggal()};
-                            controll.getDefaultTableModel().addRow(value);
-                           
+                        // for (int i = 0; i < aSiswa; i++)  {
+                        Object[] value = {aAbsensi.getIdAbsensi(), aAbsensi.getTanggal()};
+                        controll.getDefaultTableModel().addRow(value);
+
                         //}
                     }
                 } catch (Exception ex) {
-                  //  Logger.getLogger(FormPenilaian.class.getName()).log(Level.SEVERE, null, ex);
+                    //  Logger.getLogger(FormPenilaian.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
             } else {
                 txtNama.setText("");
             }
@@ -289,12 +292,12 @@ List<Absensi> absensi;
     }//GEN-LAST:event_cbkPesertaActionPerformed
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-    try {
-        // TODO add your handling code here:
-        printDataAbsensiSiswa(absensi);
-    } catch (JRException ex) {
-        Logger.getLogger(FormDataAbsensiSiswa.class.getName()).log(Level.SEVERE, null, ex);
-    }
+        try {
+            // TODO add your handling code here:
+            printDataAbsensiSiswa(absensi);
+        } catch (JRException ex) {
+            Logger.getLogger(FormDataAbsensiSiswa.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnPrintActionPerformed
 
 

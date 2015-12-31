@@ -9,6 +9,9 @@ import configuration.HIbernateUtil;
 import controllers.ControllersOfInstruktur;
 import controllers.ControllersOfKelas;
 import controllers.ControllersOfPenjadwalan;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,57 +40,79 @@ import sun.print.resources.serviceui;
  * @author muhamadhanifmuhsin
  */
 public class RekapJadwalInstruktur extends javax.swing.JInternalFrame {
- private List<Kelas> listKelas = new ArrayList<>();
- private List<Instruktur> listInstruktur = new ArrayList<>();
- private List<Jadwal> listJadwal = new ArrayList<>();
- private ServiceOfInstruktur serviceInstruktur;
- private ServiceOfKelas serviceOfKelas;
- private ServiceOfJadwal serviceOfJadwal;
- private ControllersOfKelas controllKelas;
- private ControllersOfInstruktur controllIntruktur;
- private ControllersOfPenjadwalan control;
+
+    private List<Kelas> listKelas = new ArrayList<>();
+    private List<Instruktur> listInstruktur = new ArrayList<>();
+    private List<Jadwal> listJadwal = new ArrayList<>();
+    private ServiceOfInstruktur serviceInstruktur;
+    private ServiceOfKelas serviceOfKelas;
+    private ServiceOfJadwal serviceOfJadwal;
+    private ControllersOfKelas controllKelas;
+    private ControllersOfInstruktur controllIntruktur;
+    private ControllersOfPenjadwalan control;
+
     /**
      * Creates new form RekapJadwalInstruktur
      */
     public RekapJadwalInstruktur() {
         initComponents();
-       controllIntruktur = new ControllersOfInstruktur();
-       controllKelas = new ControllersOfKelas();
-       control = new ControllersOfPenjadwalan();
-       serviceOfJadwal = new ServiceOfJadwal(HIbernateUtil.config());
-       this.control.inijectTable((DefaultTableModel) tableJadwal.getModel());
-       initComboKelas();
-       initComboInstruktur();
+        controllIntruktur = new ControllersOfInstruktur();
+        controllKelas = new ControllersOfKelas();
+        control = new ControllersOfPenjadwalan();
+        serviceOfJadwal = new ServiceOfJadwal(HIbernateUtil.config());
+        this.control.inijectTable((DefaultTableModel) tableJadwal.getModel());
+        initComboKelas();
+        initComboInstruktur();
     }
 
-    
-    public void initComboKelas(){
+    public void initComboKelas() {
         this.listKelas = new ServiceOfKelas(HIbernateUtil.config()).findAll();
         cbkKelas.removeAllItems();
-        for(Kelas aKelas : listKelas){
+        for (Kelas aKelas : listKelas) {
             cbkKelas.addItem(aKelas.getKodeKelas());
         }
         cbkKelas.setSelectedIndex(-1);
     }
-    
-    public void initComboInstruktur(){
+
+    public void initComboInstruktur() {
         this.listInstruktur = new ServiceOfInstruktur(HIbernateUtil.config()).findAll();
         cbkInstruktur.removeAllItems();
-        for(Instruktur aInstruktur : listInstruktur){
+        for (Instruktur aInstruktur : listInstruktur) {
             cbkInstruktur.addItem(aInstruktur.getNii());
         }
         cbkInstruktur.setSelectedIndex(-1);
     }
-    
-    private void printJadwalInstruktur(List<Jadwal>listJadwal,java.util.Date date1,java.util.Date date2)throws JRException{
-          HashMap<String, Object> jadwalInstrukturMap = new HashMap<String, Object>();
-          jadwalInstrukturMap.put("tanggalAwal", date1);
-          jadwalInstrukturMap.put("tanggalAkhir", date2);
-          JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/jadwal_instruktur.jrxml"));
-          JasperReport report = JasperCompileManager.compileReport(design);
-          JasperPrint print = JasperFillManager.fillReport(report, null , new JRBeanCollectionDataSource(listJadwal));
-          JasperViewer view = new JasperViewer(print,false);
-          view.setVisible(true);}
+
+    private void printJadwalInstruktur(List<Jadwal> listJadwal, java.util.Date date1, java.util.Date date2) throws JRException {
+        HashMap<String, Object> jadwalInstrukturMap = new HashMap<String, Object>();
+        List<Jadwal> emptyListJadwal = new ArrayList<>();
+        for (Jadwal jadwal : listJadwal) {
+            
+            DateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+            java.sql.Date sqlValueDate = java.sql.Date.valueOf(formater.format(jadwal.getTanggal()));
+            java.sql.Date sqlBeforeDate = java.sql.Date.valueOf(formater.format(date1));
+            java.sql.Date sqlAfterDate = java.sql.Date.valueOf(formater.format(date2));
+            
+            LocalDate value = sqlValueDate.toLocalDate();
+            LocalDate dateAfter = sqlAfterDate.toLocalDate();
+            LocalDate dateBefore = sqlBeforeDate.toLocalDate();
+            System.out.println(jadwal.getTanggal()+" available");
+            
+            if(value.isBefore(dateAfter.plusDays(1)) && value.isAfter(dateBefore.minusDays(1))){
+                emptyListJadwal.add(jadwal);
+            }else{
+            }
+        }
+
+        jadwalInstrukturMap.put("tanggalAwal", date1);
+        jadwalInstrukturMap.put("tanggalAkhir", date2);
+        JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/jadwal_instruktur.jrxml"));
+        JasperReport report = JasperCompileManager.compileReport(design);
+        JasperPrint print = JasperFillManager.fillReport(report, jadwalInstrukturMap, new JRBeanCollectionDataSource(emptyListJadwal));
+        JasperViewer view = new JasperViewer(print, false);
+        view.setVisible(true);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -328,21 +353,21 @@ public class RekapJadwalInstruktur extends javax.swing.JInternalFrame {
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         // TODO add your handling code here:
-        try{
+        try {
             control.initTable();
             Kelas kelas = listKelas.get(cbkKelas.getSelectedIndex());
             Instruktur instruktur = listInstruktur.get(cbkInstruktur.getSelectedIndex());
             listJadwal = serviceOfJadwal.findJadwalByInstruktur(kelas, instruktur);
             System.out.println("jumlah data jadwal" + listJadwal.size());
-            for(Jadwal aJadwal : listJadwal){
-                
-                Object[]value = {aJadwal.getTanggal(), aJadwal.getRuangan().getId(),aJadwal.getJam_awal(),
-                                 aJadwal.getJam_akhir(),aJadwal.getMateri().getNama(),aJadwal.getInstruktur().getNama()};
+            for (Jadwal aJadwal : listJadwal) {
+
+                Object[] value = {aJadwal.getTanggal(), aJadwal.getRuangan().getId(), aJadwal.getJam_awal(),
+                    aJadwal.getJam_akhir(), aJadwal.getMateri().getNama(), aJadwal.getInstruktur().getNama()};
                 control.getDefaultTableModel().addRow(value);
             }
-            
-        }catch(Exception ex){
-            
+
+        } catch (Exception ex) {
+
         }
     }//GEN-LAST:event_btnCariActionPerformed
 
@@ -353,32 +378,32 @@ public class RekapJadwalInstruktur extends javax.swing.JInternalFrame {
 
     private void cbkKelasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbkKelasItemStateChanged
         // TODO add your handling code here:
-        if(cbkKelas.getSelectedItem() != null){
+        if (cbkKelas.getSelectedItem() != null) {
             Kelas kelas = listKelas.get(cbkKelas.getSelectedIndex());
             txtNamaKelas.setText(kelas.getNamaKelas());
-        }else{
+        } else {
             txtNamaKelas.setText("");
         }
     }//GEN-LAST:event_cbkKelasItemStateChanged
 
     private void cbkInstrukturItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbkInstrukturItemStateChanged
         // TODO add your handling code here:
-          if(cbkInstruktur.getSelectedItem() != null){
+        if (cbkInstruktur.getSelectedItem() != null) {
             Instruktur instruktur = listInstruktur.get(cbkInstruktur.getSelectedIndex());
             txtNamaInstruktur.setText(instruktur.getNama());
-        }else{
+        } else {
             txtNamaInstruktur.setText("");
         }
     }//GEN-LAST:event_cbkInstrukturItemStateChanged
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-     try {
-         // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
 
-         printJadwalInstruktur(listJadwal,date1.getDate(),date2.getDate()) ;
-     } catch (JRException ex) {
-         Logger.getLogger(RekapJadwalInstruktur.class.getName()).log(Level.SEVERE, null, ex);
-     }
+            printJadwalInstruktur(listJadwal, date1.getDate(), date2.getDate());
+        } catch (JRException ex) {
+            Logger.getLogger(RekapJadwalInstruktur.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnPrintActionPerformed
 
 

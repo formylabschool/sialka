@@ -8,15 +8,26 @@ package ui.datamaster;
 import configuration.HIbernateUtil;
 import controllers.ControllersOfKeterangan;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.Absensi;
 import model.Keterangan;
 import model.Materi;
 import model.Nilai;
 import model.Siswa;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import service.ServiceOfKeterangan;
 import service.ServiceOfMateri;
 import service.ServiceOfNilai;
@@ -61,6 +72,20 @@ public class FormIsiNilai extends javax.swing.JInternalFrame {
         cbkPeserta.setSelectedIndex(-1);
     }
 
+    
+      private void printDataNilaiSiswa(List<Nilai> list) throws JRException {
+        HashMap<String, Object> nilaiMap = new HashMap<String, Object>();
+        Siswa siswa = listSiswa.get(cbkPeserta.getSelectedIndex());
+        nilaiMap.put("noPeserta", siswa.getKodeSiswa());
+        nilaiMap.put("namaPeserta", siswa.getNama());
+        
+
+        JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/data_nilai_s.jrxml"));
+        JasperReport report = JasperCompileManager.compileReport(design);
+        JasperPrint print = JasperFillManager.fillReport(report, nilaiMap, new JRBeanCollectionDataSource(list));
+        JasperViewer view = new JasperViewer(print, false);
+        view.setVisible(true);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,6 +101,7 @@ public class FormIsiNilai extends javax.swing.JInternalFrame {
         txtNama = new javax.swing.JTextField();
         btnUpdate = new javax.swing.JButton();
         cbkPeserta = new javax.swing.JComboBox();
+        btnPrint = new javax.swing.JButton();
         btnKeluar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -108,6 +134,13 @@ public class FormIsiNilai extends javax.swing.JInternalFrame {
             }
         });
 
+        btnPrint.setText("Print");
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -122,9 +155,10 @@ public class FormIsiNilai extends javax.swing.JInternalFrame {
                             .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cbkPeserta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnUpdate)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnPrint))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,7 +171,8 @@ public class FormIsiNilai extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdate))
+                    .addComponent(btnUpdate)
+                    .addComponent(btnPrint))
                 .addGap(14, 14, 14))
         );
 
@@ -170,7 +205,7 @@ public class FormIsiNilai extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -278,6 +313,15 @@ public class FormIsiNilai extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_btnKeluarActionPerformed
 
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        try {
+            // TODO add your handling code here:
+            printDataNilaiSiswa(listNilai);
+        } catch (JRException ex) {
+            Logger.getLogger(FormIsiNilai.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnPrintActionPerformed
+
     public void updateTableView(Siswa siswa) {
         control.initTable();
 
@@ -307,6 +351,7 @@ public class FormIsiNilai extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnKeluar;
+    private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox cbkPeserta;
     private javax.swing.JLabel jLabel1;
