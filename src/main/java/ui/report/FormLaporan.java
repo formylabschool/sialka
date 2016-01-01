@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.datamaster;
+package ui.report;
 
 import configuration.HIbernateUtil;
 import java.util.HashMap;
@@ -67,6 +67,8 @@ public class FormLaporan extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         date2 = new com.toedter.calendar.JDateChooser();
         btnCetak = new javax.swing.JButton();
+
+        setClosable(true);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());

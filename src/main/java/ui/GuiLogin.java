@@ -8,7 +8,7 @@ package ui;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import my_scription.operation.OperationLogin;
+import operation.OperationLogin;
 
 /**
  *
@@ -94,7 +94,7 @@ public class GuiLogin extends javax.swing.JDialog {
         });
 
         tblLogin.setFont(new java.awt.Font("Lucida Grande", 0, 11)); // NOI18N
-        tblLogin.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/my_scription/img/login.png")); // NOI18N
+        tblLogin.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/login.png")); // NOI18N
         tblLogin.setText("MASUK");
         tblLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,7 +103,7 @@ public class GuiLogin extends javax.swing.JDialog {
         });
 
         tblBatal.setFont(new java.awt.Font("Lucida Grande", 0, 11)); // NOI18N
-        tblBatal.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/my_scription/img/batal.png")); // NOI18N
+        tblBatal.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/batal.png")); // NOI18N
         tblBatal.setText("BATAL");
         tblBatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

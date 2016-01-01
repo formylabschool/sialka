@@ -27,7 +27,7 @@ import javax.swing.JInternalFrame;
 import ui.dataadd.FormSubMateri;
 import ui.datamaster.FormDataAbsensiSiswa;
 import ui.datamaster.FormIsiNilai;
-import ui.datamaster.FormLaporan;
+import ui.report.FormLaporan;
 import ui.rekapitulation.RekapJadwal;
 import ui.rekapitulation.RekapJadwalInstruktur;
 
@@ -91,10 +91,11 @@ public class MainForm extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         mniRuangan = new javax.swing.JMenuItem();
         mniInstruktur = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        mnuRekap = new javax.swing.JMenu();
-        mniJadwal = new javax.swing.JMenuItem();
-        mniJadwalInstruktur = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        mniPenjadwalan = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
+        mniJKelas = new javax.swing.JMenuItem();
+        mniJI = new javax.swing.JMenuItem();
         mnuLaporan = new javax.swing.JMenu();
         mniTransaksiPEmbayaran = new javax.swing.JMenuItem();
 
@@ -335,39 +336,40 @@ public class MainForm extends javax.swing.JFrame {
         });
         mnuKurikulum.add(mniInstruktur);
 
-        jMenuItem8.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
-        jMenuItem8.setText("Penjadwalan");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        jMenu2.setText("Jadwal");
+        jMenu2.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+
+        mniPenjadwalan.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        mniPenjadwalan.setText("Penjadwalan");
+        mniPenjadwalan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                mniPenjadwalanActionPerformed(evt);
             }
         });
-        mnuKurikulum.add(jMenuItem8);
+        jMenu2.add(mniPenjadwalan);
+        jMenu2.add(jSeparator4);
+
+        mniJKelas.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        mniJKelas.setText("Jadwal Per Kelas");
+        mniJKelas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniJKelasActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniJKelas);
+
+        mniJI.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        mniJI.setText("Jadwal Per Instruktur");
+        mniJI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniJIActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniJI);
+
+        mnuKurikulum.add(jMenu2);
 
         jMenuBar1.add(mnuKurikulum);
-
-        mnuRekap.setText("Rekapitulasi");
-        mnuRekap.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
-
-        mniJadwal.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
-        mniJadwal.setText("Jadwal Keseluruhan");
-        mniJadwal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mniJadwalActionPerformed(evt);
-            }
-        });
-        mnuRekap.add(mniJadwal);
-
-        mniJadwalInstruktur.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
-        mniJadwalInstruktur.setText("Jadwal Instruktur");
-        mniJadwalInstruktur.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mniJadwalInstrukturActionPerformed(evt);
-            }
-        });
-        mnuRekap.add(mniJadwalInstruktur);
-
-        jMenuBar1.add(mnuRekap);
 
         mnuLaporan.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/my_scription/img/laporan.png")); // NOI18N
         mnuLaporan.setText("Laporan");
@@ -416,8 +418,8 @@ public class MainForm extends javax.swing.JFrame {
     public void panggilJendelaLogin() {
         login = new GuiLogin(this, true);
         Dimension lebar = Toolkit.getDefaultToolkit().getScreenSize();
-        int l = (lebar.width - login.getSize().width) /2;
-        int t = (lebar.width - login.getSize().height) /4;
+        int l = (lebar.width - login.getSize().width) / 2;
+        int t = (lebar.width - login.getSize().height) / 4;
         login.setLocation(l, t);
         login.setVisible(true);
     }
@@ -433,7 +435,7 @@ public class MainForm extends javax.swing.JFrame {
         mnuDataSiswa.setEnabled(mnu);
         mnuKurikulum.setEnabled(mnu);
         mnuKurikulum.setEnabled(mni);
-        mnuRekap.setEnabled(mnu);
+//        mnuRekap.setEnabled(mnu);
         mnuLaporan.setEnabled(mnu);
 
         setPemakaiAktif(mnu);
@@ -575,18 +577,6 @@ public class MainForm extends javax.swing.JFrame {
         add.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
-    private void mniJadwalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniJadwalActionPerformed
-        // TODO add your handling code here:
-        RekapJadwal add = new RekapJadwal();
-        desktop.add(add);
-
-        Dimension size = desktop.getSize();
-        Dimension addSize = add.getSize();
-        add.setLocation((size.width - addSize.width) / 2,
-                (size.height - addSize.height) / 2);
-        add.setVisible(true);
-    }//GEN-LAST:event_mniJadwalActionPerformed
-
     private void mniTransaksiPEmbayaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniTransaksiPEmbayaranActionPerformed
         // TODO add your handling code here:
         FormLaporan add = new FormLaporan();
@@ -599,19 +589,6 @@ public class MainForm extends javax.swing.JFrame {
         add.setVisible(true);
     }//GEN-LAST:event_mniTransaksiPEmbayaranActionPerformed
 
-    private void mniJadwalInstrukturActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniJadwalInstrukturActionPerformed
-        // TODO add your handling code here:
-        RekapJadwalInstruktur add = new RekapJadwalInstruktur();
-        desktop.add(add);
-
-        Dimension size = desktop.getSize();
-        Dimension addSize = add.getSize();
-        add.setLocation((size.width - addSize.width) / 2,
-                (size.height - addSize.height) / 2);
-        add.setVisible(true);
-
-    }//GEN-LAST:event_mniJadwalInstrukturActionPerformed
-
     private void mniKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKeluarActionPerformed
         // TODO add your handling code here:
         desktop.removeAll();
@@ -619,18 +596,6 @@ public class MainForm extends javax.swing.JFrame {
         setMenubarEnabled(false, false);
         panggilJendelaLogin();
     }//GEN-LAST:event_mniKeluarActionPerformed
-
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // TODO add your handling code here:
-        FormPenjadwalan add = new FormPenjadwalan();
-        desktop.add(add);
-
-        Dimension size = desktop.getSize();
-        Dimension addSize = add.getSize();
-        add.setLocation((size.width - addSize.width) / 2,
-            (size.height - addSize.height) / 2);
-        add.setVisible(true);
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void mniInstrukturActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniInstrukturActionPerformed
         // TODO add your handling code here:
@@ -640,7 +605,7 @@ public class MainForm extends javax.swing.JFrame {
         Dimension size = desktop.getSize();
         Dimension addSize = add.getSize();
         add.setLocation((size.width - addSize.width) / 2,
-            (size.height - addSize.height) / 2);
+                (size.height - addSize.height) / 2);
         add.setVisible(true);
     }//GEN-LAST:event_mniInstrukturActionPerformed
 
@@ -652,7 +617,7 @@ public class MainForm extends javax.swing.JFrame {
         Dimension size = desktop.getSize();
         Dimension addSize = add.getSize();
         add.setLocation((size.width - addSize.width) / 2,
-            (size.height - addSize.height) / 2);
+                (size.height - addSize.height) / 2);
         add.setVisible(true);
     }//GEN-LAST:event_mniRuanganActionPerformed
 
@@ -664,7 +629,7 @@ public class MainForm extends javax.swing.JFrame {
         Dimension size = desktop.getSize();
         Dimension addSize = add.getSize();
         add.setLocation((size.width - addSize.width) / 2,
-            (size.height - addSize.height) / 2);
+                (size.height - addSize.height) / 2);
         add.setVisible(true);
     }//GEN-LAST:event_mniKelasActionPerformed
 
@@ -676,7 +641,7 @@ public class MainForm extends javax.swing.JFrame {
         Dimension size = desktop.getSize();
         Dimension addSize = add.getSize();
         add.setLocation((size.width - addSize.width) / 2,
-            (size.height - addSize.height) / 2);
+                (size.height - addSize.height) / 2);
         add.setVisible(true);
     }//GEN-LAST:event_mniJurusanActionPerformed
 
@@ -688,7 +653,7 @@ public class MainForm extends javax.swing.JFrame {
         Dimension size = desktop.getSize();
         Dimension addSize = add.getSize();
         add.setLocation((size.width - addSize.width) / 2,
-            (size.height - addSize.height) / 2);
+                (size.height - addSize.height) / 2);
         add.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -700,40 +665,78 @@ public class MainForm extends javax.swing.JFrame {
         Dimension size = desktop.getSize();
         Dimension addSize = add.getSize();
         add.setLocation((size.width - addSize.width) / 2,
-            (size.height - addSize.height) / 2);
+                (size.height - addSize.height) / 2);
         add.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void mniPenjadwalanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniPenjadwalanActionPerformed
+        // TODO add your handling code here:
+        FormPenjadwalan add = new FormPenjadwalan();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+                (size.height - addSize.height) / 2);
+        add.setVisible(true);
+    }//GEN-LAST:event_mniPenjadwalanActionPerformed
+
+    private void mniJKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniJKelasActionPerformed
+        // TODO add your handling code here:
+        RekapJadwal add = new RekapJadwal();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+                (size.height - addSize.height) / 2);
+        add.setVisible(true);
+    }//GEN-LAST:event_mniJKelasActionPerformed
+
+    private void mniJIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniJIActionPerformed
+        // TODO add your handling code here:
+        RekapJadwalInstruktur add = new RekapJadwalInstruktur();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+                (size.height - addSize.height) / 2);
+        add.setVisible(true);
+    }//GEN-LAST:event_mniJIActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JMenuItem mniAbsensi;
     private javax.swing.JMenuItem mniBukuTamu;
     private javax.swing.JMenuItem mniDaftarSiswa;
     private javax.swing.JMenuItem mniDataAbsensi;
     private javax.swing.JMenuItem mniDataNilaiSiswa;
     private javax.swing.JMenuItem mniInstruktur;
-    private javax.swing.JMenuItem mniJadwal;
-    private javax.swing.JMenuItem mniJadwalInstruktur;
+    private javax.swing.JMenuItem mniJI;
+    private javax.swing.JMenuItem mniJKelas;
     private javax.swing.JMenuItem mniJurusan;
     private javax.swing.JMenuItem mniKelas;
     private javax.swing.JMenuItem mniKeluar;
     private javax.swing.JMenuItem mniMasuk;
     private javax.swing.JMenuItem mniMatikan;
     private javax.swing.JMenuItem mniPemBulanan;
+    private javax.swing.JMenuItem mniPenjadwalan;
     private javax.swing.JMenuItem mniRegistrasi;
     private javax.swing.JMenuItem mniRuangan;
     private javax.swing.JMenuItem mniTransaksiPEmbayaran;
@@ -743,6 +746,5 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenu mnuKeuangan;
     private javax.swing.JMenu mnuKurikulum;
     private javax.swing.JMenu mnuLaporan;
-    private javax.swing.JMenu mnuRekap;
     // End of variables declaration//GEN-END:variables
 }

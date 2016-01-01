@@ -13,7 +13,6 @@ import javax.swing.JOptionPane;
 import model.Instruktur;
 import service.ServiceOfInstruktur;
 import service.ValidateEmail;
-import service.ValidatePhoneNumber;
 
 /**
  *
@@ -54,16 +53,14 @@ public class FormInstrukturTambah extends javax.swing.JDialog {
         txtNIP.setText(model.getNii());
         txtNama.setText(model.getNama());
         txtTempat.setText(model.getTempatLahir());
-      //  SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-      //  String tanggalLahir = format.format(dateChoose.getDate());
+     
         dateChoose.setDate(java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(model.getTanggalLahir())));
-        // dateChoose.setDateFormatString(tanggalLahir);
+        
         cbkJK.setSelectedItem(model.getJenisKelamin());
         txtHP.setText(model.getKontak());
         txtEmail.setText(model.getEmail());
         txaAlamat.setText(model.getAlamat());
-      //  dateChoose.setDateFormatString(model.getTanggalLahir());
-
+     
     }
 
     /**
