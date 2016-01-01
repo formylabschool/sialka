@@ -13,12 +13,12 @@ import ui.MainForm;
  *
  * @author muhamadhanifmuhsin
  */
-public class MainAPP {
+public class SIALKA {
     private Dimension layarUtama;
 
     private MainForm utama;
 	
-	public MainAPP(){
+	public SIALKA(){
 
 		MainForm utama =new MainForm();
 		utama.setSize(getLayarUtama().width,getLayarUtama().height-30);
@@ -34,7 +34,7 @@ public class MainAPP {
 
     public static void main(String[]args){
 
-      MainAPP mainAPP = new MainAPP();
+      SIALKA mainAPP = new SIALKA();
 
     }
     

@@ -7,12 +7,9 @@ package ui.dataadd;
 
 import ui.datamaster.FormRuangan;
 import configuration.HIbernateUtil;
-import controllers.ControllersOfCourses;
 import controllers.ControllersOfRuangan;
 import javax.swing.JOptionPane;
-import model.ModelOfCourses;
 import model.Ruangan;
-import service.ServiceOfCourses;
 import service.ServiceOfRuangan;
 
 /**
@@ -102,7 +99,7 @@ public class FormRuanganTambah extends javax.swing.JDialog {
                         .addComponent(txtNamaRuangan, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtKodeRuangan, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
