@@ -45,8 +45,8 @@ public class MainForm extends javax.swing.JFrame {
      */
     public MainForm() {
         initComponents();
-       // panggilJendelaLogin();
-       // setMenubarEnabled(login.opLogin.isLogin(), login.opLogin.isAdmin());
+        panggilJendelaLogin();
+        setMenubarEnabled(login.opLogin.isLogin(), login.opLogin.isAdmin());
 
     }
 
@@ -61,7 +61,6 @@ public class MainForm extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
         desktop = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuAkses = new javax.swing.JMenu();
@@ -124,25 +123,14 @@ public class MainForm extends javax.swing.JFrame {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(0, 153, 204));
+        desktop.setBackground(new java.awt.Color(234, 234, 234));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 12, Short.MAX_VALUE)
-        );
-
-        desktop.setBackground(new java.awt.Color(204, 204, 204));
-
+        mnuAkses.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/my_scription/img/akses.png")); // NOI18N
         mnuAkses.setText("Akses");
         mnuAkses.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
 
         mniMasuk.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        mniMasuk.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/my_scription/img/login.png")); // NOI18N
         mniMasuk.setText("Masuk");
         mniMasuk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,6 +150,7 @@ public class MainForm extends javax.swing.JFrame {
         mnuAkses.add(jSeparator1);
 
         mniMatikan.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        mniMatikan.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/my_scription/img/standby.png")); // NOI18N
         mniMatikan.setText("Matikan");
         mniMatikan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,6 +203,7 @@ public class MainForm extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuAdministrasi);
 
+        mnuDataSiswa.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/my_scription/img/data_siswa.png")); // NOI18N
         mnuDataSiswa.setText("Data Siswa");
         mnuDataSiswa.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
 
@@ -279,6 +269,7 @@ public class MainForm extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuKeuangan);
 
+        mnuKurikulum.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/my_scription/img/kurikulum.png")); // NOI18N
         mnuKurikulum.setText("Kurikulum");
         mnuKurikulum.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
 
@@ -375,6 +366,7 @@ public class MainForm extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuRekap);
 
+        mnuLaporan.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/my_scription/img/laporan.png")); // NOI18N
         mnuLaporan.setText("Laporan");
         mnuLaporan.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
 
@@ -396,15 +388,12 @@ public class MainForm extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(desktop)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(desktop))
         );
@@ -725,7 +714,6 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
