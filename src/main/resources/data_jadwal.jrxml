@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-22T17:01:33 -->
+<!-- 2015-12-29T09:57:37 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="data_jadwal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="45a80911-5162-492e-a5f3-312e08f251e6">
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
@@ -72,18 +72,30 @@
 		<band height="159" splitType="Stretch">
 			<textField>
 				<reportElement x="104" y="53" width="200" height="20" uuid="d0f84e11-48d0-4995-90bc-d396e102d8d2"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{KodeKelas}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="104" y="83" width="283" height="20" uuid="2a3765d3-7913-4a56-ac7e-04c03e121837"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{NamaKelas}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="52" width="100" height="22" uuid="a33f1d00-d54c-4613-a981-5b450d085f33"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Kode Kelas]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="82" width="100" height="22" uuid="98b5aecb-144c-4123-b197-b4f8ef61e21d"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Nama Kelas]]></text>
 			</staticText>
 			<staticText>
@@ -101,7 +113,9 @@
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Center"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Materi]]></text>
 			</staticText>
 			<staticText>
@@ -112,7 +126,9 @@
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Center"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Instruktur]]></text>
 			</staticText>
 			<staticText>
@@ -123,7 +139,9 @@
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Center"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Ruangan]]></text>
 			</staticText>
 			<staticText>
@@ -134,7 +152,9 @@
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Center"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Jam Akhir]]></text>
 			</staticText>
 		</band>
@@ -149,7 +169,9 @@
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Center"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Tanggal]]></text>
 			</staticText>
 			<staticText>
@@ -160,41 +182,55 @@
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Center"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Jam Mulai]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="43" splitType="Stretch">
+		<band height="24" splitType="Stretch">
 			<textField pattern="M/d/yy">
-				<reportElement x="0" y="2" width="100" height="30" uuid="10cc47a4-8322-43b2-8d92-2c674b5cb431"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="0" y="2" width="100" height="18" uuid="10cc47a4-8322-43b2-8d92-2c674b5cb431"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
 			</textField>
 			<textField pattern="h:mm a">
-				<reportElement x="101" y="2" width="100" height="30" uuid="f17bd53d-747c-45a9-b43f-fcb93f5aff4a"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="101" y="2" width="100" height="18" uuid="f17bd53d-747c-45a9-b43f-fcb93f5aff4a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{jam_awal}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="200" y="0" width="100" height="30" uuid="f34eca7e-8752-44f1-9828-a645513e5970"/>
-				<textElement textAlignment="Center"/>
+			<textField pattern="h:mm a">
+				<reportElement x="200" y="2" width="100" height="18" uuid="f34eca7e-8752-44f1-9828-a645513e5970"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{jam_akhir}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="300" y="0" width="100" height="30" uuid="6d7b2863-f38f-46da-b578-accc471ef35b"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="300" y="0" width="100" height="20" uuid="6d7b2863-f38f-46da-b578-accc471ef35b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{materi}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="400" y="0" width="100" height="30" uuid="6a8c0d81-e321-476d-812d-b88a5e25740a"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="400" y="0" width="100" height="20" uuid="6a8c0d81-e321-476d-812d-b88a5e25740a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{instruktur}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="500" y="2" width="100" height="30" uuid="fc5a0a09-d82b-4f1d-b9e2-18b85d492332"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="500" y="2" width="100" height="18" uuid="fc5a0a09-d82b-4f1d-b9e2-18b85d492332"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{ruangan}]]></textFieldExpression>
 			</textField>
 		</band>

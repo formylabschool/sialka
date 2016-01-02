@@ -6,7 +6,6 @@
 package service;
 
 import java.util.List;
-import model.ModelOfCourses;
 import model.Ruangan;
 import org.hibernate.Criteria;
 import org.hibernate.Session;

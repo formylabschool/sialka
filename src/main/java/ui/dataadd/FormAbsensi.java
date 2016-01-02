@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import model.Absensi;
 import model.Siswa;
+import org.hibernate.exception.ConstraintViolationException;
 import service.ServiceOfAbsensi;
 import service.ServiceOfSiswa;
 
@@ -40,6 +41,11 @@ private Siswa siswa;
             JOptionPane.showMessageDialog(null, "Masukan Harus Berbentuk Angka");
         }
     }
+    
+    public void clearField(){
+        txtNIP.setText("");
+        txtNama.setText("");
+    }
   
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,7 +67,7 @@ private Siswa siswa;
 
         setClosable(true);
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
@@ -82,7 +88,7 @@ private Siswa siswa;
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
@@ -113,6 +119,7 @@ private Siswa siswa;
             }
         });
 
+        btnMasuk.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/login.png")); // NOI18N
         btnMasuk.setText("Masuk");
         btnMasuk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,6 +132,8 @@ private Siswa siswa;
 
         txtNama.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
+        btnCari.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        btnCari.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/search.png")); // NOI18N
         btnCari.setText("Cari");
         btnCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,7 +165,7 @@ private Siswa siswa;
                                 .addComponent(txtNIP, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnCari)
-                                .addGap(0, 36, Short.MAX_VALUE))
+                                .addGap(0, 51, Short.MAX_VALUE))
                             .addComponent(txtNama))))
                 .addContainerGap())
         );
@@ -164,7 +173,7 @@ private Siswa siswa;
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtNIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,8 +183,7 @@ private Siswa siswa;
                     .addComponent(jLabel3)
                     .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMasuk)
-                .addGap(0, 13, Short.MAX_VALUE))
+                .addComponent(btnMasuk))
         );
 
         pack();
@@ -209,15 +217,17 @@ private Siswa siswa;
         absensi.setSiswa(siswa);
             System.out.println(siswa.getNama());
             absensi1.doSave(absensi);
+            clearField();
             
-        }catch(NullPointerException npe){
-            System.err.println(npe);
+        }catch(ConstraintViolationException ce) {
+            JOptionPane.showMessageDialog(null,"No Peserta ini sudah melakukan absensi");
+            clearField();
         }
     }//GEN-LAST:event_btnMasukActionPerformed
 
     private void txtNIPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNIPKeyPressed
         // TODO add your handling code here:
-       btnCari.setEnabled(txtNIP.getText().trim().length()>5);
+    //   btnCari.setEnabled(txtNIP.getText().trim().length()>7);
         
     }//GEN-LAST:event_txtNIPKeyPressed
 

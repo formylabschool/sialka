@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-26T13:52:58 -->
+<!-- 2015-12-29T10:26:33 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="kwitansi_pendaftaran" pageWidth="595" pageHeight="340" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b6aa98c9-ccad-483e-aed2-cf393ec9cf03">
 	<property name="com.jaspersoft.studio.unit." value="cm"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="cm"/>
 	<import value="model.Siswa"/>
 	<parameter name="no_reg" class="java.lang.String"/>
 	<parameter name="namaSiswa" class="java.lang.String">
@@ -17,7 +26,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="67" splitType="Stretch">
+		<band height="72" splitType="Stretch">
 			<staticText>
 				<reportElement x="420" y="0" width="141" height="24" uuid="5ad07981-6a0e-49ed-9172-16320b7d4ef5"/>
 				<textElement>
@@ -40,23 +49,26 @@
 				<text><![CDATA[Tlp. 022-85964311]]></text>
 			</staticText>
 			<line>
-				<reportElement x="-20" y="66" width="595" height="1" uuid="7f98a391-33c3-4536-a612-49fefa22d547"/>
+				<reportElement x="-20" y="70" width="595" height="1" uuid="77ccd22b-7bf2-4f0b-9a0e-6efa98f0b14e"/>
 			</line>
 		</band>
 	</title>
 	<pageHeader>
 		<band height="37" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="187" height="30" uuid="1389c208-37d7-43c6-9188-3d8c6d97d0fc"/>
+				<reportElement x="0" y="4" width="187" height="21" uuid="1389c208-37d7-43c6-9188-3d8c6d97d0fc"/>
 				<textElement>
 					<font fontName="Arial Black" size="12"/>
 				</textElement>
 				<text><![CDATA[KWITANSI PENDAFTARAN]]></text>
 			</staticText>
+			<line>
+				<reportElement x="-20" y="24" width="595" height="1" uuid="7f98a391-33c3-4536-a612-49fefa22d547"/>
+			</line>
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="85" splitType="Stretch">
+		<band height="91" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="100" height="19" uuid="cdc69e06-c4c0-4b2f-8c9a-254ce4270b40"/>
 				<textElement>

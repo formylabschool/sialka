@@ -5,8 +5,12 @@
  */
 package controllers;
 
+import configuration.HIbernateUtil;
 import interfaces.JavaControllers;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import model.Jadwal;
+import service.ServiceOfJadwal;
 
 /**
  *
@@ -21,7 +25,17 @@ public class ControllersOfPenjadwalan implements JavaControllers {
         this.defaultTableModel.fireTableDataChanged();
     }
     
-  
+   public void loadDataTable(List<Jadwal> list) {
+        initTable();
+        ServiceOfJadwal service = new ServiceOfJadwal(HIbernateUtil.config());
+        for (Jadwal aJadwal : list) {
+            Object[] anObjects = { aJadwal.getTanggal(),aJadwal.getKelas().getKodeKelas(),aJadwal.getRuangan().getId(),
+                                    aJadwal.getJam_awal(),aJadwal.getJam_akhir(),aJadwal.getMateri().getNama(),aJadwal.getInstruktur().getNama()};
+            this.defaultTableModel.addRow(anObjects);
+
+        }
+
+    }
 
     @Override
     public void inijectTable(DefaultTableModel defaultTableModel) {

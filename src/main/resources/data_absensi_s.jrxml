@@ -1,27 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-26T13:49:12 -->
+<!-- 2015-12-29T20:41:38 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="data_absensi_s" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9b987bf8-ab9a-408e-bd47-963c5b3b6536">
+	<parameter name="noPeserta" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="namaPeserta" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="jumlahKehadiran" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
+	<field name="tanggal" class="java.util.Date">
+		<fieldDescription><![CDATA[tanggal]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="77" splitType="Stretch">
+			<staticText>
+				<reportElement x="222" y="0" width="110" height="20" uuid="a908eae7-7501-4ac5-a889-09cd20602dfb"/>
+				<textElement>
+					<font fontName="Arial Black" size="14"/>
+				</textElement>
+				<text><![CDATA[LPK (KANIRA)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="133" y="24" width="300" height="30" uuid="66833c08-4d76-4e45-9bd0-9c14545c8012"/>
+				<textElement>
+					<font fontName="Arial Black" size="14"/>
+				</textElement>
+				<text><![CDATA[LEMBAGA PELATIHAN KERJA KANIRA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-21" y="75" width="595" height="1" uuid="bfbbb093-d8ac-4699-aa5c-813a9287a67d"/>
+			</line>
+		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="37" width="80" height="20" uuid="01a5fa3d-0ca2-4aee-a4dc-2afb1ff98d96"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Nama Peserta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="15" width="79" height="20" uuid="f6cbaf3b-1d03-485c-bc4e-684130c4ba18"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[No Peserta]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="15" width="130" height="20" uuid="e6b88269-a93d-4b1d-816a-fa12081e51d9"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{noPeserta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="39" width="200" height="16" uuid="e4685a18-06ce-41d3-b198-8a4164876489"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{namaPeserta}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="23" splitType="Stretch">
+			<line>
+				<reportElement x="-20" y="0" width="595" height="1" uuid="6f0e0df8-3868-4176-a52f-ad641f6b7ef3"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="1" width="100" height="19" uuid="f3a4ca65-a60a-45b3-b784-e50f38c48ea1"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="125" splitType="Stretch">
+			<textField pattern="MMMM d, yyyy">
+				<reportElement x="0" y="0" width="100" height="30" uuid="9558d31d-fccc-4d24-be6c-546f6ec886f1"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="53" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="30" uuid="5a2ec636-ddfc-43ec-a7ac-00050323abf3"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Jumlah Kehadiran]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="0" width="140" height="30" uuid="8c734dc0-14ef-4179-a527-02cea18734df"/>
+				<textFieldExpression><![CDATA[$P{jumlahKehadiran}]]></textFieldExpression>
+			</textField>
+		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch"/>

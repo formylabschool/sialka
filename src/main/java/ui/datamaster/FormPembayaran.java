@@ -94,7 +94,7 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
@@ -136,6 +136,7 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
         });
 
         btnCari.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        btnCari.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/search.png")); // NOI18N
         btnCari.setText("Cari");
         btnCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,6 +217,7 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
         );
 
         btnSimpan.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        btnSimpan.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/save-file.png")); // NOI18N
         btnSimpan.setText("Simpan");
         btnSimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,7 +247,7 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSimpan)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(0, 14, Short.MAX_VALUE))
         );
 
         pack();
@@ -292,6 +294,8 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
 
         SessionFactory aSessionFactory = HIbernateUtil.config();
         ServiceOfPembayaran serviceOfpembayaran = new ServiceOfPembayaran(aSessionFactory);
+        Double result = siswa.getHargaTotal() - Double.valueOf(sPem.getValue().toString());
+        siswa.setLunas(result <= 0);
         serviceOfpembayaran.doSave(pembayaran);
         pembayaran.setNoPembayaran(generateKode(pembayaran.getId()));
         serviceOfpembayaran = new ServiceOfPembayaran(aSessionFactory);
