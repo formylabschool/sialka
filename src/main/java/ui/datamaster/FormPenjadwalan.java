@@ -431,6 +431,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        tabelValidasi.setFont(new java.awt.Font("Menlo", 0, 12)); // NOI18N
         tabelValidasi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -439,7 +440,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
                 {null, null}
             },
             new String [] {
-                "Nama Materi", "Jumlah Jam"
+                "Nama Materi", "Jumlah Jam Yang telah diambil"
             }
         ));
         jScrollPane2.setViewportView(tabelValidasi);

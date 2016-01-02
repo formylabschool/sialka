@@ -603,10 +603,13 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="tabelValidasi">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Menlo" size="12" style="0"/>
+                </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="2" rowCount="4">
                     <Column editable="true" title="Nama Materi" type="java.lang.Object"/>
-                    <Column editable="true" title="Jumlah Jam" type="java.lang.Object"/>
+                    <Column editable="true" title="Jumlah Jam Yang telah diambil" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
