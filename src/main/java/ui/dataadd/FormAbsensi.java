@@ -119,7 +119,7 @@ private Siswa siswa;
             }
         });
 
-        btnMasuk.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/my_scription/img/login.png")); // NOI18N
+        btnMasuk.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/login.png")); // NOI18N
         btnMasuk.setText("Masuk");
         btnMasuk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,7 +133,7 @@ private Siswa siswa;
         txtNama.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
         btnCari.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        btnCari.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/my_scription/img/search.png")); // NOI18N
+        btnCari.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/search.png")); // NOI18N
         btnCari.setText("Cari");
         btnCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,7 +165,7 @@ private Siswa siswa;
                                 .addComponent(txtNIP, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnCari)
-                                .addGap(0, 43, Short.MAX_VALUE))
+                                .addGap(0, 51, Short.MAX_VALUE))
                             .addComponent(txtNama))))
                 .addContainerGap())
         );

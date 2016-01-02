@@ -241,7 +241,7 @@
           <Font name="Menlo" size="13" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/my_scription/img/search.png"/>
+          <Image iconType="2" name="/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/search.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cari"/>
       </Properties>
@@ -350,7 +350,7 @@
           <Font name="Menlo" size="13" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/my_scription/img/exit.png"/>
+          <Image iconType="2" name="/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/exit.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Keluar"/>
       </Properties>
@@ -364,7 +364,7 @@
           <Font name="Menlo" size="13" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/my_scription/img/print.png"/>
+          <Image iconType="2" name="/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/print.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cetak"/>
       </Properties>

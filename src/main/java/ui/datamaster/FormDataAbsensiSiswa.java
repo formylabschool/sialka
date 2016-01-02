@@ -178,7 +178,7 @@ public class FormDataAbsensiSiswa extends javax.swing.JInternalFrame {
         jLabel4.setText("Jumlah Kehadiran");
 
         btnKeluar.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        btnKeluar.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/my_scription/img/exit.png")); // NOI18N
+        btnKeluar.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/exit.png")); // NOI18N
         btnKeluar.setText("Keluar");
         btnKeluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,8 +187,8 @@ public class FormDataAbsensiSiswa extends javax.swing.JInternalFrame {
         });
 
         btnPrint.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        btnPrint.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/my_scription/img/print.png")); // NOI18N
-        btnPrint.setText("Print");
+        btnPrint.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/print.png")); // NOI18N
+        btnPrint.setText("Cetak");
         btnPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrintActionPerformed(evt);
@@ -247,7 +247,7 @@ public class FormDataAbsensiSiswa extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtJml, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnKeluar))
-                .addGap(0, 13, Short.MAX_VALUE))
+                .addGap(0, 15, Short.MAX_VALUE))
         );
 
         pack();

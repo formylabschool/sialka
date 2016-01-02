@@ -153,7 +153,7 @@ public class FormDataPembayaran extends javax.swing.JInternalFrame {
         );
 
         btnKeluar.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        btnKeluar.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/my_scription/img/exit.png")); // NOI18N
+        btnKeluar.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/exit.png")); // NOI18N
         btnKeluar.setText("Keluar");
         btnKeluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

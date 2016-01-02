@@ -136,7 +136,7 @@ public class FormLaporan extends javax.swing.JInternalFrame {
         );
 
         btnCetak.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        btnCetak.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/my_scription/img/print.png")); // NOI18N
+        btnCetak.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/print.png")); // NOI18N
         btnCetak.setText("Cetak");
         btnCetak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
