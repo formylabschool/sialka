@@ -27,7 +27,7 @@ public interface Connect {
     /**
      *
      */
-    String PASS = "";//inisialisasi password pada MySQl
+    String PASS = "root";//inisialisasi password pada MySQl
 	public void panggilDriver();
 	public Connection HubungkanDBbtpn();
     
