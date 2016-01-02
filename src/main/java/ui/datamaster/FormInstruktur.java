@@ -19,8 +19,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import model.Instruktur;
-import model.ModelOfCourses;
-import model.Ruangan;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -31,7 +29,6 @@ import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import service.ServiceOfInstruktur;
-import service.ServiceOfRuangan;
 import ui.dataadd.FormInstrukturTambah;
 
 /**

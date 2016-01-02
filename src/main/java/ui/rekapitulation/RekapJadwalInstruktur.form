@@ -32,14 +32,18 @@
                           <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="cbkKelas" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
-                          <Component id="txtNamaKelas" alignment="0" max="32767" attributes="0"/>
-                          <Component id="cbkInstruktur" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
-                          <Component id="txtNamaInstruktur" alignment="0" pref="204" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtNamaKelas" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="cbkKelas" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
+                                  <Component id="cbkInstruktur" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
+                                  <Component id="txtNamaInstruktur" min="-2" pref="250" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnCari" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnCari" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
