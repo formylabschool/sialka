@@ -43,7 +43,7 @@
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>1.2.1</version>
 				<configuration>
-					<mainClass>main.MainAPP</mainClass>
+					<mainClass>main.SIALKA</mainClass>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -51,7 +51,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>main.MainAPP</mainClass>
+							<mainClass>main.SIALKA</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
