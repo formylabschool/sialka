@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-29T20:41:38 -->
+<!-- 2016-01-03T06:41:22 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="data_absensi_s" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9b987bf8-ab9a-408e-bd47-963c5b3b6536">
 	<parameter name="noPeserta" class="java.lang.String">
 		<parameterDescription><![CDATA[]]></parameterDescription>
@@ -72,12 +72,12 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="23" splitType="Stretch">
+		<band height="32" splitType="Stretch">
 			<line>
 				<reportElement x="-20" y="0" width="595" height="1" uuid="6f0e0df8-3868-4176-a52f-ad641f6b7ef3"/>
 			</line>
 			<staticText>
-				<reportElement x="0" y="1" width="100" height="19" uuid="f3a4ca65-a60a-45b3-b784-e50f38c48ea1"/>
+				<reportElement x="0" y="11" width="100" height="19" uuid="f3a4ca65-a60a-45b3-b784-e50f38c48ea1"/>
 				<textElement>
 					<font fontName="Times New Roman"/>
 				</textElement>
@@ -86,9 +86,9 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="25" splitType="Stretch">
 			<textField pattern="MMMM d, yyyy">
-				<reportElement x="0" y="0" width="100" height="30" uuid="9558d31d-fccc-4d24-be6c-546f6ec886f1"/>
+				<reportElement x="0" y="3" width="100" height="20" uuid="9558d31d-fccc-4d24-be6c-546f6ec886f1"/>
 				<textElement>
 					<font fontName="Times New Roman"/>
 				</textElement>
@@ -99,14 +99,17 @@
 	<columnFooter>
 		<band height="53" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="100" height="30" uuid="5a2ec636-ddfc-43ec-a7ac-00050323abf3"/>
+				<reportElement x="320" y="0" width="100" height="30" uuid="5a2ec636-ddfc-43ec-a7ac-00050323abf3"/>
 				<textElement>
 					<font fontName="Times New Roman"/>
 				</textElement>
 				<text><![CDATA[Jumlah Kehadiran]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="100" y="0" width="140" height="30" uuid="8c734dc0-14ef-4179-a527-02cea18734df"/>
+				<reportElement x="420" y="0" width="140" height="30" uuid="8c734dc0-14ef-4179-a527-02cea18734df"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{jumlahKehadiran}]]></textFieldExpression>
 			</textField>
 		</band>
