@@ -30,6 +30,7 @@ import ui.datamaster.FormIsiNilai;
 import ui.report.FormLaporan;
 import ui.rekapitulation.RekapJadwal;
 import ui.rekapitulation.RekapJadwalInstruktur;
+import ui.report.FormLunas;
 
 /**
  *
@@ -45,8 +46,8 @@ public class MainForm extends javax.swing.JFrame {
      */
     public MainForm() {
         initComponents();
-        panggilJendelaLogin();
-        setMenubarEnabled(login.opLogin.isLogin(), login.opLogin.isAdmin());
+      //  panggilJendelaLogin();
+      //  setMenubarEnabled(login.opLogin.isLogin(), login.opLogin.isAdmin());
 
     }
 
@@ -98,6 +99,7 @@ public class MainForm extends javax.swing.JFrame {
         mniJI = new javax.swing.JMenuItem();
         mnuLaporan = new javax.swing.JMenu();
         mniTransaksiPEmbayaran = new javax.swing.JMenuItem();
+        mniPelunasan = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -383,6 +385,15 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
         mnuLaporan.add(mniTransaksiPEmbayaran);
+
+        mniPelunasan.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        mniPelunasan.setText("Pelunasan");
+        mniPelunasan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniPelunasanActionPerformed(evt);
+            }
+        });
+        mnuLaporan.add(mniPelunasan);
 
         jMenuBar1.add(mnuLaporan);
 
@@ -705,6 +716,19 @@ public class MainForm extends javax.swing.JFrame {
         add.setVisible(true);
     }//GEN-LAST:event_mniJIActionPerformed
 
+    private void mniPelunasanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniPelunasanActionPerformed
+        // TODO add your handling code here:
+        FormLunas add = new FormLunas();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+                (size.height - addSize.height) / 2);
+        add.setVisible(true);
+    
+    }//GEN-LAST:event_mniPelunasanActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktop;
@@ -735,6 +759,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem mniKeluar;
     private javax.swing.JMenuItem mniMasuk;
     private javax.swing.JMenuItem mniMatikan;
+    private javax.swing.JMenuItem mniPelunasan;
     private javax.swing.JMenuItem mniPemBulanan;
     private javax.swing.JMenuItem mniPenjadwalan;
     private javax.swing.JMenuItem mniRegistrasi;
