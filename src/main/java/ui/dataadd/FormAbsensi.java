@@ -216,6 +216,7 @@ private Siswa siswa;
         absensi.setTanggal(Date.valueOf(LocalDate.now()));
         absensi.setSiswa(siswa);
             System.out.println(siswa.getNama());
+            
             absensi1.doSave(absensi);
             clearField();
             

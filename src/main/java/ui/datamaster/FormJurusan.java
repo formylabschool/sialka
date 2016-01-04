@@ -10,6 +10,7 @@ import controllers.ControllersOfJurusan;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
@@ -253,6 +254,7 @@ public class FormJurusan extends javax.swing.JInternalFrame {
             FormJurusanTambah add = new FormJurusanTambah(null, true, this, model);
             add.setVisible(true);
         } else {
+             JOptionPane.showMessageDialog(null, "Tabel Belum diklik");
 
         }
 
@@ -283,7 +285,7 @@ public class FormJurusan extends javax.swing.JInternalFrame {
                 Logger.getLogger(FormJurusan.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            System.out.println("Tabel Belum diklick");
+             JOptionPane.showMessageDialog(null, "Tabel Belum diklik");
         }
     }//GEN-LAST:event_btnHapusActionPerformed
 

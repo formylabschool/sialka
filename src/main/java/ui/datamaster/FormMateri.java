@@ -10,6 +10,7 @@ import controllers.ControllersOfMateri;
 import java.awt.Dimension;
 import java.util.List;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
@@ -268,6 +269,7 @@ public class FormMateri extends javax.swing.JInternalFrame {
             add.setVisible(true);
             
         } else {
+             JOptionPane.showMessageDialog(null, "Tabel Belum diklik");
 
         }
     }//GEN-LAST:event_btnUbahActionPerformed
@@ -282,7 +284,7 @@ public class FormMateri extends javax.swing.JInternalFrame {
             service.doDelete(model);
             refreshTable();
         }else{
-            System.out.println("Tabel Belum diklick");
+             JOptionPane.showMessageDialog(null, "Tabel Belum diklik");
         }
     }//GEN-LAST:event_btnHapusActionPerformed
 

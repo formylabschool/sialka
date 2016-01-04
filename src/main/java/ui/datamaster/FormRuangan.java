@@ -8,6 +8,7 @@ package ui.datamaster;
 import configuration.HIbernateUtil;
 import controllers.ControllersOfRuangan;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
@@ -256,6 +257,7 @@ public class FormRuangan extends javax.swing.JInternalFrame {
             FormRuanganTambah add = new FormRuanganTambah(null, true, this, model);
             add.setVisible(true);
         } else {
+             JOptionPane.showMessageDialog(null, "Tabel Belum diklik");
 
         }
 
@@ -270,8 +272,8 @@ public class FormRuangan extends javax.swing.JInternalFrame {
             Ruangan model = list.get(tabelRuangan.getSelectedRow());
             service.doDelete(model);
             refreshTable();
-        }else{
-            System.out.println("Tabel Belum diklick");
+        }else {
+             JOptionPane.showMessageDialog(null, "Tabel Belum diklik");
         }
     }//GEN-LAST:event_btnHapusActionPerformed
 

@@ -9,8 +9,7 @@ import ui.dataadd.BukuTamuTambah;
 import configuration.HIbernateUtil;
 import controllers.ControllersOfBukuTamu;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
@@ -21,19 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import model.BukuTamu;
-import model.Materi;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
-import net.sf.jasperreports.view.JasperViewer;
 import service.ServiceOfBukuTamu;
-import service.ServiceOfInstruktur;
-import service.ServiceOfMateri;
 
 /**
  *
@@ -294,6 +281,7 @@ private DefaultTableModel model;
             BukuTamuTambah add = new BukuTamuTambah(null, true, this, model);
             add.setVisible(true);
         } else {
+            JOptionPane.showMessageDialog(null, "Tabel Belum diklik");
 
         }
     }//GEN-LAST:event_btnUbahActionPerformed
@@ -308,7 +296,7 @@ private DefaultTableModel model;
             service.doDelete(model);
             refreshTable();
         }else{
-            System.out.println("Tabel Belum diklick");
+            JOptionPane.showMessageDialog(null, "Tabel Belum diklik");
         }
     }//GEN-LAST:event_btnHapusActionPerformed
 
