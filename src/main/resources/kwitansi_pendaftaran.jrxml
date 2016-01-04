@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-29T10:26:33 -->
+<!-- 2016-01-04T07:14:16 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="kwitansi_pendaftaran" pageWidth="595" pageHeight="340" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b6aa98c9-ccad-483e-aed2-cf393ec9cf03">
 	<property name="com.jaspersoft.studio.unit." value="cm"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
 	<property name="com.jaspersoft.studio.unit.pageWidth" value="cm"/>
 	<property name="com.jaspersoft.studio.unit.topMargin" value="cm"/>
@@ -12,6 +11,7 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="cm"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="cm"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="cm"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<import value="model.Siswa"/>
 	<parameter name="no_reg" class="java.lang.String"/>
 	<parameter name="namaSiswa" class="java.lang.String">
@@ -72,56 +72,56 @@
 			<staticText>
 				<reportElement x="0" y="0" width="100" height="19" uuid="cdc69e06-c4c0-4b2f-8c9a-254ce4270b40"/>
 				<textElement>
-					<font fontName="Times New Roman" size="12"/>
+					<font fontName="Times New Roman" size="10"/>
 				</textElement>
 				<text><![CDATA[No. Pendaftaran]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="21" width="100" height="19" uuid="7e6bb7f3-413f-4ebb-82d9-4999ef546470"/>
 				<textElement>
-					<font fontName="Times New Roman" size="12"/>
+					<font fontName="Times New Roman" size="10"/>
 				</textElement>
 				<text><![CDATA[Nama]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="42" width="100" height="20" uuid="695e2d87-42bf-4c69-abd7-20f69f26106a"/>
 				<textElement>
-					<font fontName="Times New Roman" size="12"/>
+					<font fontName="Times New Roman" size="10"/>
 				</textElement>
 				<text><![CDATA[Pelatihan]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="140" y="0" width="160" height="19" uuid="6c092755-9233-441e-8aae-e6cc3ea00cae"/>
 				<textElement>
-					<font fontName="Times New Roman" size="12"/>
+					<font fontName="Times New Roman" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{no_reg}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="140" y="21" width="220" height="19" uuid="5f2d8e9b-ac7b-4e11-b1e0-70a227f5106c"/>
 				<textElement>
-					<font fontName="Times New Roman" size="12"/>
+					<font fontName="Times New Roman" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{namaSiswa}]]></textFieldExpression>
 			</textField>
-			<textField pattern="">
+			<textField pattern="#,##0.##¤;#,##0.##- ¤">
 				<reportElement x="140" y="65" width="160" height="16" uuid="e7544dbe-d505-4f6d-ac46-4913684c7549"/>
 				<textElement>
-					<font fontName="Times New Roman" size="12"/>
+					<font fontName="Times New Roman" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{harga}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="140" y="42" width="260" height="20" uuid="f241ebe8-9d92-43dd-8f9d-ed509ae695f2"/>
 				<textElement>
-					<font fontName="Times New Roman" size="12"/>
+					<font fontName="Times New Roman" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{namaPelatihan}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="65" width="100" height="18" uuid="620504c4-cbf7-4c70-a8b4-9b0e744c9a19"/>
 				<textElement>
-					<font fontName="Times New Roman" size="12"/>
+					<font fontName="Times New Roman" size="10"/>
 				</textElement>
 				<text><![CDATA[Biaya Pendaftaran]]></text>
 			</staticText>
@@ -132,21 +132,21 @@
 			<staticText>
 				<reportElement x="445" y="0" width="100" height="23" uuid="42caec21-8ae2-4b85-96d4-e462d2851d92"/>
 				<textElement>
-					<font fontName="Times New Roman" size="12"/>
+					<font fontName="Times New Roman" size="10"/>
 				</textElement>
 				<text><![CDATA[Hormat Kami,]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="1" y="38" width="229" height="16" uuid="8c68daa2-0f93-4302-822f-787bad47f30c"/>
 				<textElement>
-					<font fontName="Times New Roman" isItalic="true"/>
+					<font fontName="Times New Roman" size="10" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[*Kwitansi ini harus disimpan dengan baik]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="54" width="226" height="15" uuid="7d79cbdd-d297-4596-a6b7-80b4e4b54de3"/>
 				<textElement>
-					<font fontName="Times New Roman" isItalic="true"/>
+					<font fontName="Times New Roman" size="10" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[*No pendaftaran merupakan id peserta]]></text>
 			</staticText>

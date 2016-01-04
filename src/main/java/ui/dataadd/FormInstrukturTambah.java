@@ -89,7 +89,6 @@ public class FormInstrukturTambah extends javax.swing.JDialog {
         txaAlamat = new javax.swing.JTextArea();
         jLabel7 = new javax.swing.JLabel();
         cbkJK = new javax.swing.JComboBox();
-        jLabel9 = new javax.swing.JLabel();
         txtValidate = new javax.swing.JLabel();
         btnSimpan = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -150,8 +149,7 @@ public class FormInstrukturTambah extends javax.swing.JDialog {
         cbkJK.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         cbkJK.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "=Pilih=", "L", "P" }));
 
-        jLabel9.setText("Validate :");
-
+        txtValidate.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         txtValidate.setText("example@domain.com");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -190,10 +188,7 @@ public class FormInstrukturTambah extends javax.swing.JDialog {
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtValidate))
+                            .addComponent(txtValidate)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(txtHP)
@@ -235,9 +230,7 @@ public class FormInstrukturTambah extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(txtValidate))
+                .addComponent(txtValidate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -379,7 +372,6 @@ public class FormInstrukturTambah extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

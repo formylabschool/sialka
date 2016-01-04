@@ -86,7 +86,7 @@ public class FormMateriTambah extends javax.swing.JDialog {
         this.listJurusan = new ServiceOfJurusan(HIbernateUtil.config()).findAll();
         cbkJurusan.removeAllItems();
         for (Jurusan aJurusan : listJurusan) {
-            cbkJurusan.addItem(aJurusan.getKodeJurusan());
+            cbkJurusan.addItem(aJurusan.getNama());
         }
     }
 
@@ -176,13 +176,13 @@ public class FormMateriTambah extends javax.swing.JDialog {
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
                 .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtKode, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNama, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtTeori, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtPraktek, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(cbkJurusan, javax.swing.GroupLayout.Alignment.LEADING, 0, 121, Short.MAX_VALUE)))
+                        .addComponent(txtTeori, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                        .addComponent(txtPraktek, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(cbkJurusan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(

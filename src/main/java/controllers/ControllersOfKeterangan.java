@@ -5,8 +5,12 @@
  */
 package controllers;
 
+import configuration.HIbernateUtil;
 import interfaces.JavaControllers;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import model.Keterangan;
+import service.ServiceOfKeterangan;
 
 /**
  *
@@ -23,6 +27,17 @@ public class ControllersOfKeterangan implements JavaControllers {
     public void initTable() {
         this.defaultTableModel.getDataVector().removeAllElements();
         this.defaultTableModel.fireTableDataChanged();
+    }
+    
+     public void loadDataTable(List<Keterangan> list) {
+        initTable();
+        ServiceOfKeterangan service = new ServiceOfKeterangan(HIbernateUtil.config());
+        for (Keterangan aKeterangan : list) {
+            Object[] anObjects = { aKeterangan.getMateri().getKodeMateri(), aKeterangan.getNamaKeterangan()};
+            this.defaultTableModel.addRow(anObjects);
+
+        }
+
     }
 
     @Override

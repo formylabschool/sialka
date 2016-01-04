@@ -72,14 +72,14 @@
                       <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="txtKode" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
-                      <Component id="txtNama" alignment="0" min="-2" pref="195" max="-2" attributes="0"/>
+                      <Component id="txtNama" alignment="0" pref="195" max="32767" attributes="0"/>
                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="txtTeori" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtTeori" alignment="0" pref="121" max="32767" attributes="0"/>
                           <Component id="txtPraktek" alignment="0" max="32767" attributes="0"/>
-                          <Component id="cbkJurusan" alignment="0" pref="121" max="32767" attributes="0"/>
                       </Group>
+                      <Component id="cbkJurusan" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="20" max="32767" attributes="0"/>
               </Group>
