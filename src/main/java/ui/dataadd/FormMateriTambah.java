@@ -156,6 +156,7 @@ public class FormMateriTambah extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel5.setText("Jurusan");
 
+        cbkJurusan.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         cbkJurusan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbkJurusan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -23,30 +23,29 @@ import service.ServiceOfSiswa;
  * @author muhamadhanifmuhsin
  */
 public class FormAbsensi extends javax.swing.JInternalFrame {
-private Siswa siswa;
+
+    private Siswa siswa;
+
     /**
      * Creates new form FormAbsensi
      */
     public FormAbsensi() {
         initComponents();
-        
-       
+
     }
 
-    
-    
-    public void filterHuruf(KeyEvent a){
-        if(Character.isAlphabetic(a.getKeyChar())){
+    public void filterHuruf(KeyEvent a) {
+        if (Character.isAlphabetic(a.getKeyChar())) {
             a.consume();
             JOptionPane.showMessageDialog(null, "Masukan Harus Berbentuk Angka");
         }
     }
-    
-    public void clearField(){
+
+    public void clearField() {
         txtNIP.setText("");
         txtNama.setText("");
     }
-  
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -191,45 +190,55 @@ private Siswa siswa;
 
     private void txtNIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNIPActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_txtNIPActionPerformed
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         // TODO add your handling code here:
-        
+
         ServiceOfSiswa aSiswa = new ServiceOfSiswa(HIbernateUtil.config());
-         siswa = aSiswa.findSiswa(txtNIP.getText());
-        if(siswa == null ){
+        siswa = aSiswa.findSiswa(txtNIP.getText());
+        if (siswa == null) {
             JOptionPane.showMessageDialog(null, "Siswa Tidak di temukan");
-        }else txtNama.setText(siswa.getNama());
-        
-            
-        
+        } else {
+            txtNama.setText(siswa.getNama());
+        }
+
+
     }//GEN-LAST:event_btnCariActionPerformed
 
     private void btnMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasukActionPerformed
         // TODO add your handling code here:
-        try{
-        Absensi absensi = new Absensi();
-            ServiceOfAbsensi absensi1 = new ServiceOfAbsensi(HIbernateUtil.config());
+        if (txtNIP.getText().equals("")) {
+            JOptionPane.showMessageDialog(getRootPane(), "Isi No induk dan klik button Cari", "INFORMASI", JOptionPane.WARNING_MESSAGE);
+        } else {
+            if (txtNama.getText().equals("")) {
+                JOptionPane.showMessageDialog(getRootPane(), "Isi No induk dan klik button Cari", "INFORMASI", JOptionPane.WARNING_MESSAGE);
+            } else {
 
-        absensi.setTanggal(Date.valueOf(LocalDate.now()));
-        absensi.setSiswa(siswa);
-            System.out.println(siswa.getNama());
-            
-            absensi1.doSave(absensi);
-            clearField();
-            
-        }catch(ConstraintViolationException ce) {
-            JOptionPane.showMessageDialog(null,"No Peserta ini sudah melakukan absensi");
-            clearField();
+                try {
+                    Absensi absensi = new Absensi();
+                    ServiceOfAbsensi absensi1 = new ServiceOfAbsensi(HIbernateUtil.config());
+
+                    absensi.setTanggal(Date.valueOf(LocalDate.now()));
+                    absensi.setSiswa(siswa);
+                    System.out.println(siswa.getNama());
+
+                    absensi1.doSave(absensi);
+                    clearField();
+
+                } catch (ConstraintViolationException ce) {
+                    JOptionPane.showMessageDialog(null, "No Peserta ini sudah melakukan absensi");
+                    clearField();
+                }
+            }
         }
     }//GEN-LAST:event_btnMasukActionPerformed
 
     private void txtNIPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNIPKeyPressed
         // TODO add your handling code here:
-    //   btnCari.setEnabled(txtNIP.getText().trim().length()>7);
-        
+        //   btnCari.setEnabled(txtNIP.getText().trim().length()>7);
+
     }//GEN-LAST:event_txtNIPKeyPressed
 
     private void txtNIPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNIPKeyTyped
@@ -239,12 +248,12 @@ private Siswa siswa;
 
     private void txtNIPPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtNIPPropertyChange
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_txtNIPPropertyChange
 
     private void txtNIPCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNIPCaretUpdate
         // TODO add your handling code here:
-      
+
     }//GEN-LAST:event_txtNIPCaretUpdate
 
 

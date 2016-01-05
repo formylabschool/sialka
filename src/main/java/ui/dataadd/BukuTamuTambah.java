@@ -248,38 +248,64 @@ public class BukuTamuTambah extends javax.swing.JDialog {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        if (update) {
-            try {
-                ServiceOfBukuTamu service = new ServiceOfBukuTamu(HIbernateUtil.config());
-                model.setTanggal(java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(dateChoose.getDate())));
-                model.setNama(txtNama.getText());
-                model.setYangDituju(txtBertemu.getText());
-                model.setKeperluan(txtKeperluan.getText());
-                model.setKontak(txtKontak.getText());
-                model.setAlamat(txaAlamat.getText());
-                service.doUpdate(model);
-                this.menu.refreshTable();
-                dispose();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        if (dateChoose.getDate() == null) {
+            JOptionPane.showMessageDialog(getRootPane(), "Isi Tanggal", "INFORMASI", JOptionPane.WARNING_MESSAGE);
         } else {
-            try {
-                ServiceOfBukuTamu service = new ServiceOfBukuTamu(HIbernateUtil.config());
-                model.setTanggal(java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(dateChoose.getDate())));
-                model.setNama(txtNama.getText());
-                model.setYangDituju(txtBertemu.getText());
-                model.setKeperluan(txtKeperluan.getText());
-                model.setKontak(txtKontak.getText());
-                model.setAlamat(txaAlamat.getText());
-                service.doSave(model);
-                this.menu.refreshTable();
-                dispose();
+            if (txtNama.getText().equals("")) {
+                JOptionPane.showMessageDialog(getRootPane(), "Isi Nama", "INFORMASI", JOptionPane.WARNING_MESSAGE);
+            } else {
+                if (txtBertemu.getText().equals("")) {
+                    JOptionPane.showMessageDialog(getRootPane(), "Isi Bertemu dengan", "INFORMASI", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    if (txtKeperluan.getText().equals("")) {
+                        JOptionPane.showMessageDialog(getRootPane(), "Isi Keperluan", "INFORMASI", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        if (txtKontak.getText().equals("")) {
+                            JOptionPane.showMessageDialog(getRootPane(), "Isi Kontak", "INFORMASI", JOptionPane.WARNING_MESSAGE);
+                        } else {
+                            if (txaAlamat.getText().equals("")) {
+                                JOptionPane.showMessageDialog(getRootPane(), "Isi Alamat", "INFORMASI", JOptionPane.WARNING_MESSAGE);
+                            } else {
 
-            } catch (Exception e) {
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(null, e.getMessage());
+                                if (update) {
+                                    try {
+                                        ServiceOfBukuTamu service = new ServiceOfBukuTamu(HIbernateUtil.config());
+                                        model.setTanggal(java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(dateChoose.getDate())));
+                                        model.setNama(txtNama.getText());
+                                        model.setYangDituju(txtBertemu.getText());
+                                        model.setKeperluan(txtKeperluan.getText());
+                                        model.setKontak(txtKontak.getText());
+                                        model.setAlamat(txaAlamat.getText());
+                                        service.doUpdate(model);
+                                        this.menu.refreshTable();
+                                        dispose();
+
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                } else {
+                                    try {
+                                        ServiceOfBukuTamu service = new ServiceOfBukuTamu(HIbernateUtil.config());
+                                        model.setTanggal(java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(dateChoose.getDate())));
+                                        model.setNama(txtNama.getText());
+                                        model.setYangDituju(txtBertemu.getText());
+                                        model.setKeperluan(txtKeperluan.getText());
+                                        model.setKontak(txtKontak.getText());
+                                        model.setAlamat(txaAlamat.getText());
+                                        service.doSave(model);
+                                        // JOptionPane.showMessageDialog(null, "Berhasil Disimpan");
+                                        this.menu.refreshTable();
+                                        dispose();
+
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                        JOptionPane.showMessageDialog(null, e.getMessage());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }//GEN-LAST:event_btnSimpanActionPerformed
@@ -287,7 +313,6 @@ public class BukuTamuTambah extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSimpan;
     private com.toedter.calendar.JDateChooser dateChoose;

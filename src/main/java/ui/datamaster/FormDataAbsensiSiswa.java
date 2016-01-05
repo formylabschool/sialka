@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Absensi;
 import model.Kelas;
@@ -296,12 +297,14 @@ public class FormDataAbsensiSiswa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbkPesertaActionPerformed
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-        try {
-            // TODO add your handling code here:
-            printDataAbsensiSiswa(absensi);
-        } catch (JRException ex) {
-            Logger.getLogger(FormDataAbsensiSiswa.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
+            try {
+                // TODO add your handling code here:
+                printDataAbsensiSiswa(absensi);
+            } catch (JRException ex) {
+                Logger.getLogger(FormDataAbsensiSiswa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
     }//GEN-LAST:event_btnPrintActionPerformed
 
 

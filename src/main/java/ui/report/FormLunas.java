@@ -6,8 +6,14 @@
 package ui.report;
 
 import configuration.HIbernateUtil;
+import controllers.ControllersOfPembayaran;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import model.Siswa;
+import service.ServiceOfPembayaran;
 import service.ServiceOfSiswa;
 
 /**
@@ -15,26 +21,21 @@ import service.ServiceOfSiswa;
  * @author muhamadhanifmuhsin
  */
 public class FormLunas extends javax.swing.JInternalFrame {
-private List<Siswa>listSiswa;
+
+    private List<Siswa> listSiswa = new ArrayList<>();
+    private ServiceOfPembayaran service;
+    private ControllersOfPembayaran control;
+
     /**
      * Creates new form FormLunas
      */
     public FormLunas() {
         initComponents();
-        initCombo();
+        service = new ServiceOfPembayaran(HIbernateUtil.config());
+        control = new ControllersOfPembayaran();
+        this.control.inijectTable((DefaultTableModel) tableLunas.getModel());
     }
 
-     public void initCombo() {
-        this.listSiswa = new ServiceOfSiswa(HIbernateUtil.config()).findAll();
-
-        cbkLunas.removeAllItems();
-        for (Siswa aSiswa : listSiswa) {
-
-            cbkLunas.addItem(aSiswa.getLunas());
-
-        }
-        cbkLunas.setSelectedIndex(-1);
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,7 +50,7 @@ private List<Siswa>listSiswa;
         cbkLunas = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableLunas = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         btnKeluar = new javax.swing.JButton();
 
@@ -78,11 +79,16 @@ private List<Siswa>listSiswa;
         );
 
         cbkLunas.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        cbkLunas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbkLunas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lunas", "Belum Lunas" }));
+        cbkLunas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbkLunasItemStateChanged(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableLunas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -93,7 +99,7 @@ private List<Siswa>listSiswa;
                 "No Induk Peserta", "Nama"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableLunas);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -166,6 +172,26 @@ private List<Siswa>listSiswa;
         dispose();
     }//GEN-LAST:event_btnKeluarActionPerformed
 
+    private void cbkLunasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbkLunasItemStateChanged
+        // TODO add your handling code here:
+        try {
+            listSiswa.clear();
+            control.initTable();
+            if (cbkLunas.getSelectedItem().equals("Lunas")) {
+                listSiswa = service.findSiswaByLunas(true);
+            } else {
+                listSiswa = service.findSiswaByLunas(false);
+
+            }
+            for (Siswa aSiswa : listSiswa) {
+                Object[] value = {aSiswa.getKodeSiswa(), aSiswa.getNama()};
+                control.getDefaultTableModel().addRow(value);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_cbkLunasItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnKeluar;
@@ -175,6 +201,6 @@ private List<Siswa>listSiswa;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tableLunas;
     // End of variables declaration//GEN-END:variables
 }

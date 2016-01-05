@@ -17,30 +17,34 @@ import service.ServiceOfPembayaran;
  * @author muhamadhanifmuhsin
  */
 public class ControllersOfPembayaran implements JavaControllers {
-     private DefaultTableModel defaultTableModel;
-    
+
+    private DefaultTableModel defaultTableModel;
+
+    public DefaultTableModel getDefaultTableModel() {
+        return defaultTableModel;
+    }
 
     public void initTable() {
         this.defaultTableModel.getDataVector().removeAllElements();
         this.defaultTableModel.fireTableDataChanged();
     }
-    
-    public void loadDataTable(List<Pembayaran>list){
+
+    public void loadDataTable(List<Pembayaran> list) {
         initTable();
         ServiceOfPembayaran service = new ServiceOfPembayaran(HIbernateUtil.config());
-        for(Pembayaran aPembayaran : list){
-            Object[] anObjects={aPembayaran.getNoPembayaran(),aPembayaran.getTanggal(),
-                                aPembayaran.getAmount(),aPembayaran.getSiswa().getKodeSiswa()
-                
+        for (Pembayaran aPembayaran : list) {
+            Object[] anObjects = {aPembayaran.getNoPembayaran(), aPembayaran.getTanggal(),
+                aPembayaran.getAmount(), aPembayaran.getSiswa().getKodeSiswa()
+
             };
             this.defaultTableModel.addRow(anObjects);
         }
-        
+
     }
 
     @Override
     public void inijectTable(DefaultTableModel defaultTableModel) {
-         this.defaultTableModel = defaultTableModel;
+        this.defaultTableModel = defaultTableModel;
     }
-    
+
 }

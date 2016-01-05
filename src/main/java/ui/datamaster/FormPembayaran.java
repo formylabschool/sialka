@@ -295,7 +295,7 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
         SessionFactory aSessionFactory = HIbernateUtil.config();
         ServiceOfPembayaran serviceOfpembayaran = new ServiceOfPembayaran(aSessionFactory);
         Double result = siswa.getHargaTotal() - Double.valueOf(sPem.getValue().toString());
-        siswa.setLunas(result <= 0);
+        siswa.setLunas(result <= 0.0);
         serviceOfpembayaran.doSave(pembayaran);
         pembayaran.setNoPembayaran(generateKode(pembayaran.getId()));
         serviceOfpembayaran = new ServiceOfPembayaran(aSessionFactory);

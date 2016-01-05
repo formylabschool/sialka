@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2016-01-04T07:57:56 -->
+<!-- 2016-01-05T10:14:27 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="jadwal_instruktur" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f744b936-7cbf-45b6-b2d0-2ad0b3c7a179">
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
@@ -83,7 +83,7 @@
 	<columnHeader>
 		<band height="46" splitType="Stretch">
 			<staticText>
-				<reportElement x="110" y="15" width="100" height="30" uuid="d1d9e1e5-3568-434f-8465-1721b136b413"/>
+				<reportElement x="110" y="15" width="100" height="25" uuid="d1d9e1e5-3568-434f-8465-1721b136b413"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -96,7 +96,7 @@
 				<text><![CDATA[Tanggal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="210" y="15" width="100" height="30" uuid="bce93fac-bbf4-47ef-b005-f33075c51c1c"/>
+				<reportElement x="210" y="15" width="100" height="25" uuid="bce93fac-bbf4-47ef-b005-f33075c51c1c"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -109,7 +109,7 @@
 				<text><![CDATA[Jam Awal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="310" y="15" width="100" height="30" uuid="7408c99a-7267-4328-bcb7-37b663f63433"/>
+				<reportElement x="310" y="15" width="100" height="25" uuid="7408c99a-7267-4328-bcb7-37b663f63433"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -122,7 +122,7 @@
 				<text><![CDATA[Jam Akhir]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="410" y="15" width="160" height="30" uuid="6512f6a3-f38b-42d1-8cc5-2543d5886ca9"/>
+				<reportElement x="410" y="15" width="160" height="25" uuid="6512f6a3-f38b-42d1-8cc5-2543d5886ca9"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -135,7 +135,7 @@
 				<text><![CDATA[Materi]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="570" y="15" width="100" height="30" uuid="c7305429-c915-4db2-9b14-c4a780625e61"/>
+				<reportElement x="570" y="15" width="100" height="25" uuid="c7305429-c915-4db2-9b14-c4a780625e61"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -150,9 +150,9 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="32" splitType="Stretch">
+		<band height="31" splitType="Stretch">
 			<textField pattern="MMM d, yyyy">
-				<reportElement x="110" y="-6" width="100" height="30" uuid="6ad53108-db48-4331-9e14-d5cef6687994"/>
+				<reportElement x="110" y="-6" width="100" height="17" uuid="6ad53108-db48-4331-9e14-d5cef6687994"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -164,8 +164,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="210" y="-6" width="100" height="30" uuid="cf5108b1-83da-4168-a49d-97084938ab55"/>
+			<textField pattern="HH:mm a">
+				<reportElement x="210" y="-6" width="100" height="17" uuid="cf5108b1-83da-4168-a49d-97084938ab55"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -177,8 +177,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{jam_awal}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="310" y="-6" width="100" height="30" uuid="35cb44bd-31a2-45d2-9c74-41cfbb456574"/>
+			<textField pattern="HH:mm a">
+				<reportElement x="310" y="-6" width="100" height="17" uuid="35cb44bd-31a2-45d2-9c74-41cfbb456574"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -191,7 +191,7 @@
 				<textFieldExpression><![CDATA[$F{jam_akhir}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="410" y="-6" width="160" height="30" uuid="e96060bc-e299-4bb6-8b41-4897c189e3cb"/>
+				<reportElement x="410" y="-6" width="160" height="17" uuid="e96060bc-e299-4bb6-8b41-4897c189e3cb"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -204,7 +204,7 @@
 				<textFieldExpression><![CDATA[$F{materi}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="570" y="-6" width="100" height="30" uuid="49218340-12f1-45b2-a3ec-5ccaae84ad70"/>
+				<reportElement x="570" y="-6" width="100" height="17" uuid="49218340-12f1-45b2-a3ec-5ccaae84ad70"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -216,9 +216,21 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ruangan}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="10" y="0" width="100" height="30" uuid="57c40afc-f4a0-4c7d-b66a-258009c398da"/>
+				<textFieldExpression><![CDATA[$V{COLUMN_NUMBER}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="60" splitType="Stretch">
+			<textField>
+				<reportElement x="380" y="38" width="100" height="20" uuid="3720df39-0626-4e3f-a719-57e917fe6473"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
 </jasperReport>

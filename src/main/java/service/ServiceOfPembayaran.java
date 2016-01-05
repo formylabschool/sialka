@@ -7,9 +7,11 @@ package service;
 
 import java.util.List;
 import model.Pembayaran;
+import model.Siswa;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -45,5 +47,16 @@ public class ServiceOfPembayaran {
         Criteria aCriteria = aSession.createCriteria(Pembayaran.class);
         return aCriteria.list();
     }
+      
+      public List<Siswa>findSiswaByLunas(Boolean lunas)throws Exception{
+          Session aSession = aSessionFactory.openSession();
+          aSession.beginTransaction();
+          
+          Criteria aCriteria = aSession.createCriteria(Siswa.class);
+         
+          aCriteria.add(Restrictions.eq("lunas", lunas));
+          return aCriteria.list();
+                  
+      }
     
 }
