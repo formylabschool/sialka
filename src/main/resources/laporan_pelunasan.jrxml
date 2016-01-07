@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2016-01-07T10:35:31 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="laporan_pelunasan" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cb601a21-5814-474b-bfbb-57ef31fc86f7">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="kodeSiswa" class="java.lang.String">
+		<fieldDescription><![CDATA[kodeSiswa]]></fieldDescription>
+	</field>
+	<field name="sisa" class="java.lang.Double">
+		<fieldDescription><![CDATA[sisa]]></fieldDescription>
+	</field>
+	<field name="kelas" class="java.lang.String">
+		<fieldDescription><![CDATA[kelas.kodeKelas]]></fieldDescription>
+	</field>
+	<field name="tahunAjaran" class="java.lang.String">
+		<fieldDescription><![CDATA[tahunAjaran]]></fieldDescription>
+	</field>
+	<field name="nama" class="java.lang.String">
+		<fieldDescription><![CDATA[nama]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="222" y="0" width="110" height="20" uuid="9e1eb6cc-0987-491d-9a4e-fb3d1b3540f6"/>
+				<textElement>
+					<font fontName="Arial Black" size="14"/>
+				</textElement>
+				<text><![CDATA[LPK (KANIRA)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="133" y="24" width="300" height="30" uuid="830ad174-c66c-4a33-b25a-c9ae982d1c31"/>
+				<textElement>
+					<font fontName="Arial Black" size="14"/>
+				</textElement>
+				<text><![CDATA[LEMBAGA PELATIHAN KERJA KANIRA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="39" splitType="Stretch">
+			<line>
+				<reportElement x="-20" y="1" width="595" height="1" uuid="430ae0ae-756d-47d4-a075-45e1f975a091"/>
+			</line>
+			<line>
+				<reportElement x="-20" y="38" width="595" height="1" uuid="d8f8c9a7-3cc0-400f-9307-46c0c105bece"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="10" width="197" height="17" uuid="70a5262e-fe36-489b-b0fa-e2bb414f1258"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Laporan Pelunasan]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="43" splitType="Stretch">
+			<staticText>
+				<reportElement x="40" y="13" width="100" height="30" uuid="96ba9e7b-7fd5-43f8-a59d-a056bcacd150"/>
+				<text><![CDATA[kodeSiswa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="13" width="100" height="30" uuid="73fc528c-a4a1-4e3f-afd6-0766207e9dce"/>
+				<text><![CDATA[nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="13" width="100" height="30" uuid="643b1116-0d2d-454e-99f3-cecd81882b29"/>
+				<text><![CDATA[kelas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="11" width="100" height="30" uuid="6e4887be-1658-4263-9e81-cf831b735939"/>
+				<text><![CDATA[tahunAjaran]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="40" y="0" width="100" height="30" uuid="cd91b272-591d-45d2-8df8-1ceed7d5f599"/>
+				<textFieldExpression><![CDATA[$F{kodeSiswa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="100" height="30" uuid="d9e5a8ea-977c-4083-beb3-53681acae536"/>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="100" height="30" uuid="098e3d67-ee05-4301-b95b-ae4bcdbdc052"/>
+				<textFieldExpression><![CDATA[$F{kelas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="0" width="100" height="30" uuid="a96998a6-bf7a-457c-8a6e-de28eb40f1ff"/>
+				<textFieldExpression><![CDATA[$F{tahunAjaran}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

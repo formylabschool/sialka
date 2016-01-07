@@ -494,6 +494,7 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
             aSiswa.setEmail(txtEmail.getText());
             aSiswa.setAlamat(txaAlamat.getText());
             aSiswa.setTahunAjaran(txtAjaran.getText());
+            aSiswa.setLunas(false);
             SessionFactory aSessionFactory = HIbernateUtil.config();
             ServiceOfSiswa serviceOfSiswa = new ServiceOfSiswa(aSessionFactory);
             ServiceOfNilai serviceNilai = new ServiceOfNilai(aSessionFactory);
