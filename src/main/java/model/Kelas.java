@@ -25,8 +25,9 @@ public class Kelas {
     private int id;
     @Column(name="kode_kelas")
     private String kodeKelas;
-    @Column(name="nama_kelas")
+    @Column(name="nama_kelas",nullable = false)
     private String namaKelas;
+    @Column(nullable = false)
     private String tahun;
     @ManyToOne
     private Jurusan jurusan;

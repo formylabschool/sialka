@@ -24,7 +24,7 @@ public class Keterangan {
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name="id_keterangan")
     private int id;
-    @Column(name="nama_keterangan")
+    @Column(name="nama_keterangan",nullable = false)
     private String namaKeterangan;
     @ManyToOne
     private Materi materi;

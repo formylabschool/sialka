@@ -41,7 +41,8 @@ public class FormLaporan extends javax.swing.JInternalFrame {
 
     private void printLaporanTransaksi(List<Pembayaran> cariPembayaran, Double total) throws JRException {
         HashMap<String, Object> pembayaranMap = new HashMap<String, Object>();
-        
+     //   pembayaranMap.put("tanggalAwal", date1.getDate());
+        //pembayaranMap.put("tanggalAkhir", date2.getDate());
         pembayaranMap.put("totalTransaksi", total);
         JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/laporan_transaksi.jrxml"));
         JasperReport report = JasperCompileManager.compileReport(design);

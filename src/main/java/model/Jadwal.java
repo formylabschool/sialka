@@ -40,10 +40,13 @@ public class Jadwal {
     @OneToOne
     private Kelas kelas;
     @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private Date tanggal;
     @Temporal(TemporalType.TIME)
+    @Column(nullable = false)
     private Date jam_awal;
     @Temporal(TemporalType.TIME)
+    @Column(nullable = false)
     private Date jam_akhir;
 
     public Kelas getKelas() {

@@ -25,17 +25,17 @@ public class Materi implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "id_materi")
-
+    
     private Integer id;
-    @Column (name="kode_materi")
+    @Column(name = "kode_materi", nullable = false)
     private String kodeMateri;
+    @Column(nullable = false)
     private String nama;
-    private Integer teori;
+    @Column(nullable = false)
     private Integer praktek;
     @ManyToOne
     private Jurusan jurusan;
 
-  
     public Integer getId() {
         return id;
     }
@@ -58,14 +58,6 @@ public class Materi implements Serializable {
 
     public void setNama(String nama) {
         this.nama = nama;
-    }
-
-    public Integer getTeori() {
-        return teori;
-    }
-
-    public void setTeori(Integer teori) {
-        this.teori = teori;
     }
 
     public Integer getPraktek() {

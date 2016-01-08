@@ -26,9 +26,11 @@ public class Jurusan {
     private Integer id;
     @Column(name="kode_jurusan")
     private String kodeJurusan;
+    @Column(nullable = false)
     private String nama;
+    @Column(nullable = false)
     private Double harga;
-    @Column (name="jumlah_pertemuan")
+    @Column (name="jumlah_pertemuan",nullable = false)
     private Integer jumlahPertemuan;
 
     public Integer getJumlahPertemuan() {

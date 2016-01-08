@@ -287,8 +287,8 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
                         .addComponent(cbkKelas, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(sAwal)
                         .addComponent(sAkhir))
-                    .addComponent(txtKelas, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(48, Short.MAX_VALUE))
+                    .addComponent(txtKelas, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -566,6 +566,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
         if (cbkKelas.getSelectedIndex() >= 0) {
             Kelas kelas = listKelas.get(cbkKelas.getSelectedIndex());
             loadDataValidasi();
+           
             ServiceOfNilai nilai = new ServiceOfNilai(HIbernateUtil.config());
             //nilai.setSessionFactory(HIbernateUtil.config());
             try {

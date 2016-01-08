@@ -32,6 +32,7 @@ public class Absensi {
     private Integer idAbsensi;
     @ManyToOne
     @JoinColumns(@JoinColumn(name = "id_siswa"))
+    @Column(nullable = false)
     private Siswa siswa;
 
     public Siswa getSiswa() {
@@ -42,7 +43,7 @@ public class Absensi {
         this.siswa = siswa;
     }
     @Temporal(TemporalType.DATE)
-    
+    @Column(nullable = false)
     private Date tanggal;
 
     public Integer getIdAbsensi() {

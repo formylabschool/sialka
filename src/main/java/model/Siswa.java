@@ -28,34 +28,39 @@ public class Siswa {
 @Id @GeneratedValue(strategy = GenerationType.TABLE)
 @Column(name="id_siswa")
     private Integer id; 
-@Column(name="kode_siswa")
+@Column(name="kode_siswa",nullable = false)
     private String kodeSiswa;
+@Column(nullable = false)
     private String nama;
-@Column(name="tempat_lahir")    
+@Column(name="tempat_lahir",nullable = false)    
     private String tempatLahir;
     @Temporal(TemporalType.DATE)
-    @Column(name="tanggal_lahir")
+    @Column(name="tanggal_lahir",nullable = false)
     private Date tanggalLahir;
-    @Column(name="jenis_kelamin")
+    @Column(name="jenis_kelamin",nullable = false)
     private String jenisKelamin;
-    @Column(name="pendidikan_terakhir")
+    @Column(name="pendidikan_terakhir",nullable = false)
     private String pendidikanTerakhir;
+    @Column(nullable = false)
     private String kontak;
+    @Column(nullable = false)
     private String email;
+    @Column(nullable = false)
     private String alamat;
     @Temporal(TemporalType.DATE)
-    @Column(name="tanggal_pendaftaran")
+    @Column(name="tanggal_pendaftaran",nullable = false)
     private Date tanggalPendaftaran;
 //    @OneToOne
 //    private Jurusan jurusan;
     @OneToOne
     private Kelas kelas;
-    @Column(name="harga_total")
+    @Column(name="harga_total",nullable = false)
     private Double hargaTotal;
+    @Column(nullable = false)
     private Double sisa;
+    @Column(nullable = false)
     private Boolean lunas;
-    private String indeks;
-    @Column(name="tahun_ajaran")
+    @Column(name="tahun_ajaran",nullable = false)
     private String tahunAjaran;
     
    
@@ -79,16 +84,7 @@ public class Siswa {
     }
     
 
-    public String getIndeks() {
-        return indeks;
-    }
-
-    public void setIndeks(String indeks) {
-        this.indeks = indeks;
-    }
-    
-
-    public String getTempatLahir() {
+      public String getTempatLahir() {
         return tempatLahir;
     }
 

@@ -24,6 +24,7 @@ public class Nilai {
     private int Id;
     @OneToOne
     private Keterangan keterangan;
+    @Column(nullable = false)
     private Integer Skor;
     @OneToOne
     Siswa siswa;

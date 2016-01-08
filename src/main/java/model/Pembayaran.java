@@ -27,12 +27,13 @@ public class Pembayaran {
     @Id @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name="id_pembayaran")
     private Integer id;
-    @Column(name="no_pembayaran")
+    @Column(name="no_pembayaran",nullable = false)
     private String noPembayaran;
-    
+    @Column(nullable = false)
     private Date tanggal;
     @ManyToOne
     private Siswa siswa;
+    @Column(nullable = false)
     private Double amount;
 
     public String getNoPembayaran() {

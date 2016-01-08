@@ -50,7 +50,7 @@ public class FormLunas extends javax.swing.JInternalFrame {
     
      private void printPelunasan(List<Siswa> listSiswa) throws JRException {
         HashMap<String, Object> siswaMap = new HashMap<String, Object>();
-        siswaMap.put("kodeKelas", cbkLunas.getSelectedItem());
+        siswaMap.put("idLunas", cbkLunas.getSelectedItem());
         JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/laporan_pelunasan.jrxml"));
         JasperReport report = JasperCompileManager.compileReport(design);
         JasperPrint print = JasperFillManager.fillReport(report, siswaMap, new JRBeanCollectionDataSource(listSiswa));

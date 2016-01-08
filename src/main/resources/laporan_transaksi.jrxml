@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2016-01-04T19:11:18 -->
+<!-- 2016-01-08T13:27:33 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="laporan_transaksi" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="75d65c7f-8c2e-4e06-83d5-220369531588">
 	<import value="model.Pembayaran"/>
 	<parameter name="totalTransaksi" class="java.lang.Double"/>
+	<parameter name="tanggalAwal" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -38,13 +39,13 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="41" splitType="Stretch">
+		<band height="43" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="10" width="197" height="17" uuid="1a84d3ad-18da-43d1-b2f6-33e062c53ab2"/>
+				<reportElement x="0" y="10" width="225" height="17" uuid="1a84d3ad-18da-43d1-b2f6-33e062c53ab2"/>
 				<textElement>
 					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Laporan Transaksi Pembayaran ]]></text>
+				<text><![CDATA[Laporan Transaksi Pembayaran Periode :]]></text>
 			</staticText>
 			<line>
 				<reportElement x="-20" y="1" width="595" height="1" uuid="5e386b96-c25a-481f-be1e-e3ee4f142377"/>
@@ -52,6 +53,13 @@
 			<line>
 				<reportElement x="-20" y="38" width="595" height="1" uuid="67dd3c59-ae94-4fec-b37c-1528b8e27c08"/>
 			</line>
+			<textField pattern="MMMM d, yyyy">
+				<reportElement x="227" y="11" width="100" height="14" uuid="75b90f77-7b1e-4ab1-a647-7cf4c95031c0"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tanggalAwal}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -116,7 +124,7 @@
 				</textElement>
 				<text><![CDATA[Total Transaksi]]></text>
 			</staticText>
-			<textField pattern="#,##0.##¤;(#,##0.##) ¤">
+			<textField pattern="¤#,##0.##;¤-#,##0.##">
 				<reportElement x="440" y="1" width="100" height="30" uuid="95833b40-afb3-4cb5-b3b8-2d7c992095ec"/>
 				<textElement textAlignment="Right">
 					<font fontName="Times New Roman" size="10"/>

@@ -22,15 +22,20 @@ import javax.persistence.TemporalType;
 public class Instruktur {
     @Id
     private String nii;
+    @Column(nullable = false)
     private String nama;
+    @Column(nullable = false)
     private String tempatLahir;
     @Temporal(TemporalType.DATE)
-    @Column(name="tanggal_lahir")
+    @Column(name="tanggal_lahir",nullable = false)
     private Date tanggalLahir;
+    @Column(nullable = false)
     private String kontak;
+    @Column(nullable = false)
     private String email;
+    @Column(nullable = false)
     private String alamat;
-    @Column(name="jenis_kelamin")
+    @Column(name="jenis_kelamin",nullable = false)
     private String jenisKelamin;
 
     public String getJenisKelamin() {

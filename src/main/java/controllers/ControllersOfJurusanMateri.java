@@ -30,7 +30,7 @@ public class ControllersOfJurusanMateri implements JavaControllers {
         ServiceOfMateri service = new ServiceOfMateri(HIbernateUtil.config());
         for (Materi aMateri : list) {
             Object[] anObjects = {aMateri.getId(), aMateri.getKodeMateri(), aMateri.getNama(),
-                aMateri.getTeori(), aMateri.getPraktek()};
+                 aMateri.getPraktek()};
             this.defaultTableModel.addRow(anObjects);
 
         }
