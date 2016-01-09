@@ -29,14 +29,15 @@ public class BukuTamu {
    //@Temporal(TemporalType.DATE)
     @Column(nullable = false)
     private Date tanggal;
-    @Column(nullable = false)
+    @Column(nullable = false,length = 30)
     private String nama;
-    @Column(name="yang_dituju",nullable = false)
+    @Column(name="yang_dituju",nullable = false,length = 30)
     private String yangDituju;
     @Column(nullable = false)
     private String keperluan;
     @Column(nullable = false)
     private String alamat;
+    @Column (length = 15)
     private String kontak;
 
     public String getKontak() {

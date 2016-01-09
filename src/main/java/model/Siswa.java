@@ -11,8 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -23,48 +21,46 @@ import javax.persistence.TemporalType;
  * @author muhamadhanifmuhsin
  */
 @Entity
-@Table(name="siswa")
+@Table(name = "siswa")
 public class Siswa {
-@Id @GeneratedValue(strategy = GenerationType.TABLE)
-@Column(name="id_siswa")
-    private Integer id; 
-@Column(name="kode_siswa",nullable = false)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name = "id_siswa")
+    private Integer id;
+    @Column(name = "kode_siswa", nullable = false, length = 20)
     private String kodeSiswa;
-@Column(nullable = false)
+    @Column(nullable = false, length = 30)
     private String nama;
-@Column(name="tempat_lahir",nullable = false)    
+    @Column(name = "tempat_lahir", nullable = false)
     private String tempatLahir;
     @Temporal(TemporalType.DATE)
-    @Column(name="tanggal_lahir",nullable = false)
+    @Column(name = "tanggal_lahir", nullable = false)
     private Date tanggalLahir;
-    @Column(name="jenis_kelamin",nullable = false)
+    @Column(name = "jenis_kelamin", nullable = false)
     private String jenisKelamin;
-    @Column(name="pendidikan_terakhir",nullable = false)
+    @Column(name = "pendidikan_terakhir", nullable = false)
     private String pendidikanTerakhir;
     @Column(nullable = false)
     private String kontak;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 30)
     private String email;
     @Column(nullable = false)
     private String alamat;
     @Temporal(TemporalType.DATE)
-    @Column(name="tanggal_pendaftaran",nullable = false)
+    @Column(name = "tanggal_pendaftaran", nullable = false)
     private Date tanggalPendaftaran;
-//    @OneToOne
-//    private Jurusan jurusan;
+
     @OneToOne
     private Kelas kelas;
-    @Column(name="harga_total",nullable = false)
+    @Column(name = "harga_total", nullable = false)
     private Double hargaTotal;
     @Column(nullable = false)
     private Double sisa;
     @Column(nullable = false)
     private Boolean lunas;
-    @Column(name="tahun_ajaran",nullable = false)
+    @Column(name = "tahun_ajaran", nullable = false)
     private String tahunAjaran;
-    
-   
-    
 
     public String getTahunAjaran() {
         return tahunAjaran;
@@ -73,7 +69,6 @@ public class Siswa {
     public void setTahunAjaran(String tahunAjaran) {
         this.tahunAjaran = tahunAjaran;
     }
-    
 
     public String getJenisKelamin() {
         return jenisKelamin;
@@ -82,9 +77,8 @@ public class Siswa {
     public void setJenisKelamin(String jenisKelamin) {
         this.jenisKelamin = jenisKelamin;
     }
-    
 
-      public String getTempatLahir() {
+    public String getTempatLahir() {
         return tempatLahir;
     }
 
@@ -171,7 +165,6 @@ public class Siswa {
 //    public void setJurusan(Jurusan jurusan) {
 //        this.jurusan = jurusan;
 //    }
-
     public Double getHargaTotal() {
         return hargaTotal;
     }
@@ -203,7 +196,5 @@ public class Siswa {
     public void setKelas(Kelas kelas) {
         this.kelas = kelas;
     }
-
-   
 
 }

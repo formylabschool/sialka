@@ -27,9 +27,9 @@ public class Materi implements Serializable {
     @Column(name = "id_materi")
     
     private Integer id;
-    @Column(name = "kode_materi", nullable = false)
+    @Column(name = "kode_materi", nullable = false, length = 15)
     private String kodeMateri;
-    @Column(nullable = false)
+    @Column(nullable = false,length = 25)
     private String nama;
     @Column(nullable = false)
     private Integer praktek;

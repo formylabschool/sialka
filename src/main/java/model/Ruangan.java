@@ -22,7 +22,7 @@ public class Ruangan {
     @Id 
     @Column(name="id_ruangan")
     private String id;
-    @Column(name="nama_ruangan",nullable = false)
+    @Column(name="nama_ruangan",nullable = false,length = 25)
     private String nama;
 
     public String getId() {

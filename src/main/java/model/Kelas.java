@@ -18,16 +18,18 @@ import javax.persistence.Table;
  * @author muhamadhanifmuhsin
  */
 @Entity
-@Table(name="kelas")
+@Table(name = "kelas")
 public class Kelas {
-    @Id @GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(name="id_kelas")
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name = "id_kelas")
     private int id;
-    @Column(name="kode_kelas")
+    @Column(name = "kode_kelas")
     private String kodeKelas;
-    @Column(name="nama_kelas",nullable = false)
+    @Column(name = "nama_kelas", nullable = false, length = 15)
     private String namaKelas;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 10)
     private String tahun;
     @ManyToOne
     private Jurusan jurusan;
@@ -39,8 +41,6 @@ public class Kelas {
     public void setTahun(String tahun) {
         this.tahun = tahun;
     }
-
-   
 
     public int getId() {
         return id;
@@ -73,5 +73,5 @@ public class Kelas {
     public void setJurusan(Jurusan jurusan) {
         this.jurusan = jurusan;
     }
-    
+
 }

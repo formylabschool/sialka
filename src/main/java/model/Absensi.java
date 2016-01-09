@@ -32,7 +32,7 @@ public class Absensi {
     private Integer idAbsensi;
     @ManyToOne
     @JoinColumns(@JoinColumn(name = "id_siswa"))
-    @Column(nullable = false)
+   
     private Siswa siswa;
 
     public Siswa getSiswa() {

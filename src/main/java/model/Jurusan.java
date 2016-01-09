@@ -26,7 +26,7 @@ public class Jurusan {
     private Integer id;
     @Column(name="kode_jurusan")
     private String kodeJurusan;
-    @Column(nullable = false)
+    @Column(nullable = false,length = 30)
     private String nama;
     @Column(nullable = false)
     private Double harga;
