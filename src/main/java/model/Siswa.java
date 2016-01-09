@@ -158,13 +158,6 @@ public class Siswa {
         this.nama = nama;
     }
 
-//    public Jurusan getJurusan() {
-//        return jurusan;
-//    }
-//
-//    public void setJurusan(Jurusan jurusan) {
-//        this.jurusan = jurusan;
-//    }
     public Double getHargaTotal() {
         return hargaTotal;
     }
