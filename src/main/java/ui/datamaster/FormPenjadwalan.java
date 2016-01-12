@@ -546,7 +546,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
             }
 
         } catch (ConstraintViolationException ce) {
-            JOptionPane.showMessageDialog(null, ce.getMessage());
+            JOptionPane.showMessageDialog(null, "Data Sudah Ada");
 
         }
 

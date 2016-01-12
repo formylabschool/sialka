@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2016-01-04T08:22:18 -->
+<!-- 2016-01-13T05:49:42 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="data_nilai_s" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a44c36ac-fcb6-41c0-b9d2-b68b62d52d5f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="noPeserta" class="java.lang.String"/>
 	<parameter name="namaPeserta" class="java.lang.String"/>
+	<parameter name="DEFA_VALUE" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new Integer("1")]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -13,6 +17,9 @@
 	<field name="skor" class="java.lang.Integer">
 		<fieldDescription><![CDATA[skor]]></fieldDescription>
 	</field>
+	<variable name="noUrut" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[new Integer($V{noUrut}.intValue()+$P{DEFA_VALUE}.intValue())]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -110,7 +117,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="22" splitType="Stretch">
+		<band height="57" splitType="Stretch">
 			<textField>
 				<reportElement x="332" y="0" width="100" height="22" uuid="1c9eefea-790a-41e6-b764-6f57ace5e6c9"/>
 				<box>
@@ -136,6 +143,14 @@
 					<font fontName="Times New Roman"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{keterangan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="59" y="0" width="63" height="22" uuid="0f73bc20-7689-4548-91a6-9aa4e7fa4c99"/>
+				<textFieldExpression><![CDATA[$V{noUrut}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="433" y="-4" width="100" height="30" uuid="e79a65b9-fb4e-43fa-9c39-e60f523fd0ec"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

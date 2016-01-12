@@ -24,7 +24,7 @@ import javax.persistence.UniqueConstraint;
  * @author muhamadhanifmuhsin
  */
 @Entity
-@Table(name="jadwal", uniqueConstraints = @UniqueConstraint(name = "uq_jadwal",columnNames = {"jam_awal","jam_akhir","intruktur_id"}))
+@Table(name="jadwal", uniqueConstraints = @UniqueConstraint(name = "uq_jadwal",columnNames = {"jam_awal","jam_akhir","intruktur_id","tanggal"}))
 public class Jadwal {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
