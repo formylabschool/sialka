@@ -27,7 +27,7 @@ public class Kelas {
     private int id;
     @Column(name = "kode_kelas")
     private String kodeKelas;
-    @Column(name = "nama_kelas", nullable = false, length = 15)
+    @Column(name = "nama_kelas", nullable = false, length = 50)
     private String namaKelas;
     @Column(nullable = false, length = 10)
     private String tahun;

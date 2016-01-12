@@ -106,13 +106,13 @@ public class FormMateri extends javax.swing.JInternalFrame {
 
         tabelMateri.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Kode Materi", "Nama Materi", "Teori", "Praktek", "Kode Jurusan"
+                "Kode Materi", "Nama Materi", "Jumlah Jam", "Kode Jurusan"
             }
         ));
         jScrollPane1.setViewportView(tabelMateri);

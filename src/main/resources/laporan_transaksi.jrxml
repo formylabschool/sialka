@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2016-01-08T13:27:33 -->
+<!-- 2016-01-12T10:50:12 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="laporan_transaksi" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="75d65c7f-8c2e-4e06-83d5-220369531588">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<import value="model.Pembayaran"/>
 	<parameter name="totalTransaksi" class="java.lang.Double"/>
-	<parameter name="tanggalAwal" class="java.lang.String"/>
+	<parameter name="tanggalAwal" class="java.util.Date"/>
+	<parameter name="tanggalAkhir" class="java.util.Date"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -39,7 +41,7 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="43" splitType="Stretch">
+		<band height="42" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="10" width="225" height="17" uuid="1a84d3ad-18da-43d1-b2f6-33e062c53ab2"/>
 				<textElement>
@@ -54,11 +56,25 @@
 				<reportElement x="-20" y="38" width="595" height="1" uuid="67dd3c59-ae94-4fec-b37c-1528b8e27c08"/>
 			</line>
 			<textField pattern="MMMM d, yyyy">
-				<reportElement x="227" y="11" width="100" height="14" uuid="75b90f77-7b1e-4ab1-a647-7cf4c95031c0"/>
+				<reportElement x="225" y="11" width="75" height="17" uuid="fccce2c0-6ca8-44ec-a392-09449682edc0"/>
 				<textElement>
 					<font fontName="Times New Roman"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{tanggalAwal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="302" y="11" width="42" height="16" uuid="29bb0e43-67ac-4d2b-ba3b-d7fa6bcb5668"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Sampai]]></text>
+			</staticText>
+			<textField pattern="MMMM d, yyyy">
+				<reportElement x="364" y="11" width="100" height="15" uuid="93148b21-4341-41a4-939a-89910b6f6d54"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tanggalAkhir}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
@@ -106,7 +122,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.##¤;(#,##0.##) ¤">
+			<textField pattern="¤#,##0.##;¤-#,##0.##">
 				<reportElement x="440" y="0" width="100" height="20" uuid="e03caf9b-e2db-4dbc-9647-ff90f9eaa04c"/>
 				<textElement textAlignment="Right">
 					<font fontName="Times New Roman" size="10"/>

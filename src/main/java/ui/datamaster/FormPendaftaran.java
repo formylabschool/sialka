@@ -495,6 +495,7 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
             aSiswa.setAlamat(txaAlamat.getText());
             aSiswa.setTahunAjaran(txtAjaran.getText());
             aSiswa.setLunas(false);
+            aSiswa.setKodeSiswa("-");
             SessionFactory aSessionFactory = HIbernateUtil.config();
             ServiceOfSiswa serviceOfSiswa = new ServiceOfSiswa(aSessionFactory);
             ServiceOfNilai serviceNilai = new ServiceOfNilai(aSessionFactory);
@@ -545,18 +546,30 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         boolean status = ValidateEmail.validateEmail(txtEmail.getText());
         if (status) {
-            txtValidate.setText("emial valid");
+            txtValidate.setText("email valid");
         } else {
             txtValidate.setText("not valid email");
         }
     }//GEN-LAST:event_txtEmailKeyPressed
 
+    public static String value(Number value){
+        StringBuilder aBuilder = new StringBuilder();
+        if(value.toString().length() == 1){
+            aBuilder.append("00").append(value);
+        }else if(value.toString().length() == 2){
+            aBuilder.append("0").append(value);
+        }else if(value.toString().length() == 3){
+            aBuilder.append(value);
+        }
+        return aBuilder.toString();
+        
+    }
     private String generateKode(Integer value) {
         StringBuilder aBuilder = new StringBuilder();
         aBuilder.append(cbkGel.getSelectedItem().toString());
         aBuilder.append(listKelas.get(cbkKelas.getSelectedIndex()).getJurusan().getKodeJurusan());
         aBuilder.append(Year.now().getValue());
-        aBuilder.append(value);
+        aBuilder.append(value(value));
         return aBuilder.toString();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

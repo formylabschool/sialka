@@ -118,7 +118,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
             aValidasi.setJumlahJam(service.hitungJumlahJamPerMateri(materi, kelas));
             listVAlidasi.add(aValidasi);
 
-            // System.out.println(materi.getNama()+" jumlah jam : "+service.hitungJumlahJamPerMateri(materi));
+           //  System.out.println(materi.getNama()+" jumlah jam : "+service.hitungJumlahJamPerMateri(materi,kelas));
         }
         return listVAlidasi;
     }
@@ -529,8 +529,9 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
                 if (aJadwal.getMateri().getId() == validasi.getMateri().getId()) {
                     isValid = true;
                     jmlJamYangAda = validasi.getJumlahJam();
+                   
                 }
-
+               
             }
 
             if (isValid && jmlJamYangAda < aJadwal.getMateri().getPraktek()) {
@@ -541,6 +542,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
                 loadDataValidasi();
             } else {
                 JOptionPane.showMessageDialog(null, "Melebihi Batas Maksmal Jam");
+                 System.out.println(jmlJamYangAda + ":" + aJadwal.getMateri().getPraktek());
             }
 
         } catch (ConstraintViolationException ce) {

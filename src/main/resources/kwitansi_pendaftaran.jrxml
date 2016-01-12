@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2016-01-04T07:14:16 -->
+<!-- 2016-01-12T11:38:09 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="kwitansi_pendaftaran" pageWidth="595" pageHeight="340" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b6aa98c9-ccad-483e-aed2-cf393ec9cf03">
 	<property name="com.jaspersoft.studio.unit." value="cm"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
@@ -104,7 +104,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{namaSiswa}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.##¤;#,##0.##- ¤">
+			<textField pattern="¤#,##0.##;¤-#,##0.##">
 				<reportElement x="140" y="65" width="160" height="16" uuid="e7544dbe-d505-4f6d-ac46-4913684c7549"/>
 				<textElement>
 					<font fontName="Times New Roman" size="10"/>

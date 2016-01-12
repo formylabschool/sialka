@@ -86,6 +86,7 @@ public class RekapJadwalInstruktur extends javax.swing.JInternalFrame {
     private void printJadwalInstruktur(List<Jadwal> listJadwal, java.util.Date date1, java.util.Date date2) throws JRException {
         HashMap<String, Object> jadwalInstrukturMap = new HashMap<String, Object>();
         List<Jadwal> emptyListJadwal = new ArrayList<>();
+       
         for (Jadwal jadwal : listJadwal) {
             
             DateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
@@ -106,6 +107,9 @@ public class RekapJadwalInstruktur extends javax.swing.JInternalFrame {
 
         jadwalInstrukturMap.put("tanggalAwal", date1);
         jadwalInstrukturMap.put("tanggalAkhir", date2);
+        Kelas kelas = listKelas.get(cbkKelas.getSelectedIndex());
+        jadwalInstrukturMap.put("kodeKelas", kelas.getKodeKelas());
+        jadwalInstrukturMap.put("namaKelas", txtNamaKelas.getText());
         JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/jadwal_instruktur.jrxml"));
         JasperReport report = JasperCompileManager.compileReport(design);
         JasperPrint print = JasperFillManager.fillReport(report, jadwalInstrukturMap, new JRBeanCollectionDataSource(emptyListJadwal));
