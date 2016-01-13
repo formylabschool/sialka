@@ -58,7 +58,7 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
         //Kelas kelas = listKelas.get(cbkKelas.getSelectedIndex());
         pembayaranMap.put("noPembayaran", generateKode);
         pembayaranMap.put("nama", txtNama.getText());
-        pembayaranMap.put("jumlah", sPem.getValue().toString());
+        pembayaranMap.put("jumlah", sPem.getValue());
         pembayaranMap.put("sisa", txtSisa.getText());
         JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/kwitansi_pembayaran.jrxml"));
         JasperReport report = JasperCompileManager.compileReport(design);
@@ -259,10 +259,6 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNamaActionPerformed
 
-    private void txtSisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSisaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSisaActionPerformed
-
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         // TODO add your handling code here:
         ServiceOfSiswa aSiswa = new ServiceOfSiswa(HIbernateUtil.config());
@@ -313,8 +309,13 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
         } catch (JRException ex) {
             Logger.getLogger(FormPembayaran.class.getName()).log(Level.SEVERE, null, ex);
         }
+        dispose();
 
     }//GEN-LAST:event_btnSimpanActionPerformed
+
+    private void txtSisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSisaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -124,13 +124,13 @@ public class FormDataPembayaran extends javax.swing.JInternalFrame {
 
         tabelPembayaran.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "No.Pembayaran", "Tanggal", "Jumlah", "Kode Siswa"
+                "No.Pembayaran", "Tanggal", "Jumlah"
             }
         ));
         jScrollPane1.setViewportView(tabelPembayaran);

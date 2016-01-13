@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2016-01-13T16:30:17 -->
+<!-- 2016-01-13T22:25:24 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="laporan_pelunasan" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cb601a21-5814-474b-bfbb-57ef31fc86f7">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="idLunas" class="java.lang.String"/>
@@ -70,7 +70,7 @@
 	<columnHeader>
 		<band height="44" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="112" y="13" width="100" height="30" backcolor="#D6D4D4" uuid="96ba9e7b-7fd5-43f8-a59d-a056bcacd150"/>
+				<reportElement mode="Opaque" x="131" y="13" width="100" height="30" backcolor="#D6D4D4" uuid="96ba9e7b-7fd5-43f8-a59d-a056bcacd150"/>
 				<box>
 					<topPen lineWidth="0.4"/>
 					<leftPen lineWidth="0.4"/>
@@ -83,7 +83,7 @@
 				<text><![CDATA[No Peserta]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="212" y="13" width="170" height="30" backcolor="#D6D4D4" uuid="73fc528c-a4a1-4e3f-afd6-0766207e9dce"/>
+				<reportElement mode="Opaque" x="231" y="13" width="170" height="30" backcolor="#D6D4D4" uuid="73fc528c-a4a1-4e3f-afd6-0766207e9dce"/>
 				<box>
 					<topPen lineWidth="0.4"/>
 					<leftPen lineWidth="0.4"/>
@@ -96,7 +96,7 @@
 				<text><![CDATA[Nama]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="381" y="13" width="100" height="30" backcolor="#D6D4D4" uuid="a92b5a32-1808-49da-bb6d-36197a62e95a"/>
+				<reportElement mode="Opaque" x="400" y="13" width="100" height="30" backcolor="#D6D4D4" uuid="a92b5a32-1808-49da-bb6d-36197a62e95a"/>
 				<box>
 					<topPen lineWidth="0.4"/>
 					<leftPen lineWidth="0.4"/>
@@ -109,7 +109,7 @@
 				<text><![CDATA[Sisa]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="46" y="13" width="67" height="30" backcolor="#D6D4D4" uuid="89801756-1353-439b-ad2a-9bb825cd3c13"/>
+				<reportElement mode="Opaque" x="65" y="13" width="67" height="30" backcolor="#D6D4D4" uuid="89801756-1353-439b-ad2a-9bb825cd3c13"/>
 				<box>
 					<topPen lineWidth="0.4"/>
 					<leftPen lineWidth="0.4"/>
@@ -126,7 +126,7 @@
 	<detail>
 		<band height="19" splitType="Stretch">
 			<textField>
-				<reportElement x="113" y="-1" width="99" height="20" uuid="cd91b272-591d-45d2-8df8-1ceed7d5f599"/>
+				<reportElement x="132" y="-1" width="99" height="20" uuid="cd91b272-591d-45d2-8df8-1ceed7d5f599"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -139,7 +139,7 @@
 				<textFieldExpression><![CDATA[$F{kodeSiswa}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="212" y="-1" width="169" height="20" uuid="d9e5a8ea-977c-4083-beb3-53681acae536"/>
+				<reportElement x="231" y="-1" width="169" height="20" uuid="d9e5a8ea-977c-4083-beb3-53681acae536"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -152,7 +152,7 @@
 				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤#,##0.##;¤-#,##0.##">
-				<reportElement x="381" y="-1" width="100" height="20" uuid="273f024a-8e2f-4938-92ab-f9f1af6d9799"/>
+				<reportElement x="400" y="-1" width="100" height="20" uuid="273f024a-8e2f-4938-92ab-f9f1af6d9799"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -165,7 +165,7 @@
 				<textFieldExpression><![CDATA[$F{sisa}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="46" y="-1" width="67" height="20" uuid="85b2e9f3-afe6-45cf-b8db-17fa70965448"/>
+				<reportElement x="65" y="-1" width="67" height="20" uuid="85b2e9f3-afe6-45cf-b8db-17fa70965448"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>

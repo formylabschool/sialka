@@ -83,9 +83,9 @@ public class MainForm extends javax.swing.JFrame {
         jMenuItem9 = new javax.swing.JMenuItem();
         mnuKeuangan = new javax.swing.JMenu();
         mniPemBulanan = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         mnuKurikulum = new javax.swing.JMenu();
         mniJurusan = new javax.swing.JMenuItem();
         mniKelas = new javax.swing.JMenuItem();
@@ -264,6 +264,15 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
         mnuKeuangan.add(mniPemBulanan);
+
+        jMenuItem2.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        jMenuItem2.setText("Pem.Pelunasan");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        mnuKeuangan.add(jMenuItem2);
         mnuKeuangan.add(jSeparator3);
 
         jMenuItem6.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
@@ -274,14 +283,6 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
         mnuKeuangan.add(jMenuItem6);
-
-        jMenuItem2.setText("Pelunasan");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        mnuKeuangan.add(jMenuItem2);
 
         jMenuBar1.add(mnuKeuangan);
 

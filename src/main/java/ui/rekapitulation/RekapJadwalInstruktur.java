@@ -86,7 +86,7 @@ public class RekapJadwalInstruktur extends javax.swing.JInternalFrame {
     private void printJadwalInstruktur(List<Jadwal> listJadwal, java.util.Date date1, java.util.Date date2) throws JRException {
         HashMap<String, Object> jadwalInstrukturMap = new HashMap<String, Object>();
         List<Jadwal> emptyListJadwal = new ArrayList<>();
-       
+        Instruktur instruktur = listInstruktur.get(cbkInstruktur.getSelectedIndex());
         for (Jadwal jadwal : listJadwal) {
             
             DateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
@@ -104,7 +104,8 @@ public class RekapJadwalInstruktur extends javax.swing.JInternalFrame {
             }else{
             }
         }
-
+        jadwalInstrukturMap.put("kodeInstruktur", instruktur.getNii());
+        jadwalInstrukturMap.put("namaInstruktur", txtNamaInstruktur.getText());
         jadwalInstrukturMap.put("tanggalAwal", date1);
         jadwalInstrukturMap.put("tanggalAkhir", date2);
         Kelas kelas = listKelas.get(cbkKelas.getSelectedIndex());
