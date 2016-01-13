@@ -27,6 +27,7 @@ import javax.swing.JInternalFrame;
 import ui.dataadd.FormSubMateri;
 import ui.datamaster.FormDataAbsensiSiswa;
 import ui.datamaster.FormIsiNilai;
+import ui.datamaster.FormPelunasan;
 import ui.report.FormLaporan;
 import ui.rekapitulation.RekapJadwal;
 import ui.rekapitulation.RekapJadwalInstruktur;
@@ -84,6 +85,7 @@ public class MainForm extends javax.swing.JFrame {
         mniPemBulanan = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         mnuKurikulum = new javax.swing.JMenu();
         mniJurusan = new javax.swing.JMenuItem();
         mniKelas = new javax.swing.JMenuItem();
@@ -272,6 +274,14 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
         mnuKeuangan.add(jMenuItem6);
+
+        jMenuItem2.setText("Pelunasan");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        mnuKeuangan.add(jMenuItem2);
 
         jMenuBar1.add(mnuKeuangan);
 
@@ -729,6 +739,18 @@ public class MainForm extends javax.swing.JFrame {
     
     }//GEN-LAST:event_mniPelunasanActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+         FormPelunasan add = new FormPelunasan();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+                (size.height - addSize.height) / 2);
+        add.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktop;
@@ -737,6 +759,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;

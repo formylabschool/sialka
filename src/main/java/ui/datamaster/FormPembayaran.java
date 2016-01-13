@@ -9,6 +9,7 @@ import configuration.HIbernateUtil;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Year;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,23 +47,25 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
 
     private String generateKode(Integer value) {
         StringBuilder aBuilder = new StringBuilder();
-        aBuilder.append(Year.now().getValue());
+        DateTimeFormatter formater = DateTimeFormatter.ofPattern("ddMMyyyy");
+        aBuilder.append(formater.format(LocalDate.now()));
         aBuilder.append(value);
         return aBuilder.toString();
     }
-    
-     private void printKwitansi(String generateKode, Pembayaran pembayaran)throws JRException{
-          HashMap<String, Object>pembayaranMap=new HashMap<String, Object>();
-          //Kelas kelas = listKelas.get(cbkKelas.getSelectedIndex());
-          pembayaranMap.put("noPembayaran", generateKode);
-          pembayaranMap.put("nama", txtNama.getText());
-          pembayaranMap.put("jumlah",sPem.getValue().toString());
-          pembayaranMap.put("sisa", txtSisa.getText());
-          JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/kwitansi_pembayaran.jrxml"));
-          JasperReport report = JasperCompileManager.compileReport(design);
-          JasperPrint print = JasperFillManager.fillReport(report, pembayaranMap, new JREmptyDataSource());
-          JasperViewer view = new JasperViewer(print,false);
-          view.setVisible(true);}
+
+    private void printKwitansi(String generateKode, Pembayaran pembayaran) throws JRException {
+        HashMap<String, Object> pembayaranMap = new HashMap<String, Object>();
+        //Kelas kelas = listKelas.get(cbkKelas.getSelectedIndex());
+        pembayaranMap.put("noPembayaran", generateKode);
+        pembayaranMap.put("nama", txtNama.getText());
+        pembayaranMap.put("jumlah", sPem.getValue().toString());
+        pembayaranMap.put("sisa", txtSisa.getText());
+        JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/kwitansi_pembayaran.jrxml"));
+        JasperReport report = JasperCompileManager.compileReport(design);
+        JasperPrint print = JasperFillManager.fillReport(report, pembayaranMap, new JREmptyDataSource());
+        JasperViewer view = new JasperViewer(print, false);
+        view.setVisible(true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -284,28 +287,33 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
         Pembayaran pembayaran = new Pembayaran();
-       // Siswa siswa = new Siswa();
+
         pembayaran.setTanggal(Date.valueOf(LocalDate.now()));
         pembayaran.setAmount(Double.valueOf(sPem.getValue().toString()));
-        pembayaran.setSiswa(siswa);
-        pembayaran.setNoPembayaran(generateKode(pembayaran.getId()));
-        siswa.setSisa(Double.valueOf(txtSisa.getText()));
 
-        SessionFactory aSessionFactory = HIbernateUtil.config();
-        ServiceOfPembayaran serviceOfpembayaran = new ServiceOfPembayaran(aSessionFactory);
-        Double result = siswa.getHargaTotal() - Double.valueOf(sPem.getValue().toString());
-        siswa.setLunas(result <=Double.valueOf(0));
-        serviceOfpembayaran.doSave(pembayaran);
         pembayaran.setNoPembayaran(generateKode(pembayaran.getId()));
-        serviceOfpembayaran = new ServiceOfPembayaran(aSessionFactory);
-        serviceOfpembayaran.doUpdate(pembayaran);
-        ServiceOfSiswa aServiceOfSiswa = new ServiceOfSiswa(aSessionFactory);
-        aServiceOfSiswa.doUpdate(siswa);
+        ServiceOfPembayaran aPembayaran = new ServiceOfPembayaran(HIbernateUtil.config());
+        aPembayaran.doSave(pembayaran);
+        siswa.setPembayaran1(pembayaran);
+        pembayaran.setNoPembayaran(generateKode(pembayaran.getId()));
+        aPembayaran.doUpdate(pembayaran);
+
+        Double nilai;
+        nilai = siswa.getHargaTotal() - pembayaran.getAmount();
+        siswa.setSisa(nilai);
+
+        System.out.println("harga :" + nilai);
+        siswa.setLunas(nilai == 0.0);
+        System.out.println("status lunas :" + siswa.getLunas());
+        ServiceOfSiswa service = new ServiceOfSiswa(HIbernateUtil.config());
+        service.doUpdate(siswa);
+
         try {
             printKwitansi(pembayaran.getNoPembayaran(), pembayaran);
         } catch (JRException ex) {
             Logger.getLogger(FormPembayaran.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }//GEN-LAST:event_btnSimpanActionPerformed
 
 

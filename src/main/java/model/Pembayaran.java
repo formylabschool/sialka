@@ -31,10 +31,16 @@ public class Pembayaran {
     private String noPembayaran;
     @Column(nullable = false)
     private Date tanggal;
-    @ManyToOne
-    private Siswa siswa;
-    @Column(nullable = false)
+    
     private Double amount;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getNoPembayaran() {
         return noPembayaran;
@@ -42,15 +48,6 @@ public class Pembayaran {
 
     public void setNoPembayaran(String noPembayaran) {
         this.noPembayaran = noPembayaran;
-    }
-
-    
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Date getTanggal() {
@@ -61,14 +58,6 @@ public class Pembayaran {
         this.tanggal = tanggal;
     }
 
-    public Siswa getSiswa() {
-        return siswa;
-    }
-
-    public void setSiswa(Siswa siswa) {
-        this.siswa = siswa;
-    }
-
     public Double getAmount() {
         return amount;
     }
@@ -76,5 +65,6 @@ public class Pembayaran {
     public void setAmount(Double amount) {
         this.amount = amount;
     }
-    
+
+  
 }

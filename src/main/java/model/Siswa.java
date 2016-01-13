@@ -61,6 +61,33 @@ public class Siswa {
     private Boolean lunas;
     @Column(name = "tahun_ajaran", nullable = false)
     private String tahunAjaran;
+    
+    @OneToOne
+    Pembayaran pembayaran1;
+    @OneToOne
+    Pembayaran pembayaran2;
+
+    public Pembayaran getPembayaran1() {
+        return pembayaran1;
+    }
+
+    public void setPembayaran1(Pembayaran pembayaran1) {
+        this.pembayaran1 = pembayaran1;
+    }
+
+    public Pembayaran getPembayaran2() {
+        return pembayaran2;
+    }
+
+    public void setPembayaran2(Pembayaran pembayaran2) {
+        this.pembayaran2 = pembayaran2;
+    }
+
+   
+
+    
+
+   
 
     public String getTahunAjaran() {
         return tahunAjaran;

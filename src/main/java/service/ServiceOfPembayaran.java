@@ -27,7 +27,8 @@ public class ServiceOfPembayaran {
     public void doSave(Pembayaran pembayaran){
        Session aSession = aSessionFactory.openSession();
        aSession.beginTransaction();
-       aSession.save(pembayaran);
+       Integer value = (Integer) aSession.save(pembayaran);
+       pembayaran.setId(value);
        aSession.getTransaction().commit();
        aSession.close();
     }

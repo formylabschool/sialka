@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2016-01-13T05:49:42 -->
+<!-- 2016-01-13T12:40:08 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="data_nilai_s" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a44c36ac-fcb6-41c0-b9d2-b68b62d52d5f">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="noPeserta" class="java.lang.String"/>
@@ -16,6 +16,9 @@
 	</field>
 	<field name="skor" class="java.lang.Integer">
 		<fieldDescription><![CDATA[skor]]></fieldDescription>
+	</field>
+	<field name="kodeMateri" class="java.lang.String">
+		<fieldDescription><![CDATA[keterangan.materi.kodeMateri]]></fieldDescription>
 	</field>
 	<variable name="noUrut" class="java.lang.Integer" calculation="Count">
 		<variableExpression><![CDATA[new Integer($V{noUrut}.intValue()+$P{DEFA_VALUE}.intValue())]]></variableExpression>
@@ -114,6 +117,10 @@
 				</textElement>
 				<text><![CDATA[Materi]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="76" y="0" width="100" height="30" uuid="fe846b8a-bedc-4573-85d6-86b644815001"/>
+				<text><![CDATA[kodeMateri]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
@@ -145,12 +152,12 @@
 				<textFieldExpression><![CDATA[$F{keterangan}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="59" y="0" width="63" height="22" uuid="0f73bc20-7689-4548-91a6-9aa4e7fa4c99"/>
-				<textFieldExpression><![CDATA[$V{noUrut}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="433" y="-4" width="100" height="30" uuid="e79a65b9-fb4e-43fa-9c39-e60f523fd0ec"/>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="33" y="0" width="100" height="30" uuid="7515081f-14bf-4c9b-a4be-22e8f3e86379"/>
+				<textFieldExpression><![CDATA[$F{kodeMateri}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

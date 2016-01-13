@@ -34,7 +34,7 @@ public class ControllersOfPembayaran implements JavaControllers {
         ServiceOfPembayaran service = new ServiceOfPembayaran(HIbernateUtil.config());
         for (Pembayaran aPembayaran : list) {
             Object[] anObjects = {aPembayaran.getNoPembayaran(), aPembayaran.getTanggal(),
-                aPembayaran.getAmount(), aPembayaran.getSiswa().getKodeSiswa()
+                aPembayaran.getAmount(), 
 
             };
             this.defaultTableModel.addRow(anObjects);
