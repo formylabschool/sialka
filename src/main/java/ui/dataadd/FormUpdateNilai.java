@@ -43,7 +43,7 @@ public class FormUpdateNilai extends javax.swing.JDialog {
         this.setAlwaysOnTop(true);
     }
 
-    public FormUpdateNilai(java.awt.Frame object, boolean b, FormIsiNilai aThis, Nilai model,Siswa siswa) {
+    public FormUpdateNilai(java.awt.Frame object, boolean b, FormIsiNilai aThis, Nilai model, Siswa siswa) {
         super(object, b);
         initComponents();
         this.siswa = siswa;
@@ -55,6 +55,8 @@ public class FormUpdateNilai extends javax.swing.JDialog {
         txtKode.setText(model.getKeterangan().getMateri().getNama());
         txtNama.setText(model.getKeterangan().getNamaKeterangan());
         txtSkor.setText(model.getSkor().toString());
+        this.setLocationRelativeTo(this);
+        this.setAlwaysOnTop(true);
 
     }
 
@@ -111,12 +113,12 @@ public class FormUpdateNilai extends javax.swing.JDialog {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jLabel1.setText("Kode");
+        jLabel1.setText("Materi");
 
         txtKode.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jLabel2.setText("Nama");
+        jLabel2.setText("Sub");
 
         txtNama.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         txtNama.addActionListener(new java.awt.event.ActionListener() {
@@ -140,17 +142,17 @@ public class FormUpdateNilai extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(txtKode, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtKode))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
+                        .addGap(34, 34, 34)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNama)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(txtSkor, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 161, Short.MAX_VALUE))
-                            .addComponent(txtNama))))
+                                .addGap(0, 145, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -215,9 +217,9 @@ public class FormUpdateNilai extends javax.swing.JDialog {
         if (update) {
             try {
                 ServiceOfNilai service = new ServiceOfNilai(HIbernateUtil.config());
-                
+
                 model.setSkor(Integer.valueOf(txtSkor.getText()));
-                
+
 //                StringBuilder sb =new StringBuilder();
 //                sb.append("KODE :").append(model.getId());
 //                sb.append("\nSKORE :").append(model.getSkor());
@@ -225,7 +227,7 @@ public class FormUpdateNilai extends javax.swing.JDialog {
                 service.doUpdate(model);
                 frmUtama.updateTableView(siswa);
               //  this.menu.loadDataNilai();
-                
+
                 dispose();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -233,7 +235,7 @@ public class FormUpdateNilai extends javax.swing.JDialog {
             }
         } else {
             try {
-               
+
             } catch (Exception e) {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(null, e.getMessage());
