@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2016-01-12T11:31:31 -->
+<!-- 2016-01-13T16:30:17 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="laporan_pelunasan" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cb601a21-5814-474b-bfbb-57ef31fc86f7">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="idLunas" class="java.lang.String"/>
@@ -26,7 +26,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="60" splitType="Stretch">
 			<staticText>
 				<reportElement x="222" y="0" width="110" height="20" uuid="9e1eb6cc-0987-491d-9a4e-fb3d1b3540f6"/>
 				<textElement>
@@ -52,11 +52,11 @@
 				<reportElement x="-20" y="38" width="595" height="1" uuid="d8f8c9a7-3cc0-400f-9307-46c0c105bece"/>
 			</line>
 			<staticText>
-				<reportElement x="0" y="10" width="109" height="17" uuid="70a5262e-fe36-489b-b0fa-e2bb414f1258"/>
+				<reportElement x="0" y="10" width="90" height="17" uuid="70a5262e-fe36-489b-b0fa-e2bb414f1258"/>
 				<textElement>
 					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Laporan Pelunasan]]></text>
+				<text><![CDATA[Laporan Yang :]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="109" y="11" width="100" height="16" uuid="23c6ce09-12ec-4fdf-9f8d-99f9ccf24ea3"/>
@@ -68,52 +68,114 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="43" splitType="Stretch">
+		<band height="44" splitType="Stretch">
 			<staticText>
-				<reportElement x="99" y="13" width="100" height="30" uuid="96ba9e7b-7fd5-43f8-a59d-a056bcacd150"/>
-				<textElement textAlignment="Center">
-					<font fontName="Times New Roman"/>
+				<reportElement mode="Opaque" x="112" y="13" width="100" height="30" backcolor="#D6D4D4" uuid="96ba9e7b-7fd5-43f8-a59d-a056bcacd150"/>
+				<box>
+					<topPen lineWidth="0.4"/>
+					<leftPen lineWidth="0.4"/>
+					<bottomPen lineWidth="0.4"/>
+					<rightPen lineWidth="0.4"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" isBold="true"/>
 				</textElement>
 				<text><![CDATA[No Peserta]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="200" y="13" width="170" height="30" uuid="73fc528c-a4a1-4e3f-afd6-0766207e9dce"/>
-				<textElement textAlignment="Center">
-					<font fontName="Times New Roman"/>
+				<reportElement mode="Opaque" x="212" y="13" width="170" height="30" backcolor="#D6D4D4" uuid="73fc528c-a4a1-4e3f-afd6-0766207e9dce"/>
+				<box>
+					<topPen lineWidth="0.4"/>
+					<leftPen lineWidth="0.4"/>
+					<bottomPen lineWidth="0.4"/>
+					<rightPen lineWidth="0.4"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nama]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="370" y="13" width="100" height="30" uuid="a92b5a32-1808-49da-bb6d-36197a62e95a"/>
-				<textElement textAlignment="Center">
-					<font fontName="Times New Roman"/>
+				<reportElement mode="Opaque" x="381" y="13" width="100" height="30" backcolor="#D6D4D4" uuid="a92b5a32-1808-49da-bb6d-36197a62e95a"/>
+				<box>
+					<topPen lineWidth="0.4"/>
+					<leftPen lineWidth="0.4"/>
+					<bottomPen lineWidth="0.4"/>
+					<rightPen lineWidth="0.4"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Sisa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="46" y="13" width="67" height="30" backcolor="#D6D4D4" uuid="89801756-1353-439b-ad2a-9bb825cd3c13"/>
+				<box>
+					<topPen lineWidth="0.4"/>
+					<leftPen lineWidth="0.4"/>
+					<bottomPen lineWidth="0.4"/>
+					<rightPen lineWidth="0.4"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="42" splitType="Stretch">
+		<band height="19" splitType="Stretch">
 			<textField>
-				<reportElement x="99" y="0" width="100" height="20" uuid="cd91b272-591d-45d2-8df8-1ceed7d5f599"/>
-				<textElement textAlignment="Center">
+				<reportElement x="113" y="-1" width="99" height="20" uuid="cd91b272-591d-45d2-8df8-1ceed7d5f599"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{kodeSiswa}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="200" y="0" width="170" height="20" uuid="d9e5a8ea-977c-4083-beb3-53681acae536"/>
-				<textElement>
+				<reportElement x="212" y="-1" width="169" height="20" uuid="d9e5a8ea-977c-4083-beb3-53681acae536"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤#,##0.##;¤-#,##0.##">
-				<reportElement x="370" y="0" width="100" height="20" uuid="273f024a-8e2f-4938-92ab-f9f1af6d9799"/>
-				<textElement textAlignment="Right">
+				<reportElement x="381" y="-1" width="100" height="20" uuid="273f024a-8e2f-4938-92ab-f9f1af6d9799"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{sisa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="46" y="-1" width="67" height="20" uuid="85b2e9f3-afe6-45cf-b8db-17fa70965448"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
