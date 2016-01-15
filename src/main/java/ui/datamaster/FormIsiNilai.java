@@ -185,6 +185,11 @@ public class FormIsiNilai extends javax.swing.JInternalFrame {
                 cbkPesertaItemStateChanged(evt);
             }
         });
+        cbkPeserta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbkPesertaActionPerformed(evt);
+            }
+        });
 
         btnUpdate.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         btnUpdate.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/update.png")); // NOI18N
@@ -305,6 +310,10 @@ public class FormIsiNilai extends javax.swing.JInternalFrame {
 
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void cbkPesertaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbkPesertaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbkPesertaActionPerformed
 
     public void updateTableView(Siswa siswa) {
         control.initTable();

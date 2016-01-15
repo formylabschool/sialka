@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2016-01-13T21:06:52 -->
+<!-- 2016-01-15T10:02:01 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="kwitansi_pendaftaran" pageWidth="595" pageHeight="340" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b6aa98c9-ccad-483e-aed2-cf393ec9cf03">
 	<property name="com.jaspersoft.studio.unit." value="cm"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
 	<property name="com.jaspersoft.studio.unit.pageWidth" value="cm"/>
 	<property name="com.jaspersoft.studio.unit.topMargin" value="cm"/>
@@ -11,7 +12,6 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="cm"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="cm"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="cm"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<import value="model.Siswa"/>
 	<parameter name="no_reg" class="java.lang.String"/>
 	<parameter name="namaSiswa" class="java.lang.String">
@@ -19,6 +19,9 @@
 	</parameter>
 	<parameter name="harga" class="java.lang.Double"/>
 	<parameter name="namaPelatihan" class="java.lang.String"/>
+	<parameter name="totalPembayaran" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -68,7 +71,7 @@
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="91" splitType="Stretch">
+		<band height="119" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="100" height="19" uuid="cdc69e06-c4c0-4b2f-8c9a-254ce4270b40"/>
 				<textElement>
@@ -91,28 +94,28 @@
 				<text><![CDATA[Pelatihan]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="140" y="0" width="160" height="19" uuid="6c092755-9233-441e-8aae-e6cc3ea00cae"/>
+				<reportElement x="106" y="0" width="160" height="19" uuid="6c092755-9233-441e-8aae-e6cc3ea00cae"/>
 				<textElement>
 					<font fontName="Times New Roman" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{no_reg}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="140" y="21" width="220" height="19" uuid="5f2d8e9b-ac7b-4e11-b1e0-70a227f5106c"/>
+				<reportElement x="106" y="21" width="220" height="19" uuid="5f2d8e9b-ac7b-4e11-b1e0-70a227f5106c"/>
 				<textElement>
 					<font fontName="Times New Roman" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{namaSiswa}]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤#,##0.##;¤-#,##0.##">
-				<reportElement x="140" y="65" width="160" height="16" uuid="e7544dbe-d505-4f6d-ac46-4913684c7549"/>
+				<reportElement x="106" y="65" width="160" height="16" uuid="e7544dbe-d505-4f6d-ac46-4913684c7549"/>
 				<textElement>
 					<font fontName="Times New Roman" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{harga}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="140" y="42" width="260" height="20" uuid="f241ebe8-9d92-43dd-8f9d-ed509ae695f2"/>
+				<reportElement x="106" y="42" width="260" height="20" uuid="f241ebe8-9d92-43dd-8f9d-ed509ae695f2"/>
 				<textElement>
 					<font fontName="Times New Roman" size="10"/>
 				</textElement>
@@ -125,12 +128,29 @@
 				</textElement>
 				<text><![CDATA[Biaya Pendaftaran]]></text>
 			</staticText>
+			<line>
+				<reportElement x="-20" y="117" width="595" height="1" uuid="1965569a-947f-43b8-a500-d83382432e3d"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="94" width="250" height="22" uuid="fa5f5945-bd09-4054-a260-36b8605f484b"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Total Pembayaran Pelatihan Yang Harus Di bayar :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="212" y="94" width="100" height="21" uuid="ff44194a-b512-47f4-812a-9222af158e3d"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{totalPembayaran}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
 		<band height="72" splitType="Stretch">
 			<staticText>
-				<reportElement x="445" y="0" width="100" height="23" uuid="42caec21-8ae2-4b85-96d4-e462d2851d92"/>
+				<reportElement x="449" y="1" width="100" height="23" uuid="42caec21-8ae2-4b85-96d4-e462d2851d92"/>
 				<textElement>
 					<font fontName="Times New Roman" size="10"/>
 				</textElement>

@@ -371,8 +371,8 @@ public class RekapJadwalInstruktur extends javax.swing.JInternalFrame {
             System.out.println("jumlah data jadwal" + listJadwal.size());
             for (Jadwal aJadwal : listJadwal) {
 
-                Object[] value = {aJadwal.getTanggal(), aJadwal.getRuangan().getId(), aJadwal.getJam_awal(),
-                    aJadwal.getJam_akhir(), aJadwal.getMateri().getNama(), aJadwal.getInstruktur().getNama()};
+                Object[] value = {aJadwal.getTanggal(), aJadwal.getRuangan().getId(), aJadwal.getJam()
+                   , aJadwal.getMateri().getNama(), aJadwal.getInstruktur().getNama()};
                 control.getDefaultTableModel().addRow(value);
             }
 

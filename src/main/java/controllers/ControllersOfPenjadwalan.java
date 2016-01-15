@@ -30,7 +30,7 @@ public class ControllersOfPenjadwalan implements JavaControllers {
         ServiceOfJadwal service = new ServiceOfJadwal(HIbernateUtil.config());
         for (Jadwal aJadwal : list) {
             Object[] anObjects = { aJadwal.getTanggal(),aJadwal.getKelas().getKodeKelas(),aJadwal.getRuangan().getId(),
-                                    aJadwal.getJam_awal(),aJadwal.getJam_akhir(),aJadwal.getMateri().getNama(),aJadwal.getInstruktur().getNama()};
+                                   aJadwal.getJam(),aJadwal.getMateri().getNama(),aJadwal.getInstruktur().getNama()};
             this.defaultTableModel.addRow(anObjects);
 
         }

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2016-01-15T13:49:37 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DepanSertifikat" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6c5162a1-da09-4881-be95-15361cec1a8b">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="namaPeserta" class="java.lang.String"/>
+	<parameter name="tanggalLahir" class="java.lang.String"/>
+	<parameter name="periode" class="java.lang.String"/>
+	<parameter name="jurusan" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="87" splitType="Stretch">
+			<staticText>
+				<reportElement x="340" y="-9" width="227" height="30" uuid="17379234-ebd4-4219-a6de-544c5c9bc921"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Izin Disnaker Kabupaten Bandung]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="344" y="7" width="221" height="30" uuid="a900c3e8-b3eb-4df5-90b2-632afab6c05a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nomor : KEP.503/ 343-Lattas/2014]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="39" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="205" splitType="Stretch">
+			<staticText>
+				<reportElement x="181" y="1" width="100" height="30" uuid="8c6992e1-157f-47c3-97b7-d4201ed9d52d"/>
+				<textElement>
+					<font fontName="Cambria" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nomor :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="1" width="100" height="30" uuid="38e3c2d1-a489-407d-8af0-d4563a56230b"/>
+				<textElement>
+					<font fontName="Cambria" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[/S/LPKK/]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="216" splitType="Stretch">
+			<staticText>
+				<reportElement x="230" y="0" width="103" height="22" uuid="11c2510e-1460-466f-8c27-6da0353967e4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Diberikan kepada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="217" y="41" width="130" height="30" uuid="0a9a0891-9611-4c21-bade-d7b98209f367"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tempat Tanggal Lahir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="165" y="84" width="230" height="30" uuid="4c73f81d-1441-470e-be55-15fd24701ffa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telah mengikuti Pendidikan dan Latihan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="101" width="114" height="30" uuid="a42ef74b-b8ab-49c0-ba8a-338e0aca7a31"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kejuruan Komputer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="238" y="132" width="86" height="20" uuid="2b1010ee-12e7-43b7-9a5b-69d1ccc42e41"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pada Tanggal :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="9" width="52" height="-843" uuid="ef70be10-4f24-420c-b9cc-22b9c4e76bb9"/>
+				<textElement>
+					<font fontName="Cambria" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tingkat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="248" y="168" width="60" height="19" uuid="0b11327d-d5cc-44d3-8067-ecaa35895be4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tingkat]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="181" y="20" width="197" height="30" uuid="0dd17d89-4249-4507-9b5d-acb3f62f9a6e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{namaPeserta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="62" width="100" height="30" uuid="71bfc195-1d92-403f-8a28-f4891a949628"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tanggalLahir}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="143" width="100" height="30" uuid="c9560e0e-dcde-4572-a4f5-fcfbf4eee20e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{periode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="229" y="183" width="100" height="30" uuid="b3d7f9f9-30e9-49c0-980c-9cb1c806f1a1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{jurusan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="216" splitType="Stretch">
+			<staticText>
+				<reportElement x="230" y="147" width="100" height="18" uuid="df81739a-69b5-4987-8f53-63bcf1008a8e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LPK KANIRA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="407" y="25" width="100" height="30" uuid="08914b46-1f4f-48c8-b104-992348e89945"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pimpinan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="411" y="120" width="100" height="30" uuid="7046e144-292b-4a7f-b02d-410c77ed76b0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GATOT PRAYOGA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="14" width="100" height="30" uuid="358da117-575c-4de0-9b5b-ae962c6cf8a6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mengetahui :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="34" width="151" height="30" uuid="71341007-f3be-4481-b23c-9a53cd79bd30"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kepala Dinas Tenaga Kerja]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="56" width="158" height="20" uuid="bf35c143-c1f2-4dc8-b14e-9311a7393a97"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kabupaten Bandung]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="121" width="174" height="30" uuid="dbd07a63-a9ec-4598-9acb-e6c84eb6d788"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Drs. RUKMANA, M.Si]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="43" y="139" width="100" height="30" uuid="5dac0c7a-8926-49f6-8697-e68090207152"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pembina TK.I]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="154" width="186" height="30" uuid="8e626591-2b8e-4629-b0b8-98787d365c66"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NIP. 19650520 1999102 1 002]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="225" y="8" width="113" height="141" uuid="99b423ce-2754-4554-bac8-d09d3d1c6094">
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="408" y="17" width="100" height="18" uuid="782f0de6-b821-4006-aafc-c029d1da342b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LPK KANIRA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="381" y="-7" width="153" height="30" uuid="74dabc87-390f-40f5-a865-e6eb3da5f20e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bandung, 30 Agustus 2015]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -107,8 +107,8 @@
                               <Component id="txtAjaran" min="-2" pref="76" max="-2" attributes="0"/>
                               <Component id="cbkGel" min="-2" max="-2" attributes="0"/>
                               <Component id="txtHarga" min="-2" pref="234" max="-2" attributes="0"/>
-                              <Component id="cbkKelas" min="-2" max="-2" attributes="0"/>
                               <Component id="sHarga" alignment="0" min="-2" pref="88" max="-2" attributes="0"/>
+                              <Component id="cbkKelas" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="100" max="32767" attributes="0"/>
                       </Group>
@@ -189,6 +189,12 @@
           </Properties>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="dateChooser">
+          <Properties>
+            <Property name="dateFormatString" type="java.lang.String" value="dd MMMM yyyy"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Menlo" size="13" style="0"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtHarga">
           <Properties>
@@ -269,7 +275,7 @@
               <Font name="Menlo" size="13" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="10000.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
+              <SpinnerModel initial="10000.0" numberType="java.lang.Double" stepSize="10000.0" type="number"/>
             </Property>
           </Properties>
         </Component>

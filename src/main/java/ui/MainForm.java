@@ -31,6 +31,7 @@ import ui.datamaster.FormPelunasan;
 import ui.report.FormLaporan;
 import ui.rekapitulation.RekapJadwal;
 import ui.rekapitulation.RekapJadwalInstruktur;
+import ui.report.CetakSertifikat;
 import ui.report.FormLunas;
 
 /**
@@ -47,8 +48,8 @@ public class MainForm extends javax.swing.JFrame {
      */
     public MainForm() {
         initComponents();
-        panggilJendelaLogin();
-        setMenubarEnabled(login.opLogin.isLogin(), login.opLogin.isAdmin());
+     //   panggilJendelaLogin();
+        //   setMenubarEnabled(login.opLogin.isLogin(), login.opLogin.isAdmin());
 
     }
 
@@ -102,6 +103,8 @@ public class MainForm extends javax.swing.JFrame {
         mnuLaporan = new javax.swing.JMenu();
         mniTransaksiPEmbayaran = new javax.swing.JMenuItem();
         mniPelunasan = new javax.swing.JMenuItem();
+        jSeparator5 = new javax.swing.JPopupMenu.Separator();
+        mniSertifikat = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -405,6 +408,16 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
         mnuLaporan.add(mniPelunasan);
+        mnuLaporan.add(jSeparator5);
+
+        mniSertifikat.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        mniSertifikat.setText("Cetak Sertifikat");
+        mniSertifikat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniSertifikatActionPerformed(evt);
+            }
+        });
+        mnuLaporan.add(mniSertifikat);
 
         jMenuBar1.add(mnuLaporan);
 
@@ -737,12 +750,12 @@ public class MainForm extends javax.swing.JFrame {
         add.setLocation((size.width - addSize.width) / 2,
                 (size.height - addSize.height) / 2);
         add.setVisible(true);
-    
+
     }//GEN-LAST:event_mniPelunasanActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-         FormPelunasan add = new FormPelunasan();
+        FormPelunasan add = new FormPelunasan();
         desktop.add(add);
 
         Dimension size = desktop.getSize();
@@ -751,6 +764,18 @@ public class MainForm extends javax.swing.JFrame {
                 (size.height - addSize.height) / 2);
         add.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void mniSertifikatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniSertifikatActionPerformed
+        // TODO add your handling code here:
+        CetakSertifikat add = new CetakSertifikat();
+        desktop.add(add);
+
+        Dimension size = desktop.getSize();
+        Dimension addSize = add.getSize();
+        add.setLocation((size.width - addSize.width) / 2,
+                (size.height - addSize.height) / 2);
+        add.setVisible(true);
+    }//GEN-LAST:event_mniSertifikatActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -770,6 +795,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JMenuItem mniAbsensi;
     private javax.swing.JMenuItem mniBukuTamu;
     private javax.swing.JMenuItem mniDaftarSiswa;
@@ -788,6 +814,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem mniPenjadwalan;
     private javax.swing.JMenuItem mniRegistrasi;
     private javax.swing.JMenuItem mniRuangan;
+    private javax.swing.JMenuItem mniSertifikat;
     private javax.swing.JMenuItem mniTransaksiPEmbayaran;
     private javax.swing.JMenu mnuAdministrasi;
     private javax.swing.JMenu mnuAkses;

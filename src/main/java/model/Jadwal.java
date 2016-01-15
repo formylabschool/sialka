@@ -24,7 +24,7 @@ import javax.persistence.UniqueConstraint;
  * @author muhamadhanifmuhsin
  */
 @Entity
-@Table(name="jadwal", uniqueConstraints = @UniqueConstraint(name = "uq_jadwal",columnNames = {"jam_awal","jam_akhir","intruktur_id","tanggal"}))
+@Table(name="jadwal", uniqueConstraints = @UniqueConstraint(name = "uq_jadwal",columnNames = {"jam","intruktur_id","tanggal"}))
 public class Jadwal {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
@@ -42,12 +42,7 @@ public class Jadwal {
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
     private Date tanggal;
-    @Temporal(TemporalType.TIME)
-    @Column(nullable = false)
-    private Date jam_awal;
-    @Temporal(TemporalType.TIME)
-    @Column(nullable = false)
-    private Date jam_akhir;
+    private String jam;
 
     public Kelas getKelas() {
         return kelas;
@@ -98,20 +93,14 @@ public class Jadwal {
         this.tanggal = tanggal;
     }
 
-    public Date getJam_awal() {
-        return jam_awal;
+    public String getJam() {
+        return jam;
     }
 
-    public void setJam_awal(Date jam_awal) {
-        this.jam_awal = jam_awal;
+    public void setJam(String jam) {
+        this.jam = jam;
     }
 
-    public Date getJam_akhir() {
-        return jam_akhir;
-    }
-
-    public void setJam_akhir(Date jam_akhir) {
-        this.jam_akhir = jam_akhir;
-    }
+ 
     
 }

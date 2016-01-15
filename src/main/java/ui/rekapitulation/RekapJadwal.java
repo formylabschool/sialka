@@ -57,6 +57,8 @@ public class RekapJadwal extends javax.swing.JInternalFrame {
 
         }
         cbKKelas.setSelectedIndex(-1);
+        
+        
     }
 
     private void printDataInstruktur(List<Jadwal> list) throws JRException {
@@ -142,13 +144,13 @@ public class RekapJadwal extends javax.swing.JInternalFrame {
 
         tableJadwal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Tanggal", "Ruangan", "Jam Awal", "Jam Akhir", "Materi", "Instruktur"
+                "Tanggal", "Ruangan", "Jam ", "Materi", "Instruktur"
             }
         ));
         jScrollPane1.setViewportView(tableJadwal);
@@ -258,8 +260,8 @@ public class RekapJadwal extends javax.swing.JInternalFrame {
                     System.out.println("jumlah data siswa ditemukan " + jadwal.size());
                     for (Jadwal aJadwal : jadwal) {
 
-                        Object[] value = {aJadwal.getTanggal(), aJadwal.getRuangan().getId(), aJadwal.getJam_awal(),
-                            aJadwal.getJam_akhir(), aJadwal.getMateri().getNama(), aJadwal.getInstruktur().getNama()};
+                        Object[] value = {aJadwal.getTanggal(), aJadwal.getRuangan().getId(), aJadwal.getJam(),
+                             aJadwal.getMateri().getNama(), aJadwal.getInstruktur().getNama()};
                         controll.getDefaultTableModel().addRow(value);
 
                     }

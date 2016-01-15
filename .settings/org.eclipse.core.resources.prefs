@@ -1,4 +1,6 @@
 eclipse.preferences.version=1
+encoding//src/main/resources/BelakangSertifikat.jrxml=UTF-8
+encoding//src/main/resources/DepanSertifikat.jrxml=UTF-8
 encoding//src/main/resources/data_absensi_s.jrxml=UTF-8
 encoding//src/main/resources/data_instruktur.jrxml=UTF-8
 encoding//src/main/resources/data_jadwal.jrxml=UTF-8

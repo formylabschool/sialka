@@ -48,6 +48,7 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
         // initCombo();
         initCombox();
         dateChooser.setDate(new Date());
+        
     }
 
 //    public void initCombo() {
@@ -65,7 +66,7 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
         this.listKelas = new ServiceOfKelas(HIbernateUtil.config()).findAll();
         cbkKelas.removeAllItems();
         for (Kelas aKelas : listKelas) {
-            cbkKelas.addItem(aKelas.getNamaKelas());
+            cbkKelas.addItem(aKelas.getKodeKelas());
         }
         cbkKelas.setSelectedIndex(-1);
 
@@ -79,6 +80,7 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
         noSiswa.put("namaPelatihan", kelas.getNamaKelas());
        // noSiswa.put("harga", jTextField3.getText());
         noSiswa.put("harga", sHarga.getValue());
+        noSiswa.put("totalPembayaran", txtHarga.getText());
         JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/kwitansi_pendaftaran.jrxml"));
         JasperReport report = JasperCompileManager.compileReport(design);
         JasperPrint print = JasperFillManager.fillReport(report, noSiswa, new JREmptyDataSource());
@@ -143,6 +145,9 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel4.setText("Harga");
 
+        dateChooser.setDateFormatString("dd MMMM yyyy");
+        dateChooser.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+
         txtHarga.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
@@ -177,7 +182,7 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
         });
 
         sHarga.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        sHarga.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(10000.0d), null, null, Double.valueOf(1.0d)));
+        sHarga.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(10000.0d), null, null, Double.valueOf(10000.0d)));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -202,8 +207,8 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
                             .addComponent(txtAjaran, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cbkGel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbkKelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(sHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbkKelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)))
                 .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -537,9 +542,11 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (cbkKelas.getSelectedIndex() >= 0) {
             Kelas kelas = listKelas.get(cbkKelas.getSelectedIndex());
+          //  jHarga.setValue(kelas.getJurusan().getHarga());
             txtHarga.setText(kelas.getJurusan().getHarga().toString());
         } else {
-            txtHarga.setText("0");
+           txtHarga.setText("0");
+           // jHarga.setValue("0");
         }
 
     }//GEN-LAST:event_cbkKelasItemStateChanged

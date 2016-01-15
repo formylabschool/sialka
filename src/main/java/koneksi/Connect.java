@@ -18,7 +18,7 @@ public interface Connect {
     /**
      *
      */
-    	String URL ="Jdbc:mysql://localhost:3306/sia_lpkkanira";
+    	String URL ="Jdbc:mysql://localhost/3306/sia_lpkkanira";
 	String HOST ="localhost";
 	String PORT = "3306";
 	String DB = "sia_lpkkanira";//inisisalisasi schema pada MySQL
