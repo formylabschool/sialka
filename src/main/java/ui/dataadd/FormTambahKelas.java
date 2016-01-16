@@ -116,7 +116,7 @@ public class FormTambahKelas extends javax.swing.JDialog {
         cbkJurusan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel4.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jLabel4.setText("Tahun");
+        jLabel4.setText("Periode");
 
         txtTahun.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
@@ -138,9 +138,9 @@ public class FormTambahKelas extends javax.swing.JDialog {
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtTahun, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNamaKelas)
-                            .addComponent(cbkJurusan, 0, 211, Short.MAX_VALUE))))
+                            .addComponent(cbkJurusan, 0, 211, Short.MAX_VALUE)
+                            .addComponent(txtTahun))))
                 .addContainerGap(71, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(

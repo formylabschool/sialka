@@ -24,13 +24,17 @@ import javax.persistence.UniqueConstraint;
  * @author muhamadhanifmuhsin
  */
 @Entity
-@Table(name="jadwal", uniqueConstraints = @UniqueConstraint(name = "uq_jadwal",columnNames = {"jam","intruktur_id","tanggal"}))
+@Table(name="jadwal", uniqueConstraints = 
+        { @UniqueConstraint(name = "uq_jadwal",columnNames = {"jam","intruktur_id","tanggal"}),
+        @UniqueConstraint(name = "ug_instruktur", columnNames = {"tanggal","ruangan_id","jam"})}
+)
 public class Jadwal {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name="id_jadwal")
     private Integer id;
     @OneToOne
+     @JoinColumns(@JoinColumn(name = "ruangan_id"))
     private Ruangan ruangan;
     @OneToOne
     @JoinColumns(@JoinColumn(name = "intruktur_id"))

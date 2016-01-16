@@ -23,6 +23,8 @@ import ui.datamaster.FormRuangan;
 import ui.datamaster.FormJurusan;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import ui.dataadd.FormSubMateri;
 import ui.datamaster.FormDataAbsensiSiswa;
@@ -766,15 +768,19 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void mniSertifikatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniSertifikatActionPerformed
-        // TODO add your handling code here:
-        CetakSertifikat add = new CetakSertifikat();
-        desktop.add(add);
-
-        Dimension size = desktop.getSize();
-        Dimension addSize = add.getSize();
-        add.setLocation((size.width - addSize.width) / 2,
-                (size.height - addSize.height) / 2);
-        add.setVisible(true);
+        try {
+            // TODO add your handling code here:
+            CetakSertifikat add = new CetakSertifikat();
+            desktop.add(add);
+            
+            Dimension size = desktop.getSize();
+            Dimension addSize = add.getSize();
+            add.setLocation((size.width - addSize.width) / 2,
+                    (size.height - addSize.height) / 2);
+            add.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_mniSertifikatActionPerformed
 
 

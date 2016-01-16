@@ -15,6 +15,7 @@ import javax.swing.SpinnerDateModel;
 import configuration.HIbernateUtil;
 import controllers.ControllersOfPenjadwalan;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -223,7 +224,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
         jLabel3.setText("Ruangan");
 
         jLabel9.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jLabel9.setText("Jam Awal");
+        jLabel9.setText("Jam");
 
         cbkKelas.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         cbkKelas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -239,6 +240,11 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
         });
 
         dateChooser.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        dateChooser.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                dateChooserPropertyChange(evt);
+            }
+        });
 
         cbkRuangan.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         cbkRuangan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -533,6 +539,11 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnKeluarActionPerformed
+
+    private void dateChooserPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dateChooserPropertyChange
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_dateChooserPropertyChange
 
     private void cbkKelasActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbkKelasActionPerformed
         // TODO add your handling code here:

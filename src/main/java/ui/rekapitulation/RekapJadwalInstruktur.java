@@ -33,7 +33,6 @@ import net.sf.jasperreports.view.JasperViewer;
 import service.ServiceOfInstruktur;
 import service.ServiceOfJadwal;
 import service.ServiceOfKelas;
-import sun.print.resources.serviceui;
 
 /**
  *
@@ -223,13 +222,13 @@ public class RekapJadwalInstruktur extends javax.swing.JInternalFrame {
         tableJadwal.setFont(new java.awt.Font("Menlo", 0, 12)); // NOI18N
         tableJadwal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Tanggal", "Ruangan", "Jam Awal", "Jam Akhir", "Materi", "Instruktur"
+                "Tanggal", "Ruangan", "Jam ", "Materi", "Instruktur"
             }
         ));
         jScrollPane1.setViewportView(tableJadwal);

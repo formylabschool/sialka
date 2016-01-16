@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Kelas;
 import model.Nilai;
 import model.Siswa;
 import net.sf.jasperreports.engine.JRException;
@@ -23,6 +24,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
+import service.ServiceOfKelas;
 import service.ServiceOfNilai;
 import service.ServiceOfSiswa;
 
@@ -36,14 +38,20 @@ public class CetakSertifikat extends javax.swing.JInternalFrame {
     private Siswa siswa;
     private List<Nilai> listNilai = new ArrayList<>();
     private ServiceOfNilai service;
+    private List<Kelas> listKelas = new ArrayList<>();
+    private ServiceOfKelas serviceKelas;
+    private Kelas kelas;
 
     /**
      * Creates new form CetakSertifikat
      */
-    public CetakSertifikat() {
+    public CetakSertifikat() throws Exception {
         initComponents();
         initComboSiswa();
+        this.serviceKelas = new ServiceOfKelas(HIbernateUtil.config());
         this.service = new ServiceOfNilai(HIbernateUtil.config());
+        this.listNilai = new ServiceOfNilai(HIbernateUtil.config()).findNilaiBySiswa(siswa);
+        this.listSiswa = new ServiceOfSiswa(HIbernateUtil.config()).findAll();
         dateCetak.setDate(new Date());
     }
 
@@ -59,11 +67,32 @@ public class CetakSertifikat extends javax.swing.JInternalFrame {
         cbkPeserta.setSelectedIndex(-1);
     }
 
+    private void printDataSiswaKelas(List<Siswa> list) throws JRException {
+        HashMap<String, Object> siswaMap = new HashMap<String, Object>();
+
+        siswaMap.put("namaPeserta", txtNama.getText());
+        siswaMap.put("tempatLahir", txtTempatLahir.getText());
+        siswaMap.put("tanggalLahir", dateLahir.getDate());
+        siswaMap.put("tanggalCetak", dateCetak.getDate());
+        siswaMap.put("no", txtNoSertifikat.getText());
+        siswaMap.put("bulan", txtBulanSertifikat.getText());
+        siswaMap.put("tahun", txtTahun.getText());
+        
+
+        JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/DepanSertifikat.jrxml"));
+        JasperReport report = JasperCompileManager.compileReport(design);
+        JasperPrint print = JasperFillManager.fillReport(report, siswaMap, new JRBeanCollectionDataSource(list));
+        JasperViewer view = new JasperViewer(print, false);
+        view.setVisible(true);
+    }
+
     private void printDataNilaiSiswa(List<Nilai> list) throws JRException {
         HashMap<String, Object> nilaiMap = new HashMap<String, Object>();
         Siswa siswa = listSiswa.get(cbkPeserta.getSelectedIndex());
         nilaiMap.put("noPeserta", siswa.getKodeSiswa());
         nilaiMap.put("namaPeserta", siswa.getNama());
+        nilaiMap.put("tempatLahir", txtTempatLahir.getText());
+        nilaiMap.put("tanggalLahir", dateLahir.getDate());
 
         JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/BelakangSertifikat.jrxml"));
         JasperReport report = JasperCompileManager.compileReport(design);
@@ -323,7 +352,12 @@ public class CetakSertifikat extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            printDataSiswaKelas(listSiswa);
+        } catch (JRException ex) {
+            Logger.getLogger(CetakSertifikat.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnBelakangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBelakangActionPerformed
@@ -351,6 +385,8 @@ public class CetakSertifikat extends javax.swing.JInternalFrame {
             }
         } catch (NullPointerException npe) {
             npe.printStackTrace();
+        } catch (Exception ex) {
+            Logger.getLogger(CetakSertifikat.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_cbkPesertaItemStateChanged
 

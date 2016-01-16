@@ -6,12 +6,16 @@
 package ui.datamaster;
 
 import configuration.HIbernateUtil;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.Year;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.Jurusan;
 import model.Kelas;
 import model.Siswa;
@@ -48,20 +52,17 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
         // initCombo();
         initCombox();
         dateChooser.setDate(new Date());
-        
+
     }
 
-//    public void initCombo() {
-//        this.listJurusan = new ServiceOfJurusan(HIbernateUtil.config()).findAll();
-//        
-//        cbkJurusan.removeAllItems();
-//        for (Jurusan aJurusan : listJurusan) {
-//
-//            cbkJurusan.addItem(aJurusan.getNama());
-//
-//        }
-//cbkJurusan.setSelectedIndex(-1);
-//    }
+    public int hitungUmur() {
+        Date lahir = dateLahir.getDate();
+        SimpleDateFormat convert = new SimpleDateFormat("yyyy");
+        Integer yearPilih = Integer.valueOf(convert.format(lahir));
+        Integer umur = Year.now().getValue() - yearPilih;
+        return umur;
+    }
+
     public void initCombox() {
         this.listKelas = new ServiceOfKelas(HIbernateUtil.config()).findAll();
         cbkKelas.removeAllItems();
@@ -78,7 +79,7 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
         noSiswa.put("no_reg", genID);
         noSiswa.put("namaSiswa", siswa.getNama());
         noSiswa.put("namaPelatihan", kelas.getNamaKelas());
-       // noSiswa.put("harga", jTextField3.getText());
+        // noSiswa.put("harga", jTextField3.getText());
         noSiswa.put("harga", sHarga.getValue());
         noSiswa.put("totalPembayaran", txtHarga.getText());
         JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/kwitansi_pendaftaran.jrxml"));
@@ -298,6 +299,20 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
         txaAlamat.setRows(5);
         jScrollPane1.setViewportView(txaAlamat);
 
+        dateLahir.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        dateLahir.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                dateLahirInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
+        dateLahir.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                dateLahirPropertyChange(evt);
+            }
+        });
+
         jLabel14.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel14.setText("Jenis Kelamin");
 
@@ -506,18 +521,23 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
             SessionFactory aSessionFactory = HIbernateUtil.config();
             ServiceOfSiswa serviceOfSiswa = new ServiceOfSiswa(aSessionFactory);
             ServiceOfNilai serviceNilai = new ServiceOfNilai(aSessionFactory);
-            serviceOfSiswa.doSave(aSiswa);
-            aSiswa.setKodeSiswa(generateKode(aSiswa.getId()));
+            if (hitungUmur() <= 18) {
+                JOptionPane.showMessageDialog(getRootPane(), "Maaf umur anda belum mencukupi", "INFORMASI", JOptionPane.WARNING_MESSAGE);
+            } else {
+                serviceOfSiswa.doSave(aSiswa);
+                aSiswa.setKodeSiswa(generateKode(aSiswa.getId()));
 
-            serviceOfSiswa = new ServiceOfSiswa(aSessionFactory);
-            serviceOfSiswa.doUpdate(aSiswa);
-            serviceNilai.setNilai(aSiswa.getKelas().getJurusan(), aSiswa);
-            try {
-                printKwitansi(aSiswa.getKodeSiswa(), aSiswa);
-            } catch (JRException ex) {
-                Logger.getLogger(FormPendaftaran.class.getName()).log(Level.SEVERE, null, ex);
+                serviceOfSiswa = new ServiceOfSiswa(aSessionFactory);
+                serviceOfSiswa.doUpdate(aSiswa);
+                serviceNilai.setNilai(aSiswa.getKelas().getJurusan(), aSiswa);
+                try {
+                    printKwitansi(aSiswa.getKodeSiswa(), aSiswa);
+                } catch (JRException ex) {
+                    Logger.getLogger(FormPendaftaran.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                dispose();
+
             }
-            dispose();
 
         } catch (Exception ex) {
             Logger.getLogger(FormPendaftaran.class.getName()).log(Level.SEVERE, null, ex);
@@ -542,11 +562,11 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (cbkKelas.getSelectedIndex() >= 0) {
             Kelas kelas = listKelas.get(cbkKelas.getSelectedIndex());
-          //  jHarga.setValue(kelas.getJurusan().getHarga());
+            //  jHarga.setValue(kelas.getJurusan().getHarga());
             txtHarga.setText(kelas.getJurusan().getHarga().toString());
         } else {
-           txtHarga.setText("0");
-           // jHarga.setValue("0");
+            txtHarga.setText("0");
+            // jHarga.setValue("0");
         }
 
     }//GEN-LAST:event_cbkKelasItemStateChanged
@@ -561,18 +581,29 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtEmailKeyPressed
 
-    public static String value(Number value){
+    private void dateLahirPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dateLahirPropertyChange
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_dateLahirPropertyChange
+
+    private void dateLahirInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_dateLahirInputMethodTextChanged
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_dateLahirInputMethodTextChanged
+
+    public static String value(Number value) {
         StringBuilder aBuilder = new StringBuilder();
-        if(value.toString().length() == 1){
+        if (value.toString().length() == 1) {
             aBuilder.append("00").append(value);
-        }else if(value.toString().length() == 2){
+        } else if (value.toString().length() == 2) {
             aBuilder.append("0").append(value);
-        }else if(value.toString().length() == 3){
+        } else if (value.toString().length() == 3) {
             aBuilder.append(value);
         }
         return aBuilder.toString();
-        
+
     }
+
     private String generateKode(Integer value) {
         StringBuilder aBuilder = new StringBuilder();
         aBuilder.append(cbkGel.getSelectedItem().toString());

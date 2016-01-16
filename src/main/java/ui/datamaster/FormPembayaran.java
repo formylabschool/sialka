@@ -29,6 +29,7 @@ import net.sf.jasperreports.view.JasperViewer;
 import org.hibernate.SessionFactory;
 import service.ServiceOfPembayaran;
 import service.ServiceOfSiswa;
+import ui.dataadd.ChooseData;
 
 /**
  *
@@ -37,6 +38,10 @@ import service.ServiceOfSiswa;
 public class FormPembayaran extends javax.swing.JInternalFrame {
 
     private Siswa siswa;
+
+    public void setSiswa(Siswa siswa) {
+        this.siswa = siswa;
+    }
 
     /**
      * Creates new form FormPembayaran
@@ -66,6 +71,12 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
         JasperViewer view = new JasperViewer(print, false);
         view.setVisible(true);
     }
+    
+    public void setNIP(Siswa siswa){
+        txtNIP.setText(siswa.getKodeSiswa());
+        txtNama.setText(siswa.getNama());
+        txtSisa.setText(siswa.getSisa().toString());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,6 +102,7 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         sPem = new javax.swing.JSpinner();
         btnSimpan = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jLabel4.setText("jLabel4");
 
@@ -185,14 +197,13 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
                             .addComponent(jLabel6))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sPem, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(txtNIP)
+                                .addComponent(txtNIP, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnCari))
-                            .addComponent(txtNama)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(sPem, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 124, Short.MAX_VALUE)))))
+                            .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -227,6 +238,14 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        jButton1.setText("Cari Data");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -237,7 +256,8 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
                         .addComponent(btnSimpan)))
                 .addContainerGap())
         );
@@ -248,8 +268,10 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSimpan)
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSimpan)
+                    .addComponent(jButton1))
+                .addGap(0, 9, Short.MAX_VALUE))
         );
 
         pack();
@@ -317,10 +339,17 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSisaActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        ChooseData add = new ChooseData(null, false, this);
+                add.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCari;
     private javax.swing.JButton btnSimpan;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
