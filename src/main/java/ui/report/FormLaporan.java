@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.Pembayaran;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -29,6 +30,7 @@ import service.ServiceOfLaporan;
 public class FormLaporan extends javax.swing.JInternalFrame {
 
     private ServiceOfLaporan service;
+    private Object dateChoose;
 
     /**
      * Creates new form FormLaporan
@@ -100,8 +102,14 @@ public class FormLaporan extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel2.setText("Periode :");
 
+        date1.setDateFormatString("dd MMMM yyyy");
+        date1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+
         jLabel3.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel3.setText("Sampai");
+
+        date2.setDateFormatString("dd MMMM yyyy");
+        date2.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -112,14 +120,14 @@ public class FormLaporan extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
-                        .addGap(12, 12, 12)
-                        .addComponent(date2, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(date2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 14, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,16 +183,25 @@ public class FormLaporan extends javax.swing.JInternalFrame {
 
     private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed
         // TODO add your handling code here:
-        List<Pembayaran> filter = service.cariPembayaran(date1.getDate(), date2.getDate());
-        Double total = 0.0;
-        for (Pembayaran aPem : filter) {
-            total += aPem.getAmount();
-        }
-        System.out.println("total" + total);
-        try {
-            printLaporanTransaksi(filter, total);
-        } catch (JRException ex) {
-            Logger.getLogger(FormLaporan.class.getName()).log(Level.SEVERE, null, ex);
+
+        if (null == date1.getDate()) {
+            JOptionPane.showMessageDialog(getRootPane(), "Isi Tanggal Awal", "INFORMASI", JOptionPane.WARNING_MESSAGE);
+        } else {
+            if (null == date2.getDate()) {
+                JOptionPane.showMessageDialog(getRootPane(), "Isi Tanggal Akhir", "INFORMASI", JOptionPane.WARNING_MESSAGE);
+            } else {
+                List<Pembayaran> filter = service.cariPembayaran(date1.getDate(), date2.getDate());
+                Double total = 0.0;
+                for (Pembayaran aPem : filter) {
+                    total += aPem.getAmount();
+                }
+                System.out.println("total" + total);
+                try {
+                    printLaporanTransaksi(filter, total);
+                } catch (JRException ex) {
+                    Logger.getLogger(FormLaporan.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }//GEN-LAST:event_btnCetakActionPerformed
 

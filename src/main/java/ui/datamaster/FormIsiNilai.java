@@ -191,6 +191,9 @@ public class FormIsiNilai extends javax.swing.JInternalFrame {
             }
         });
 
+        txtNama.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtNama.setEnabled(false);
+
         btnUpdate.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         btnUpdate.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/update.png")); // NOI18N
         btnUpdate.setText("Perbaharui");
@@ -307,6 +310,7 @@ public class FormIsiNilai extends javax.swing.JInternalFrame {
             add.setVisible(true);
 
         } else {
+             JOptionPane.showMessageDialog(null, "Tabel Belum diklik");
 
         }
     }//GEN-LAST:event_btnUpdateActionPerformed

@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.Kelas;
 import model.Nilai;
 import model.Siswa;
@@ -77,9 +78,11 @@ public class CetakSertifikat extends javax.swing.JInternalFrame {
         siswaMap.put("no", txtNoSertifikat.getText());
         siswaMap.put("bulan", txtBulanSertifikat.getText());
         siswaMap.put("tahun", txtTahun.getText());
+        siswaMap.put("jurusan",txtJurusan.getText());
+        siswaMap.put("periode",txtPeriode.getText());
         
 
-        JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/DepanSertifikat.jrxml"));
+        JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/depan_sertifikat.jrxml"));
         JasperReport report = JasperCompileManager.compileReport(design);
         JasperPrint print = JasperFillManager.fillReport(report, siswaMap, new JRBeanCollectionDataSource(list));
         JasperViewer view = new JasperViewer(print, false);
@@ -120,6 +123,10 @@ public class CetakSertifikat extends javax.swing.JInternalFrame {
         txtNama = new javax.swing.JTextField();
         txtTempatLahir = new javax.swing.JTextField();
         dateLahir = new com.toedter.calendar.JDateChooser();
+        jLabel9 = new javax.swing.JLabel();
+        txtJurusan = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtPeriode = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         btnBelakang = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -187,17 +194,25 @@ public class CetakSertifikat extends javax.swing.JInternalFrame {
         dateLahir.setEnabled(false);
         dateLahir.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
+        jLabel9.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        jLabel9.setText("Tingkat");
+
+        txtJurusan.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtJurusan.setEnabled(false);
+
+        jLabel10.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        jLabel10.setText("Periode");
+
+        txtPeriode.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtPeriode.setEnabled(false);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTempatLahir))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -205,9 +220,24 @@ public class CetakSertifikat extends javax.swing.JInternalFrame {
                         .addGap(86, 86, 86)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbkPeserta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(1, 1, 1)
-                .addComponent(dateLahir, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(1, 1, 1)
+                        .addComponent(dateLahir, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel9))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(txtTempatLahir, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtPeriode, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+                                    .addComponent(txtJurusan)))))
+                    .addComponent(jLabel10))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,7 +256,15 @@ public class CetakSertifikat extends javax.swing.JInternalFrame {
                         .addComponent(jLabel4)
                         .addComponent(txtTempatLahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(dateLahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtJurusan)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(txtPeriode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jButton1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
@@ -314,7 +352,7 @@ public class CetakSertifikat extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 3, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dateCetak, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -330,34 +368,33 @@ public class CetakSertifikat extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton1)
-                                .addComponent(btnBelakang))
-                            .addComponent(dateCetak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel8)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1)
+                        .addComponent(btnBelakang))
+                    .addComponent(dateCetak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
+      
+              try {
             // TODO add your handling code here:
             printDataSiswaKelas(listSiswa);
         } catch (JRException ex) {
             Logger.getLogger(CetakSertifikat.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }       
+                    
+        
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnBelakangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBelakangActionPerformed
@@ -377,11 +414,15 @@ public class CetakSertifikat extends javax.swing.JInternalFrame {
                 txtNama.setText(siswa.getNama());
                 txtTempatLahir.setText(siswa.getTempatLahir());
                 dateLahir.setDate(siswa.getTanggalLahir());
+                txtJurusan.setText(siswa.getKelas().getJurusan().getNama());
+                txtPeriode.setText(siswa.getKelas().getPeriode());
 
             } else {
                 txtNama.setText("");
                 txtTempatLahir.setText("");
                 dateLahir.setDate(null);
+                txtJurusan.setText("");
+                txtPeriode.setText("");
             }
         } catch (NullPointerException npe) {
             npe.printStackTrace();
@@ -398,6 +439,7 @@ public class CetakSertifikat extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JDateChooser dateLahir;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -405,12 +447,15 @@ public class CetakSertifikat extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField txtBulanSertifikat;
+    private javax.swing.JTextField txtJurusan;
     private javax.swing.JTextField txtNama;
     private javax.swing.JTextField txtNoSertifikat;
+    private javax.swing.JTextField txtPeriode;
     private javax.swing.JTextField txtTahun;
     private javax.swing.JTextField txtTempatLahir;
     // End of variables declaration//GEN-END:variables

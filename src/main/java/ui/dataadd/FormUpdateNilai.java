@@ -116,11 +116,13 @@ public class FormUpdateNilai extends javax.swing.JDialog {
         jLabel1.setText("Materi");
 
         txtKode.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtKode.setEnabled(false);
 
         jLabel2.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel2.setText("Sub");
 
         txtNama.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtNama.setEnabled(false);
         txtNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNamaActionPerformed(evt);

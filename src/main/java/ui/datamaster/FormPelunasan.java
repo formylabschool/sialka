@@ -28,6 +28,7 @@ import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import service.ServiceOfPembayaran;
 import service.ServiceOfSiswa;
+import ui.dataadd.ChooseDataPelunasan;
 
 /**
  *
@@ -36,6 +37,10 @@ import service.ServiceOfSiswa;
 public class FormPelunasan extends javax.swing.JInternalFrame {
 
     private Siswa siswa;
+
+    public void setSiswa(Siswa siswa) {
+        this.siswa = siswa;
+    }
 
     /**
      * Creates new form FormPelunasan
@@ -52,12 +57,12 @@ public class FormPelunasan extends javax.swing.JInternalFrame {
         return aBuilder.toString();
     }
 
-      private void printKwitansi(String generateKode, Pembayaran pembayaran) throws JRException {
+    private void printKwitansi(String generateKode, Pembayaran pembayaran) throws JRException {
         HashMap<String, Object> pembayaranMap = new HashMap<String, Object>();
         //Kelas kelas = listKelas.get(cbkKelas.getSelectedIndex());
         pembayaranMap.put("noPembayaran", generateKode);
         pembayaranMap.put("nama", txtNama.getText());
-      //  pembayaranMap.put("jumlah", sPem.getValue());
+        //  pembayaranMap.put("jumlah", sPem.getValue());
         pembayaranMap.put("jumlah", txtSisa.getText());
         JasperDesign design = JRXmlLoader.load(getClass().getResourceAsStream("/kwitansi_pelunasan.jrxml"));
         JasperReport report = JasperCompileManager.compileReport(design);
@@ -65,6 +70,13 @@ public class FormPelunasan extends javax.swing.JInternalFrame {
         JasperViewer view = new JasperViewer(print, false);
         view.setVisible(true);
     }
+
+    public void setNIP(Siswa siswa) {
+        txtNoPeserta.setText(siswa.getKodeSiswa());
+        txtNama.setText(siswa.getNama());
+        txtSisa.setText(siswa.getSisa().toString());
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,6 +97,7 @@ public class FormPelunasan extends javax.swing.JInternalFrame {
         txtNama = new javax.swing.JTextField();
         txtSisa = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setClosable(true);
 
@@ -138,11 +151,16 @@ public class FormPelunasan extends javax.swing.JInternalFrame {
             }
         });
 
+        txtNama.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtNama.setEnabled(false);
         txtNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNamaActionPerformed(evt);
             }
         });
+
+        txtSisa.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtSisa.setEnabled(false);
 
         jButton1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/search.png")); // NOI18N
@@ -192,6 +210,14 @@ public class FormPelunasan extends javax.swing.JInternalFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
+        jButton3.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        jButton3.setText("Cari Data");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -201,7 +227,9 @@ public class FormPelunasan extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(6, 6, 6)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -213,7 +241,9 @@ public class FormPelunasan extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addContainerGap())
         );
 
@@ -243,24 +273,21 @@ public class FormPelunasan extends javax.swing.JInternalFrame {
         pembayaran.setNoPembayaran(generateKode(pembayaran.getId()));
         pembayaran.setAmount(Double.valueOf(txtSisa.getText()));
         ServiceOfPembayaran aPembayaran = new ServiceOfPembayaran(HIbernateUtil.config());
-        
+
         aPembayaran.doSave(pembayaran);
         siswa.setPembayaran2(pembayaran);
         pembayaran.setNoPembayaran(generateKode(pembayaran.getId()));
         aPembayaran.doUpdate(pembayaran);
         ServiceOfSiswa service = new ServiceOfSiswa(HIbernateUtil.config());
 
-        
-        
         Double nilai;
-        nilai = (siswa.getPembayaran1().getAmount()+ pembayaran.getAmount())-siswa.getHargaTotal();
+        nilai = (siswa.getPembayaran1().getAmount() + pembayaran.getAmount()) - siswa.getHargaTotal();
         siswa.setSisa(nilai);
 
         System.out.println("harga :" + nilai);
         siswa.setLunas(nilai == 0.0);
         System.out.println("status lunas :" + siswa.getLunas());
-        
-        
+
         service.doUpdate(siswa);
         try {
             printKwitansi(pembayaran.getNoPembayaran(), pembayaran);
@@ -275,10 +302,17 @@ public class FormPelunasan extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNoPesertaActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        ChooseDataPelunasan add = new ChooseDataPelunasan(null, false, this);
+        add.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

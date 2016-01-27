@@ -139,6 +139,7 @@ public class FormDataKelas extends javax.swing.JInternalFrame {
         jLabel2.setText("Nama Kelas");
 
         txtKelas.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtKelas.setEnabled(false);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -153,6 +154,7 @@ public class FormDataKelas extends javax.swing.JInternalFrame {
                 "NIS", "Nama"
             }
         ));
+        tableSiswa.setEnabled(false);
         jScrollPane1.setViewportView(tableSiswa);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -183,6 +185,8 @@ public class FormDataKelas extends javax.swing.JInternalFrame {
 
         jLabel4.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel4.setText("Jumlah Siswa");
+
+        txtJml.setEnabled(false);
 
         btnPrint.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         btnPrint.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/print.png")); // NOI18N

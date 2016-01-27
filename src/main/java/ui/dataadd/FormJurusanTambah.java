@@ -94,7 +94,7 @@ public class FormJurusanTambah extends javax.swing.JDialog {
         txtNama.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
         sHarga.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        sHarga.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(0.0d), Double.valueOf(0.0d), null, Double.valueOf(500.0d)));
+        sHarga.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(0.0d), Double.valueOf(0.0d), null, Double.valueOf(500000.0d)));
 
         jLabel4.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         jLabel4.setText("Jumlah Pertemuan");

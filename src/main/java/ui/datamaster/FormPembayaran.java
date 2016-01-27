@@ -143,6 +143,7 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
         txtNIP.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
         txtNama.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtNama.setEnabled(false);
         txtNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNamaActionPerformed(evt);
@@ -162,6 +163,7 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
         jLabel5.setText("Sisa Yang Harus Dibayar ");
 
         txtSisa.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtSisa.setEnabled(false);
         txtSisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSisaActionPerformed(evt);
@@ -257,7 +259,7 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSimpan)))
                 .addContainerGap())
         );
@@ -315,7 +317,8 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
         siswa.setPembayaran1(pembayaran);
         pembayaran.setNoPembayaran(generateKode(pembayaran.getId()));
         aPembayaran.doUpdate(pembayaran);
-
+//        Double spiner = Double.valueOf(sPem.getValue().toString());
+//       if(spiner == Double.valueOf(0)) 
         Double nilai;
         nilai = siswa.getHargaTotal() - pembayaran.getAmount();
         siswa.setSisa(nilai);

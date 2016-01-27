@@ -130,6 +130,7 @@ public class FormAbsensi extends javax.swing.JInternalFrame {
         jLabel3.setText("Nama");
 
         txtNama.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtNama.setEnabled(false);
 
         btnCari.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         btnCari.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/search.png")); // NOI18N

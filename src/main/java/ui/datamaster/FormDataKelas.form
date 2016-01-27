@@ -164,6 +164,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Menlo" size="13" style="0"/>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel2">
@@ -225,6 +226,7 @@
                     </Column>
                   </TableColumnModel>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
@@ -257,6 +259,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtJml">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnPrint">
       <Properties>

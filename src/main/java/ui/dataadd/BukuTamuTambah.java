@@ -47,6 +47,8 @@ public class BukuTamuTambah extends javax.swing.JDialog {
         super(object, b);
         setUpdate(true);
         initComponents();
+        this.setLocationRelativeTo(this);
+        this.setAlwaysOnTop(true);
         this.menu = aThis;
         this.controllers = new ControllersOfBukuTamu();
         this.model = model;

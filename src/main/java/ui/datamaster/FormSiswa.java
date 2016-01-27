@@ -8,6 +8,8 @@ package ui.datamaster;
 import configuration.HIbernateUtil;
 import controllers.ControllersOfSiswa;
 import java.util.List;
+import javassist.bytecode.stackmap.BasicBlock;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
@@ -27,10 +29,12 @@ import ui.update.FormUpdateSiswa;
  * @author muhamadhanifmuhsin
  */
 public class FormSiswa extends javax.swing.JInternalFrame {
-private ControllersOfSiswa controllers;
-private ServiceOfSiswa service;
-private List<Siswa>list;
-private DefaultTableModel model;
+
+    private ControllersOfSiswa controllers;
+    private ServiceOfSiswa service;
+    private List<Siswa> list;
+    private DefaultTableModel model;
+
     /**
      * Creates new form FormSiswa
      */
@@ -42,13 +46,13 @@ private DefaultTableModel model;
         refreshTable();
     }
 
-     public void refreshTable() {
+    public void refreshTable() {
         service = new ServiceOfSiswa(HIbernateUtil.config());
         list = service.findAll();
         this.controllers.loadDataSiswa(list);
     }
-     
-       public void setTableRowSorter(JTable tabelSiswa, JTextField txtKodeNIP) {
+
+    public void setTableRowSorter(JTable tabelSiswa, JTextField txtKodeNIP) {
         TableRowSorter<TableModel> filterRows;
         filterRows = new TableRowSorter<>(tabelSiswa.getModel());
         tabelSiswa.setRowSorter(filterRows);
@@ -56,24 +60,25 @@ private DefaultTableModel model;
 
             @Override
             public void insertUpdate(DocumentEvent e) {
-                filterRows.setRowFilter(RowFilter.regexFilter(txtKodeNIP.getText(),0));
+                filterRows.setRowFilter(RowFilter.regexFilter(txtKodeNIP.getText(), 0));
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                filterRows.setRowFilter(RowFilter.regexFilter(txtKodeNIP.getText(),0));
+                filterRows.setRowFilter(RowFilter.regexFilter(txtKodeNIP.getText(), 0));
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                filterRows.setRowFilter(RowFilter.regexFilter(txtKodeNIP.getText(),0));
+                filterRows.setRowFilter(RowFilter.regexFilter(txtKodeNIP.getText(), 0));
             }
         });
     }
-     
-     public DefaultTableModel getModel() {
+
+    public DefaultTableModel getModel() {
         return model;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -234,14 +239,14 @@ private DefaultTableModel model;
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
         // TODO add your handling code here:
-           Integer selectedRow = tabelSiswa.getSelectedRow();
+        Integer selectedRow = tabelSiswa.getSelectedRow();
         System.out.println(selectedRow + " selected row ");
         if (selectedRow >= 0) {
             Siswa model = list.get(selectedRow);
             FormUpdateSiswa add = new FormUpdateSiswa(null, true, this, model);
             add.setVisible(true);
         } else {
-
+            JOptionPane.showMessageDialog(null, "Tabel Belum diklik");
         }
 
     }//GEN-LAST:event_btnUbahActionPerformed
@@ -249,16 +254,21 @@ private DefaultTableModel model;
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
         Integer rowSelected = tabelSiswa.getSelectedRow();
-        System.out.println("hapus data baris ke "+rowSelected);
-        if (rowSelected >= 0) {
-            service = new ServiceOfSiswa(HIbernateUtil.config());
-            Siswa model = list.get(tabelSiswa.getSelectedRow());
-            service.doDelete(model);
-            refreshTable();
-        }else{
-            System.out.println("Tabel Belum diklick");
+        System.out.println("hapus data baris ke " + rowSelected);
+        try {
+            if (rowSelected >= 0) {
+                service = new ServiceOfSiswa(HIbernateUtil.config());
+                Siswa model = list.get(tabelSiswa.getSelectedRow());
+                service.doDelete(model);
+                refreshTable();
+            } else {
+                JOptionPane.showMessageDialog(null, "Tabel Belum diklik");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Maaf Data Sudah Terpakai");
         }
-           
+
+
     }//GEN-LAST:event_btnHapusActionPerformed
 
 

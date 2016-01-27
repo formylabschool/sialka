@@ -34,7 +34,7 @@ public class ControllersOfKelas implements JavaControllers {
         initTable();
         ServiceOfKelas service = new ServiceOfKelas(HIbernateUtil.config());
         for (Kelas aKelas : list) {
-            Object[] anObjects = { aKelas.getKodeKelas(), aKelas.getNamaKelas(),aKelas.getTahun(),
+            Object[] anObjects = { aKelas.getKodeKelas(), aKelas.getNamaKelas(),aKelas.getPeriode(),
                 aKelas.getJurusan().getNama()};
             this.defaultTableModel.addRow(anObjects);
 

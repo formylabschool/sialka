@@ -112,6 +112,8 @@ public class FormTambahKelas extends javax.swing.JDialog {
             }
         });
 
+        txtNamaKelas.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+
         cbkJurusan.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         cbkJurusan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -232,7 +234,7 @@ public class FormTambahKelas extends javax.swing.JDialog {
                 ServiceOfKelas service = new ServiceOfKelas(HIbernateUtil.config());
                 model.setKodeKelas(txtKodeKelas.getText());
                 model.setNamaKelas(txtNamaKelas.getText());
-                model.setTahun(txtTahun.getText());
+                model.setPeriode(txtTahun.getText());
 
                 model.setJurusan(listJurusan.get(cbkJurusan.getSelectedIndex()));
 
@@ -250,7 +252,7 @@ public class FormTambahKelas extends javax.swing.JDialog {
                 ServiceOfKelas service = new ServiceOfKelas(HIbernateUtil.config());
                 model.setKodeKelas(txtKodeKelas.getText());
                 model.setNamaKelas(txtNamaKelas.getText());
-                model.setTahun(txtTahun.getText());
+                model.setPeriode(txtTahun.getText());
 
                 model.setJurusan(listJurusan.get(cbkJurusan.getSelectedIndex()));
                 service.doSave(model);

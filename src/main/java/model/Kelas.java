@@ -29,17 +29,17 @@ public class Kelas {
     private String kodeKelas;
     @Column(name = "nama_kelas", nullable = false, length = 50)
     private String namaKelas;
-    @Column(nullable = false, length = 10)
-    private String tahun;
+
+    private String periode;
     @ManyToOne
     private Jurusan jurusan;
 
-    public String getTahun() {
-        return tahun;
+    public String getPeriode() {
+        return periode;
     }
 
-    public void setTahun(String tahun) {
-        this.tahun = tahun;
+    public void setPeriode(String periode) {
+        this.periode = periode;
     }
 
     public int getId() {

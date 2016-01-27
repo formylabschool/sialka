@@ -72,7 +72,7 @@ public class FormKelas extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Kode Kelas", "Nama Kelas", "Tahun", "Nama Jurusan"
+                "Kode Kelas", "Nama Kelas", "Periode", "Nama Jurusan"
             }
         ));
         jScrollPane1.setViewportView(tableKelas);

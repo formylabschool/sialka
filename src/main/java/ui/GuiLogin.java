@@ -63,7 +63,7 @@ public class GuiLogin extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel2.setBackground(new java.awt.Color(234, 234, 234));
 

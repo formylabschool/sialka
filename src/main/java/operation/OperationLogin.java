@@ -20,6 +20,7 @@ public class OperationLogin {
 
     Koneksi sambung = new Koneksi();
     public boolean login = false;
+    public boolean logins = false;
     public boolean admin = false;
 
     public void prosesLogin(String pemakai, String pass, int hakakses) throws SQLException {
@@ -36,12 +37,14 @@ public class OperationLogin {
             if (hasil.next()) {
                 Object[] data = {hasil.getString(1), hasil.getString(2), hasil.getString(3)};
                 setLogin((data[1].toString().equals(pass) && data[2].equals(Integer.toString(hakakses))));
+               
                 setAdmin(data[2].equals("0"));
 
             } else {
                 JOptionPane.showMessageDialog(null, "User Tidak Ditemukan");
                 setLogin(false);
                 setAdmin(false);
+                
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -65,5 +68,7 @@ public class OperationLogin {
     public void setLogin(boolean benar) {
         this.login = benar;
     }
+    
+   
 
 }

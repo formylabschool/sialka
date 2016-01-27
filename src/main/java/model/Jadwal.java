@@ -26,7 +26,9 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name="jadwal", uniqueConstraints = 
         { @UniqueConstraint(name = "uq_jadwal",columnNames = {"jam","intruktur_id","tanggal"}),
-        @UniqueConstraint(name = "ug_instruktur", columnNames = {"tanggal","ruangan_id","jam"})}
+        @UniqueConstraint(name = "ug_instruktur", columnNames = {"tanggal","ruangan_id","jam"}),
+        @UniqueConstraint(name = "ug_kelas", columnNames = {"kelas_id_kelas","jam","tanggal"}),
+        }
 )
 public class Jadwal {
     @Id
@@ -43,6 +45,7 @@ public class Jadwal {
     private Materi materi;
     @OneToOne
     private Kelas kelas;
+    @JoinColumns(@JoinColumn(name = "kelas_id_kelas"))
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
     private Date tanggal;
