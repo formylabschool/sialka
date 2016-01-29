@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2016-01-13T22:20:12 -->
+<!-- 2016-01-27T13:54:22 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="kwitansi_pelunasan" pageWidth="595" pageHeight="311" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="01605700-9dc2-4d22-b3e1-f0b18c76f2ee">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit." value="cm"/>
@@ -89,15 +89,24 @@
 				<text><![CDATA[Jumlah Yang Dibayar]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="130" y="6" width="130" height="19" uuid="14b56698-1126-478a-be06-7100cf258ad0"/>
+				<reportElement x="113" y="6" width="130" height="19" uuid="14b56698-1126-478a-be06-7100cf258ad0"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{noPembayaran}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="130" y="27" width="190" height="19" uuid="877f7ba8-1f8f-41eb-8300-9d519b29f7a6"/>
+				<reportElement x="113" y="27" width="190" height="19" uuid="877f7ba8-1f8f-41eb-8300-9d519b29f7a6"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{nama}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="130" y="48" width="130" height="20" uuid="a28df708-e065-4d72-9ba5-bf4ce8178cef"/>
+				<reportElement x="113" y="48" width="130" height="20" uuid="a28df708-e065-4d72-9ba5-bf4ce8178cef"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{jumlah}]]></textFieldExpression>
 			</textField>
 		</band>
