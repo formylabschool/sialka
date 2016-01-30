@@ -6,10 +6,9 @@
 package ui.datamaster;
 
 import configuration.HIbernateUtil;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.Year;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -53,6 +52,12 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
         initCombox();
         dateChooser.setDate(new Date());
 
+    }
+
+    public void converCurrency() {
+        double money = 100.1;
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        String moneyString = formatter.format(money);
     }
 
     public int hitungUmur() {
@@ -563,8 +568,12 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
         if (cbkKelas.getSelectedIndex() >= 0) {
             Kelas kelas = listKelas.get(cbkKelas.getSelectedIndex());
             //  jHarga.setValue(kelas.getJurusan().getHarga());
-            txtHarga.setText(kelas.getJurusan().getHarga().toString());
-        } else {
+            double money = kelas.getJurusan().getHarga();
+            NumberFormat formatter = NumberFormat.getCurrencyInstance();
+            String moneyString = formatter.format(money);
+          //  txtHarga.setText(kelas.getJurusan().getHarga().toString());
+            txtHarga.setText(moneyString); 
+       } else {
             txtHarga.setText("0");
             // jHarga.setValue("0");
         }
@@ -583,7 +592,7 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
 
     private void dateLahirPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dateLahirPropertyChange
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_dateLahirPropertyChange
 
     private void dateLahirInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_dateLahirInputMethodTextChanged
