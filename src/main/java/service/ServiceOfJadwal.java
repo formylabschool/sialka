@@ -5,8 +5,6 @@
  */
 package service;
 
-import configuration.HIbernateUtil;
-import java.util.Iterator;
 import java.util.List;
 import model.Instruktur;
 import model.Jadwal;

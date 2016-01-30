@@ -50,8 +50,8 @@ public class MainForm extends javax.swing.JFrame {
      */
     public MainForm() {
         initComponents();
-        panggilJendelaLogin();
-        setMenubarEnabled(login.opLogin.isLogin(), login.opLogin.isAdmin());
+     //   panggilJendelaLogin();
+      //  setMenubarEnabled(login.opLogin.isLogin(), login.opLogin.isAdmin());
 
     }
 
