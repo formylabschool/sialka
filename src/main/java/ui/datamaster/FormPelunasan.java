@@ -7,6 +7,7 @@ package ui.datamaster;
 
 import configuration.HIbernateUtil;
 import java.sql.Date;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -72,7 +73,11 @@ public class FormPelunasan extends javax.swing.JInternalFrame {
     public void setNIP(Siswa siswa) {
         txtNoPeserta.setText(siswa.getKodeSiswa());
         txtNama.setText(siswa.getNama());
-        txtSisa.setText(siswa.getSisa().toString());
+         double money = siswa.getSisa();
+            NumberFormat formatter = NumberFormat.getCurrencyInstance();
+            String moneyString = formatter.format(money);
+        txtSisa.setText(moneyString);
+        
     }
 
     /**
