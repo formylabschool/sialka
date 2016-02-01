@@ -7,6 +7,7 @@ package ui.datamaster;
 
 import configuration.HIbernateUtil;
 import java.sql.Date;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -298,7 +299,10 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (siswa != null) {
             Double max = siswa.getSisa();
-            txtSisa.setText(String.valueOf(max - Double.valueOf(sPem.getValue().toString())));
+            Double value = max - Double.valueOf(sPem.getValue().toString());
+            NumberFormat nf = NumberFormat.getCurrencyInstance();
+            
+            txtSisa.setText(nf.format(value));
         }
     }//GEN-LAST:event_sPemStateChanged
 

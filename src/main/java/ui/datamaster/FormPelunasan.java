@@ -274,7 +274,7 @@ public class FormPelunasan extends javax.swing.JInternalFrame {
         Pembayaran pembayaran = new Pembayaran();
         pembayaran.setTanggal(Date.valueOf(LocalDate.now()));
         pembayaran.setNoPembayaran(generateKode(pembayaran.getId()));
-        pembayaran.setAmount(Double.valueOf(txtSisa.getText()));
+        pembayaran.setAmount(siswa.getSisa());
         ServiceOfPembayaran aPembayaran = new ServiceOfPembayaran(HIbernateUtil.config());
 
         aPembayaran.doSave(pembayaran);
