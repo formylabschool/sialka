@@ -66,5 +66,21 @@ public class ServiceOfSiswa {
         return (Siswa) criteria.uniqueResult();
     }
     
+    public List<Siswa>findSiswaByPembayaran1(){
+        Session session = aSessionFactory.openSession();
+        session.beginTransaction();
+        
+        Criteria cr = session.createCriteria(Siswa.class);
+        cr.add(Restrictions.isNull("pembayaran1"));
+        return cr.list();
+    }
+    
+    public List<Siswa>findSiswaBySisa(){
+        Session session = aSessionFactory.openSession();
+        session.beginTransaction();
+        Criteria cr = session.createCriteria(Siswa.class);
+        cr.add(Restrictions.eq("sisa",1000000.0));
+        return cr.list();
+    }
     
 }

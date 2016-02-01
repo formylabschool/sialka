@@ -64,7 +64,7 @@ public class ChooseData extends javax.swing.JDialog {
 
     public void refreshTable() {
         service = new ServiceOfSiswa(HIbernateUtil.config());
-        listSiswa = service.findAll();
+        listSiswa = service.findSiswaByPembayaran1();
         this.controll.loadData(listSiswa);
     }
 

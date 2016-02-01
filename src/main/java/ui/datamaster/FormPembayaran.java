@@ -95,13 +95,12 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         txtNIP = new javax.swing.JTextField();
         txtNama = new javax.swing.JTextField();
-        btnCari = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtSisa = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         sPem = new javax.swing.JSpinner();
-        btnSimpan = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        btnSimpan = new javax.swing.JButton();
 
         jLabel4.setText("jLabel4");
 
@@ -140,21 +139,13 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
         jLabel3.setText("Nama");
 
         txtNIP.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        txtNIP.setEnabled(false);
 
         txtNama.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
         txtNama.setEnabled(false);
         txtNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNamaActionPerformed(evt);
-            }
-        });
-
-        btnCari.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        btnCari.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/search.png")); // NOI18N
-        btnCari.setText("Cari");
-        btnCari.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCariActionPerformed(evt);
             }
         });
 
@@ -179,6 +170,15 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/search.png")); // NOI18N
+        jButton1.setText("Cari Data");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -199,12 +199,11 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(sPem, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(txtNIP, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnCari))
-                            .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(jButton1)))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -214,7 +213,7 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtNIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCari))
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -239,14 +238,6 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
-        jButton1.setText("Cari Data");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -257,8 +248,7 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnSimpan)))
                 .addContainerGap())
         );
@@ -269,10 +259,8 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSimpan)
-                    .addComponent(jButton1))
-                .addGap(0, 9, Short.MAX_VALUE))
+                .addComponent(btnSimpan)
+                .addGap(0, 10, Short.MAX_VALUE))
         );
 
         pack();
@@ -281,19 +269,6 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
     private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNamaActionPerformed
-
-    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
-        // TODO add your handling code here:
-        ServiceOfSiswa aSiswa = new ServiceOfSiswa(HIbernateUtil.config());
-        siswa = aSiswa.findSiswa(txtNIP.getText());
-        if (siswa == null) {
-            JOptionPane.showMessageDialog(null, "Siswa Tidak di temukan");
-        } else {
-            txtNama.setText(siswa.getNama());
-            txtSisa.setText(siswa.getSisa().toString());
-        }
-
-    }//GEN-LAST:event_btnCariActionPerformed
 
     private void sPemStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sPemStateChanged
         // TODO add your handling code here:
@@ -352,7 +327,6 @@ public class FormPembayaran extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCari;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
