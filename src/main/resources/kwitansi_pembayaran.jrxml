@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2016-01-13T22:11:31 -->
+<!-- 2016-02-09T16:16:24 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="kwitansi_pembayaran" pageWidth="595" pageHeight="283" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5c48d618-2dd6-404a-8cb8-a315baeb1114">
 	<property name="com.jaspersoft.studio.unit." value="cm"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
@@ -34,16 +34,23 @@
 			<staticText>
 				<reportElement x="420" y="24" width="141" height="16" uuid="6268f51a-891d-4736-85ff-149c478908f9"/>
 				<textElement>
-					<font fontName="Times New Roman" size="9"/>
+					<font fontName="Times New Roman" size="8"/>
 				</textElement>
 				<text><![CDATA[JL. CIPARAY INDAH NO.5A]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="420" y="40" width="141" height="20" uuid="d32d34c1-b887-4316-989e-1e55e17c9144"/>
+				<reportElement x="420" y="35" width="141" height="20" uuid="d32d34c1-b887-4316-989e-1e55e17c9144"/>
 				<textElement>
-					<font fontName="Times New Roman" size="9"/>
+					<font fontName="Times New Roman" size="8"/>
 				</textElement>
 				<text><![CDATA[Tlp. 022-85964311]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="46" width="141" height="18" uuid="fd3158db-80b6-43a0-82f9-f4248786bb1f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<text><![CDATA[email : lpk.kanira@gmail.com]]></text>
 			</staticText>
 		</band>
 	</title>

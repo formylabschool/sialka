@@ -5,6 +5,7 @@
  */
 package service;
 
+import java.util.Iterator;
 import java.util.List;
 import model.Jurusan;
 import model.Kelas;
@@ -65,5 +66,21 @@ public class ServiceOfKelas {
         return aCriteria.list();
     }
      
+   public Integer getJumlahSiswaPerKelas(Kelas kelas){
+       Session session = aSessionFactory.openSession();
+       session.beginTransaction();
+       
+       Iterator<Siswa> listSiswa = session.createCriteria(Siswa.class).list().iterator();
+       Integer index = 0;
+       while (listSiswa.hasNext()){
+           Siswa value = listSiswa.next();
+           if(value.getKelas().getId() == kelas.getId())
+               index++;
+       }
+       return index;
+       
+   }
+   
+   
     
 }

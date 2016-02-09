@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2016-01-13T22:07:02 -->
+<!-- 2016-02-09T16:34:23 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="laporan_transaksi" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="75d65c7f-8c2e-4e06-83d5-220369531588">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<import value="model.Pembayaran"/>
@@ -55,7 +55,7 @@
 			<line>
 				<reportElement x="-20" y="38" width="595" height="1" uuid="67dd3c59-ae94-4fec-b37c-1528b8e27c08"/>
 			</line>
-			<textField pattern="MMMM d, yyyy">
+			<textField pattern="d MMM  yyyy">
 				<reportElement x="186" y="11" width="75" height="17" uuid="fccce2c0-6ca8-44ec-a392-09449682edc0"/>
 				<textElement>
 					<font fontName="Times New Roman"/>
@@ -63,13 +63,13 @@
 				<textFieldExpression><![CDATA[$P{tanggalAwal}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="263" y="11" width="42" height="16" uuid="29bb0e43-67ac-4d2b-ba3b-d7fa6bcb5668"/>
+				<reportElement x="251" y="11" width="42" height="16" uuid="29bb0e43-67ac-4d2b-ba3b-d7fa6bcb5668"/>
 				<textElement textAlignment="Center">
 					<font fontName="Times New Roman"/>
 				</textElement>
 				<text><![CDATA[Sampai]]></text>
 			</staticText>
-			<textField pattern="MMMM d, yyyy">
+			<textField pattern="d MMM  yyyy">
 				<reportElement x="307" y="12" width="100" height="15" uuid="93148b21-4341-41a4-939a-89910b6f6d54"/>
 				<textElement>
 					<font fontName="Times New Roman"/>
@@ -194,7 +194,7 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="49" splitType="Stretch">
+		<band height="120" splitType="Stretch">
 			<staticText>
 				<reportElement x="261" y="0" width="100" height="21" uuid="0fec010b-c1c6-4bb2-b8e2-b77fde3c6b09"/>
 				<box>
@@ -221,6 +221,16 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{totalTransaksi}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="448" y="38" width="100" height="30" uuid="753a19e1-d1a7-424a-a874-9f0de1c6f0ea"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Administrasi]]></text>
+			</staticText>
+			<line>
+				<reportElement x="452" y="108" width="93" height="1" uuid="9e71ffde-1979-4f07-b4df-b54b70b35587"/>
+			</line>
 		</band>
 	</columnFooter>
 </jasperReport>

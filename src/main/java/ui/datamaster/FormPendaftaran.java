@@ -502,6 +502,8 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         try {
+            ServiceOfKelas serviceKelas = new ServiceOfKelas(HIbernateUtil.config());
+            
             // TODO add your handling code here:
             Siswa aSiswa = new Siswa();
 //        aSiswa.setJurusan(listJurusan.get(cbkJurusan.getSelectedIndex()));
@@ -526,7 +528,12 @@ public class FormPendaftaran extends javax.swing.JInternalFrame {
             ServiceOfNilai serviceNilai = new ServiceOfNilai(aSessionFactory);
             if (hitungUmur() <= 18) {
                 JOptionPane.showMessageDialog(getRootPane(), "Maaf umur anda belum mencukupi", "INFORMASI", JOptionPane.WARNING_MESSAGE);
-            } else {
+            } else if(serviceKelas.getJumlahSiswaPerKelas(listKelas.get(cbkKelas.getSelectedIndex())) >= 20
+                    ){
+            JOptionPane.showMessageDialog(getRootPane(), "Maaf kelas sudah penuh", "INFORMASI", JOptionPane.WARNING_MESSAGE);
+            
+            }
+            else {
                 serviceOfSiswa.doSave(aSiswa);
                 aSiswa.setKodeSiswa(generateKode(aSiswa.getId()));
 

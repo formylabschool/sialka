@@ -75,7 +75,6 @@ public class MainForm extends javax.swing.JFrame {
         mniMatikan = new javax.swing.JMenuItem();
         mnuAdministrasi = new javax.swing.JMenu();
         mniAbsensi = new javax.swing.JMenuItem();
-        mniBukuTamu = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         mniRegistrasi = new javax.swing.JMenuItem();
         mniDataAbsensi = new javax.swing.JMenuItem();
@@ -135,12 +134,10 @@ public class MainForm extends javax.swing.JFrame {
 
         desktop.setBackground(new java.awt.Color(234, 234, 234));
 
-        mnuAkses.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/akses.png")); // NOI18N
         mnuAkses.setText("Akses");
         mnuAkses.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
 
         mniMasuk.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
-        mniMasuk.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/login.png")); // NOI18N
         mniMasuk.setText("Masuk");
         mniMasuk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,7 +147,6 @@ public class MainForm extends javax.swing.JFrame {
         mnuAkses.add(mniMasuk);
 
         mniKeluar.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
-        mniKeluar.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/logout.png")); // NOI18N
         mniKeluar.setText("Keluar");
         mniKeluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,7 +157,6 @@ public class MainForm extends javax.swing.JFrame {
         mnuAkses.add(jSeparator1);
 
         mniMatikan.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
-        mniMatikan.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/standby.png")); // NOI18N
         mniMatikan.setText("Matikan");
         mniMatikan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,7 +167,6 @@ public class MainForm extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuAkses);
 
-        mnuAdministrasi.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/administrasi.png")); // NOI18N
         mnuAdministrasi.setText("Administrasi");
         mnuAdministrasi.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
 
@@ -184,15 +178,6 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
         mnuAdministrasi.add(mniAbsensi);
-
-        mniBukuTamu.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
-        mniBukuTamu.setText("Buku Tamu");
-        mniBukuTamu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mniBukuTamuActionPerformed(evt);
-            }
-        });
-        mnuAdministrasi.add(mniBukuTamu);
         mnuAdministrasi.add(jSeparator2);
 
         mniRegistrasi.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
@@ -215,7 +200,6 @@ public class MainForm extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuAdministrasi);
 
-        mnuDataSiswa.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/data_siswa.png")); // NOI18N
         mnuDataSiswa.setText("Data Siswa");
         mnuDataSiswa.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
 
@@ -257,7 +241,6 @@ public class MainForm extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuDataSiswa);
 
-        mnuKeuangan.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/keuangan.png")); // NOI18N
         mnuKeuangan.setText("Keuangan");
         mnuKeuangan.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
 
@@ -291,7 +274,6 @@ public class MainForm extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuKeuangan);
 
-        mnuKurikulum.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/kurikulum.png")); // NOI18N
         mnuKurikulum.setText("Kurikulum");
         mnuKurikulum.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
 
@@ -389,7 +371,6 @@ public class MainForm extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuKurikulum);
 
-        mnuLaporan.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/laporan.png")); // NOI18N
         mnuLaporan.setText("Laporan");
         mnuLaporan.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
 
@@ -491,18 +472,6 @@ public class MainForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_mniMatikanActionPerformed
-
-    private void mniBukuTamuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniBukuTamuActionPerformed
-        // TODO add your handling code here:
-        FormBukuTamu add = new FormBukuTamu();
-        desktop.add(add);
-
-        Dimension size = desktop.getSize();
-        Dimension addSize = add.getSize();
-        add.setLocation((size.width - addSize.width) / 2,
-                (size.height - addSize.height) / 2);
-        add.setVisible(true);
-    }//GEN-LAST:event_mniBukuTamuActionPerformed
 
     private void mniRegistrasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniRegistrasiActionPerformed
         // TODO add your handling code here:
@@ -803,7 +772,6 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JMenuItem mniAbsensi;
-    private javax.swing.JMenuItem mniBukuTamu;
     private javax.swing.JMenuItem mniDaftarSiswa;
     private javax.swing.JMenuItem mniDataAbsensi;
     private javax.swing.JMenuItem mniDataNilaiSiswa;

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2016-01-27T13:31:47 -->
+<!-- 2016-02-09T16:15:06 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="kwitansi_pendaftaran" pageWidth="595" pageHeight="340" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b6aa98c9-ccad-483e-aed2-cf393ec9cf03">
 	<property name="com.jaspersoft.studio.unit." value="cm"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
 	<property name="com.jaspersoft.studio.unit.pageWidth" value="cm"/>
 	<property name="com.jaspersoft.studio.unit.topMargin" value="cm"/>
@@ -40,20 +39,27 @@
 			<staticText>
 				<reportElement x="420" y="24" width="141" height="16" uuid="6eeec52e-58ac-4b92-942c-5393c6d57bec"/>
 				<textElement>
-					<font fontName="Times New Roman" size="9"/>
+					<font fontName="Times New Roman" size="8"/>
 				</textElement>
 				<text><![CDATA[JL. CIPARAY INDAH NO.5A]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="420" y="40" width="141" height="20" uuid="543d9d28-af0f-4b31-886b-0e90d101ae4d"/>
+				<reportElement x="420" y="47" width="141" height="20" uuid="543d9d28-af0f-4b31-886b-0e90d101ae4d"/>
 				<textElement>
-					<font fontName="Times New Roman" size="9"/>
+					<font fontName="Times New Roman" size="8"/>
 				</textElement>
-				<text><![CDATA[Tlp. 022-85964311]]></text>
+				<text><![CDATA[email : lpk.kanira@gmail.com]]></text>
 			</staticText>
 			<line>
 				<reportElement x="-20" y="70" width="595" height="1" uuid="77ccd22b-7bf2-4f0b-9a0e-6efa98f0b14e"/>
 			</line>
+			<staticText>
+				<reportElement x="420" y="35" width="141" height="20" uuid="1e95eaa9-1bb7-4d71-afc9-069f6237c165"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<text><![CDATA[Tlp. 022-85964311]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
