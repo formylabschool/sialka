@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2016-01-16T19:43:24 -->
+<!-- 2016-02-10T06:58:30 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="jadwal_instruktur" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f744b936-7cbf-45b6-b2d0-2ad0b3c7a179">
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
@@ -33,7 +33,7 @@
 		<fieldDescription><![CDATA[instruktur.nama]]></fieldDescription>
 	</field>
 	<field name="ruangan" class="java.lang.String">
-		<fieldDescription><![CDATA[ruangan.nama]]></fieldDescription>
+		<fieldDescription><![CDATA[ruangan.id]]></fieldDescription>
 	</field>
 	<field name="kelas" class="model.Kelas">
 		<fieldDescription><![CDATA[kelas]]></fieldDescription>

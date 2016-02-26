@@ -50,8 +50,8 @@ public class MainForm extends javax.swing.JFrame {
      */
     public MainForm() {
         initComponents();
-     //   panggilJendelaLogin();
-      //  setMenubarEnabled(login.opLogin.isLogin(), login.opLogin.isAdmin());
+       panggilJendelaLogin();
+        setMenubarEnabled(login.opLogin.isLogin(), login.opLogin.isAdmin());
 
     }
 
@@ -134,6 +134,7 @@ public class MainForm extends javax.swing.JFrame {
 
         desktop.setBackground(new java.awt.Color(234, 234, 234));
 
+        mnuAkses.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/akses.png")); // NOI18N
         mnuAkses.setText("Akses");
         mnuAkses.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
 
@@ -167,6 +168,7 @@ public class MainForm extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuAkses);
 
+        mnuAdministrasi.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/administrasi.png")); // NOI18N
         mnuAdministrasi.setText("Administrasi");
         mnuAdministrasi.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
 
@@ -200,6 +202,7 @@ public class MainForm extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuAdministrasi);
 
+        mnuDataSiswa.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/data_siswa.png")); // NOI18N
         mnuDataSiswa.setText("Data Siswa");
         mnuDataSiswa.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
 
@@ -241,6 +244,7 @@ public class MainForm extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuDataSiswa);
 
+        mnuKeuangan.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/keuangan.png")); // NOI18N
         mnuKeuangan.setText("Keuangan");
         mnuKeuangan.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
 
@@ -274,6 +278,7 @@ public class MainForm extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuKeuangan);
 
+        mnuKurikulum.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/kurikulum.png")); // NOI18N
         mnuKurikulum.setText("Kurikulum");
         mnuKurikulum.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
 
@@ -371,6 +376,7 @@ public class MainForm extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuKurikulum);
 
+        mnuLaporan.setIcon(new javax.swing.ImageIcon("/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/laporan.png")); // NOI18N
         mnuLaporan.setText("Laporan");
         mnuLaporan.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
 

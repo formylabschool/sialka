@@ -6,6 +6,9 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="mnuAkses">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/akses.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Akses"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Menlo" size="14" style="0"/>
@@ -51,6 +54,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnuAdministrasi">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/administrasi.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Administrasi"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Menlo" size="14" style="0"/>
@@ -96,6 +102,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnuDataSiswa">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/data_siswa.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Data Siswa"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Menlo" size="14" style="0"/>
@@ -150,6 +159,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnuKeuangan">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/keuangan.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Keuangan"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Menlo" size="14" style="0"/>
@@ -195,6 +207,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnuKurikulum">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/kurikulum.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Kurikulum"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Menlo" size="14" style="0"/>
@@ -326,6 +341,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnuLaporan">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="/Users/muhamadhanifmuhsin/NetBeansProjects/SIALKA/src/main/resources/icon/laporan.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Laporan"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Menlo" size="14" style="0"/>

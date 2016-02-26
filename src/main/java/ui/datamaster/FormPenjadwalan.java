@@ -281,7 +281,7 @@ public class FormPenjadwalan extends javax.swing.JInternalFrame {
 
         txtKelas.setFont(new java.awt.Font("Menlo", 0, 13)); // NOI18N
 
-        cbkJam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07.30-08.15", "08.15-09.00", "09.00-09.45", "09.45-10.30", "10.45-11.30", "11.30-12.15", " " }));
+        cbkJam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07.30-08.15", "08.15-09.00", "09.00-09.45", "09.45-10.30", "10.45-11.30", " ", " " }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
